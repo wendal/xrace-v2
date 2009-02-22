@@ -61,9 +61,10 @@ import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.scene.Object;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 public class GameActivity extends Activity implements SensorListener {
-	public final static String TAG = "----- GameActivity -----";
+//	private final static String TAG = "----- GameActivity -----";
 	
 	private GameView drawView;
 	private Camera mCamera;
@@ -77,38 +78,38 @@ public class GameActivity extends Activity implements SensorListener {
 	private WRbarPool barPool;
 	private GIPool giPool;
 
-	public GLWorld mWorld;
+	private GLWorld mWorld;
 
 //	public SensorManager mSensorManager ;
-	public ServerListenerImp mServerListener;
-	public PostManagerClient mPostManager;
+	private ServerListenerImp mServerListener;
+	private PostManagerClient mPostManager;
 
-	RelativeLayout layout;
-	Intent incomeIntent;
+//	private RelativeLayout layout;
+	private Intent incomeIntent;
 
-	public Socket mSocket;
-	public  String IP = "";
-	public  String NAME = "";
-	public final static int PORT = 4444;
+	private Socket mSocket;
+	private String IP = "";
+	private String NAME = "";
+	private final static int PORT = 4444;
 
 	
 
-    public static final float DISTANCE = 600.0f;	//distance between the car and camera when car's stop
-    public static final float CAMERA_EYE_Y = 110.0f;	//distance between the car and camera when car's stop
+//	private  static final float DISTANCE = 600.0f;	//distance between the car and camera when car's stop
+//	private  static final float CAMERA_EYE_Y = 110.0f;	//distance between the car and camera when car's stop
 	
-	public int modelID = 0;
+//	private  int modelID = 0;
 	public static boolean isLogin = false;
 	public static boolean isCarType = false;
 	private static boolean isPostStart = false;
 	public static boolean isStart = false;
-	public IntBuffer tempIB;
+	private IntBuffer tempIB;
 
 //	private long timeadd = 0;
 //	private static long timeElapsed = 0;
 //	private static long nowTime = 0;
 //	private static long lastTime = 0;
 
-	public static boolean mapOn = false;
+	public  static boolean mapOn = false;
 	public static boolean mapNext = false;
 	public static boolean mapBack = false;
 	public static boolean carOn = false;
@@ -406,11 +407,11 @@ public class GameActivity extends Activity implements SensorListener {
 	public boolean onKeyDown(int arg0, KeyEvent arg1) 
 	{
 	
-		if (GLThread_Room.getPhase() == GLThread_Room.GAME_ROOM)
+		if (GLThread_Room.getPhase() == DataToolKit.GAME_ROOM)
 		{
 			onRoomWaiting(arg0, arg1);
 		}
-		else if (GLThread_Room.getPhase() == GLThread_Room.GAME_RUNNING)
+		else if (GLThread_Room.getPhase() == DataToolKit.GAME_RUNNING)
 		{
 			onGameRunning(arg0, arg1);
 		}
@@ -485,7 +486,7 @@ public class GameActivity extends Activity implements SensorListener {
 	}
 	
 	public void initGameRunning(){
-		GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);	
+		GLThread_Room.setPhase(DataToolKit.GAME_RUNNING);	
 		CarInforClient myCar = inPool.getOneCarInformation(inPool.getMyCarIndex());
 		Point3f center = new Point3f(myCar.getNXPosition(), Camera.CAMERA_CENTER_Y, myCar.getNYPosition());
 		mCamera.initCamera(center, new Point3f(0.0f, 1.0f, 0.0f), myCar.getNDirection(), Camera.FAR_DISTANCE);
@@ -558,7 +559,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     public boolean onKeyUp(int arg0, KeyEvent arg1) 
     {
-    	if (GLThread_Room.getPhase() == GLThread_Room.GAME_RUNNING)
+    	if (GLThread_Room.getPhase() == DataToolKit.GAME_RUNNING)
 		{
     		CarInforClient car =  inPool.getOneCarInformation(inPool.getMyCarIndex());
     		switch (arg0)
