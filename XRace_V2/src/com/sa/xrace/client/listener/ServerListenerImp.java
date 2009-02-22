@@ -17,6 +17,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
+import android.os.HandlerThread;
 import android.util.Log;
 
 import com.sa.xrace.client.GLThread_Room;
@@ -28,7 +29,7 @@ import com.sa.xrace.client.pool.WRbarPool;
  * @author yyang
  * @version $Id: ServerListenerImp.java,v 1.7 2008-12-05 06:56:52 twei Exp $
  */
-public class ServerListenerImp extends Thread implements ServerListener {
+public class ServerListenerImp extends HandlerThread {
 	private static final String TAG ="-- ServerListenerImp -- ";
 	private DataInputStream input;
 	private Socket socket;
@@ -42,36 +43,42 @@ public class ServerListenerImp extends Thread implements ServerListener {
 	private short tempTimeDelay;
 	private String tempNameStr;
 
+	/**
+	 * 暂时未发现这个变量的值只设置了一次
+	 */
 	private boolean listenerON;
-	public static final int TIME_OUT = 10000;
-	public WRbarPool barPool;
+//	private static final int TIME_OUT = 10000;
+	private WRbarPool barPool;
 	
 	private GameActivity mActivity;
 	
-	public ServerListenerImp(Socket input) {
-		socket = input;
-		listenerON = true;
-		
-	}
+//	public ServerListenerImp(Socket input) {
+//		super("ServerListenerImp");
+//		socket = input;
+//		listenerON = true;
+//		
+//	}
 
-	public ServerListenerImp(Socket inputSocket, InforPoolClient inPool,GameActivity activity) {
-		socket = inputSocket;
-		pool = inPool;
-		mActivity = activity;
-		listenerON = true;
-		try {
-			input = new DataInputStream(socket.getInputStream());
-			this.start();
-		} catch (StreamCorruptedException e) {
-			e.printStackTrace();
-			Log.e(TAG,"StreamCorruptedException");
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e(TAG,"IOException");
-		}
-	}
+//	public ServerListenerImp(Socket inputSocket, InforPoolClient inPool,GameActivity activity) {
+//		super("ServerListenerImp");
+//		socket = inputSocket;
+//		pool = inPool;
+//		mActivity = activity;
+//		listenerON = true;
+//		try {
+//			input = new DataInputStream(socket.getInputStream());
+//			this.start();
+//		} catch (StreamCorruptedException e) {
+//			e.printStackTrace();
+//			Log.e(TAG,"StreamCorruptedException");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			Log.e(TAG,"IOException");
+//		}
+//	}
 	
 	public ServerListenerImp(Socket inputSocket, InforPoolClient inPool,WRbarPool barPool,GameActivity activity) {
+		super("ServerListenerImp");
 		socket = inputSocket;
 		pool = inPool;
 		mActivity = activity;
@@ -93,7 +100,7 @@ public class ServerListenerImp extends Thread implements ServerListener {
 		long starttime = System.currentTimeMillis();
 		long intertime;
 		while (listenerON) {
-			System.out.println("here in "+getClass());
+//			System.out.println("here in "+getClass());
 			try {
 				postReceived = input.readByte(); //Strut of the car
 				if (postReceived == InforPoolClient.NORMAL) {
@@ -199,7 +206,7 @@ public class ServerListenerImp extends Thread implements ServerListener {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
+					// Just print it
 					e1.printStackTrace();
 				}
 				Log.e(TAG,"EOFEXception ServerListener");

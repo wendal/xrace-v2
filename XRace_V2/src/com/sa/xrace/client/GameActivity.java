@@ -40,7 +40,7 @@ import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.RelativeLayout;
 
-import com.sa.xrace.client.listener.ServerListener;
+//import com.sa.xrace.client.listener.ServerListener;
 import com.sa.xrace.client.listener.ServerListenerImp;
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
@@ -80,7 +80,7 @@ public class GameActivity extends Activity implements SensorListener {
 	public GLWorld mWorld;
 
 //	public SensorManager mSensorManager ;
-	public ServerListener mServerListener;
+	public ServerListenerImp mServerListener;
 	public PostManagerClient mPostManager;
 
 	RelativeLayout layout;
