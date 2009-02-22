@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.sa.xrace.client" android:versionCode="1"
+	android:versionName="1.0.0">
+	<uses-Permission android:name="android.permission.SET_ORIENTATION" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity android:name=".MenuActivity" 
+		android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".GameActivity" 
+		android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN3" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".SingleGame" 
+		android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN2" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>

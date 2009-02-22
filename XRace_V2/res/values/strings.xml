@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, LoadGame</string>
+    <string name="app_name">XRace</string>
+    <string name = "alert_dialog_title">Alert Dialog</string>
+    <string name = "alert_dialog_msg">Please place phone horizontally to play the game</string>
+    <string name = "alert_dialog_ok">OK</string>
+    <string name = "alert_dialog_cancel">Cancel</string>
+     <string name = "alert_dialog_ip">IP Address</string>
+    
+    
+</resources>
