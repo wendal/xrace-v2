@@ -70,7 +70,7 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 	
 	
 	public InforPoolClient  inPool;
-	public ServerListenerImp listener;
+//	public ServerListenerImp listener;
 	public PostManagerClient poster;
 	
 	
