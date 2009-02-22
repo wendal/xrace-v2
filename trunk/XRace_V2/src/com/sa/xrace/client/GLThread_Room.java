@@ -40,12 +40,11 @@ import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.GLWorld;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 public final class GLThread_Room extends Thread {
 	
-	public static final int GAME_ROOM 	= 1;
-	public static final int GAME_RUNNING = 3;  	   
-	private static int mPhase = GAME_ROOM;
+	private static int mPhase = DataToolKit.GAME_ROOM;
 //	private boolean isInitGameFinished=false;
 	private float cameraStep =1f; 
 	private float cameraLimit=0f;
@@ -53,7 +52,7 @@ public final class GLThread_Room extends Thread {
 	private int mWidth;
 	private int mHeight;
 	private IntBuffer texturesB;
-	boolean mDone;
+	private boolean mDone;
 	private RoomPicPool picPool;
 	private GIPool giPool;
 	private SurfaceHolder mHolder;
@@ -63,10 +62,10 @@ public final class GLThread_Room extends Thread {
 	private InforPoolClient inPool;
 	private GLWorld mWorld;
 	private GameActivity mActivity;
-	public IntBuffer tempIB;
-	public  Bitmap carMyB_img;
-	public  boolean isModelGenerate = false;
-	boolean done = false;
+//	private IntBuffer tempIB;
+	private  Bitmap carMyB_img;
+	private  boolean isModelGenerate = false;
+	private boolean done = false;
 	public PostManagerClient mPostManager;
 	public static boolean addBar =true;
 	public static boolean loginFailure = false;
@@ -204,7 +203,7 @@ public final class GLThread_Room extends Thread {
 		}
 		 switch (mPhase)
 		 {
-		 	case GAME_ROOM:
+		 	case DataToolKit.GAME_ROOM:
 		 		
 		 		drawGarage(gl,timeElapsed);
 				barPool.drawOut();
@@ -214,7 +213,7 @@ public final class GLThread_Room extends Thread {
 					drawCarSelection(gl);
 				}
 		 		break;
-		 	case GAME_RUNNING:
+		 	case DataToolKit.GAME_RUNNING:
 		 		
 		 		mWorld.draw(gl,timeElapsed);
 		 		giPool.drawStarPoints(gl);

@@ -34,7 +34,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sa.xrace.client.listener.ServerListenerImp;
 import com.sa.xrace.client.manager.PostManagerClient;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
@@ -57,21 +56,21 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 	private LinearLayout layout;
 	private EditText edit_Name,edit_IP;
 	private TextView text_Name,text_IP;
-	public String NAME = "hhhh";
-	public  String SERVERIP = "58.62.117.99"; 
+	private String NAME = "hhhh";
+	private  String SERVERIP = "58.62.117.99"; 
 	private TranslateAnimation  animation;
 	private int src_width,src_height,b_width = 140,b_height=40;
 //	private ProgressBar progressbar;
 //	private int mProgressStatus=0;
 //	private Handler mHandler;
-	public boolean isChange;
+	private boolean isChange;
 //	public MainPlayer player;
 //	public MediaPlayer mp, mp2;
 	
 	
-	public InforPoolClient  inPool;
+	private InforPoolClient  inPool;
 //	public ServerListenerImp listener;
-	public PostManagerClient poster;
+	private PostManagerClient poster;
 	
 	
 	public void onCreate(Bundle icicle) {
@@ -126,7 +125,7 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
  *  
  *  set the ImageView initial value and the Animation initial value
  */
-	public void startMove(ImageView b,int n,float startX, float toX, float startY,float toY){
+	private void startMove(ImageView b,int n,float startX, float toX, float startY,float toY){
 		animation = new TranslateAnimation(startX,toX,startY,startY);
 		animation.setDuration(300);
 //		animation.setFillAfter(true);
@@ -140,7 +139,7 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
  * The class is used to implements Animation.AnimationListener,that when the Animation
  * move end the class will run
  */
-	class DisplayNextButton implements Animation.AnimationListener {
+	private class DisplayNextButton implements Animation.AnimationListener {
 		int index;
 		public DisplayNextButton(int index){
 			this.index = index;
@@ -194,7 +193,7 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 			 
 		}
 	}
-	public String cutNames(String name){
+	private String cutNames(String name){
 		String tem = "";
 		tem = name.replaceAll("-","");
 		if(tem.length()==0){
