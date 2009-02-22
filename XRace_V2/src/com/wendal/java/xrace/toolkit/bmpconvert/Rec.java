@@ -1,3 +1,12 @@
+///:~
+/**
+ * XRace V2
+ * <p/>Use for ... ...
+ * <p/>ID: $Id: $
+ * Last Commit:  $Author: $
+ * @version $Revision: $
+ * 
+ */
 package com.wendal.java.xrace.toolkit.bmpconvert;
 
 import java.io.FileOutputStream;
