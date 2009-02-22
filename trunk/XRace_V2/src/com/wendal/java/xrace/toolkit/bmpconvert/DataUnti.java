@@ -1,3 +1,12 @@
+///:~
+/**
+ * XRace V2
+ * <p/>Use for ... ...
+ * <p/>ID: $Id: $
+ * Last Commit:  $Author: $
+ * @version $Revision: $
+ * 
+ */
 package com.wendal.java.xrace.toolkit.bmpconvert;
 
 import java.io.IOException;
@@ -8,8 +17,8 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+//import java.util.Map;
+//import java.util.Set;
 
 import com.sa.xrace.client.R;
 
@@ -26,7 +35,7 @@ public final class DataUnti {
 
 	private static AssetManager assetManager;
 
-	private static final Map<String, ByteBuffer> image_bytebuffer = new HashMap<String, ByteBuffer>();
+	private static final HashMap<String, ByteBuffer> image_bytebuffer = new HashMap<String, ByteBuffer>();
 
 	private static boolean isReady = false;
 
@@ -56,10 +65,10 @@ public final class DataUnti {
 				}
 				isReady = true;
 				Log.w("DatUnit Map status", "Size "+image_bytebuffer.size());
-				Set<String> set = image_bytebuffer.keySet();
-				for (String string : set) {
-					Log.e("key in map : ", string);
-				}
+//				Set<String> set = image_bytebuffer.keySet();
+//				for (String string : set) {
+//					Log.e("key in map : ", string);
+//				}
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -105,7 +114,7 @@ public final class DataUnti {
 		Log.e("End sending : ", filename);
 	}
 	
-	private static final Map<Integer, String> drawable_resourse_map = new HashMap<Integer, String>();
+	private static final HashMap<Integer, String> drawable_resourse_map = new HashMap<Integer, String>();
 	static {
 		drawable_resourse_map.put(R.drawable.car_down,"car_down");
 		drawable_resourse_map.put(R.drawable.mapchoice_pic,"mapchoice_pic");

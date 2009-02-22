@@ -1,3 +1,12 @@
+///:~
+/**
+ * XRace V2
+ * <p/>Use for ... ...
+ * <p/>ID: $Id: $
+ * Last Commit:  $Author: $
+ * @version $Revision: $
+ * 
+ */
 package com.sa.xrace.client.loader;
 
 import com.sa.xrace.client.math.Point3f;

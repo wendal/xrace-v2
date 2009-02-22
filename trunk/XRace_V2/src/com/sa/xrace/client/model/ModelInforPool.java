@@ -1,3 +1,13 @@
+///:~
+/**
+ * XRace V2
+ * <p/>Use for ... ...
+ * <p/>ID: $Id: $
+ * Last Commit:  $Author: $
+ * @version $Revision: $
+ * 
+ */
+
 /* 
  * Copyright (C) 2008 Google Inc.
  *
