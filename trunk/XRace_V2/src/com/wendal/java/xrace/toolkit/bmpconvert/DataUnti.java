@@ -35,55 +35,77 @@ public final class DataUnti {
 
 	private static AssetManager assetManager;
 
-	private static final HashMap<String, ByteBuffer> image_bytebuffer = new HashMap<String, ByteBuffer>();
+//	private static final HashMap<String, ByteBuffer> image_bytebuffer = new HashMap<String, ByteBuffer>();
 
 	private static boolean isReady = false;
 
 	public static void init(Activity activity) {
 		if (!isReady) {
 			assetManager = activity.getAssets();
-			try {
-				String[] list = assetManager.list("rgb");
-				for (String filename : list) {
-//					if (filename.endsWith(".rgb")) {
-						Log.i("Reading File", filename);
-						InputStream is = assetManager.open(filename);
-						byte data[] = new byte[is.available()];
-						int len = is.read(data);
-						if (len != data.length) {
-							throw new IOException("Size error!");
-						}
-						Log.e("DataUnit", filename +"  " +(len));
-						ByteBuffer buffer = ByteBuffer.allocateDirect(data.length);
-						buffer.order(ByteOrder.nativeOrder());
-						buffer.put(data); 
-						buffer.position(0);
-						image_bytebuffer.put(filename.toUpperCase(), buffer);
-						is.close();
-						Log.i("Finsih File", filename);
-//					}
-				}
-				isReady = true;
-				Log.w("DatUnit Map status", "Size "+image_bytebuffer.size());
-//				Set<String> set = image_bytebuffer.keySet();
-//				for (String string : set) {
-//					Log.e("key in map : ", string);
+//			try {
+//				String[] list = assetManager.list("rgb");
+//				for (String filename : list) {
+////					if (filename.endsWith(".rgb")) {
+////						Log.i("Reading File", filename);
+//						InputStream is = assetManager.open(filename);
+//						byte data[] = new byte[is.available()];
+//						int len = is.read(data);
+//						if (len != data.length) {
+//							throw new IOException("Size error!");
+//						}
+////						Log.e("DataUnit", filename +"  " +(len));
+//						ByteBuffer buffer = ByteBuffer.allocateDirect(data.length);
+//						buffer.order(ByteOrder.nativeOrder());
+//						buffer.put(data); 
+//						buffer.position(0);
+//						image_bytebuffer.put(filename.toUpperCase(), buffer);
+//						is.close();
+////						Log.i("Finsih File", filename);
+////					}
 //				}
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//				isReady = true;
+////				Log.w("DatUnit Map status", "Size "+image_bytebuffer.size());
+////				Set<String> set = image_bytebuffer.keySet();
+////				for (String string : set) {
+////					Log.e("key in map : ", string);
+////				}
+//				
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 	}
 
 	public static ByteBuffer getByteBuffer_ByFileName(String srcFilename) {
 
-		if (null == image_bytebuffer.get(srcFilename.toUpperCase()+".RBG"))
-			Log.e("DataUnit", srcFilename);
+//		if (null == image_bytebuffer.get(srcFilename.toUpperCase()+".RBG"))
+//			Log.e("DataUnit", srcFilename);
 		
-			return image_bytebuffer.get(srcFilename.toUpperCase()+".RBG");
+			return readData(srcFilename+".rbg");
 		
+	}
+	
+	private  static ByteBuffer readData(String srcFilename) {
+		ByteBuffer buffer = null;
+		try{
+		InputStream is = assetManager.open(srcFilename);
+		byte data[] = new byte[is.available()];
+		int len = is.read(data);
+		if (len != data.length) {
+			throw new IOException("Size error!");
+		}
+//		Log.e("DataUnit", filename +"  " +(len));
+		buffer = ByteBuffer.allocateDirect(data.length);
+		buffer.order(ByteOrder.nativeOrder());
+		buffer.put(data); 
+		buffer.position(0);
+//		image_bytebuffer.put(filename.toUpperCase(), buffer);
+		is.close();
+		}catch (IOException e) {
+			Log.e("In DataUnti", "Read Error",e);
+		}
+		return buffer;
 	}
 	
 	public static final void sendOut(String filename , ByteBuffer  byteBuffer){
