@@ -10,7 +10,6 @@
 package com.sa.xrace.client.pool;
 
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,19 +27,19 @@ public class RoomPicPool {
 	private static ByteBuffer mapview2_PicB;
 	private static ByteBuffer carchoice_PicB;
 	private static ByteBuffer carview1_PicB;
-	public static ByteBuffer car_PicB0;
-	public static ByteBuffer car_PicB1;
-	public static ByteBuffer car_PicB2;
-	public static ByteBuffer car_PicB3;
+//	private static ByteBuffer car_PicB0;
+//	private static ByteBuffer car_PicB1;
+//	private static ByteBuffer car_PicB2;
+//	private static ByteBuffer car_PicB3;
 	private static ByteBuffer loading;
 
-	public Bitmap carB_img, carMyB_img;
+	private Bitmap carB_img, carMyB_img;
 	public Bitmap speedometer, speedTriangle;
 	public static Bitmap load0, load1, load2, load3;
 	public Bitmap minimap;
 
-	public GameActivity activity;
-	public IntBuffer tempIB;
+	private GameActivity activity;
+//	public IntBuffer tempIB;
 	public Bitmap carpoint;
 
 	public RoomPicPool(GameActivity activity) {

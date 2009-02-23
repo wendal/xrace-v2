@@ -7,6 +7,8 @@ import android.opengl.GLU;
 
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.pool.CarInforClient;
+import com.sa.xrace.client.toolkit.DataToolKit;
+
 
 /**
  * @author sliao
@@ -18,22 +20,7 @@ import com.sa.xrace.client.pool.CarInforClient;
 public class Camera
 {
 
-    public static final float PRECISION = 1.0f;    
-    
-    public static final float NORMAL_DISTANCE = 450.0f;		//distance between the car and camera when car's stop
-    public static final float NEAR_DISTANCE = 400.0f;		//near distance between the car and camera when car's moving forward
-    public static final float FAR_DISTANCE = 530.0f;		//far distance between the car and camera when car's moving backward
-    
-    public static final float DISTANCE_PER_FRAME = 10.0f;	//distance changed in one frame
-    public static final float DIRECTION_PER_FRAME = 0.015f;
-    
-    public static final float CAMERA_EYE_Y = 130.0f;	//eye's y 
-    public static final float CAMERA_CENTER_Y = 90.0f;	//center's y 
-
-    public static final int MAX_OFFSET = 20;
-    public static final int MIN_OFFSET = -20;
-
-    public int mOffset = 0;
+    private int mOffset = 0;
 	
 	public Camera()
 	{
@@ -95,31 +82,31 @@ public class Camera
 		//{{update distance between camera and car-----------------------
 		if (speedKeyState == CarInforClient.SPEED_UP_KEYBOARD || speedSensorState == CarInforClient.SPEED_UP_SENSOR)
 		{
-			if (mDistance < FAR_DISTANCE)
+			if (mDistance < DataToolKit.FAR_DISTANCE)
 			{
-				mDistance += DISTANCE_PER_FRAME;
+				mDistance += DataToolKit.DISTANCE_PER_FRAME;
 			}
 		}
 		else if (speedKeyState == CarInforClient.SPEED_DOWN_KEYBOARD  || speedSensorState == CarInforClient.SPEED_DOWN_SENSOR)
 		{
-			if (mDistance > NEAR_DISTANCE)	//nearest distance
+			if (mDistance > DataToolKit.NEAR_DISTANCE)	//nearest distance
 			{
-				mDistance -= DISTANCE_PER_FRAME;
+				mDistance -= DataToolKit.DISTANCE_PER_FRAME;
 			}
 		}		
 		else if (speedKeyState == CarInforClient.NO_KEY_EVENT && speedSensorState == CarInforClient.NO_SENSOR_EVENT)
 		{
-			if (mDistance > NORMAL_DISTANCE)
+			if (mDistance > DataToolKit.NORMAL_DISTANCE)
 			{
-				mDistance -= DISTANCE_PER_FRAME;
+				mDistance -= DataToolKit.DISTANCE_PER_FRAME;
 			}
-			else if (mDistance < NORMAL_DISTANCE)
+			else if (mDistance < DataToolKit.NORMAL_DISTANCE)
 			{
-				mDistance += DISTANCE_PER_FRAME;
+				mDistance += DataToolKit.DISTANCE_PER_FRAME;
 			}
 			else
 			{
-				mDistance = NORMAL_DISTANCE;
+				mDistance = DataToolKit.NORMAL_DISTANCE;
 			}
 		}
 		//}}update distance between camera and car-----------------------
@@ -128,11 +115,11 @@ public class Camera
 		if (directionKeyState == CarInforClient.DIRECTION_LEFT_KEYBOARD || 
 				(directionSensorState == CarInforClient.DIRECTION_LEFT_SENSOR && directionKeyState != CarInforClient.DIRECTION_RIGHT_KEYBOARD))
 		{
-			if (speed > PRECISION)
+			if (speed > DataToolKit.PRECISION)
 			{
-				if (mOffset < MAX_OFFSET && changeDirection > DIRECTION_PER_FRAME)
+				if (mOffset < DataToolKit.MAX_OFFSET && changeDirection > DataToolKit.DIRECTION_PER_FRAME)
 				{
-					mChangeDirection = changeDirection-DIRECTION_PER_FRAME;
+					mChangeDirection = changeDirection-DataToolKit.DIRECTION_PER_FRAME;
 					mOffset++;
 				}
 				else
@@ -140,11 +127,11 @@ public class Camera
 					mChangeDirection = changeDirection;
 				}
 			}	
-			else if (speed < -PRECISION)
+			else if (speed < -DataToolKit.PRECISION)
 			{
-				if (mOffset > MIN_OFFSET)
+				if (mOffset > DataToolKit.MIN_OFFSET)
 				{
-					mChangeDirection = changeDirection+DIRECTION_PER_FRAME;
+					mChangeDirection = changeDirection+DataToolKit.DIRECTION_PER_FRAME;
 					mOffset--;
 				}
 				else
@@ -163,11 +150,11 @@ public class Camera
 		else if (directionKeyState == CarInforClient.DIRECTION_RIGHT_KEYBOARD ||
 				(directionSensorState == CarInforClient.DIRECTION_RIGHT_SENSOR && directionKeyState != CarInforClient.DIRECTION_LEFT_KEYBOARD))
 		{
-			if (speed > PRECISION)
+			if (speed > DataToolKit.PRECISION)
 			{
-				if (mOffset > MIN_OFFSET && changeDirection<-DIRECTION_PER_FRAME)
+				if (mOffset > DataToolKit.MIN_OFFSET && changeDirection<-DataToolKit.DIRECTION_PER_FRAME)
 				{
-					mChangeDirection = changeDirection+DIRECTION_PER_FRAME;
+					mChangeDirection = changeDirection+DataToolKit.DIRECTION_PER_FRAME;
 					mOffset--;
 				}
 				else
@@ -175,11 +162,11 @@ public class Camera
 					mChangeDirection = changeDirection;
 				}
 			}
-			else if (speed < -PRECISION)
+			else if (speed < -DataToolKit.PRECISION)
 			{
-				if (mOffset < MAX_OFFSET)
+				if (mOffset < DataToolKit.MAX_OFFSET)
 				{
-					mChangeDirection = changeDirection-DIRECTION_PER_FRAME;
+					mChangeDirection = changeDirection-DataToolKit.DIRECTION_PER_FRAME;
 					mOffset++;
 				}
 				else
@@ -202,14 +189,14 @@ public class Camera
 			mChangeDirection = 0;	
 			if (mOffset > 0)
 			{
-				updateCamera(myCenter, mDirection - DIRECTION_PER_FRAME*(mOffset%2-2));
-				mLookDirection = (float) (mDirection - DIRECTION_PER_FRAME*(mOffset%2-2) + Math.PI);
+				updateCamera(myCenter, mDirection - DataToolKit.DIRECTION_PER_FRAME*(mOffset%2-2));
+				mLookDirection = (float) (mDirection - DataToolKit.DIRECTION_PER_FRAME*(mOffset%2-2) + Math.PI);
 				mOffset+=(mOffset%2-2);
 			}
 			else if (mOffset < 0)
 			{
-				updateCamera(myCenter, mDirection - DIRECTION_PER_FRAME*(mOffset%2+2));
-				mLookDirection = (float) (mDirection - DIRECTION_PER_FRAME*(mOffset%2+2) + Math.PI );
+				updateCamera(myCenter, mDirection - DataToolKit.DIRECTION_PER_FRAME*(mOffset%2+2));
+				mLookDirection = (float) (mDirection - DataToolKit.DIRECTION_PER_FRAME*(mOffset%2+2) + Math.PI );
 				mOffset+=(mOffset%2+2);
 			}
 			else

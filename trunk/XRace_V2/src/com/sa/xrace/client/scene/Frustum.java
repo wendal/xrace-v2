@@ -18,18 +18,18 @@ import com.sa.xrace.client.math.Point3f;
  */
 public class Frustum 
 {	
-	final static int LEFT = 1;
-	final static int RIGHT = -1;
-	final static int BOTTOM = 2;
-	final static int TOP = -2;
-	final static int NEAR = 3;
-	final static int FAR = -3;
+	private final static int LEFT = 1;
+	private final static int RIGHT = -1;
+	private final static int BOTTOM = 2;
+	private final static int TOP = -2;
+	private final static int NEAR = 3;
+	private final static int FAR = -3;
 
 
-	Plane3D[] mPlanes = null;
-	FloatBuffer   mModelViewMatrix = FloatBuffer.allocate(16);		// keep the model view matrix
-	FloatBuffer   mProjectionMatrix = FloatBuffer.allocate(16);		// keep the projection matrix
-	FloatBuffer   mCombinationMatrix = FloatBuffer.allocate(16);		// keep the combination of the two matrix
+	private Plane3D[] mPlanes = null;
+	private final FloatBuffer   mModelViewMatrix = FloatBuffer.allocate(16);		// keep the model view matrix
+	private final FloatBuffer   mProjectionMatrix = FloatBuffer.allocate(16);		// keep the projection matrix
+	private final FloatBuffer   mCombinationMatrix = FloatBuffer.allocate(16);		// keep the combination of the two matrix
 	
 	public Frustum()
 	{

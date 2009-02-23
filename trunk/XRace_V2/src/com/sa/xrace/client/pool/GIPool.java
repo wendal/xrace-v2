@@ -30,7 +30,7 @@ import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 
-public class GIPool {
+public final class GIPool {
 
 	private RoomPicPool picPool;
 	private InforPoolClient inPool;
@@ -51,16 +51,16 @@ public class GIPool {
 	
 	private ByteBuffer bb;
 	
-	public static final float MINANGLE = -62.0f;
-	public static final float MAXANGLE = 60.0f;
+	private static final float MINANGLE = -62.0f;
+	private static final float MAXANGLE = 60.0f;
 	
-	public float angle,perSpeed,temp;
-	public int carNumber;
-	public static final float  RADIUS = 38.0f;
+	private float angle,perSpeed,temp;
+//	private int carNumber;
+//	private static final float  RADIUS = 38.0f;
 	
 	// CENTERX = 370+50     CENTERY = 15+36-8
-	public static final float CENTERX = 420.0f , CENTERY = 43.0f ;
-	public float triangleX,triangleY;
+//	private static final float CENTERX = 420.0f , CENTERY = 43.0f ;
+//	private float triangleX,triangleY;
 	private Camera camera;
 	private Random r;
 	private long nowTime,lasttime;

@@ -16,6 +16,7 @@ import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.InforPoolClient;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 /**
  * @author sliao
@@ -107,7 +108,7 @@ public class GLWorld
 		int directionSensorState = myCar.getDirectionSensorState();	
 		int lookDiection = myCar.getLookDirction();
 		Point3f myCenter = new Point3f(myCar.getNXPosition(), CarInforClient.CAR_CENTER_Y, myCar.getNYPosition());
-		Point3f cameraCenter = new Point3f(myCar.getNXPosition(), Camera.CAMERA_CENTER_Y, myCar.getNYPosition());
+		Point3f cameraCenter = new Point3f(myCar.getNXPosition(), DataToolKit.CAMERA_CENTER_Y, myCar.getNYPosition());
 
 		mCamera.updateCamera(cameraCenter, myDirection, changeDirection, speed, 
 							speedKeyState, directionKeyState, speedSensorState, directionSensorState,lookDiection);

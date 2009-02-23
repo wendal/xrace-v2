@@ -14,6 +14,7 @@ import java.util.Vector;
 import android.util.Log;
 
 import com.sa.xrace.client.model.ModelInforPool;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 /**
  * @author Changpeng Pan
@@ -22,18 +23,7 @@ import com.sa.xrace.client.model.ModelInforPool;
 public class InforPoolClient {
 	private static final String TAG = "-- InforPoolClient --";
 
-	public static final byte LOGIN = 101;
-	public static final byte LOGOUT = 100;
-	public static final byte START = 111;
-	public static final byte NORMAL = 10;
-	public static final byte ACCIDENT = 20;
-	public static final byte IDLE = 110;
-	public static final byte DROPOUT = 30;
-	public static final byte CARTYPE = 14;
 	public static boolean Logined = false;
-	public static final byte LOGINFAILURE =102;
-
-
 	
 	private static int nCarNumber;
 	// The position index in car information of my car
@@ -50,6 +40,8 @@ public class InforPoolClient {
 
 	private static float speedCha = 0.0f;
 	private static float directCha = 0.0f;
+	
+	
 	public static float[] mSensor = { 0.0f, 0.0f };
 	
 	private static int mStatus = 0;
@@ -143,7 +135,7 @@ public class InforPoolClient {
 	 */
 	public void updatePoolStart() {
 		for (int i = 0; i < nCarNumber; i++) {
-			getOneCarInformation(i).setNStatus(NORMAL);
+			getOneCarInformation(i).setNStatus(DataToolKit.NORMAL);
 			
 			nCar[i].setNYPosition(-11500);
 			nCar[i].setNXPosition(400 - i*400 );
@@ -179,7 +171,7 @@ public class InforPoolClient {
 		for(int i =0;i<carN;i++)
 		{	
 			nCar[i].setNName(names.substring(i*10, ((i+1)*10)-1).replace("-", ""));
-			nCar[i].setNStatus(IDLE);
+			nCar[i].setNStatus(DataToolKit.IDLE);
 			nCar[i].setNCarID((byte)i);
 		}
 	}
@@ -383,7 +375,7 @@ public class InforPoolClient {
 			if (i == getMyCarIndex()) 
 //			if (i == getOneCarInformation(i).getNCarID())
 			{
-				if(mStatus == NORMAL)
+				if(mStatus == DataToolKit.NORMAL)
 				{				
 					
 					nCar[i].updateSpeedBySensor(speedCha, time_ajusted);	//change the speed
@@ -399,7 +391,7 @@ public class InforPoolClient {
 					nCar[i].setNXPosition(nCar[i].getNXPosition() + distanceMade * (float) Math.sin(nCar[i].getNDirection()));
 					nCar[i].setNYPosition(nCar[i].getNYPosition() + distanceMade * (float) Math.cos(nCar[i].getNDirection()));
 				}
-				else if(mStatus == ACCIDENT)
+				else if(mStatus == DataToolKit.ACCIDENT)
 				{
 					
 				}

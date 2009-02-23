@@ -33,7 +33,6 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.sa.xrace.client.manager.PostManagerClient;
-import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
@@ -348,7 +347,7 @@ public final class GLThread_Room extends Thread {
 		getCommonTextureReady(gl);                    // >1s
 		makeLoading(gl,442,3);
 		
-		mModelContainer.setType(Model.CAR);
+		mModelContainer.setType(DataToolKit.CAR);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelContainer.getCurrentModel());
 		if (!GameActivity.isLogin) {
 			Log.e("----------------isLogin-----------------","isLogin");

@@ -24,6 +24,7 @@ import com.sa.xrace.client.GLThread_Room;
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.WRbarPool;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 /**
  * @author yyang
@@ -103,7 +104,7 @@ public class ServerListenerImp extends HandlerThread {
 //			System.out.println("here in "+getClass());
 			try {
 				postReceived = input.readByte(); //Strut of the car
-				if (postReceived == InforPoolClient.NORMAL) {
+				if (postReceived == DataToolKit.NORMAL) {
 //					Log.v(TAG, "~~~~~~~~NORMAL Post Received");
 						pool.updateCarInformationsNormal(
 								input.readByte(), 
@@ -121,7 +122,7 @@ public class ServerListenerImp extends HandlerThread {
 							starttime = System.currentTimeMillis();
 //							Log.e("freeMemory",""+Runtime.getRuntime().freeMemory());
 							}
-				}else if (postReceived == InforPoolClient.ACCIDENT) {
+				}else if (postReceived == DataToolKit.ACCIDENT) {
 					//Log.v(TAG, "ACCIDENT Post Received");
 					pool.updateCarInformationsAccident(
 								input.readByte(),//id
@@ -139,14 +140,14 @@ public class ServerListenerImp extends HandlerThread {
 						starttime = System.currentTimeMillis();
 					}
 //					pool.updateCarInformationsAccident(postReceived);
-				}else if (postReceived == InforPoolClient.IDLE) {
+				}else if (postReceived == DataToolKit.IDLE) {
 					//Log.v(TAG, "IDLE Post Received");	
 					tempID = input.readByte();
 					tempTimeDelay = input.readShort();
 					pool.updateCarInformationsIdle(tempID,tempTimeDelay);
 					InforPoolClient.delayHandleInADD(System.currentTimeMillis());
 					InforPoolClient.calDelayTime();
-				}else if (postReceived == InforPoolClient.LOGIN) {
+				}else if (postReceived == DataToolKit.LOGIN) {
 //					Log.v(TAG, "LOGIN Post Received");
 					tempNamesI = input.readInt();
 					tempID = input.readByte();
@@ -168,21 +169,21 @@ public class ServerListenerImp extends HandlerThread {
 					GLThread_Room.addBar =false;
 					GLThread_Room.bindex = tempID;
 					
-				}else if(postReceived == InforPoolClient.LOGINFAILURE){
+				}else if(postReceived == DataToolKit.LOGINFAILURE){
 					GLThread_Room.loginFailure = true;
 					Log.v("-- Loging Failure -- ","-- Loging Failure --");
-				}else if (postReceived == InforPoolClient.LOGOUT) {
+				}else if (postReceived == DataToolKit.LOGOUT) {
 					//Log.v(TAG,"LOGOUT post Received");
 					tempID =input.readByte();
 					tempNamesI = input.readInt();
 					pool.updateCarInformationLogout(tempID);					
 					barPool.deleteBar_Logout(tempNamesI);
-				} else if(postReceived == InforPoolClient.CARTYPE){
+				} else if(postReceived == DataToolKit.CARTYPE){
 					tempID = input.readByte();
 					tempModelID = input.readByte();
 					pool.updateCarType(tempID, tempModelID);
 					GameActivity.isCarType = true;
-				}else if (postReceived == InforPoolClient.START) {
+				}else if (postReceived == DataToolKit.START) {
 //					Log.v(TAG, "START Post Received");
 						pool.updatePoolStart();
 						GameActivity.isStart = true;
@@ -191,7 +192,7 @@ public class ServerListenerImp extends HandlerThread {
 					// ////////////////////////////////////////
 						mActivity.initGameRunning();
 //						GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
-				}else if (postReceived == InforPoolClient.DROPOUT) {
+				}else if (postReceived == DataToolKit.DROPOUT) {
 					//Log.v(TAG, "DROPOUT Post Received");
 					tempID =input.readByte();
 					tempNamesI = input.readInt();

@@ -16,6 +16,7 @@ import java.net.Socket;
 import android.util.Log;
 
 import com.sa.xrace.client.pool.InforPoolClient;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 /**
  * @author Changpeng Pan
@@ -40,7 +41,7 @@ public class PostManagerClientImp implements PostManagerClient {
 
 	public void sendLoginPostToServer() {
 		try {
-			cOutput.writeByte(InforPoolClient.LOGIN);
+			cOutput.writeByte(DataToolKit.LOGIN);
 			cOutput.writeUTF(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNName());
 			cOutput.flush();
 		} catch (IOException e) {
@@ -51,7 +52,7 @@ public class PostManagerClientImp implements PostManagerClient {
 	
 	public void sendCarTypePostToServer() {
 		try{
-			cOutput.writeByte(InforPoolClient.CARTYPE);
+			cOutput.writeByte(DataToolKit.CARTYPE);
 			cOutput.writeByte(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNCarID());
 			cOutput.writeByte(cPool.getOneCarInformation(cPool.getMyCarIndex()).getModel().getID());
 			cOutput.flush();
@@ -63,7 +64,7 @@ public class PostManagerClientImp implements PostManagerClient {
 
 	public void sendLogoutPostToServer() {
 		try {
-			cOutput.writeByte(InforPoolClient.LOGOUT);
+			cOutput.writeByte(DataToolKit.LOGOUT);
 			cOutput.writeByte(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNCarID());
 			cOutput.writeUTF(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNName());
 			cOutput.flush();
@@ -75,7 +76,7 @@ public class PostManagerClientImp implements PostManagerClient {
 
 	public void sendIdlePostToServer() {
 		try {
-			cOutput.writeByte(InforPoolClient.IDLE);
+			cOutput.writeByte(DataToolKit.IDLE);
 			cOutput.writeByte((byte) cPool.getMyCarIndex());
 			cOutput.writeShort(cPool.getOneCarInformation(cPool.getMyCarIndex()).getTimeDelay());
 			cOutput.flush();
@@ -88,7 +89,7 @@ public class PostManagerClientImp implements PostManagerClient {
 	
 	public void sendStartPostToServer() {
 		try {
-			cOutput.writeByte(InforPoolClient.START);
+			cOutput.writeByte(DataToolKit.START);
 			cOutput.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -99,7 +100,7 @@ public class PostManagerClientImp implements PostManagerClient {
 	public void sendNormalPostToServer() {
 
 		try {
-			cOutput.writeByte(InforPoolClient.NORMAL);
+			cOutput.writeByte(DataToolKit.NORMAL);
 			cOutput.writeByte(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNCarID());
 			cOutput.writeFloat(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNSpeed());
 			cOutput.writeFloat(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNDirection());
@@ -118,7 +119,7 @@ public class PostManagerClientImp implements PostManagerClient {
 
 	public void sendAccidentPostToServer() {
 		try {
-			cOutput.writeByte(InforPoolClient.ACCIDENT);
+			cOutput.writeByte(DataToolKit.ACCIDENT);
 			cOutput.writeByte(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNCarID());
 			cOutput.writeFloat(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNAccidenceSpeed());
 			cOutput.writeFloat(cPool.getOneCarInformation(cPool.getMyCarIndex()).getNAccidenceDirection());

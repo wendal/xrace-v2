@@ -42,7 +42,7 @@ public class WRbarPool {
 
 	private byte index;
 	private InforPoolClient inPool;
-	public final static int MAXCARN = 4;
+	private final static int MAXCARN = 4;
 	private final static int NUMCOUNT = 30;
 
 	private static final int NEWCAR_FLAG = 10;
@@ -51,7 +51,7 @@ public class WRbarPool {
 	private static final int IDLE_FLAG = 1;
 	private static int[] listCar;
 	private String temPlayerName;
-	public IntBuffer tempIB;;
+//	private IntBuffer tempIB;;
 
 	private int temindex ;
 	private int tempLName;
@@ -60,16 +60,16 @@ public class WRbarPool {
 	private int MAPCOUNT = 3;
 	private int carchange = 8;
 	private int CARCOUNT = 2;
-	public  Bitmap carB_img,carMyB_img;
+	private Bitmap carB_img,carMyB_img;
 	
-	public int mTextureIDS[];
-    int tem[] = {0,256,256,-256};
-    boolean oneTime = false;
+	private int mTextureIDS[];
+    private final int tem[] = {0,256,256,-256};
+//    private boolean oneTime = false;
     private int panelX,panelY;
 
 	// /////////////////////////////////////Car_List/////////////////////////////////////
 
-	int carList_position[] = {
+    private final int carList_position[] = {
 			-toFixed(2.62f),toFixed(1.5f),-toFixed(12f), // up_left
 			-toFixed(2.62f), -toFixed(1.5f), -toFixed(12f), 
 			toFixed(2.62f),-toFixed(1.5f), -toFixed(12f),
@@ -78,18 +78,18 @@ public class WRbarPool {
 			toFixed(2.62f),-toFixed(1.5f), -toFixed(12f), 
 			toFixed(2.62f), toFixed(1.5f),-toFixed(12f), };
 
-	float carList_color[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+    private final float carList_color[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, 1.0f, 1.0f, 1.0f,
 
 			1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, };
-	short carList_index[] = {5,4,3,2,1,0};
+    private final short carList_index[] = {5,4,3,2,1,0};
 
-	float carList_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 };
+    private final float carList_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 };
 
 
 	////////////////////////////////////MAP///////////////////////////
-	int map_position[] ={ 							
+    private final int map_position[] ={ 							
 			-toFixed(7f),toFixed(4.0f),-toFixed(11f),       
 			-toFixed(7f),-toFixed(1.8f),-toFixed(11f),
 			toFixed(7f), -toFixed(1.8f),-toFixed(11f),
@@ -98,7 +98,7 @@ public class WRbarPool {
 			toFixed(7f), -toFixed(1.8f),-toFixed(11f),
 			toFixed(7f),toFixed(4.0f),-toFixed(11f), 
 	};
-	float map_color[] = {                   
+    private final float map_color[] = {                   
 			1.0f,1.0f,1.0f,0.6f,
 			1.0f,1.0f,1.0f,0.6f,
 			1.0f,1.0f,1.0f,0.6f,
@@ -108,20 +108,28 @@ public class WRbarPool {
 			1.0f,1.0f,1.0f,0.6f,
 			
 	};
-	short map_index[] = {5,4,3,2,1,0};
-	float map_UT[] = {
+    private final short map_index[] = {5,4,3,2,1,0};
+    private final float map_UT[] = {
 			0,0,	0,1,	1,1,
 			0,0,	1,1,	1,0
 	};
 
 
-	short down_index[] = {5,4,3,2,1,0};
-	float down_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 };
+//    private final static short down_index[] = {5,4,3,2,1,0};
+//    private final static float down_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 };
 	
 	public int toFixed(float x) {
 		return (int) (x * 65536.0f);
 	}
 
+	/**
+	 * 应该只有一个新对象,考虑用单例模式
+	 * @param gl
+	 * @param picPool
+	 * @param texturesB
+	 * @param inPool
+	 * @param activity
+	 */
 	public WRbarPool(GL10 gl, RoomPicPool picPool, IntBuffer texturesB,
 			InforPoolClient inPool, GameActivity activity) {
 		this.inPool = inPool;

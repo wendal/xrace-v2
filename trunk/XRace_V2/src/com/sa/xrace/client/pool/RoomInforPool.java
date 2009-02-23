@@ -17,6 +17,11 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+/**
+ * 暂未发现对这个类的引用
+ * @author zcchen
+ *
+ */
 public class RoomInforPool {
 	
 ///////////////////////////////////////UP_Left/////////////////////////////////////
