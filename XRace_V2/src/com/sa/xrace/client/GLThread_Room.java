@@ -44,7 +44,7 @@ import com.sa.xrace.client.toolkit.DataToolKit;
 
 public final class GLThread_Room extends Thread {
 	
-	private static int mPhase = DataToolKit.GAME_ROOM;
+	public static int mPhase = DataToolKit.GAME_ROOM;
 //	private boolean isInitGameFinished=false;
 	private float cameraStep =1f; 
 	private float cameraLimit=0f;
@@ -65,7 +65,7 @@ public final class GLThread_Room extends Thread {
 //	private IntBuffer tempIB;
 	private  Bitmap carMyB_img;
 	private  boolean isModelGenerate = false;
-	private boolean done = false;
+//	private boolean done = false;
 	public PostManagerClient mPostManager;
 	public static boolean addBar =true;
 	public static boolean loginFailure = false;
@@ -73,16 +73,16 @@ public final class GLThread_Room extends Thread {
 	
 	public static int mTextureLoad = 1;
 	private static int tem2[] = {0,512,512,-512};
-	public static EGL10 egl;
-	public static EGLDisplay dpy ;
-	public static EGLSurface surface;
+	private static EGL10 egl;
+	private static EGLDisplay dpy ;
+	private static EGLSurface surface;
 	public static GL10 gl;
 	public static int progress ,startPro = 22;
 	
-	public static long nowTime = 0;
-	public static long lastTime = 0;
-	public static long timeElapsed = 0;
-	public static long timeadd = 0;
+	private static long nowTime = 0;
+	private static long lastTime = 0;
+	private static long timeElapsed = 0;
+	private static long timeadd = 0;
 	
 	GLThread_Room(GameActivity activity,SurfaceHolder mHolder,GameView inputView,RoomPicPool picPool,
 			WRbarPool barPool,GIPool giPool,ModelInforPool mModelContainer,GLWorld mWorld,InforPoolClient inPool,PostManagerClient mPostManager) {
@@ -108,15 +108,15 @@ public final class GLThread_Room extends Thread {
 		carMyB_img = mActivity.getBitmap(R.drawable.mysite);
 	}
 	
-	public static int getPhase()
-	{
-		return mPhase;
-	}
+//	public static int getPhase()
+//	{
+//		return mPhase;
+//	}
 	
-	public static void setPhase(int input)
-	{
-		mPhase =input;
-	}
+//	public static void setPhase(int input)
+//	{
+//		mPhase =input;
+//	}
 
 	public void run() {
 		Log.i(getClass().getSimpleName(), "in run()");
@@ -151,7 +151,7 @@ public final class GLThread_Room extends Thread {
 				h = mHeight;
 			}
 			
-			
+			/*这是耗时的一步*/
 			if(!isModelGenerate){
 				Loading(gl);
 			}

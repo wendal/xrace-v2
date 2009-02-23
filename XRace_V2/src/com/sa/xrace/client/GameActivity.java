@@ -39,7 +39,6 @@ import android.view.Window;
 import com.sa.xrace.client.listener.ServerListenerImp;
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
-import com.sa.xrace.client.loader.SenceObj;
 import com.sa.xrace.client.loader.SenceParser2;
 import com.sa.xrace.client.manager.PostManagerClient;
 import com.sa.xrace.client.manager.PostManagerClientImp;
@@ -58,35 +57,36 @@ import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.scene.Object;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
+import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public class GameActivity extends Activity implements SensorListener {
 //	private final static String TAG = "----- GameActivity -----";
 	
-	private GameView drawView;
+//	private GameView drawView;
 	private Camera mCamera;
 
-	public ModelImport mModelImport;
-	public ModelInforPool mModelInforPool;
+	private ModelImport mModelImport;
+	private ModelInforPool mModelInforPool;
 
 	private InforPoolClient inPool;
 	// private InforPoolClient mPool;
-	private RoomPicPool rpPool;
-	private WRbarPool barPool;
+//	private RoomPicPool rpPool;
+//	private WRbarPool barPool;
 	private GIPool giPool;
 
 	private GLWorld mWorld;
 
 //	public SensorManager mSensorManager ;
-	private ServerListenerImp mServerListener;
+//	private ServerListenerImp mServerListener;
 	private PostManagerClient mPostManager;
 
 //	private RelativeLayout layout;
 //	private Intent incomeIntent;
 
-	private Socket mSocket;
-	private String IP = "";
-	private String NAME = "";
-	private final static int PORT = 4444;
+//	private Socket mSocket;
+//	private String IP = "";
+//	private String NAME = "";
+//	private final static int PORT = 4444;
 
 	
 
@@ -105,7 +105,7 @@ public class GameActivity extends Activity implements SensorListener {
 //	private static long nowTime = 0;
 //	private static long lastTime = 0;
 
-	public  static boolean mapOn = false;
+	public static boolean mapOn = false;
 	public static boolean mapNext = false;
 	public static boolean mapBack = false;
 	public static boolean carOn = false;
@@ -130,41 +130,45 @@ public class GameActivity extends Activity implements SensorListener {
 //		Log.e(getClass().getName(), ""+mSensorManager);
 //		SensorManagerSimulator.connectSimulator();
 
-		
+		DataUnti.init(this);
 
 //		incomeIntent = getIntent();
 //		String temp = Uri.decode(incomeIntent.getData().toString());
 //		StringTokenizer st = new StringTokenizer(temp, "@&");
-		NAME = NetworkToolKit.NAME;
-		IP = NetworkToolKit.SERVERIP;
+//		NAME = NetworkToolKit.NAME;
+//		IP = NetworkToolKit.SERVERIP;
 
 		mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
 		mModelImport = new ModelImport();
 		mCamera = new Camera();
 		inPool = new InforPoolClient(mModelInforPool);
-		barPool = new WRbarPool(null, null, null, inPool, this);
-		rpPool = new RoomPicPool(this);
+		WRbarPool barPool = new WRbarPool(null, null, null, inPool, this);
+		RoomPicPool rpPool = new RoomPicPool(this);
 		giPool = new GIPool(rpPool,inPool,mCamera);
 
+		Socket mSocket = null;
 		try {
-			mSocket = new Socket(InetAddress.getByName(IP), PORT);
+			mSocket = new Socket(InetAddress.getByName(NetworkToolKit.SERVERIP), NetworkToolKit.SERVERPORT);
 		} catch (UnknownHostException e) {
 			Log.v("-- UnknownHostException --","-- UnknownHostException --");
 			e.printStackTrace();
+			//是否应该退出呢?
 		} catch (IOException e) {
 			Log.v("-- IOException --","-- IOException --");
 			e.printStackTrace();
+			//是否应该退出呢?
 		}
 		Log.i("GameActivity", "After connect socket");
 		mPostManager = new PostManagerClientImp(mSocket, inPool);
-		mServerListener = new ServerListenerImp(mSocket, inPool, barPool,this);
+//		mServerListener = 
+		    new ServerListenerImp(mSocket, inPool, barPool,this);
 		mWorld = new GLWorld(inPool, mCamera, mPostManager);
-		inPool.getOneCarInformation(inPool.getMyCarIndex()).setNName(NAME);
+		inPool.getOneCarInformation(inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
 
 		mModelInforPool.setType(Model.CAR);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
 	
-		drawView = new GameView(getApplication(), this, rpPool, inPool, barPool,giPool, mModelInforPool, mWorld,mPostManager);
+		GameView drawView = new GameView(getApplication(), this, rpPool, inPool, barPool,giPool, mModelInforPool, mWorld,mPostManager);
 		setContentView(drawView);
 		System.gc();
 		System.out.println(Runtime.getRuntime().freeMemory());
@@ -305,6 +309,11 @@ public class GameActivity extends Activity implements SensorListener {
 		return tem;
 	}
 
+	/**
+	 * 这个方法耗时严重,需要改进
+	 * @param resname
+	 * @return
+	 */
 	public ByteBuffer getImageReadyfor(int resname) {
 		ByteBuffer tempBuffer;
 		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), resname);
@@ -339,8 +348,8 @@ public class GameActivity extends Activity implements SensorListener {
 		Model model;
 		Object object;
 
-		SenceParser2 senceParser;
-		SenceObj sence;
+//		SenceParser2 senceParser;
+//		SenceObj sence;
 
 		try {
 			//处理XML,并统计时间
@@ -348,15 +357,16 @@ public class GameActivity extends Activity implements SensorListener {
 			fis = getAssets().open(filename);
 //			Document document = new SAXReader()
 //					.read(new InputStreamReader(fis));
-			senceParser = new SenceParser2(fis);
-			sence = senceParser.getScene();
-			Log.i("Time in XML parse", ""+(System.currentTimeMillis() - xml_start));
+//			senceParser = new SenceParser2(fis);
+//			SenceObj sence = SenceParser2.parse(fis);
 			
-			ArrayList<ModelObj> modelList = sence.getLModelList();
+			ArrayList<ModelObj> modelList = SenceParser2.parse(fis);
+//			    sence.getLModelList();
+			Log.i("Time in XML parse", ""+(System.currentTimeMillis() - xml_start));
 			ModelObj modelObj = null;
 			LocationObj locationObj = null;
-
-			for (int i = 0; i < modelList.size(); i++) {
+			int size = modelList.size();
+			for (int i = 0; i < size; i++) {
 				//处理图片,并统计时间,原本的时间为 17700ms
 				long image_start = System.currentTimeMillis();
 				modelObj = (ModelObj) modelList.get(i);
@@ -393,8 +403,8 @@ public class GameActivity extends Activity implements SensorListener {
 			// 
 			e.printStackTrace();
 		} finally {
-			sence = null;
-			senceParser = null;
+//			sence = null;
+//			senceParser = null;
 
 		}
 		Log.i("Load Image Time", ""+(System.currentTimeMillis() - start));
@@ -403,11 +413,11 @@ public class GameActivity extends Activity implements SensorListener {
 	public boolean onKeyDown(int arg0, KeyEvent arg1) 
 	{
 	
-		if (GLThread_Room.getPhase() == DataToolKit.GAME_ROOM)
+		if (GLThread_Room.mPhase == DataToolKit.GAME_ROOM)
 		{
 			onRoomWaiting(arg0, arg1);
 		}
-		else if (GLThread_Room.getPhase() == DataToolKit.GAME_RUNNING)
+		else if (GLThread_Room.mPhase == DataToolKit.GAME_RUNNING)
 		{
 			onGameRunning(arg0, arg1);
 		}
@@ -482,7 +492,7 @@ public class GameActivity extends Activity implements SensorListener {
 	}
 	
 	public void initGameRunning(){
-		GLThread_Room.setPhase(DataToolKit.GAME_RUNNING);	
+		GLThread_Room.mPhase = DataToolKit.GAME_RUNNING;	
 		CarInforClient myCar = inPool.getOneCarInformation(inPool.getMyCarIndex());
 		Point3f center = new Point3f(myCar.getNXPosition(), Camera.CAMERA_CENTER_Y, myCar.getNYPosition());
 		mCamera.initCamera(center, new Point3f(0.0f, 1.0f, 0.0f), myCar.getNDirection(), Camera.FAR_DISTANCE);
@@ -555,7 +565,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     public boolean onKeyUp(int arg0, KeyEvent arg1) 
     {
-    	if (GLThread_Room.getPhase() == DataToolKit.GAME_RUNNING)
+    	if (GLThread_Room.mPhase == DataToolKit.GAME_RUNNING)
 		{
     		CarInforClient car =  inPool.getOneCarInformation(inPool.getMyCarIndex());
     		switch (arg0)
