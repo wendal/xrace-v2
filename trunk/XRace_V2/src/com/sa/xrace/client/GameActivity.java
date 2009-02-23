@@ -15,9 +15,6 @@ import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,8 +24,6 @@ import org.xml.sax.SAXException;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -57,6 +52,7 @@ import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.scene.Object;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
+import com.sa.xrace.client.toolkit.ObjectPool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public class GameActivity extends Activity implements SensorListener {
@@ -98,7 +94,7 @@ public class GameActivity extends Activity implements SensorListener {
 	public static boolean isCarType = false;
 	private static boolean isPostStart = false;
 	public static boolean isStart = false;
-	private IntBuffer tempIB;
+//	private IntBuffer tempIB;
 
 //	private long timeadd = 0;
 //	private static long timeElapsed = 0;
@@ -122,7 +118,12 @@ public class GameActivity extends Activity implements SensorListener {
 		}
 		Log.e("-----------getRequestedOrientation",""+getRequestedOrientation());
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+		if(ObjectPool.activity == null){
+			ObjectPool.activity = this;
+		}
+		if(ObjectPool.resources == null){
+			ObjectPool.resources = getResources();
+		}
 		// Connect to the OpentIntents for simulator of the sensor
 //		OpenIntents.requiresOpenIntents(this);
 //		Hardware.mContentResolver = getContentResolver();
@@ -142,8 +143,9 @@ public class GameActivity extends Activity implements SensorListener {
 		mModelImport = new ModelImport();
 		mCamera = new Camera();
 		inPool = new InforPoolClient(mModelInforPool);
-		WRbarPool barPool = new WRbarPool(null, null, null, inPool, this);
-		RoomPicPool rpPool = new RoomPicPool(this);
+		WRbarPool barPool = new WRbarPool(null, null, null, inPool);
+//		RoomPicPool rpPool = new RoomPicPool(this);
+		RoomPicPool rpPool = new RoomPicPool();
 		giPool = new GIPool(rpPool,inPool,mCamera);
 
 		Socket mSocket = null;
@@ -161,18 +163,18 @@ public class GameActivity extends Activity implements SensorListener {
 		Log.i("GameActivity", "After connect socket");
 		mPostManager = new PostManagerClientImp(mSocket, inPool);
 //		mServerListener = 
-		    new ServerListenerImp(mSocket, inPool, barPool,this);
+		    new ServerListenerImp(mSocket, inPool, barPool);
 		mWorld = new GLWorld(inPool, mCamera, mPostManager);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
 
 		mModelInforPool.setType(DataToolKit.CAR);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
 	
-		GameView drawView = new GameView(getApplication(), this, rpPool, inPool, barPool,giPool, mModelInforPool, mWorld,mPostManager);
+		GameView drawView = new GameView(getApplication(), rpPool, inPool, barPool,giPool, mModelInforPool, mWorld,mPostManager);
 		setContentView(drawView);
 		System.gc();
-		System.out.println(Runtime.getRuntime().freeMemory());
-		Log.i("GameActivity", "Finish onCreate()");
+//		System.out.println(Runtime.getRuntime().freeMemory());
+		Log.i("GameActivity", "Finish onCreate(), Free Mem: " + Runtime.getRuntime().freeMemory());
 	}
 
 //	public boolean onTouchEvent(MotionEvent event) {	
@@ -304,41 +306,10 @@ public class GameActivity extends Activity implements SensorListener {
 //	}
 	
 
-	public Bitmap getBitmap(int resID){
-		Bitmap tem = BitmapFactory.decodeResource(getResources(),resID);
-		return tem;
-	}
-
-	/**
-	 * 这个方法耗时严重,需要改进
-	 * @param resname
-	 * @return
-	 */
-	public ByteBuffer getImageReadyfor(int resname) {
-		ByteBuffer tempBuffer;
-		Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), resname);
-		int pic_width = mBitmap.getWidth();
-		int pic_height = mBitmap.getHeight();
-		// Log.e("pic_width",""+pic_width+" "+pic_height);
-		tempBuffer = ByteBuffer.allocateDirect(pic_width * pic_height * 4);
-		tempBuffer.order(ByteOrder.nativeOrder());
-		tempIB = tempBuffer.asIntBuffer();
-
-		for (int y = 0; y < pic_width; y++) {
-			for (int x = 0; x < pic_height; x++) {
-				tempIB.put(mBitmap.getPixel(x, y));
-			}
-		}
-
-		for (int i = 0; i < pic_width * pic_height * 4; i += 4) {
-			byte temp = tempBuffer.get(i);
-			tempBuffer.put(i, tempBuffer.get(i + 2));
-			tempBuffer.put(i + 2, temp);
-
-		}
-		tempBuffer.position(0);
-		return tempBuffer;
-	}
+//	public Bitmap getBitmap(int resID){
+//		Bitmap tem = BitmapFactory.decodeResource(getResources(),resID);
+//		return tem;
+//	}
 
 	public void LoadMapFromXML(String filename) {
 		long start = System.currentTimeMillis();

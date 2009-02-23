@@ -40,6 +40,7 @@ import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.MethodsPool;
 
 public final class GLThread_Room extends Thread {
 	
@@ -103,8 +104,8 @@ public final class GLThread_Room extends Thread {
 		this.mWorld=mWorld;
 		this.mActivity = activity;
 		this.mPostManager = mPostManager;
-		RoomPicPool.setLoading(mActivity.getImageReadyfor(R.drawable.laod));
-		carMyB_img = mActivity.getBitmap(R.drawable.mysite);
+		RoomPicPool.setLoading(MethodsPool.getImageReadyfor(R.drawable.laod));
+		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
 	}
 	
 //	public static int getPhase()
@@ -256,19 +257,19 @@ public final class GLThread_Room extends Thread {
 			c.drawColor(Color.BLACK);
 			switch(imgIndex){
 				case 0:{
-					c.drawBitmap(RoomPicPool.load0,0,192,p);
+					c.drawBitmap(MethodsPool.getBitmap(R.drawable.load0),0,192,p);
 					break;
 				}
 				case 1:{
-					c.drawBitmap(RoomPicPool.load1,0,192,p);
+					c.drawBitmap(MethodsPool.getBitmap(R.drawable.load1),0,192,p);
 					break;
 				}
 				case 2:{
-					c.drawBitmap(RoomPicPool.load2,0,192,p);
+					c.drawBitmap(MethodsPool.getBitmap(R.drawable.load2),0,192,p);
 					break;
 				}
 				case 3:{
-					c.drawBitmap(RoomPicPool.load3,0,192,p);
+					c.drawBitmap(MethodsPool.getBitmap(R.drawable.load3),0,192,p);
 					break;
 				}
 				

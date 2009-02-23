@@ -21,11 +21,12 @@ import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.GLWorld;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
 	private SurfaceHolder mHolder;
-	private GameActivity Activity;
+//	private GameActivity Activity;
 	private GLThread_Room drawThread;
 	private RoomPicPool picPool;
 	private InforPoolClient inPool;
@@ -36,11 +37,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 	private PostManagerClient mPostManager;
 	
 	
-	public GameView(Context context,GameActivity inputActivity,RoomPicPool picPool,InforPoolClient inPool,
+	public GameView(Context context,RoomPicPool picPool,InforPoolClient inPool,
 			WRbarPool barPool,GIPool giPool,ModelInforPool mModelInforPool, GLWorld mWorld,PostManagerClient mPostManager)
 	{
 		super(context);
-		Activity = inputActivity;
+//		Activity = inputActivity;
 		this.picPool = picPool;
 		this.inPool = inPool;
 		mHolder = getHolder();
@@ -61,7 +62,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
 	public void surfaceCreated(SurfaceHolder arg0) {
 		// 
-		drawThread = new GLThread_Room(Activity,mHolder,this,picPool,barPool,giPool,mModelInforPool,mWorld,inPool,mPostManager);
+		drawThread = new GLThread_Room(ObjectPool.activity,mHolder,this,picPool,barPool,giPool,mModelInforPool,mWorld,inPool,mPostManager);
 		drawThread.start();	
 		
 	}
