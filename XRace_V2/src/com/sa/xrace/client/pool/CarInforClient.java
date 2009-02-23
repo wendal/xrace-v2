@@ -21,7 +21,7 @@ import com.sa.xrace.client.model.t3DObject;
  * @author twei
  * @version $Id: CarInforClient.java,v 1.19 2008-12-12 04:34:21 sliao Exp $
  */
-public class CarInforClient {
+public final class CarInforClient {
 
 	/**
 	 * nName 					Car name
@@ -38,10 +38,10 @@ public class CarInforClient {
 	 * nAccidenceDirection		Collision Acceleration
 	 * timeDelay				time delay of this car in network transmit
 	 */
-	public final static float VOLVO_MAX = 100.0f;
-	public final static float BENZ_MAX = 2.0f;
-	public final static float MAX_ANTI_SPEED = -10.0f;
-	public final static float[] MAX_SPEED = {VOLVO_MAX,BENZ_MAX};
+//	private final static float VOLVO_MAX = 100.0f;
+//	private final static float BENZ_MAX = 2.0f;
+//	private final static float MAX_ANTI_SPEED = -10.0f;
+//	private final static float[] MAX_SPEED = {VOLVO_MAX,BENZ_MAX};
 	private byte nCarID;
 	private String nName;// Car name
 	private int nCarType;// Car type,include type,color
@@ -336,24 +336,24 @@ public class CarInforClient {
 	}
 
 
-	public static float getVOLVO_MAX() {
-		return VOLVO_MAX;
-	}
-
-
-	public static float getBENZ_MAX() {
-		return BENZ_MAX;
-	}
-
-
-	public static float getMAX_ANTI_SPEED() {
-		return MAX_ANTI_SPEED;
-	}
-
-
-	public static float[] getMAX_SPEED() {
-		return MAX_SPEED;
-	}
+//	public static float getVOLVO_MAX() {
+//		return VOLVO_MAX;
+//	}
+//
+//
+//	public static float getBENZ_MAX() {
+//		return BENZ_MAX;
+//	}
+//
+//
+//	public static float getMAX_ANTI_SPEED() {
+//		return MAX_ANTI_SPEED;
+//	}
+//
+//
+//	public static float[] getMAX_SPEED() {
+//		return MAX_SPEED;
+//	}
 
 	public float getNAccidenceChangeDirection() {
 		return nAccidenceChangeDirection;

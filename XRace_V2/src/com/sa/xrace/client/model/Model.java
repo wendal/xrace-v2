@@ -15,11 +15,6 @@ import com.sa.xrace.client.math.Point3f;
 
 public final class Model
 {	
-	public static final int CAR = 1000;
-	public static final int MAP = 1001;
-	public static final int COLLISION = 1002;
-	public static final int ROOM = 1003;
-	
 	private int mModelID;			//model's ID
 	private int mType;				//model's type
 	private t3DModel mModel;		//keeping model's data

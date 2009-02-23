@@ -165,7 +165,7 @@ public class GameActivity extends Activity implements SensorListener {
 		mWorld = new GLWorld(inPool, mCamera, mPostManager);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
 
-		mModelInforPool.setType(Model.CAR);
+		mModelInforPool.setType(DataToolKit.CAR);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
 	
 		GameView drawView = new GameView(getApplication(), this, rpPool, inPool, barPool,giPool, mModelInforPool, mWorld,mPostManager);
@@ -382,7 +382,7 @@ public class GameActivity extends Activity implements SensorListener {
 				for (int index = 0; index < locationObj.getSize(); index++) {
 					object = new Object(model, locationObj.getPoint(index),
 							locationObj.getAngle(index));
-					if (Integer.parseInt(modelObj.getType()) == Model.COLLISION)
+					if (Integer.parseInt(modelObj.getType()) == DataToolKit.COLLISION)
 					{
 						object.updateTransformMatrix();
 					}
@@ -459,12 +459,12 @@ public class GameActivity extends Activity implements SensorListener {
 				break;				
 			case KeyEvent.KEYCODE_DPAD_UP:
 				
-				mModelInforPool.setType(Model.CAR);
+				mModelInforPool.setType(DataToolKit.CAR);
 				
 				carOn = true;
 				break;
 			case KeyEvent.KEYCODE_ENTER:	
-				mModelInforPool.setTypeAndUpdate(Model.CAR, GameActivity.carBack);
+				mModelInforPool.setTypeAndUpdate(DataToolKit.CAR, GameActivity.carBack);
 				
 				if(inPool.getOneCarInformation(inPool.getMyCarIndex()).getModel() == null)
 				{
@@ -494,9 +494,9 @@ public class GameActivity extends Activity implements SensorListener {
 	public void initGameRunning(){
 		GLThread_Room.mPhase = DataToolKit.GAME_RUNNING;	
 		CarInforClient myCar = inPool.getOneCarInformation(inPool.getMyCarIndex());
-		Point3f center = new Point3f(myCar.getNXPosition(), Camera.CAMERA_CENTER_Y, myCar.getNYPosition());
-		mCamera.initCamera(center, new Point3f(0.0f, 1.0f, 0.0f), myCar.getNDirection(), Camera.FAR_DISTANCE);
-		mCamera.setEye(mCamera.getEye().x, Camera.CAMERA_EYE_Y, mCamera.getEye().z);	
+		Point3f center = new Point3f(myCar.getNXPosition(), DataToolKit.CAMERA_CENTER_Y, myCar.getNYPosition());
+		mCamera.initCamera(center, new Point3f(0.0f, 1.0f, 0.0f), myCar.getNDirection(), DataToolKit.FAR_DISTANCE);
+		mCamera.setEye(mCamera.getEye().x, DataToolKit.CAMERA_EYE_Y, mCamera.getEye().z);	
 	}
 	   
     private void onGameRunning(int arg0, KeyEvent arg1)

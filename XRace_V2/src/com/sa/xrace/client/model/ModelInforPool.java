@@ -34,6 +34,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.sa.xrace.client.GLThread_Room;
 import com.sa.xrace.client.math.Point3f;
+import com.sa.xrace.client.toolkit.DataToolKit;
 /**
  * @author sliao
  * @version $Id: ModelInforPool.java,v 1.11 2008-12-10 06:57:21 cpan Exp $
@@ -43,6 +44,10 @@ import com.sa.xrace.client.math.Point3f;
  */
 public class ModelInforPool
 {
+    /**
+     * 只有一个实例,考虑用单例模式,或者转为工具类
+     * @param position
+     */
 	public ModelInforPool(Point3f position)
 	{
 		mPosition = position;
@@ -79,7 +84,7 @@ public class ModelInforPool
 		{
 //			int temp = GLThread_Room.progress;
 			Model model = modelIterator.next();
-			if(model.getType() != Model.COLLISION)
+			if(model.getType() != DataToolKit.COLLISION)
 			{
 				model.generate(gl);				
 			}
@@ -103,7 +108,7 @@ public class ModelInforPool
     		gl.glScalef(mScale.x, mScale.y, mScale.z);
     		gl.glRotatef(mAngle, 0, 1, 0);
     		
-    		if(mCurrentModel.getType() == Model.CAR)
+    		if(mCurrentModel.getType() == DataToolKit.CAR)
     		{
     			mPresentationAngle +=1.2f;
     			if(mPresentationAngle >= 360f)

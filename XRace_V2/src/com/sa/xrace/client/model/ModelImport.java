@@ -27,39 +27,39 @@ import com.sa.xrace.client.math.Point3f;
  *  And the data imported is stored in the class t3DModel.java
  */
 
-public class ModelImport {
+public final class ModelImport {
 
 	//  Primary Chunk£¬the first two bytes in the 3DS file
-	static final int PRIMARY       	= 0x4D4D;
+	private static final int PRIMARY       	= 0x4D4D;
 
 	//  Main Chunks
-	static final int OBJECTINFO    	= 0x3D3D;		
-	static final int VERSION       	= 0x0002;		// version of .3ds file
-	static final int EDITKEYFRAME  	= 0xB000;		// header of the key frames
+	private static final int OBJECTINFO    	= 0x3D3D;		
+	private static final int VERSION       	= 0x0002;		// version of .3ds file
+	private static final int EDITKEYFRAME  	= 0xB000;		// header of the key frames
 
 	//  Secondary chunks of main chunks, including material, object
-	static final int MATERIAL	  	= 0xAFFF;		// material
-	static final int OBJECT			= 0x4000;		// face and vertex
+	private static final int MATERIAL	  	= 0xAFFF;		// material
+	private static final int OBJECT			= 0x4000;		// face and vertex
 
 	//  Secondary chunks of material
-	static final int MATNAME      	= 0xA000;		// name
-	static final int MATDIFFUSE    	= 0xA020;		// color
-	static final int MATMAP        	= 0xA200;		// header
-	static final int MATMAPFILE    	= 0xA300;		// filename
+	private static final int MATNAME      	= 0xA000;		// name
+	private static final int MATDIFFUSE    	= 0xA020;		// color
+	private static final int MATMAP        	= 0xA200;		// header
+	private static final int MATMAPFILE    	= 0xA300;		// filename
 
 	//  Secondary chunks of object
-	static final int OBJECT_MESH   	= 0x4100;		// new object mesh 
+	private static final int OBJECT_MESH   	= 0x4100;		// new object mesh 
 
 	//  Secondary chunks of object mesh
-	static final int OBJECT_VERTICES  	= 0x4110;		// vertex
-	static final int OBJECT_FACES		= 0x4120;		// face
-	static final int OBJECT_MATERIAL	= 0x4130;		// material
-	static final int OBJECT_UV			= 0x4140;		// UV coordinate
+	private static final int OBJECT_VERTICES  	= 0x4110;		// vertex
+	private static final int OBJECT_FACES		= 0x4120;		// face
+	private static final int OBJECT_MATERIAL	= 0x4130;		// material
+	private static final int OBJECT_UV			= 0x4140;		// UV coordinate
 	
 	private tChunk m_CurrentChunk;
 	private tChunk m_TempChunk;
 
-	DataInputStream dis;
+	private DataInputStream dis;
 	
 	/**
 	 *  This class is used to import the model which is created by 3DS MAX.

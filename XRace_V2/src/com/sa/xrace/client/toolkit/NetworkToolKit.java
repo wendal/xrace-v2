@@ -4,7 +4,7 @@ public final class NetworkToolKit {
 
     public static final int SERVERPORT = 4444;
     
-    public static String NAME = "hhhh";
-    public static String SERVERIP = "58.62.117.99";
+    public static String NAME = "Wendal";
+    public static String SERVERIP = "10.67.6.35";
 
 }
