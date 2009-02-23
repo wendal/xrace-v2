@@ -26,6 +26,7 @@ import android.opengl.GLUtils;
 
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
+import com.sa.xrace.client.toolkit.MethodsPool;
 
 public class WRbarPool {
 
@@ -128,10 +129,9 @@ public class WRbarPool {
 	 * @param picPool
 	 * @param texturesB
 	 * @param inPool
-	 * @param activity
 	 */
 	public WRbarPool(GL10 gl, RoomPicPool picPool, IntBuffer texturesB,
-			InforPoolClient inPool, GameActivity activity) {
+			InforPoolClient inPool) {
 		this.inPool = inPool;
 		barList = new Bar[4];
 		for (int i = 0; i < barList.length; i++) {
@@ -147,8 +147,8 @@ public class WRbarPool {
 //		this.picPool = picPool;
 		this.texturesB = texturesB;
  
-		carB_img = activity.getBitmap(R.drawable.upleft_pic);
-		carMyB_img = activity.getBitmap(R.drawable.mysite);
+		carB_img = MethodsPool.getBitmap(R.drawable.upleft_pic);
+		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
 		
 		preparecarList_Face();
 		prepareMap_Face();

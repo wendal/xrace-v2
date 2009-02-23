@@ -109,7 +109,7 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 		layout.addView(text_IP);
 		layout.addView(edit_IP);
 		Log.e("-----------Menu","Here");
-		DataUnti.init(this);
+//		DataUnti.init(this);
 		startMove(single,0,src_width,src_width-150,src_height/3,src_height/3);
 	}
 	

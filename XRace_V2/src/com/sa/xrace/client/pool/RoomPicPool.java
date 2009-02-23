@@ -12,11 +12,11 @@ package com.sa.xrace.client.pool;
 import java.nio.ByteBuffer;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import com.sa.xrace.client.GLThread_Room;
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
+import com.sa.xrace.client.toolkit.MethodsPool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public class RoomPicPool {
@@ -35,22 +35,16 @@ public class RoomPicPool {
 
 	private Bitmap carB_img, carMyB_img;
 	public Bitmap speedometer, speedTriangle;
-	public static Bitmap load0, load1, load2, load3;
+//	public static Bitmap load0, load1, load2, load3;
 	public Bitmap minimap;
 
-	private GameActivity activity;
+//	private GameActivity activity;
 //	public IntBuffer tempIB;
 	public Bitmap carpoint;
 
-	public RoomPicPool(GameActivity activity) {
-		this.activity = activity;
-		load0 = getBitmap(R.drawable.load0);
-	}
-
-	private Bitmap getBitmap(int resID) {
-		Bitmap tem = BitmapFactory.decodeResource(activity.getResources(),
-				resID);
-		return tem;
+	public RoomPicPool() {
+//		this.activity = activity;
+//		load0 = MethodsPool.getBitmap(R.drawable.load0);
 	}
 
 	public void generateEveryThing() {
@@ -58,25 +52,25 @@ public class RoomPicPool {
 		setMapchoice_PicB(getImageReadyfor(R.drawable.mapchoice_pic));
 		setMapview1_PicB(getImageReadyfor(R.drawable.mapview1));
 
-		load1 = getBitmap(R.drawable.load1);
+//		load1 = MethodsPool.getBitmap(R.drawable.load1);
 
 		GLThread_Room.makeLoading(GLThread_Room.gl, 82, 0);
 
 		setMapview2_PicB(getImageReadyfor(R.drawable.mapview2));
 		setCarchoice_PicB(getImageReadyfor(R.drawable.carchoice));
-		speedTriangle = getBitmap(R.drawable.triangle);
+		speedTriangle = MethodsPool.getBitmap(R.drawable.triangle);
 
-		load2 = getBitmap(R.drawable.load2);
+//		load2 = MethodsPool.getBitmap(R.drawable.load2);
 
 		GLThread_Room.makeLoading(GLThread_Room.gl, 102, 1);
 
-		carB_img = getBitmap(R.drawable.upleft_pic);
+		carB_img = MethodsPool.getBitmap(R.drawable.upleft_pic);
 		setCarview1_PicB(getImageReadyfor(R.drawable.carchoice));
-		carMyB_img = getBitmap(R.drawable.mysite_pic);
-		speedometer = getBitmap(R.drawable.speedometer);
-		carpoint = getBitmap(R.drawable.carpointpic);
-		minimap = getBitmap(R.drawable.minimap);
-		load3 = getBitmap(R.drawable.load3);
+		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite_pic);
+		speedometer = MethodsPool.getBitmap(R.drawable.speedometer);
+		carpoint = MethodsPool.getBitmap(R.drawable.carpointpic);
+		minimap = MethodsPool.getBitmap(R.drawable.minimap);
+//		load3 = MethodsPool.getBitmap(R.drawable.load3);
 
 		GLThread_Room.makeLoading(GLThread_Room.gl, 162, 1);
 	}

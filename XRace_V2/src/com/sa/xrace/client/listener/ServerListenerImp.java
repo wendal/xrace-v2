@@ -25,6 +25,7 @@ import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author yyang
@@ -51,7 +52,7 @@ public class ServerListenerImp extends HandlerThread {
 //	private static final int TIME_OUT = 10000;
 	private WRbarPool barPool;
 	
-	private GameActivity mActivity;
+//	private GameActivity mActivity;
 	
 //	public ServerListenerImp(Socket input) {
 //		super("ServerListenerImp");
@@ -78,11 +79,11 @@ public class ServerListenerImp extends HandlerThread {
 //		}
 //	}
 	
-	public ServerListenerImp(Socket inputSocket, InforPoolClient inPool,WRbarPool barPool,GameActivity activity) {
+	public ServerListenerImp(Socket inputSocket, InforPoolClient inPool,WRbarPool barPool) {
 		super("ServerListenerImp");
 		socket = inputSocket;
 		pool = inPool;
-		mActivity = activity;
+//		mActivity = activity;
 		listenerON = true;
 		this.barPool = barPool;
 		try {
@@ -190,7 +191,7 @@ public class ServerListenerImp extends HandlerThread {
 					// ////////////////////////////////////////
 					// jump to game start interface
 					// ////////////////////////////////////////
-						mActivity.initGameRunning();
+						ObjectPool.activity.initGameRunning();
 //						GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
 				}else if (postReceived == DataToolKit.DROPOUT) {
 					//Log.v(TAG, "DROPOUT Post Received");
