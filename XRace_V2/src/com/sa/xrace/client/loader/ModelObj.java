@@ -22,7 +22,7 @@ public class ModelObj {
 	
 	private LocationObj location ;
 	public String getFilename() {
-		System.out.println("In ModelBeans " + Filename);
+//		System.out.println("In ModelBeans " + Filename);
 		return Filename;
 	}
 	public void setFilename(String filename) {

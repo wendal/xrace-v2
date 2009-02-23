@@ -77,8 +77,8 @@ public final class SenceParser2 {
 			if (eNode.getNodeType() == 1) {
 				mObjTemp = new ModelObj();
 				modelListTemp.add(mObjTemp);
-				System.out.println(((Element) eNode).getNodeName());
-				System.out.println(((Element) eNode).getAttribute("Filename"));
+//				System.out.println(((Element) eNode).getNodeName());
+//				System.out.println(((Element) eNode).getAttribute("Filename"));
 				mObjTemp
 						.setFilename(((Element) eNode).getAttribute("Filename"));
 				mObjTemp.setID(((Element) eNode).getAttribute("ID"));
@@ -86,7 +86,7 @@ public final class SenceParser2 {
 				mObjTemp.setScale(((Element) eNode).getAttribute("Scale"));
 				mObjTemp.setRadius(Float.parseFloat(((Element) eNode)
 						.getAttribute("Radius")));
-				System.out.println(eNode.getChildNodes().getLength());
+//				System.out.println(eNode.getChildNodes().getLength());
 
 				NodeList nLocations = eNode.getChildNodes();
 				for (int z = 0; z < nLocations.getLength(); z++) {
