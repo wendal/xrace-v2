@@ -34,9 +34,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sa.xrace.client.manager.PostManagerClient;
-import com.sa.xrace.client.pool.InforPoolClient;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
+
+import com.sa.xrace.client.toolkit.NetworkToolKit;
 
 /**
  * @author jlin
@@ -50,27 +50,25 @@ import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 public class MenuActivity extends Activity implements OnClickListener,MediaPlayer.OnPreparedListener{
 
    
-    public final int SERVERPORT = 4444; 
-    public Socket connection;
+//    private Socket connection;
 	private ImageView single,multiple,setting;
 	private LinearLayout layout;
 	private EditText edit_Name,edit_IP;
 	private TextView text_Name,text_IP;
-	private String NAME = "hhhh";
-	private  String SERVERIP = "58.62.117.99"; 
+	 
 	private TranslateAnimation  animation;
 	private int src_width,src_height,b_width = 140,b_height=40;
 //	private ProgressBar progressbar;
 //	private int mProgressStatus=0;
 //	private Handler mHandler;
-	private boolean isChange;
+//	private boolean isChange;
 //	public MainPlayer player;
 //	public MediaPlayer mp, mp2;
 	
 	
-	private InforPoolClient  inPool;
+//	private InforPoolClient  inPool;
 //	public ServerListenerImp listener;
-	private PostManagerClient poster;
+//	private PostManagerClient poster;
 	
 	
 	public void onCreate(Bundle icicle) {
@@ -99,8 +97,8 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 
 		edit_Name = new EditText(this);
 		edit_IP = new EditText(this);
-		edit_Name.setText(NAME);
-		edit_IP.setText(SERVERIP);
+		edit_Name.setText(NetworkToolKit.NAME);
+		edit_IP.setText(NetworkToolKit.SERVERIP);
 		
 		text_Name = new TextView(this);
 		text_Name.setText("Login Name");
@@ -213,13 +211,13 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,
 									int whichButton) {
-								NAME = cutNames(edit_Name.getText().toString());
-								SERVERIP = edit_IP.getText().toString();
+							    NetworkToolKit.NAME = cutNames(edit_Name.getText().toString());
+							    NetworkToolKit.SERVERIP = edit_IP.getText().toString();
 								
 								Intent intent = new Intent();
 								intent.setClass(MenuActivity.this, GameActivity.class);
-								Uri n = Uri.parse(Uri.encode(NAME+"@&"+SERVERIP));
-								intent.setData(n);
+//								Uri n = Uri.parse(Uri.encode(NAME+"@&"+SERVERIP));
+//								intent.setData(n);
 								startActivity(intent);
 								finish();
 								

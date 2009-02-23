@@ -19,28 +19,23 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
-import android.widget.RelativeLayout;
 
-//import com.sa.xrace.client.listener.ServerListener;
 import com.sa.xrace.client.listener.ServerListenerImp;
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
@@ -62,6 +57,7 @@ import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.scene.Object;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.NetworkToolKit;
 
 public class GameActivity extends Activity implements SensorListener {
 //	private final static String TAG = "----- GameActivity -----";
@@ -85,7 +81,7 @@ public class GameActivity extends Activity implements SensorListener {
 	private PostManagerClient mPostManager;
 
 //	private RelativeLayout layout;
-	private Intent incomeIntent;
+//	private Intent incomeIntent;
 
 	private Socket mSocket;
 	private String IP = "";
@@ -136,11 +132,11 @@ public class GameActivity extends Activity implements SensorListener {
 
 		
 
-		incomeIntent = getIntent();
-		String temp = Uri.decode(incomeIntent.getData().toString());
-		StringTokenizer st = new StringTokenizer(temp, "@&");
-		NAME = st.nextToken();
-		IP = st.nextToken();
+//		incomeIntent = getIntent();
+//		String temp = Uri.decode(incomeIntent.getData().toString());
+//		StringTokenizer st = new StringTokenizer(temp, "@&");
+		NAME = NetworkToolKit.NAME;
+		IP = NetworkToolKit.SERVERIP;
 
 		mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
 		mModelImport = new ModelImport();
