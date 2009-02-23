@@ -10,8 +10,6 @@
 package com.sa.xrace.client;
 
 
-import java.net.Socket;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -20,7 +18,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,9 +31,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
-
 import com.sa.xrace.client.toolkit.NetworkToolKit;
+import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 /**
  * @author jlin
