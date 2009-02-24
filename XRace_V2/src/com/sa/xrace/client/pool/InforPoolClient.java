@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author Changpeng Pan
@@ -29,7 +30,7 @@ public class InforPoolClient {
 	// The position index in car information of my car
 	private static int myCarIndex;
 	private static CarInforClient[] nCar;
-	private static ModelInforPool modelPool;
+//	private static ModelInforPool modelPool;
 	// Time synchronize
 	private static Vector<Integer> delayHandleIn;
 	private static Vector<Integer> delayHandleOut;
@@ -51,9 +52,25 @@ public class InforPoolClient {
 	// If there is accident set it true;
 	private static boolean isAccident = false;
 
+//	/**
+//	 * Initiates the car capacity in information pool to 6 Initiates the
+//	 * delayHandle ArrayLists
+//	 */
+//	public InforPoolClient() {
+//		nCarNumber = 1;
+//		myCarIndex = 0;
+//		nCar = new CarInforClient[6];
+//		for (int i = 0; i < 6; i++) {
+//			nCar[i] = new CarInforClient();
+//		}
+//		delayHandleIn = new Vector<Integer>();
+//		delayHandleOut = new Vector<Integer>();
+////		setNCarNumber(4);
+//
+//	}
+	
 	/**
-	 * Initiates the car capacity in information pool to 6 Initiates the
-	 * delayHandle ArrayLists
+	 * 只发现创建了一次该类的对象
 	 */
 	public InforPoolClient() {
 		nCarNumber = 1;
@@ -64,20 +81,7 @@ public class InforPoolClient {
 		}
 		delayHandleIn = new Vector<Integer>();
 		delayHandleOut = new Vector<Integer>();
-//		setNCarNumber(4);
-
-	}
-	
-	public InforPoolClient(ModelInforPool mModelInforPool) {
-		nCarNumber = 1;
-		myCarIndex = 0;
-		nCar = new CarInforClient[6];
-		for (int i = 0; i < 6; i++) {
-			nCar[i] = new CarInforClient();
-		}
-		delayHandleIn = new Vector<Integer>();
-		delayHandleOut = new Vector<Integer>();
-		modelPool = mModelInforPool;
+//		modelPool = ObjectPool.mModelInforPool;
 	}
 
 	/**
@@ -151,7 +155,7 @@ public class InforPoolClient {
 //		if (index != getMyCarIndex()) {			
 //		System.out.println("updateCarType = ");
 //			modelPool.setType(Model.CAR);
-			nCar[index].setModel(modelPool.getModel(modelID));
+			nCar[index].setModel(ObjectPool.mModelInforPool.getModel(modelID));
 			//nCar[index].setMOriginalBox(new AABBbox(modelPool.getModel(modelID)));
 			nCar[index].getMOriginalBox().getAABBbox(nCar[index].getModel());
 			

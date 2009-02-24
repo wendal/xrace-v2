@@ -11,12 +11,12 @@ package com.sa.xrace.client.manager;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 import android.util.Log;
 
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author Changpeng Pan
@@ -26,16 +26,21 @@ public class PostManagerClientImp implements PostManagerClient {
 	private static final String TAG = "-- PostMangerClientImp --";
 	private InforPoolClient cPool;
 	private DataOutputStream cOutput;
-	private Socket cSocket;
+//	private Socket cSocket;
 
-	public PostManagerClientImp(Socket socket, InforPoolClient pool) {
-		this.cPool = pool;
-		this.cSocket = socket;
+	/**
+	 * 只发现一个调用
+	 * @param socket
+	 * @param pool
+	 */
+	public PostManagerClientImp() {
+		this.cPool = ObjectPool.inPoolClient;
+//		this.cSocket = ObjectPool.mSocket;
 		try {
-			cOutput = new DataOutputStream(cSocket.getOutputStream());
+			cOutput = new DataOutputStream(ObjectPool.mSocket.getOutputStream());
 		} catch (IOException e) {
-			e.printStackTrace();
-			Log.e(TAG, "PostManagerClientImp()" + "IOException");
+//			e.printStackTrace();
+			Log.e(TAG, "PostManagerClientImp() IOException",e);
 		}
 	}
 

@@ -28,6 +28,8 @@ import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.toolkit.MethodsPool;
 
+import com.sa.xrace.client.toolkit.ObjectPool;
+
 public class WRbarPool {
 
 	private Bar[] barList;
@@ -130,9 +132,10 @@ public class WRbarPool {
 	 * @param texturesB
 	 * @param inPool
 	 */
-	public WRbarPool(GL10 gl, RoomPicPool picPool, IntBuffer texturesB,
-			InforPoolClient inPool) {
-		this.inPool = inPool;
+	public WRbarPool(
+//	        GL10 gl, RoomPicPool picPool, IntBuffer texturesB
+			) {
+		this.inPool = ObjectPool.inPoolClient;
 		barList = new Bar[4];
 		for (int i = 0; i < barList.length; i++) {
 			barList[i] = new Bar();
@@ -143,9 +146,9 @@ public class WRbarPool {
 			listCar[i] = i * 100;
 		}
 		
-		this.gl = gl;
+//		this.gl = gl;
 //		this.picPool = picPool;
-		this.texturesB = texturesB;
+//		this.texturesB = texturesB;
  
 		carB_img = MethodsPool.getBitmap(R.drawable.upleft_pic);
 		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);

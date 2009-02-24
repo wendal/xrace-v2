@@ -13,7 +13,6 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
-import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
@@ -34,7 +33,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 public class ServerListenerImp extends HandlerThread {
 	private static final String TAG ="-- ServerListenerImp -- ";
 	private DataInputStream input;
-	private Socket socket;
+//	private Socket socket;
 	private InforPoolClient pool;
 	private byte postReceived;
 //	private byte[] tempNamesBA;
@@ -46,7 +45,7 @@ public class ServerListenerImp extends HandlerThread {
 	private String tempNameStr;
 
 	/**
-	 * 暂时未发现这个变量的值只设置了一次
+	 * 暂时发现这个变量的值只设置了一次
 	 */
 	private boolean listenerON;
 //	private static final int TIME_OUT = 10000;
@@ -79,15 +78,15 @@ public class ServerListenerImp extends HandlerThread {
 //		}
 //	}
 	
-	public ServerListenerImp(Socket inputSocket, InforPoolClient inPool,WRbarPool barPool) {
+	public ServerListenerImp() {
 		super("ServerListenerImp");
-		socket = inputSocket;
-		pool = inPool;
+//		socket = inputSocket;
+		pool = ObjectPool.inPoolClient;
 //		mActivity = activity;
 		listenerON = true;
-		this.barPool = barPool;
+		this.barPool = ObjectPool.barPool;
 		try {
-			input = new DataInputStream(socket.getInputStream());
+			input = new DataInputStream(ObjectPool.mSocket.getInputStream());
 			this.start();
 		} catch (StreamCorruptedException e) {
 			e.printStackTrace();

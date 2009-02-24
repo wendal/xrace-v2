@@ -35,7 +35,6 @@ import com.sa.xrace.client.listener.ServerListenerImp;
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
 import com.sa.xrace.client.loader.SenceParser2;
-import com.sa.xrace.client.manager.PostManagerClient;
 import com.sa.xrace.client.manager.PostManagerClientImp;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.Model;
@@ -53,7 +52,6 @@ import com.sa.xrace.client.scene.Object;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
-import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public class GameActivity extends Activity implements SensorListener {
 //	private final static String TAG = "----- GameActivity -----";
@@ -68,13 +66,13 @@ public class GameActivity extends Activity implements SensorListener {
 	// private InforPoolClient mPool;
 //	private RoomPicPool rpPool;
 //	private WRbarPool barPool;
-	private GIPool giPool;
+//	private GIPool giPool;
 
 	private GLWorld mWorld;
 
 //	public SensorManager mSensorManager ;
 //	private ServerListenerImp mServerListener;
-	private PostManagerClient mPostManager;
+//	private PostManagerClient mPostManager;
 
 //	private RelativeLayout layout;
 //	private Intent incomeIntent;
@@ -107,7 +105,7 @@ public class GameActivity extends Activity implements SensorListener {
 	public static boolean carOn = false;
 	public static boolean carNext = false;
 	public static boolean carBack = false;
-	public static boolean raceOn = false;
+//	private static boolean raceOn = false;
 	
 	public static boolean testPosition = false;
 	
@@ -118,39 +116,20 @@ public class GameActivity extends Activity implements SensorListener {
 		}
 		Log.e("-----------getRequestedOrientation",""+getRequestedOrientation());
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//将部分共用对象写入对象池
 		if(ObjectPool.activity == null){
 			ObjectPool.activity = this;
 		}
 		if(ObjectPool.resources == null){
 			ObjectPool.resources = getResources();
 		}
-		// Connect to the OpentIntents for simulator of the sensor
-//		OpenIntents.requiresOpenIntents(this);
-//		Hardware.mContentResolver = getContentResolver();
-//		mSensorManager = (SensorManager) getSystemService("sensor");
-//		Log.e(getClass().getName(), ""+mSensorManager);
-//		SensorManagerSimulator.connectSimulator();
-
-		DataUnti.init(this);
-
-//		incomeIntent = getIntent();
-//		String temp = Uri.decode(incomeIntent.getData().toString());
-//		StringTokenizer st = new StringTokenizer(temp, "@&");
-//		NAME = NetworkToolKit.NAME;
-//		IP = NetworkToolKit.SERVERIP;
-
-		mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
-		mModelImport = new ModelImport();
-		mCamera = new Camera();
-		inPool = new InforPoolClient(mModelInforPool);
-		WRbarPool barPool = new WRbarPool(null, null, null, inPool);
-//		RoomPicPool rpPool = new RoomPicPool(this);
-		RoomPicPool rpPool = new RoomPicPool();
-		giPool = new GIPool(rpPool,inPool,mCamera);
-
-		Socket mSocket = null;
+		if(ObjectPool.assetManager == null){
+		    ObjectPool.assetManager = getAssets();
+		}
+		
 		try {
-			mSocket = new Socket(InetAddress.getByName(NetworkToolKit.SERVERIP), NetworkToolKit.SERVERPORT);
+		    //将Socket加入对象池
+			ObjectPool.mSocket = new Socket(InetAddress.getByName(NetworkToolKit.SERVERIP), NetworkToolKit.SERVERPORT);
 		} catch (UnknownHostException e) {
 			Log.v("-- UnknownHostException --","-- UnknownHostException --");
 			e.printStackTrace();
@@ -160,17 +139,55 @@ public class GameActivity extends Activity implements SensorListener {
 			e.printStackTrace();
 			//是否应该退出呢?
 		}
-		Log.i("GameActivity", "After connect socket");
-		mPostManager = new PostManagerClientImp(mSocket, inPool);
+		//		Log.i("GameActivity", "After connect socket");
+		
+		// Connect to the OpentIntents for simulator of the sensor
+//		OpenIntents.requiresOpenIntents(this);
+//		Hardware.mContentResolver = getContentResolver();
+//		mSensorManager = (SensorManager) getSystemService("sensor");
+//		Log.e(getClass().getName(), ""+mSensorManager);
+//		SensorManagerSimulator.connectSimulator();
+
+//		DataUnti.init(this);
+
+//		incomeIntent = getIntent();
+//		String temp = Uri.decode(incomeIntent.getData().toString());
+//		StringTokenizer st = new StringTokenizer(temp, "@&");
+//		NAME = NetworkToolKit.NAME;
+//		IP = NetworkToolKit.SERVERIP;
+
+		mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
+		//将mModelInforPool加入对象池
+		ObjectPool.mModelInforPool = mModelInforPool;
+		mModelImport = new ModelImport();
+		mCamera = new Camera();
+		
+		inPool = new InforPoolClient();
+		//将inPoolClient加入对象池
+		ObjectPool.inPoolClient = inPool;
+		//将WRbarPool加入对象池
+		ObjectPool.barPool = new WRbarPool();
+//		RoomPicPool rpPool = new RoomPicPool(this);
+		//将RoomPicPool加入对象池
+		ObjectPool.rpPool = new RoomPicPool();
+		ObjectPool.giPool = new GIPool(mCamera);
+
+//		Socket mSocket = null;
+		
+
+		//把PostManagerClientImp加入对象池
+		ObjectPool.mPostManager  = new PostManagerClientImp();
 //		mServerListener = 
-		    new ServerListenerImp(mSocket, inPool, barPool);
-		mWorld = new GLWorld(inPool, mCamera, mPostManager);
+		    new ServerListenerImp();
+		mWorld = new GLWorld( mCamera);
+		//把GLWorld加入对象池
+		ObjectPool.mWorld = mWorld;
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
 
 		mModelInforPool.setType(DataToolKit.CAR);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
 	
-		GameView drawView = new GameView(getApplication(), rpPool, inPool, barPool,giPool, mModelInforPool, mWorld,mPostManager);
+		GameView drawView = new GameView(getApplication());
 		setContentView(drawView);
 		System.gc();
 //		System.out.println(Runtime.getRuntime().freeMemory());
@@ -343,7 +360,7 @@ public class GameActivity extends Activity implements SensorListener {
 				modelObj = (ModelObj) modelList.get(i);
 				fis = getAssets().open(modelObj.getFilename());
 				dis = new DataInputStream(fis);
-				t3Dmodel = new t3DModel(this);
+				t3Dmodel = new t3DModel();
 				mModelImport.import3DS(t3Dmodel, dis);
 				model = new Model(Integer.parseInt(modelObj.getID()), Integer
 						.parseInt(modelObj.getType()), t3Dmodel, modelObj
@@ -425,7 +442,7 @@ public class GameActivity extends Activity implements SensorListener {
 				inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
 				
 				inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
-				mPostManager.sendCarTypePostToServer();
+				ObjectPool.mPostManager.sendCarTypePostToServer();
 				carOn = false;
 				break;				
 			case KeyEvent.KEYCODE_DPAD_UP:
@@ -450,7 +467,7 @@ public class GameActivity extends Activity implements SensorListener {
 //				mPostManager.sendCarTypePostToServer();
 				if(!isPostStart)
 				{
-					mPostManager.sendStartPostToServer();
+				    ObjectPool.mPostManager.sendStartPostToServer();
 					isPostStart = true;
 				}				
 //				GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);	

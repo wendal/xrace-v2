@@ -10,13 +10,13 @@ import android.util.Log;
 import com.sa.xrace.client.collision.AABBbox;
 import com.sa.xrace.client.collision.CollisionHandler;
 import com.sa.xrace.client.collision.CollisionMap;
-import com.sa.xrace.client.manager.PostManagerClient;
 import com.sa.xrace.client.math.Matrix4f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author sliao
@@ -55,9 +55,9 @@ public class GLWorld
 //	private Point3f tempCollisionPoint;
 //	private PostManagerClient mPostManager;
 	
-	public GLWorld(InforPoolClient pool, Camera camera,PostManagerClient postmanager)
+	public GLWorld( Camera camera)
 	{
-		mInforPoolClient = pool;
+		mInforPoolClient = ObjectPool.inPoolClient;
 		mCamera = camera;
 		mFrustum = new Frustum();
 		mTranslateMatrix = new Matrix4f();
