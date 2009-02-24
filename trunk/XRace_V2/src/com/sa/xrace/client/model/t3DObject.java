@@ -250,6 +250,9 @@ public final class t3DObject implements Cloneable
 		Log.e("In LoadBitmap", "Time used (ALL): "+(System.currentTimeMillis() - start));
 		
 //		//把数据传出去
+		
+		DataUnti.sendOut(filename, pic_width, pic_height);
+		
 //		BmpMessage message = new BmpMessage();
 //		message.setFilename(filename);
 //		

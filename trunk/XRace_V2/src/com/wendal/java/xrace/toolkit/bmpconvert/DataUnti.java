@@ -166,6 +166,39 @@ public final class DataUnti {
 		Log.e("End sending : ", filename);
 	}
 
+	public static final void sendOut(String filename, int x , int y) {
+		// 把数据传出去
+		Log.e("Start sending : ", filename);
+		BmpSizeMessage message = new BmpSizeMessage();
+		message.setName(filename);
+
+//		byte[] data = new byte[byteBuffer.limit()];
+//		for (int i = 0; i < data.length; i++) {
+//			data[i] = byteBuffer.get(i);
+//		}
+//		byteBuffer.position(0);
+//		// intBuffer.position(0);
+//		message.setData(data);
+		byte [] data = new byte[2];
+		data[0] = (byte) x;
+		data[1] = (byte) y;
+		message.setSize(data);
+		try {
+			Socket socket = new Socket(NetworkToolKit.SERVERIP, 6666);
+			ObjectOutputStream oos = new ObjectOutputStream(socket
+					.getOutputStream());
+			oos.writeObject(message);
+			oos.flush();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.e("End sending : ", filename);
+	}
+	
 	private static final HashMap<Integer, String> drawable_resourse_map = new HashMap<Integer, String>();
 	static {
 		drawable_resourse_map.put(R.drawable.car_down, "car_down");
