@@ -13,7 +13,6 @@ import java.util.Vector;
 
 import android.util.Log;
 
-import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
 

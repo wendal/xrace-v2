@@ -12,6 +12,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
 import com.sa.xrace.client.loader.SenceParser2;
@@ -19,10 +23,6 @@ import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.model.ModelImport;
 import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.scene.Object;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 
 public final class MethodsPool {
 

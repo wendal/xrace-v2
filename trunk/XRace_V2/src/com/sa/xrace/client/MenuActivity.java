@@ -32,7 +32,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sa.xrace.client.toolkit.NetworkToolKit;
-import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 /**
  * @author jlin

@@ -14,8 +14,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-
-
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;

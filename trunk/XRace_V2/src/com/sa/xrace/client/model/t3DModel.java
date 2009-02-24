@@ -65,7 +65,7 @@ public final class t3DModel
 						InputStream is = ObjectPool.assetManager.open(strFilename);
 						DataInputStream dis = new DataInputStream(is);
 						object.loadBitmap(gl, dis , strFilename);
-						Log.e("End Parse : ", strFilename);
+//						Log.e("End Parse : ", strFilename);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();

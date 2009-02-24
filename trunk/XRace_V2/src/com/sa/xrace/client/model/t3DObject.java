@@ -167,7 +167,7 @@ public final class t3DObject implements Cloneable
 	{
 		long start = System.currentTimeMillis();
 		Bitmap bitmap = BitmapFactory.decodeStream(is);
-		Log.e("In LoadBitmap", "Time used : (decodeStream(is)) "+(System.currentTimeMillis() - start));
+//		Log.e("In LoadBitmap", "Time used : (decodeStream(is)) "+(System.currentTimeMillis() - start));
 		
 		int pic_width = bitmap.getWidth();
 		int pic_height = bitmap.getHeight();

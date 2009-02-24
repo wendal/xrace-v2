@@ -14,7 +14,6 @@ import java.nio.ByteBuffer;
 import android.graphics.Bitmap;
 
 import com.sa.xrace.client.GLThread_Room;
-import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
