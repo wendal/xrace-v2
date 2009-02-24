@@ -27,13 +27,15 @@ import android.opengl.GLUtils;
 import android.util.Log;
 
 import com.sa.xrace.client.GameActivity;
+import com.sa.xrace.client.R;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
+import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
 
 public final class GIPool {
 
-	private RoomPicPool picPool;
+//	private RoomPicPool picPool;
 	private InforPoolClient inPool;
 	private int[] mTextureIDS;
 	private int tem[] = { 0, 74, 74, -74 };
@@ -68,7 +70,7 @@ public final class GIPool {
 	private int timeCount = 3;
 	
 	public GIPool(Camera camera) {
-		this.picPool = ObjectPool.rpPool;
+//		this.picPool = ObjectPool.rpPool;
 		this.inPool = ObjectPool.inPoolClient;
 		mTextureIDS = new int[7];
 		this.camera = camera;
@@ -100,7 +102,7 @@ public final class GIPool {
 		bm.eraseColor(0);
 		Canvas c = new Canvas(bm);
 		Paint p = new Paint();
-		c.drawBitmap(picPool.speedometer, 0, 0, p);
+		c.drawBitmap(MethodsPool.getBitmap(R.drawable.speedometer), 0, 0, p);
 
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[0]);
 		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
@@ -122,7 +124,7 @@ public final class GIPool {
 		temp = Math.abs(inPool.getOneCarInformation(inPool.getMyCarIndex()).getNSpeed());
 		angle = perSpeed*temp+MINANGLE;
 		c.rotate(angle,50,36);
-		c.drawBitmap(picPool.speedTriangle, 13, 28, p);
+		c.drawBitmap(MethodsPool.getBitmap(R.drawable.triangle), 13, 28, p);
 		
 		c.restore();
 		
@@ -174,7 +176,7 @@ public final class GIPool {
 		bitmap.eraseColor(0);
 		Canvas c = new Canvas(bitmap);
 		Paint paint = new Paint();
-		c.drawBitmap(picPool.minimap, 0, 0, paint);
+		c.drawBitmap(MethodsPool.getBitmap(R.drawable.minimap), 0, 0, paint);
 		
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[3]);
 		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
@@ -217,7 +219,7 @@ public final class GIPool {
 		bitmap.eraseColor(0);
 		Canvas c = new Canvas(bitmap);
 		Paint paint = new Paint();
-		c.drawBitmap(picPool.carpoint, 0, 0, paint);
+		c.drawBitmap(MethodsPool.getBitmap(R.drawable.carpointpic), 0, 0, paint);
 		
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[4]);
 		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);

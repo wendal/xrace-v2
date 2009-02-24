@@ -36,12 +36,12 @@ import com.sa.xrace.client.manager.PostManagerClient;
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
-import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public final class GLThread_Room extends Thread {
 	
@@ -54,7 +54,7 @@ public final class GLThread_Room extends Thread {
 	private int mHeight;
 	private IntBuffer texturesB;
 	private boolean mDone;
-	private RoomPicPool picPool;
+//	private RoomPicPool picPool;
 	private GIPool giPool;
 	private SurfaceHolder mHolder;
 	private GameView callingView;
@@ -96,7 +96,7 @@ public final class GLThread_Room extends Thread {
 		mHeight = 0;
 		this.mHolder=mHolder;
 		callingView = inputView;
-		this.picPool = ObjectPool.rpPool;
+//		this.picPool = ObjectPool.rpPool;
 		this.giPool = ObjectPool.giPool;
 		this.barPool = ObjectPool.barPool;
 		this.mModelContainer= ObjectPool.mModelInforPool;
@@ -104,7 +104,7 @@ public final class GLThread_Room extends Thread {
 		this.mWorld=ObjectPool.mWorld;
 		this.mActivity = ObjectPool.activity;
 		this.mPostManager = ObjectPool.mPostManager;
-		RoomPicPool.setLoading(MethodsPool.getImageReadyfor(R.drawable.laod));
+//		RoomPicPool.loading = DataUnti.getByteBuffer_ByFileName(DataUnti.getNameByID(R.drawable.laod));
 //		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
 	}
 	
@@ -138,7 +138,7 @@ public final class GLThread_Room extends Thread {
 			    
 	    initForGame(gl);
 		getLoginTextureReady(gl);
-		barPool.initWRbarPool(gl,picPool,texturesB);
+		barPool.initWRbarPool(gl,texturesB);
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
 		
 		
@@ -325,9 +325,9 @@ public final class GLThread_Room extends Thread {
 		Log.e("-->Begin "+(System.currentTimeMillis() -start),"GLThread_Room Loading");
 		makeLoading(gl,60,0);
 		
-		start = System.currentTimeMillis();
-		picPool.generateEveryThing();            // 23s
-		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"generateEveryThing");
+//		start = System.currentTimeMillis();
+////		picPool.generateEveryThing();            // 23s
+//		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"generateEveryThing");
 		
 		start = System.currentTimeMillis();
 		giPool.makeAllInterface(gl);            // >1s
@@ -369,7 +369,7 @@ public final class GLThread_Room extends Thread {
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(10));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getLoading());	
+				DataUnti.getByteBuffer_ByFileName(DataUnti.getNameByID(R.drawable.laod)));	
 	}
 	
 	private void getCommonTextureReady(GL10 gl)
@@ -378,27 +378,27 @@ public final class GLThread_Room extends Thread {
 //		Log.e("in getCommonTextureReady", "Step A getCommonTextureReady");
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getDown_PicB());
+				DataUnti.getByteBuffer_ByID(R.drawable.down_pic));
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(5));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getMapchoice_PicB());
+				DataUnti.getByteBuffer_ByFileName(DataUnti.getNameByID(R.drawable.mapchoice_pic)));
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(6));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getMapview1_PicB());
+				DataUnti.getByteBuffer_ByID(R.drawable.mapview1));
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(7));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getMapview2_PicB());
+				DataUnti.getByteBuffer_ByID(R.drawable.mapview2));
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(8));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getCarchoice_PicB());
+				DataUnti.getByteBuffer_ByID(R.drawable.carchoice));
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(9));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
-				RoomPicPool.getCarview1_PicB());	
+				DataUnti.getByteBuffer_ByID(R.drawable.carchoice));	
 		
 
 //		Log.e("in getCommonTextureReady", "Step B getCommonTextureReady");

@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id$
- * Last Commit:  $Author$
+ * <p/>ID: $Id: RoomInforPool.java 20 2009-02-24 12:54:28Z wendal1985 $
+ * Last Commit:  $Author: wendal1985 $
  * @version $Revision: $
  * 
  */
@@ -246,7 +246,7 @@ public class RoomInforPool {
 
 	private GL10 gl;
 //	private RoomPicPool picPool;
-	public RoomInforPool(GL10 gl,RoomPicPool picPool,IntBuffer texturesB){
+	public RoomInforPool(GL10 gl,IntBuffer texturesB){
 		prepareupLeft_Face();
 		prepareupRight_Face();
 		preparedownLeft_Face();
