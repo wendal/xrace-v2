@@ -57,14 +57,14 @@ public class ModelInforPool
 	public void addModel(Model model)
 	{
 //		mModelVector.add(model);
-		mModelVector.put(model.getID(), model);
+		mModelMap.put(model.getID(), model);
 	}
 	
 	public void addModel(int modelID, int type, t3DModel model, Point3f scale, float radius) 
 	{
 		Model mod = new Model(modelID, type, model, scale, radius);
 //		mModelVector.add(mod);
-		mModelVector.put(modelID, mod);
+		mModelMap.put(modelID, mod);
 	}
 	/**
 	 *  This function would generate all the buffer for render according 
@@ -75,10 +75,10 @@ public class ModelInforPool
 //		Iterator<Model> ModelIterator = mModelVector.iterator();
 		
 //		Collection<Model> collection = mModelVector.values();		
-		Iterator<Model> modelIterator = mModelVector.values().iterator();
+		Iterator<Model> modelIterator = mModelMap.values().iterator();
 		
 //		int size = mModelVector.size();        // for loading
-		int interval = 180/mModelVector.size();
+		int interval = 180/mModelMap.size();
 		
 		while (modelIterator.hasNext()) 
 		{
@@ -132,7 +132,7 @@ public class ModelInforPool
 		gl.glScalef(mScale.x, mScale.y, mScale.z);
 		gl.glRotatef(mAngle, 0, 1, 0);
 		
-		mModelVector.get(modelID).scale(gl);
+		mModelMap.get(modelID).scale(gl);
 		
 		//////////////////////////////////////////////
 		if(modelID ==0 ||modelID == 1)///////////buhao
@@ -144,7 +144,7 @@ public class ModelInforPool
 			}
 			gl.glRotatef(mPresentationAngle, 0, 1, 0);
 		}
-		mModelVector.get(modelID).draw(gl);
+		mModelMap.get(modelID).draw(gl);
     	
     }
 
@@ -164,7 +164,7 @@ public class ModelInforPool
     {
     	this.mCurrentType = type;
 //    	Iterator<Model> ModelIterator = mModelVector.iterator();
-    	Collection<Model> collection = mModelVector.values();		
+    	Collection<Model> collection = mModelMap.values();		
 		Iterator<Model> modelIterator = collection.iterator();
 		while (modelIterator.hasNext()) 
 		{
@@ -179,7 +179,7 @@ public class ModelInforPool
     public void setTypeAndUpdate(int type , boolean previousOrNext)
     {
     	this.mCurrentType = type;
-    	Collection<Model> collection = mModelVector.values();		
+    	Collection<Model> collection = mModelMap.values();		
 		Iterator<Model> modelIterator = collection.iterator();
 		while (modelIterator.hasNext()) 
 		{
@@ -220,13 +220,13 @@ public class ModelInforPool
 //				return model;
 //			}
 //		}
-    	return mModelVector.get(modelID);
+    	return mModelMap.get(modelID);
     }
     
     public boolean updateCurrentModel(boolean previousOrNext)
     {
 //    	Iterator<Model> modelIterator = mModelVector.iterator();
-    	Collection<Model> collection = mModelVector.values();		
+    	Collection<Model> collection = mModelMap.values();		
 		Iterator<Model> modelIterator = collection.iterator();
 		
     	Model previous = null;
@@ -284,7 +284,7 @@ public class ModelInforPool
     private Point3f mScale;
     private Point3f mPosition;
 	//private Vector<Model> mModelVector = new Vector<Model>();
-	private HashMap<Integer, Model> mModelVector = new HashMap<Integer, Model>();
+	private HashMap<Integer, Model> mModelMap = new HashMap<Integer, Model>();
 	
 }
 

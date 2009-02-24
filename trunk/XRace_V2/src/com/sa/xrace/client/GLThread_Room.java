@@ -64,7 +64,7 @@ public final class GLThread_Room extends Thread {
 	private GLWorld mWorld;
 	private GameActivity mActivity;
 //	private IntBuffer tempIB;
-	private  Bitmap carMyB_img;
+//	private  Bitmap carMyB_img;
 	private  boolean isModelGenerate = false;
 //	private boolean done = false;
 	public PostManagerClient mPostManager;
@@ -105,7 +105,7 @@ public final class GLThread_Room extends Thread {
 		this.mActivity = ObjectPool.activity;
 		this.mPostManager = ObjectPool.mPostManager;
 		RoomPicPool.setLoading(MethodsPool.getImageReadyfor(R.drawable.laod));
-		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
+//		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
 	}
 	
 //	public static int getPhase()
@@ -322,27 +322,27 @@ public final class GLThread_Room extends Thread {
 		
 		long start = System.currentTimeMillis();
 		long first = start;
-		Log.e("KKK@@@@@@@@@@@ "+(System.currentTimeMillis() -start),"begin Loading");
+		Log.e("-->Begin "+(System.currentTimeMillis() -start),"GLThread_Room Loading");
 		makeLoading(gl,60,0);
-		start = System.currentTimeMillis();
 		
+		start = System.currentTimeMillis();
 		picPool.generateEveryThing();            // 23s
-		Log.e("KKK@@@@@@@@@@@ "+(System.currentTimeMillis() -start),"generateEveryThing");
-		start = System.currentTimeMillis();
+		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"generateEveryThing");
 		
+		start = System.currentTimeMillis();
 		giPool.makeAllInterface(gl);            // >1s
 		makeLoading(gl,182,2);
-		Log.e("KKK@@@@@@@@@@@ "+(System.currentTimeMillis() -start),"makeAllInterface");
-		start = System.currentTimeMillis();
+		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"makeAllInterface");
 		
-		mActivity.LoadMapFromXML("scene.xml");  //4.7s
+		start = System.currentTimeMillis();
+		MethodsPool.LoadMapFromXML("scene.xml");  //4.7s
 		makeLoading(gl,242,2);
-		Log.e("KKK@@@@@@@@@@@ "+(System.currentTimeMillis() -start),"LoadMapFromXML");
-		start = System.currentTimeMillis();
+		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"LoadMapFromXML");
 		
+		start = System.currentTimeMillis();
 //		long start = System.currentTimeMillis();
 		mModelContainer.generate(gl);           // 49s
-		Log.e("KKK@@@@@@@@@@@ "+(System.currentTimeMillis() -start),"mModelContainer.generate(gl);");
+		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"mModelContainer.generate(gl);");
 		start = System.currentTimeMillis();
 		
 		getCommonTextureReady(gl);                    // >1s
