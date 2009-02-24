@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -23,7 +23,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author sliao
- * @version $Id: t3DModel.java,v 1.5 2008-12-08 07:32:59 sliao Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to store the model data which is created by 3DS MAX.

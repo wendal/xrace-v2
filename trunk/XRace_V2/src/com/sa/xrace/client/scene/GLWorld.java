@@ -20,7 +20,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author sliao
- * @version $Id: GLWorld.java,v 1.18 2008-12-11 10:12:08 sliao Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to store and render those objects that would

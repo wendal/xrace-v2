@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -12,7 +12,7 @@ package com.sa.xrace.client.math;
 
 /**
  * @author sliao
- * @version $Id: Point2f.java,v 1.2 2008-12-11 10:03:42 sliao Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to store a point in a 3D space

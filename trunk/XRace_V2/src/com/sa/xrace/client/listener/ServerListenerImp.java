@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -28,7 +28,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author yyang
- * @version $Id: ServerListenerImp.java,v 1.7 2008-12-05 06:56:52 twei Exp $
+ * @version $Id$
  */
 public class ServerListenerImp extends HandlerThread {
 	private static final String TAG ="-- ServerListenerImp -- ";

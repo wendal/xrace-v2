@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -18,7 +18,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author Changpeng Pan
- * @version $Id: InforPoolClient.java,v 1.19 2008-12-10 05:10:55 cpan Exp $
+ * @version $Id$
  */
 public class InforPoolClient {
 	private static final String TAG = "-- InforPoolClient --";

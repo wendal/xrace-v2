@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -19,7 +19,7 @@ import com.sa.xrace.client.model.t3DObject;
 
 /**
  * @author twei
- * @version $Id: CarInforClient.java,v 1.19 2008-12-12 04:34:21 sliao Exp $
+ * @version $Id$
  */
 public final class CarInforClient {
 
