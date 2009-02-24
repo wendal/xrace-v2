@@ -21,6 +21,7 @@ import java.util.HashMap;
 //import java.util.Set;
 
 import com.sa.xrace.client.R;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 //import android.R;
 import android.app.Activity;
@@ -33,15 +34,15 @@ public final class DataUnti {
 
 	}
 
-	private static AssetManager assetManager;
+//	private static AssetManager assetManager;
 
 //	private static final HashMap<String, ByteBuffer> image_bytebuffer = new HashMap<String, ByteBuffer>();
 
-	private static boolean isReady = false;
+//	private static boolean isReady = false;
 
-	public static void init(Activity activity) {
-		if (!isReady) {
-			assetManager = activity.getAssets();
+//	public static void init(Activity activity) {
+//		if (!isReady) {
+//			assetManager = activity.getAssets();
 //			try {
 //				String[] list = assetManager.list("rgb");
 //				for (String filename : list) {
@@ -74,8 +75,8 @@ public final class DataUnti {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-		}
-	}
+//		}
+//	}
 
 	public static ByteBuffer getByteBuffer_ByFileName(String srcFilename) {
 
@@ -89,7 +90,7 @@ public final class DataUnti {
 	private  static ByteBuffer readData(String srcFilename) {
 		ByteBuffer buffer = null;
 		try{
-		InputStream is = assetManager.open(srcFilename);
+		InputStream is = ObjectPool.assetManager.open(srcFilename);
 		byte data[] = new byte[is.available()];
 		int len = is.read(data);
 		if (len != data.length) {

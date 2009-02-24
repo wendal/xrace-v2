@@ -41,6 +41,7 @@ import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 public final class GLThread_Room extends Thread {
 	
@@ -84,8 +85,7 @@ public final class GLThread_Room extends Thread {
 	private static long timeElapsed = 0;
 	private static long timeadd = 0;
 	
-	GLThread_Room(GameActivity activity,SurfaceHolder mHolder,GameView inputView,RoomPicPool picPool,
-			WRbarPool barPool,GIPool giPool,ModelInforPool mModelContainer,GLWorld mWorld,InforPoolClient inPool,PostManagerClient mPostManager) {
+	GLThread_Room(SurfaceHolder mHolder,GameView inputView) {
 		super();
 		addBar =true;
 		loginFailure = false;
@@ -96,14 +96,14 @@ public final class GLThread_Room extends Thread {
 		mHeight = 0;
 		this.mHolder=mHolder;
 		callingView = inputView;
-		this.picPool = picPool;
-		this.giPool = giPool;
-		this.barPool = barPool;
-		this.mModelContainer=mModelContainer;
-		this.inPool = inPool;
-		this.mWorld=mWorld;
-		this.mActivity = activity;
-		this.mPostManager = mPostManager;
+		this.picPool = ObjectPool.rpPool;
+		this.giPool = ObjectPool.giPool;
+		this.barPool = ObjectPool.barPool;
+		this.mModelContainer= ObjectPool.mModelInforPool;
+		this.inPool = ObjectPool.inPoolClient;
+		this.mWorld=ObjectPool.mWorld;
+		this.mActivity = ObjectPool.activity;
+		this.mPostManager = ObjectPool.mPostManager;
 		RoomPicPool.setLoading(MethodsPool.getImageReadyfor(R.drawable.laod));
 		carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
 	}

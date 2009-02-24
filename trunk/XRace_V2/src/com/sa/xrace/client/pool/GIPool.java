@@ -29,6 +29,7 @@ import android.util.Log;
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 public final class GIPool {
 
@@ -66,9 +67,9 @@ public final class GIPool {
 	private long nowTime,lasttime;
 	private int timeCount = 3;
 	
-	public GIPool(RoomPicPool picPool,InforPoolClient inPool,Camera camera) {
-		this.picPool = picPool;
-		this.inPool = inPool;
+	public GIPool(Camera camera) {
+		this.picPool = ObjectPool.rpPool;
+		this.inPool = ObjectPool.inPoolClient;
 		mTextureIDS = new int[7];
 		this.camera = camera;
 		r = new Random();
