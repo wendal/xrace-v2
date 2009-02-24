@@ -27,7 +27,6 @@ import android.opengl.GLUtils;
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.toolkit.MethodsPool;
-
 import com.sa.xrace.client.toolkit.ObjectPool;
 
 public class WRbarPool {

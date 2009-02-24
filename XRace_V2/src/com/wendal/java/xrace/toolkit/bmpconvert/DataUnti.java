@@ -17,16 +17,12 @@ import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.HashMap;
-//import java.util.Map;
-//import java.util.Set;
+
+import android.util.Log;
 
 import com.sa.xrace.client.R;
+import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
-
-//import android.R;
-import android.app.Activity;
-import android.content.res.AssetManager;
-import android.util.Log;
 
 public final class DataUnti {
 
@@ -123,7 +119,7 @@ public final class DataUnti {
 //		intBuffer.position(0);
 		message.setData(data);
 		try {
-			Socket socket = new Socket("58.62.117.99",6666);
+			Socket socket = new Socket(NetworkToolKit.SERVERIP,6666);
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 			oos.writeObject(message);
 			oos.flush();

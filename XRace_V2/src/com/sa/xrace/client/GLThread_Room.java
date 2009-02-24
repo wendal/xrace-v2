@@ -375,7 +375,7 @@ public final class GLThread_Room extends Thread {
 	private void getCommonTextureReady(GL10 gl)
 	{
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(4));
-		Log.e("in getCommonTextureReady", "Step A getCommonTextureReady");
+//		Log.e("in getCommonTextureReady", "Step A getCommonTextureReady");
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
 				GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE,
 				RoomPicPool.getDown_PicB());
@@ -401,7 +401,7 @@ public final class GLThread_Room extends Thread {
 				RoomPicPool.getCarview1_PicB());	
 		
 
-		Log.e("in getCommonTextureReady", "Step B getCommonTextureReady");
+//		Log.e("in getCommonTextureReady", "Step B getCommonTextureReady");
 		
 		gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
 				GL10.GL_CLAMP_TO_EDGE);
@@ -413,7 +413,7 @@ public final class GLThread_Room extends Thread {
 				GL10.GL_LINEAR);				
 		gl.glTexEnvx(GL10.GL_TEXTURE_ENV, GL10.GL_TEXTURE_ENV_MODE,
 				GL10.GL_MODULATE);
-		Log.e("in getCommonTextureReady", "Finish getCommonTextureReady");
+//		Log.e("in getCommonTextureReady", "Finish getCommonTextureReady");
 	}
 	
 	private void initForGame(GL10 gl)
