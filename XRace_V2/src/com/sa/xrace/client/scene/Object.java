@@ -12,7 +12,7 @@ import com.sa.xrace.client.model.t3DObject;
 
 /**
  * @author sliao
- * @version $Id: Object.java,v 1.5 2008-12-05 07:10:46 jlin Exp $
+ * @version $Id$
  */
 /**
  *  This class represents the Object appeared in the world

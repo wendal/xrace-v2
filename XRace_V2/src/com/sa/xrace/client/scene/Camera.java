@@ -12,7 +12,7 @@ import com.sa.xrace.client.toolkit.DataToolKit;
 
 /**
  * @author sliao
- * @version $Id: Camera.java,v 1.8 2008-12-12 04:34:21 sliao Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to init and control the Camera

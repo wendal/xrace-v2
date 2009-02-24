@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -20,7 +20,7 @@ import com.sa.xrace.client.math.Point3f;
 
 /**
  * @author sliao
- * @version $Id: ModelImport.java,v 1.3 2008-12-11 07:51:24 jlin Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to import the model which is created by 3DS MAX.

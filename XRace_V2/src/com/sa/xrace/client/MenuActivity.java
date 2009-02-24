@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -35,7 +35,7 @@ import com.sa.xrace.client.toolkit.NetworkToolKit;
 
 /**
  * @author jlin
- * @version $Id: MenuActivity.java,v 1.7 2008-12-05 07:10:46 jlin Exp $
+ * @version $Id$
  */
 /*
  * This class is to show the Menu interface, and add the Animation in the ImageView

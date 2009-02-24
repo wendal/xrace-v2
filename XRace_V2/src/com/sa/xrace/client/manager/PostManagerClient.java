@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -12,7 +12,7 @@ package com.sa.xrace.client.manager;
 
 /**
  * @author Changpeng Pan
- * @version $Id: PostManagerClient.java,v 1.1 2008-11-17 07:32:26 cpan Exp $
+ * @version $Id$
  */
 public interface PostManagerClient {
 	public void sendLoginPostToServer();

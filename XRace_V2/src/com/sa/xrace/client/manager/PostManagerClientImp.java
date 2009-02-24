@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -20,7 +20,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author Changpeng Pan
- * @version $Id: PostManagerClientImp.java,v 1.1 2008-11-17 07:32:26 cpan Exp $
+ * @version $Id$
  */
 public class PostManagerClientImp implements PostManagerClient {
 	private static final String TAG = "-- PostMangerClientImp --";

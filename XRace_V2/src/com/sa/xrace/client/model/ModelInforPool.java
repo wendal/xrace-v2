@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -37,7 +37,7 @@ import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.DataToolKit;
 /**
  * @author sliao
- * @version $Id: ModelInforPool.java,v 1.11 2008-12-10 06:57:21 cpan Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to store and render the t3DModel objects.

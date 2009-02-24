@@ -2,8 +2,8 @@
 /**
  * XRace V2
  * <p/>Use for ... ...
- * <p/>ID: $Id: $
- * Last Commit:  $Author: $
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
  * @version $Revision: $
  * 
  */
@@ -28,7 +28,7 @@ import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 /**
  * @author sliao
- * @version $Id: t3DObject.java,v 1.3 2008-12-11 09:26:00 sliao Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to keep the data of object.

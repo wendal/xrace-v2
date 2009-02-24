@@ -10,7 +10,7 @@ import com.sa.xrace.client.math.Point3f;
 
 /**
  * @author sliao
- * @version $Id: Frustum.java,v 1.1 2008-11-28 06:53:42 sliao Exp $
+ * @version $Id$
  */
 /**
  *  This class is used to optimizing the render by cutting down the models
