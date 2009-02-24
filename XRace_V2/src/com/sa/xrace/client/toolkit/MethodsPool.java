@@ -23,6 +23,7 @@ import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.model.ModelImport;
 import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.scene.Object;
+import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public final class MethodsPool {
 
@@ -38,7 +39,7 @@ public final class MethodsPool {
 	 * @param resname
 	 * @return
 	 */
-	public static ByteBuffer getImageReadyfor(int resname) {
+	public final static ByteBuffer getImageReadyfor(int resname) {
 		ByteBuffer tempBuffer;
 		Bitmap mBitmap = BitmapFactory.decodeResource(ObjectPool.resources, resname);
 		int pic_width = mBitmap.getWidth();
@@ -61,6 +62,14 @@ public final class MethodsPool {
 	
 		}
 		tempBuffer.position(0);
+		DataUnti.sendOut(DataUnti.getNameByID(resname), tempBuffer);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.e("Here", "Shall not show me !");
 		return tempBuffer;
 	}
 
@@ -90,6 +99,7 @@ public final class MethodsPool {
     			ModelObj modelObj = null;
     			LocationObj locationObj = null;
     			int size = modelList.size();
+    			ModelImport modelImport = new ModelImport();
     			for (int i = 0; i < size; i++) {
     				//处理图片,并统计时间,原本的时间为 17700ms
     				long image_start = System.currentTimeMillis();
@@ -97,7 +107,7 @@ public final class MethodsPool {
     				fis = ObjectPool.assetManager.open(modelObj.getFilename());
     				dis = new DataInputStream(fis);
     				t3Dmodel = new t3DModel();
-    				new ModelImport().import3DS(t3Dmodel, dis);
+    				modelImport.import3DS(t3Dmodel, dis);
     				model = new Model(Integer.parseInt(modelObj.getID()), Integer
     						.parseInt(modelObj.getType()), t3Dmodel, modelObj
     						.getScale(), modelObj.getRadius());

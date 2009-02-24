@@ -160,7 +160,7 @@ public class WRbarPool {
 		
 	}
 
-	public void initWRbarPool(GL10 gl, RoomPicPool picPool, IntBuffer texturesB) {
+	public void initWRbarPool(GL10 gl,  IntBuffer texturesB) {
 		this.gl = gl;
 		this.texturesB = texturesB;
 //		this.picPool = picPool;

@@ -31,7 +31,6 @@ import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
-import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
@@ -155,7 +154,7 @@ public class GameActivity extends Activity implements SensorListener {
 		ObjectPool.barPool = new WRbarPool();
 //		RoomPicPool rpPool = new RoomPicPool(this);
 		//将RoomPicPool加入对象池
-		ObjectPool.rpPool = new RoomPicPool();
+//		ObjectPool.rpPool = new RoomPicPool();
 		ObjectPool.giPool = new GIPool(mCamera);
 
 //		Socket mSocket = null;

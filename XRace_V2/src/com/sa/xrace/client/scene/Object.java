@@ -17,13 +17,13 @@ import com.sa.xrace.client.model.t3DObject;
 /**
  *  This class represents the Object appeared in the world
  */
-public class Object 
+public final class Object 
 {
 	private Model mModel;					//which model should be used for render
 	private Point3f mPosition;				//where the model should be render
 	private float mAngle;					//the angle model should rotate along Y axis
 	
-	public Matrix4f mTransformMatrix;		//transform matrix
+	private Matrix4f mTransformMatrix;		//transform matrix
 	public Point3f[][] mVerts;				//point array of each t3DObject after transformed
 	
 	public Object(Model model, Point3f position, float angle)

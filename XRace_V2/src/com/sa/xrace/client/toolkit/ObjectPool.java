@@ -10,7 +10,6 @@ import com.sa.xrace.client.manager.PostManagerClient;
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
-import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.GLWorld;
 
@@ -32,7 +31,7 @@ public final class ObjectPool {
 	
 	public static WRbarPool barPool;
 	
-	public static RoomPicPool rpPool;
+//	public static RoomPicPool rpPool;
 	
 	public static GLWorld mWorld;
 	
