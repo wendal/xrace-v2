@@ -20,14 +20,14 @@ import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.Object;
 
-public class CollisionMap {
+public final class CollisionMap {
 
 	ArrayList<Point3f> walls;
 	ArrayList<Line2f> wallLines;
 	Point3f[] finishLine;
 	
-	Point3f[] mPosition;
-	Point3f[] mRadius;
+//	Point3f[] mPosition;
+//	Point3f[] mRadius;
 	
 	public CollisionMap()
 	{
@@ -67,10 +67,10 @@ public class CollisionMap {
 			wallLines.add(new Line2f(walls.get(n),walls.get(n+1)));
 		}
 	}
-	public void generateFinishLine()
-	{
-		
-	}
+//	public void generateFinishLine()
+//	{
+//		
+//	}
 	
 	private float[] wall_postion = new float[120];
 

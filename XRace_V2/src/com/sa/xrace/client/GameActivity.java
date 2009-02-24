@@ -9,17 +9,12 @@
  */
 package com.sa.xrace.client;
 
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
-import javax.xml.parsers.ParserConfigurationException;
 
-import org.xml.sax.SAXException;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -32,15 +27,9 @@ import android.view.KeyEvent;
 import android.view.Window;
 
 import com.sa.xrace.client.listener.ServerListenerImp;
-import com.sa.xrace.client.loader.LocationObj;
-import com.sa.xrace.client.loader.ModelObj;
-import com.sa.xrace.client.loader.SenceParser2;
 import com.sa.xrace.client.manager.PostManagerClientImp;
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.model.Model;
-import com.sa.xrace.client.model.ModelImport;
 import com.sa.xrace.client.model.ModelInforPool;
-import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
@@ -48,7 +37,6 @@ import com.sa.xrace.client.pool.RoomPicPool;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
-import com.sa.xrace.client.scene.Object;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
@@ -59,7 +47,7 @@ public class GameActivity extends Activity implements SensorListener {
 //	private GameView drawView;
 	private Camera mCamera;
 
-	private ModelImport mModelImport;
+//	private ModelImport mModelImport;
 	private ModelInforPool mModelInforPool;
 
 	private InforPoolClient inPool;
@@ -159,7 +147,7 @@ public class GameActivity extends Activity implements SensorListener {
 		mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
 		//将mModelInforPool加入对象池
 		ObjectPool.mModelInforPool = mModelInforPool;
-		mModelImport = new ModelImport();
+//		mModelImport = new ModelImport();
 		mCamera = new Camera();
 		
 		inPool = new InforPoolClient();
@@ -327,76 +315,6 @@ public class GameActivity extends Activity implements SensorListener {
 //		Bitmap tem = BitmapFactory.decodeResource(getResources(),resID);
 //		return tem;
 //	}
-
-	public void LoadMapFromXML(String filename) {
-		long start = System.currentTimeMillis();
-		InputStream fis;
-		DataInputStream dis;
-		t3DModel t3Dmodel;
-		Model model;
-		Object object;
-
-//		SenceParser2 senceParser;
-//		SenceObj sence;
-
-		try {
-			//处理XML,并统计时间
-			long xml_start = System.currentTimeMillis();
-			fis = getAssets().open(filename);
-//			Document document = new SAXReader()
-//					.read(new InputStreamReader(fis));
-//			senceParser = new SenceParser2(fis);
-//			SenceObj sence = SenceParser2.parse(fis);
-			
-			ArrayList<ModelObj> modelList = SenceParser2.parse(fis);
-//			    sence.getLModelList();
-			Log.i("Time in XML parse", ""+(System.currentTimeMillis() - xml_start));
-			ModelObj modelObj = null;
-			LocationObj locationObj = null;
-			int size = modelList.size();
-			for (int i = 0; i < size; i++) {
-				//处理图片,并统计时间,原本的时间为 17700ms
-				long image_start = System.currentTimeMillis();
-				modelObj = (ModelObj) modelList.get(i);
-				fis = getAssets().open(modelObj.getFilename());
-				dis = new DataInputStream(fis);
-				t3Dmodel = new t3DModel();
-				mModelImport.import3DS(t3Dmodel, dis);
-				model = new Model(Integer.parseInt(modelObj.getID()), Integer
-						.parseInt(modelObj.getType()), t3Dmodel, modelObj
-						.getScale(), modelObj.getRadius());
-				mModelInforPool.addModel(model);
-				locationObj = modelObj.getLocation();
-				for (int index = 0; index < locationObj.getSize(); index++) {
-					object = new Object(model, locationObj.getPoint(index),
-							locationObj.getAngle(index));
-					if (Integer.parseInt(modelObj.getType()) == DataToolKit.COLLISION)
-					{
-						object.updateTransformMatrix();
-					}
-					mWorld.addObject(object);
-				}
-			Log.i("Time in Image parse", modelObj.getFilename()+" "+(System.currentTimeMillis() - image_start));
-			}
-			//
-			long gcm_time = System.currentTimeMillis();
-			mWorld.generateCollisionMap();
-			Log.i("Time in generateCollisionMap", ""+(System.currentTimeMillis() - gcm_time));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// 
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// 
-			e.printStackTrace();
-		} finally {
-//			sence = null;
-//			senceParser = null;
-
-		}
-		Log.i("Load Image Time", ""+(System.currentTimeMillis() - start));
-	}
 
 	public boolean onKeyDown(int arg0, KeyEvent arg1) 
 	{

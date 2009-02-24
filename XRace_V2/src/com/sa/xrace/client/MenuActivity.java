@@ -174,10 +174,10 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 	public void onClick(View arg0) {
 		
 		if(arg0==single){
-			Intent intent = new Intent();
-			intent.setClass(MenuActivity.this, SingleGame.class);
-			startActivity(intent);
-			finish();
+//			Intent intent = new Intent();
+//			intent.setClass(MenuActivity.this, SingleGame.class);
+//			startActivity(intent);
+//			finish();
 			
 		}
 		else if(arg0==multiple){
