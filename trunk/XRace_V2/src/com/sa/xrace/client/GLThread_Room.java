@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.opengl.GLU;
 import android.util.Log;
+import android.util.TimingLogger;
 import android.view.SurfaceHolder;
 
 import com.sa.xrace.client.model.ModelInforPool;
@@ -230,84 +231,83 @@ public final class GLThread_Room extends Thread {
      * @param numTime
      * @param imgIndex
      */
-
-    public final static void makeLoading(int numTime, int imgIndex) {
-//        GL10 gl = ObjectPool.gl;
+//    public final static void makeLoading(int numTime, int imgIndex) {
+////        GL10 gl = ObjectPool.gl;
+////        
+////        android.widget.ProgressBar pBar = new android.widget.ProgressBar(ObjectPool.activity,null);
+////        pBar.setProgress((int) ((progress - startPro) / 4.38));
 //        
-//        android.widget.ProgressBar pBar = new android.widget.ProgressBar(ObjectPool.activity,null);
-//        pBar.setProgress((int) ((progress - startPro) / 4.38));
-        
-        
-        
-        // boolean isDone = false;
-
-//        Bitmap bm = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
-//        bm.eraseColor(0);
-//        CloneableCanvas c = new CloneableCanvas(bm);
-//        Paint p = new Paint();
+//        
+//        
+//        // boolean isDone = false;
 //
-//        p.setAntiAlias(true);
-//        p.setTextSize(13);
-//        p.setTextAlign(Paint.Align.CENTER);
-//        p.setStrokeWidth(9.0f);
-//        c.drawColor(Color.BLACK);
-//        // if(isDone == false){
-//        switch (imgIndex) {
-//        case 0: {
-//            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load0), 0, 192, p);
-//            break;
-//        }
-//        case 1: {
-//            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load1), 0, 192, p);
-//            break;
-//        }
-//        case 2: {
-//            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load2), 0, 192, p);
-//            break;
-//        }
-//        case 3: {
-//            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load3), 0, 192, p);
-//            break;
-//        }
+////        Bitmap bm = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+////        bm.eraseColor(0);
+////        CloneableCanvas c = new CloneableCanvas(bm);
+////        Paint p = new Paint();
+////
+////        p.setAntiAlias(true);
+////        p.setTextSize(13);
+////        p.setTextAlign(Paint.Align.CENTER);
+////        p.setStrokeWidth(9.0f);
+////        c.drawColor(Color.BLACK);
+////        // if(isDone == false){
+////        switch (imgIndex) {
+////        case 0: {
+////            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load0), 0, 192, p);
+////            break;
+////        }
+////        case 1: {
+////            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load1), 0, 192, p);
+////            break;
+////        }
+////        case 2: {
+////            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load2), 0, 192, p);
+////            break;
+////        }
+////        case 3: {
+////            c.drawBitmap(MethodsPool.getBitmap(R.drawable.load3), 0, 192, p);
+////            break;
+////        }
+////
+////        }
+////        // isDone = true;
+////        // }
+////        p.setColor(Color.BLUE);
+////        c.drawLine(startPro, 488, progress, 488, p);
 //
+////        bm.clone();
+//        
+//        for (int i = progress; i < numTime; i += 5, progress += 5) {
+////            try {
+////                Canvas c2 = c.clone();
+////
+////                p.setColor(Color.WHITE);
+//            
+//            //(int) ((progress - startPro) / 4.38)
+//            
+////                c2.drawText("" + (int) ((progress - startPro) / 4.38) + " %",
+////                        240, 492, p);
+//
+////                gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureLoad);
+////                GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
+////
+////                // Reclaim storage used by bitmap and canvas.
+////                // bm.recycle();
+////                // bm = null;
+////                // c2 = null;
+////
+////                gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureLoad);
+////                ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
+////                        GL11Ext.GL_TEXTURE_CROP_RECT_OES, tem2, 0);
+////                ((GL11Ext) gl).glDrawTexiOES(0, 0, 0, 512, 512);
+////                egl.eglSwapBuffers(dpy, surface);
+////            } catch (CloneNotSupportedException e) {
+////                // TODO Auto-generated catch block
+////                e.printStackTrace();
+////            }
 //        }
-//        // isDone = true;
-//        // }
-//        p.setColor(Color.BLUE);
-//        c.drawLine(startPro, 488, progress, 488, p);
-
-//        bm.clone();
-        
-        for (int i = progress; i < numTime; i += 5, progress += 5) {
-//            try {
-//                Canvas c2 = c.clone();
-//
-//                p.setColor(Color.WHITE);
-            
-            //(int) ((progress - startPro) / 4.38)
-            
-//                c2.drawText("" + (int) ((progress - startPro) / 4.38) + " %",
-//                        240, 492, p);
-
-//                gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureLoad);
-//                GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-//
-//                // Reclaim storage used by bitmap and canvas.
-//                // bm.recycle();
-//                // bm = null;
-//                // c2 = null;
-//
-//                gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureLoad);
-//                ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
-//                        GL11Ext.GL_TEXTURE_CROP_RECT_OES, tem2, 0);
-//                ((GL11Ext) gl).glDrawTexiOES(0, 0, 0, 512, 512);
-//                egl.eglSwapBuffers(dpy, surface);
-//            } catch (CloneNotSupportedException e) {
-//                // TODO Auto-generated catch block
-//                e.printStackTrace();
-//            }
-        }
-    }
+//    }
 
     public void onWindowResize(int w, int h) {
         synchronized (this) {
@@ -327,45 +327,49 @@ public final class GLThread_Room extends Thread {
     }
 
     // public void destroy() {
-    // // TODO Auto-generated method stub
+    // // 
     // super.destroy();
     // }
 
     private void Loading() {
         GL10 gl = ObjectPool.gl;
-        long start = System.currentTimeMillis();
-        long first = start;
-        Log.e("-->Begin " + (System.currentTimeMillis() - start),
-                "GLThread_Room Loading");
-        makeLoading(60, 0);
+        TimingLogger logger = new TimingLogger("GLThread_Room","Loading");
+//        long start = System.currentTimeMillis();
+//        long first = start;
+//        Log.e("-->Begin " + (System.currentTimeMillis() - start),
+//                "GLThread_Room Loading");
+//        makeLoading(60, 0);
 
         // start = System.currentTimeMillis();
         // // picPool.generateEveryThing(); // 23s
         // Log.e("-->>Time use :"+(System.currentTimeMillis()
         // -start),"generateEveryThing");
 
-        start = System.currentTimeMillis();
+//        start = System.currentTimeMillis();
         giPool.makeAllInterface(gl); // >1s
-        makeLoading(182, 2);
-        Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
-                "makeAllInterface");
+        logger.addSplit("makeAllInterface");
+//        makeLoading(182, 2);
+//        Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
+//                "makeAllInterface");
 
-        start = System.currentTimeMillis();
+//        start = System.currentTimeMillis();
         MethodsPool.LoadMapFromXML("scene.xml"); // 4.7s
-        makeLoading(242, 2);
-        Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
-                "LoadMapFromXML");
-
-        start = System.currentTimeMillis();
+        logger.addSplit("LoadMapFromXML");
+//        makeLoading(242, 2);
+//        Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
+//                "LoadMapFromXML");
+//
+//        start = System.currentTimeMillis();
         // long start = System.currentTimeMillis();
         mModelContainer.generate(gl); // 49s
-        Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
-                "mModelContainer.generate(gl);");
-        start = System.currentTimeMillis();
+        logger.addSplit("mModelContainer.generate");
+//        Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
+//                "mModelContainer.generate(gl);");
+//        start = System.currentTimeMillis();
 
         getCommonTextureReady(gl); // >1s
-        makeLoading(442, 3);
-
+//        makeLoading(442, 3);
+        logger.addSplit("getCommonTextureReady(gl)");
         mModelContainer.setType(DataToolKit.CAR);
         inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
                 mModelContainer.getCurrentModel());
@@ -374,11 +378,13 @@ public final class GLThread_Room extends Thread {
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");
             ObjectPool.mPostManager.sendLoginPostToServer();
         }
-        makeLoading(460, 3);
+//        makeLoading(460, 3);
         isModelGenerate = true;
-        Log.e("Done Loading-->Time used: "
-                + (System.currentTimeMillis() - first),
-                "It shall be show Srceen now");
+        logger.addSplit("sendLoginPostToServer");
+        logger.dumpToLog();
+//        Log.e("Done Loading-->Time used: "
+//                + (System.currentTimeMillis() - first),
+//                "It shall be show Srceen now");
     }
 
     private void getLoginTextureReady() {

@@ -55,10 +55,10 @@ public class GLWorld
 //	private Point3f tempCollisionPoint;
 //	private PostManagerClient mPostManager;
 	
-	public GLWorld( Camera camera)
+	public GLWorld()
 	{
 		mInforPoolClient = ObjectPool.inPoolClient;
-		mCamera = camera;
+		mCamera = ObjectPool.camera;
 //		mFrustum = new Frustum();
 		mTranslateMatrix = new Matrix4f();
 		mRotateMatrix = new Matrix4f();
@@ -68,6 +68,7 @@ public class GLWorld
 //		mPostManager = postmanager;
 		
 		collisionHandler = new CollisionHandler();
+		
 	}
 	public void generateCollisionMap()
 	{
@@ -133,11 +134,11 @@ public class GLWorld
 			object.rotate(gl);
 			object.scale(gl);				
 			//mFrustum.updateFrustum(gl);
-			if (Frustum.checkSphere(object.getPosition(), object.getModel().getRadius()) == true)
-			{	
+//			if (Frustum.checkSphere(object.getPosition(), object.getModel().getRadius()) == true)
+//			{	
 				object.draw(gl);
 
-			}
+//			}
 		}		
 		
 		if (mInforPoolClient != null)
@@ -172,10 +173,10 @@ public class GLWorld
 						
 						
 						//mFrustum.updateFrustum(gl);
-						if (Frustum.checkSphere(center, model.getRadius()) == true)
-						{		      
+//						if (Frustum.checkSphere(center, model.getRadius()) == true)
+//						{		      
 							model.draw(gl);
-						}	
+//						}	
 					}
 				}
 			}
@@ -202,7 +203,7 @@ public class GLWorld
 			
 	        //////////////////////////
 			//mFrustum.updateFrustum(gl);
-			if (Frustum.checkSphere(myCenter, model.getRadius()) == true)
+//			if (Frustum.checkSphere(myCenter, model.getRadius()) == true)
 			{		
  		        myCar.draw(gl);
 			}

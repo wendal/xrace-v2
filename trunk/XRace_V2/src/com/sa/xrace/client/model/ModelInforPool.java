@@ -32,7 +32,6 @@ import java.util.Iterator;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.sa.xrace.client.GLThread_Room;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.DataToolKit;
 /**
@@ -42,7 +41,7 @@ import com.sa.xrace.client.toolkit.DataToolKit;
 /**
  *  This class is used to store and render the t3DModel objects.
  */
-public class ModelInforPool
+public final class ModelInforPool
 {
     /**
      * 只有一个实例,考虑用单例模式,或者转为工具类
@@ -52,6 +51,7 @@ public class ModelInforPool
 	{
 		mPosition = position;
 		mScale = new Point3f(1.0f, 1.0f, 1.0f);
+//		ObjectNumber.regNew(this);
 	}
 
 	public void addModel(Model model)
@@ -78,7 +78,7 @@ public class ModelInforPool
 		Iterator<Model> modelIterator = mModelMap.values().iterator();
 		
 //		int size = mModelVector.size();        // for loading
-		int interval = 180/mModelMap.size();
+//		int interval = 180/mModelMap.size();
 		
 		while (modelIterator.hasNext()) 
 		{
@@ -89,7 +89,7 @@ public class ModelInforPool
 				model.generate(gl);				
 			}
 			//进度条
-			GLThread_Room.makeLoading(GLThread_Room.progress+interval,3);
+//			GLThread_Room.makeLoading(GLThread_Room.progress+interval,3);
 		}
 	}
 

@@ -28,6 +28,7 @@ import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.wendal.java.xrace.toolkit.bmpconvert.ObjectNumber;
 
 public class WRbarPool {
 
@@ -72,13 +73,13 @@ public class WRbarPool {
 	// /////////////////////////////////////Car_List/////////////////////////////////////
 
     private final int carList_position[] = {
-			-toFixed(2.62f),toFixed(1.5f),-toFixed(12f), // up_left
-			-toFixed(2.62f), -toFixed(1.5f), -toFixed(12f), 
-			toFixed(2.62f),-toFixed(1.5f), -toFixed(12f),
+			-MethodsPool.toFixed(2.62f),MethodsPool.toFixed(1.5f),-MethodsPool.toFixed(12), // up_left
+			-MethodsPool.toFixed(2.62f), -MethodsPool.toFixed(1.5f), -MethodsPool.toFixed(12), 
+			MethodsPool.toFixed(2.62f),-MethodsPool.toFixed(1.5f), -MethodsPool.toFixed(12),
 
-			-toFixed(2.62f), toFixed(1.5f), -toFixed(12f), 
-			toFixed(2.62f),-toFixed(1.5f), -toFixed(12f), 
-			toFixed(2.62f), toFixed(1.5f),-toFixed(12f), };
+			-MethodsPool.toFixed(2.62f), MethodsPool.toFixed(1.5f), -MethodsPool.toFixed(12), 
+			MethodsPool.toFixed(2.62f),-MethodsPool.toFixed(1.5f), -MethodsPool.toFixed(12), 
+			MethodsPool.toFixed(2.62f), MethodsPool.toFixed(1.5f),-MethodsPool.toFixed(12), };
 
     private final float carList_color[] = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
 			1.0f, 1.0f, 1.0f, 1.0f,
@@ -92,13 +93,13 @@ public class WRbarPool {
 
 	////////////////////////////////////MAP///////////////////////////
     private final int map_position[] ={ 							
-			-toFixed(7f),toFixed(4.0f),-toFixed(11f),       
-			-toFixed(7f),-toFixed(1.8f),-toFixed(11f),
-			toFixed(7f), -toFixed(1.8f),-toFixed(11f),
+			-MethodsPool.toFixed(7),MethodsPool.toFixed(4),-MethodsPool.toFixed(11),       
+			-MethodsPool.toFixed(7),-MethodsPool.toFixed(1.8f),-MethodsPool.toFixed(11),
+			MethodsPool.toFixed(7), -MethodsPool.toFixed(1.8f),-MethodsPool.toFixed(11),
 			
-			-toFixed(7f),toFixed(4.0f),-toFixed(11f),   
-			toFixed(7f), -toFixed(1.8f),-toFixed(11f),
-			toFixed(7f),toFixed(4.0f),-toFixed(11f), 
+			-MethodsPool.toFixed(7),MethodsPool.toFixed(4),-MethodsPool.toFixed(11),   
+			MethodsPool.toFixed(7), -MethodsPool.toFixed(1.8f),-MethodsPool.toFixed(11),
+			MethodsPool.toFixed(7),MethodsPool.toFixed(4),-MethodsPool.toFixed(11), 
 	};
     private final float map_color[] = {                   
 			1.0f,1.0f,1.0f,0.6f,
@@ -120,10 +121,6 @@ public class WRbarPool {
 //    private final static short down_index[] = {5,4,3,2,1,0};
 //    private final static float down_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 };
 	
-	public int toFixed(float x) {
-		return (int) (x * 65536.0f);
-	}
-
 	/**
 	 * 应该只有一个新对象,考虑用单例模式
 	 * @param gl
@@ -157,7 +154,7 @@ public class WRbarPool {
 //		for(int i=0;i<4;i++){
 //			setBarLogin(i);
 //		}
-		
+		ObjectNumber.regNew(this);
 	}
 
 	public void initWRbarPool(IntBuffer texturesB) {

@@ -39,6 +39,7 @@ import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.sa.xrace.client.toolkit.StateValuePool;
 
 public class GameActivity extends Activity implements SensorListener {
 //	private final static String TAG = "----- GameActivity -----";
@@ -86,15 +87,13 @@ public class GameActivity extends Activity implements SensorListener {
 //	private static long nowTime = 0;
 //	private static long lastTime = 0;
 
-	public static boolean mapOn = false;
+	public final static boolean mapOn = false;
 	public static boolean mapNext = false;
 	public static boolean mapBack = false;
 	public static boolean carOn = false;
 	public static boolean carNext = false;
 	public static boolean carBack = false;
 //	private static boolean raceOn = false;
-	
-	public static boolean testPosition = false;
 	
 	private Handler mHandler;
 	
@@ -173,6 +172,7 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.mModelInforPool = ObjectPool.activity.mModelInforPool;
 //              mModelImport = new ModelImport();
                 ObjectPool.activity.mCamera = new Camera();
+                ObjectPool.camera = ObjectPool.activity.mCamera;
                 
                 ObjectPool.activity.inPool = new InforPoolClient();
                 //将inPoolClient加入对象池
@@ -182,7 +182,7 @@ public class GameActivity extends Activity implements SensorListener {
 //              RoomPicPool rpPool = new RoomPicPool(this);
                 //将RoomPicPool加入对象池
 //              ObjectPool.rpPool = new RoomPicPool();
-                ObjectPool.giPool = new GIPool(ObjectPool.activity.mCamera);
+                ObjectPool.giPool = new GIPool();
 
 //              Socket mSocket = null;
                 
@@ -191,7 +191,7 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.mPostManager  = new PostManagerClientImp();
 //              mServerListener = 
                     new ServerListenerImp();
-                    ObjectPool.activity.mWorld = new GLWorld( ObjectPool.activity.mCamera);
+                    ObjectPool.activity.mWorld = new GLWorld();
                 //把GLWorld加入对象池
                 ObjectPool.mWorld = ObjectPool.activity.mWorld;
                 ObjectPool.activity.inPool.getOneCarInformation(ObjectPool.activity.inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
@@ -203,6 +203,7 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.activity.setContentView(drawView);
                 System.gc();
                 isInited = true;
+//                ObjectNumber.getResult();
             }
         }
 	}
@@ -432,6 +433,7 @@ public class GameActivity extends Activity implements SensorListener {
 	   
     private void onGameRunning(int arg0, KeyEvent arg1)
     {
+    	
     	CarInforClient car =  inPool.getOneCarInformation(inPool.getMyCarIndex());
     	switch (arg0)
 		{
@@ -465,7 +467,8 @@ public class GameActivity extends Activity implements SensorListener {
 				car.setLookDirction(CarInforClient.LOOK_BACK);
 				break;
 			case KeyEvent.KEYCODE_T:
-				testPosition = true;
+				//打开Debug功能
+				StateValuePool.isDebug = true;
 				break;
 				
 //{{for testing
@@ -492,6 +495,7 @@ public class GameActivity extends Activity implements SensorListener {
 
 //}}for testing
 		}
+//    	ObjectNumber.getResult();
     }
 
     public boolean onKeyUp(int arg0, KeyEvent arg1) 
@@ -517,7 +521,8 @@ public class GameActivity extends Activity implements SensorListener {
 					car.setLookDirction(CarInforClient.LOOK_FRONT);
 					break;
 				case KeyEvent.KEYCODE_T:
-					testPosition = false;
+					//关闭Debug功能
+					StateValuePool.isDebug = false;
 					break;
     		}
 		}		

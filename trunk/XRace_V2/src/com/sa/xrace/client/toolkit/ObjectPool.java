@@ -13,6 +13,7 @@ import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.WRbarPool;
+import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 
 public final class ObjectPool {
@@ -43,4 +44,6 @@ public final class ObjectPool {
 	public static GIPool giPool;
 
 	public static GL10 gl;
+	
+	public static Camera camera;
 }

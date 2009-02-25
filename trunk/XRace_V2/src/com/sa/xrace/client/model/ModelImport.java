@@ -69,6 +69,7 @@ public final class ModelImport {
 	{
 		m_CurrentChunk = new tChunk();
 		m_TempChunk = new tChunk();
+//		ObjectNumber.regNew(this);
 	}
 
 	/**
