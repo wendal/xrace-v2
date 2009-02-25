@@ -9,7 +9,7 @@ public final class BmpSizeMessage implements Serializable {
 	 */
 	private static final long serialVersionUID = 4145794847038361383L;
 
-	private byte [] size = new byte[2];
+	private int [] size = new int[2];
 	
 	private String name;
 
@@ -21,11 +21,11 @@ public final class BmpSizeMessage implements Serializable {
 		this.name = name;
 	}
 
-	public byte[] getSize() {
+	public int[] getSize() {
 		return size;
 	}
 
-	public void setSize(byte[] size) {
+	public void setSize(int[] size) {
 		this.size = size;
 	}
 

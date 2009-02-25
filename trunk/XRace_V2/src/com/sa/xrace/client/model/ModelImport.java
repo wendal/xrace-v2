@@ -146,7 +146,7 @@ public final class ModelImport {
 			case OBJECT:
 				Model.numOfObjects++;
 				t3DObject newObject = new t3DObject();
-				Model.Objects.add(newObject);
+				Model.objects.add(newObject);
 				int index = 0;
 				try {
 						m_CurrentChunk.bytesRead += dis.read(buffer, 0, 1);
@@ -162,11 +162,11 @@ public final class ModelImport {
 					}
 				}
 				try {
-						Model.Objects.get(Model.numOfObjects-1).strName = new String(buffer, 0, index-1, "GBK");
+						Model.objects.get(Model.numOfObjects-1).strName = new String(buffer, 0, index-1, "GBK");
 					} catch (UnsupportedEncodingException e2) {
 						e2.printStackTrace();
 					}
-				processNextObjectChunk(Model, Model.Objects.get(Model.numOfObjects-1), m_CurrentChunk);
+				processNextObjectChunk(Model, Model.objects.get(Model.numOfObjects-1), m_CurrentChunk);
 				break;
 			case EDITKEYFRAME:
 				try {

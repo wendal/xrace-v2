@@ -62,7 +62,7 @@ public final class Object
 	    mVerts = new Point3f[mModel.getModel().numOfObjects][];
 
 	    int num = 0;
-	    Iterator<t3DObject> t3DObjectIterator = mModel.getModel().Objects.iterator();
+	    Iterator<t3DObject> t3DObjectIterator = mModel.getModel().objects.iterator();
 		while (t3DObjectIterator.hasNext())
 		{
 			t3DObject object = t3DObjectIterator.next();

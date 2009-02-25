@@ -74,7 +74,7 @@ public class AABBbox
 	public void getAABBbox(Model model)
 	{
 		try{
-		Iterator<t3DObject> t3DObjectIterator = model.getModel().Objects.iterator();
+		Iterator<t3DObject> t3DObjectIterator = model.getModel().objects.iterator();
 		while (t3DObjectIterator.hasNext())
 		{
 			t3DObject object = t3DObjectIterator.next();

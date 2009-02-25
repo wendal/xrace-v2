@@ -33,7 +33,7 @@ public final class t3DModel
 	public int numOfObjects;							// number of objects
 	public int numOfMaterials;							// number of material
 	public Vector<tMaterialInfo> Materials;		// vectors keeping the materials
-	public Vector<t3DObject> Objects;			// vectors keeping the objects
+	public Vector<t3DObject> objects;			// vectors keeping the objects
 //	private Activity mainAcivity;
 	
 	
@@ -41,7 +41,7 @@ public final class t3DModel
 	public t3DModel()
 	{
 		this.Materials = new Vector<tMaterialInfo>();
-		this.Objects = new Vector<t3DObject>();
+		this.objects = new Vector<t3DObject>();
 //		this.mainAcivity = mainAcivity;
 	}
 	
@@ -51,7 +51,7 @@ public final class t3DModel
 	 */
 	public void generate(GL10 gl)
 	{	
-		Iterator<t3DObject> t3DObjectIterator = Objects.iterator();
+		Iterator<t3DObject> t3DObjectIterator = objects.iterator();
 		while (t3DObjectIterator.hasNext())
 		{
 			t3DObject object = t3DObjectIterator.next();
@@ -82,7 +82,7 @@ public final class t3DModel
 	 */
     public void draw(GL10 gl)
     {
-		Iterator<t3DObject> t3DObjectIterator = Objects.iterator();
+		Iterator<t3DObject> t3DObjectIterator = objects.iterator();
 		while (t3DObjectIterator.hasNext())
 		{
 			t3DObject object = t3DObjectIterator.next();
@@ -91,7 +91,7 @@ public final class t3DModel
     }
     public t3DObject getObject(String objectName)
     {
-		Iterator<t3DObject> t3DObjectIterator = Objects.iterator();
+		Iterator<t3DObject> t3DObjectIterator = objects.iterator();
 		while (t3DObjectIterator.hasNext())
 		{
 			t3DObject object = t3DObjectIterator.next();
