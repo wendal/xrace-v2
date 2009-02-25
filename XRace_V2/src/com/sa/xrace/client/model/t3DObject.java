@@ -18,10 +18,6 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
@@ -165,13 +161,17 @@ public final class t3DObject implements Cloneable
 	 */
 	public void loadBitmap(GL10 gl, InputStream is , String filename)
 	{
-		long start = System.currentTimeMillis();
-		Bitmap bitmap = BitmapFactory.decodeStream(is);
+//		long start = System.currentTimeMillis();
+//		Bitmap bitmap = BitmapFactory.decodeStream(is);
 //		Log.e("In LoadBitmap", "Time used : (decodeStream(is)) "+(System.currentTimeMillis() - start));
 		
-		int pic_width = bitmap.getWidth();
-		int pic_height = bitmap.getHeight();
+		/*第一位为 Width,第二位为Height*/
+		int [] size = DataUnti.getBmpSize(filename);
+//		int pic_width = bitmap.getWidth();
+//		int pic_height = bitmap.getHeight();
 
+//		Log.e("",""+(pic_width)+" " + size[0]);
+//		Log.e("",""+(pic_height)+" " + size[1]);
 //		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(pic_width * pic_height * 4);
 		ByteBuffer byteBuffer = DataUnti.getByteBuffer_ByFileName(filename);
 		
@@ -241,17 +241,17 @@ public final class t3DObject implements Cloneable
 		
 		gl.glGenTextures(1, textureID, 0);
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, textureID[0]);
-		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, pic_width, pic_height, 0, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, byteBuffer);
+		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, size[0], size[1], 0, GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, byteBuffer);
 		gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_CLAMP_TO_EDGE);
 		gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_CLAMP_TO_EDGE);
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_LINEAR);
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
 		
-		Log.e("In LoadBitmap", "Time used (ALL): "+(System.currentTimeMillis() - start));
+//		Log.e("In LoadBitmap", "Time used (ALL): "+(System.currentTimeMillis() - start));
 		
 //		//把数据传出去
 		
-		DataUnti.sendOut(filename, pic_width, pic_height);
+//		DataUnti.sendOut(filename, pic_width, pic_height);
 		
 //		BmpMessage message = new BmpMessage();
 //		message.setFilename(filename);

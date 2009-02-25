@@ -9,6 +9,7 @@
  */
 package com.wendal.java.xrace.toolkit.bmpconvert;
 
+import java.io.DataOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +41,20 @@ public class Rec {
 				fis.close();
 				System.out.println("Finiah : " + message.getFilename()+".rbg");
 			}
+			if(object instanceof BmpSizeMessage){
+                BmpSizeMessage message = (BmpSizeMessage)object;
+                FileOutputStream fis = new FileOutputStream(message.getName()+".size");
+                DataOutputStream dos = new DataOutputStream(fis);
+                int [] size = message.getSize();
+                dos.writeInt(size[0]);
+                dos.writeInt(size[1]);
+                dos.flush();
+                dos.close();
+//                fis.write(message.getSize());
+//                fis.flush();
+//                fis.close();
+                System.out.println("Finiah : " + message.getName()+".size");
+            }
 			socket.close();
 		}
 	}
