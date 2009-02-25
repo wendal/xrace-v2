@@ -144,4 +144,15 @@ public final class MethodsPool {
     		Log.i("Load Image Time", ""+(System.currentTimeMillis() - start));
     	}
 
+	static public int toFixed(float x) {
+		return (int)(x * 65536);
+	}
+
+	static public int toFixed(int x) {
+		return x * 65536;
+	}
+//	public static int toFixed(float x) {
+//		return (int) (x * 65536.0f);
+//	}
+
 }

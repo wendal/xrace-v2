@@ -28,6 +28,7 @@ public final class Model
 		this.mType		= type;
 		this.mScale		= scale;
 		this.mRadius    = radius;
+//		ObjectNumber.regNew(this);
 	}
 	public void generate(GL10 gl)
 	{

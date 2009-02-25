@@ -20,6 +20,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
+import com.sa.xrace.client.toolkit.MethodsPool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 /**
@@ -42,11 +43,11 @@ public final class t3DObject implements Cloneable
 	public Point2f[]  	TexVerts;			// UV coordinate
 	public tFace[]		Faces;				// faces's vertex index
 	
-    static public int toFixed(float x) {
-    	return (int)(x*65536.0f);
-    }
+	public t3DObject(){
+//		ObjectNumber.regNew(this);
+	}
 	
-	/**
+    /**
 	 *  create the buffer for render according the data imported
 	 */
 	public void createBuffer() 
@@ -65,9 +66,9 @@ public final class t3DObject implements Cloneable
 
 	    for (int index = 0; index < numOfVerts; index++)
 	    {
-	    	mVertexBuffer.put(toFixed(Verts[index].x));
-	    	mVertexBuffer.put(toFixed(Verts[index].y));
-	    	mVertexBuffer.put(toFixed(Verts[index].z));
+	    	mVertexBuffer.put(MethodsPool.toFixed(Verts[index].x));
+	    	mVertexBuffer.put(MethodsPool.toFixed(Verts[index].y));
+	    	mVertexBuffer.put(MethodsPool.toFixed(Verts[index].z));
 	    }
 	    for (int index = 0; index < numTexVertex; index++)
 	    {
@@ -89,9 +90,9 @@ public final class t3DObject implements Cloneable
 	    mVertexBuffer = bb.asIntBuffer();
 	    for (int index = 0; index < numOfVerts; index++)
 	    {
-	    	mVertexBuffer.put(toFixed(Verts[index].x));
-	    	mVertexBuffer.put(toFixed(Verts[index].y));
-	    	mVertexBuffer.put(toFixed(Verts[index].z));
+	    	mVertexBuffer.put(MethodsPool.toFixed(Verts[index].x));
+	    	mVertexBuffer.put(MethodsPool.toFixed(Verts[index].y));
+	    	mVertexBuffer.put(MethodsPool.toFixed(Verts[index].z));
 	    }
 	}
 	

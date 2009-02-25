@@ -17,8 +17,6 @@ import java.util.Vector;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.util.Log;
-
 import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
@@ -43,6 +41,7 @@ public final class t3DModel
 		this.Materials = new Vector<tMaterialInfo>();
 		this.objects = new Vector<t3DObject>();
 //		this.mainAcivity = mainAcivity;
+//		ObjectNumber.regNew(this);
 	}
 	
 	/**
@@ -59,9 +58,9 @@ public final class t3DModel
 			{
 				try {
 					String strFilename = Materials.get(object.materialID).strFile;
-					if (strFilename != null && !strFilename.equals(""))	
+					if (strFilename != null && !"".equals(strFilename))	
 					{
-						Log.e("Start Parse : ", strFilename);
+//						Log.e("Start Parse : ", strFilename);
 						InputStream is = ObjectPool.assetManager.open(strFilename);
 						DataInputStream dis = new DataInputStream(is);
 						object.loadBitmap(gl, dis , strFilename);

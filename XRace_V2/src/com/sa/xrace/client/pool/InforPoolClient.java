@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.wendal.java.xrace.toolkit.bmpconvert.ObjectNumber;
 
 /**
  * @author Changpeng Pan
@@ -81,6 +82,7 @@ public class InforPoolClient {
 		delayHandleIn = new Vector<Integer>();
 		delayHandleOut = new Vector<Integer>();
 //		modelPool = ObjectPool.mModelInforPool;
+		ObjectNumber.regNew(this);
 	}
 
 	/**

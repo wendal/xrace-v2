@@ -12,7 +12,7 @@ package com.sa.xrace.client.math;
 
 public final class Matrix4f {
 
-	float matrix[][];
+	private float matrix[][];
 	
 	public Matrix4f()
 	{
@@ -20,14 +20,14 @@ public final class Matrix4f {
 		setIdentity();
 		
 	}
-	public Matrix4f(Matrix4f other) 
-	{
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				matrix[i][j] = other.matrix[i][j];
-			}
-		}
-	}
+//	public Matrix4f(Matrix4f other) 
+//	{
+//		for (int i = 0; i < 4; i++) {
+//			for (int j = 0; j < 4; j++) {
+//				matrix[i][j] = other.matrix[i][j];
+//			}
+//		}
+//	}
 	public void setIdentity() 
 	{
 		for (int i = 0; i < 4; i++) {
@@ -50,13 +50,13 @@ public final class Matrix4f {
 		}
 		return result;
 	}
-	public void getTranlateMatrix(float x,float y,float z)
-	{
-		setIdentity();
-		matrix[0][3]=x;
-		matrix[1][3]=y;
-		matrix[2][3]=z;
-	}
+//	public void getTranlateMatrix(float x,float y,float z)
+//	{
+//		setIdentity();
+//		matrix[0][3]=x;
+//		matrix[1][3]=y;
+//		matrix[2][3]=z;
+//	}
 
 	public void getTranlateMatrix(Point3f point)
 	{
@@ -99,6 +99,9 @@ public final class Matrix4f {
 		dest.y = temp.y;
 		dest.z = temp.z;		
 	}
+	/**
+	 * 
+	 */
 	public String toString() 
 	{
 		StringBuilder builder = new StringBuilder("[ ");
