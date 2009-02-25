@@ -160,8 +160,8 @@ public class WRbarPool {
 		
 	}
 
-	public void initWRbarPool(GL10 gl,  IntBuffer texturesB) {
-		this.gl = gl;
+	public void initWRbarPool(IntBuffer texturesB) {
+		this.gl =  ObjectPool.gl;;
 		this.texturesB = texturesB;
 //		this.picPool = picPool;
 		
