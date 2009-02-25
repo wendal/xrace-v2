@@ -31,6 +31,9 @@ public final class ObjectPool {
 	
 	public static ModelInforPool mModelInforPool;
 	
+	/**
+	 * 在游戏开始后抛弃该对象
+	 */
 	public static WRbarPool barPool;
 	
 //	public static RoomPicPool rpPool;

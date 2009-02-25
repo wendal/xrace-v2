@@ -47,7 +47,7 @@ public class ServerListenerImp extends HandlerThread {
 	/**
 	 * 暂时发现这个变量的值只设置了一次
 	 */
-	private boolean listenerON;
+//	private boolean listenerON;
 //	private static final int TIME_OUT = 10000;
 	private WRbarPool barPool;
 	
@@ -83,7 +83,7 @@ public class ServerListenerImp extends HandlerThread {
 //		socket = inputSocket;
 		pool = ObjectPool.inPoolClient;
 //		mActivity = activity;
-		listenerON = true;
+//		listenerON = true;
 		this.barPool = ObjectPool.barPool;
 		try {
 			input = new DataInputStream(ObjectPool.mSocket.getInputStream());
@@ -100,6 +100,7 @@ public class ServerListenerImp extends HandlerThread {
 	public void run() {
 		long starttime = System.currentTimeMillis();
 		long intertime;
+		boolean listenerON = true;
 		while (listenerON) {
 //			System.out.println("here in "+getClass());
 			try {
@@ -190,6 +191,11 @@ public class ServerListenerImp extends HandlerThread {
 					// ////////////////////////////////////////
 					// jump to game start interface
 					// ////////////////////////////////////////
+						
+						/**/
+//						ObjectPool.barPool = null;
+						this.barPool = null;
+						
 						ObjectPool.activity.initGameRunning();
 //						GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
 				}else if (postReceived == DataToolKit.DROPOUT) {
