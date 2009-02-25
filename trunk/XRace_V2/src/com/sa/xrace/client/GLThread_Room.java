@@ -77,7 +77,7 @@ public final class GLThread_Room extends Thread {
 	private static EGL10 egl;
 	private static EGLDisplay dpy ;
 	private static EGLSurface surface;
-	public static GL10 gl;
+//	public static GL10 gl;
 	public static int progress ,startPro = 22;
 	
 	private static long nowTime = 0;
@@ -133,13 +133,13 @@ public final class GLThread_Room extends Thread {
 		EGLContext context = egl.eglCreateContext(dpy, config,EGL10.EGL_NO_CONTEXT, null);
 		surface = egl.eglCreateWindowSurface(dpy, config,mHolder, null);
 		egl.eglMakeCurrent(dpy, surface, surface, context);
-		gl = (GL10) context.getGL();
-		gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_FASTEST);
+		ObjectPool.gl = (GL10) context.getGL();
+		ObjectPool.gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_FASTEST);
 			    
-	    initForGame(gl);
-		getLoginTextureReady(gl);
-		barPool.initWRbarPool(gl,texturesB);
-		gl.glMatrixMode(GL10.GL_MODELVIEW);
+	    initForGame();
+		getLoginTextureReady();
+		barPool.initWRbarPool(texturesB);
+		ObjectPool.gl.glMatrixMode(GL10.GL_MODELVIEW);
 		
 		
 		
@@ -153,11 +153,11 @@ public final class GLThread_Room extends Thread {
 			
 			/*这是耗时的一步*/
 			if(!isModelGenerate){
-				Loading(gl);
+				Loading();
 			}
 			
-			gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
-			drawFrame(gl, w, h);
+			ObjectPool.gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
+			drawFrame( w, h);
 			
 			egl.eglSwapBuffers(dpy, surface);
 			
@@ -178,7 +178,8 @@ public final class GLThread_Room extends Thread {
 		egl.eglTerminate(dpy);
 	}
 
-	private void drawFrame(GL10 gl, int w, int h) {
+	private void drawFrame( int w, int h) {
+	    GL10 gl = ObjectPool.gl;
 		nowTime = System.currentTimeMillis();
 		if(lastTime ==0)
 		{
@@ -243,7 +244,8 @@ public final class GLThread_Room extends Thread {
 	 */
 	
 	
-	public final static void makeLoading(GL10 gl,int numTime,int imgIndex) {
+	public final static void makeLoading(int numTime,int imgIndex) {
+	    GL10 gl = ObjectPool.gl;
 		for(int i=progress;i<numTime;i+=5,progress+=5){
 			Bitmap bm = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
 			bm.eraseColor(0);
@@ -318,12 +320,12 @@ public final class GLThread_Room extends Thread {
 //			super.destroy();
 //	}
 	
-	private void Loading(GL10 gl){
-		
+	private void Loading(){
+	    GL10 gl = ObjectPool.gl;
 		long start = System.currentTimeMillis();
 		long first = start;
 		Log.e("-->Begin "+(System.currentTimeMillis() -start),"GLThread_Room Loading");
-		makeLoading(gl,60,0);
+		makeLoading(60,0);
 		
 //		start = System.currentTimeMillis();
 ////		picPool.generateEveryThing();            // 23s
@@ -331,12 +333,12 @@ public final class GLThread_Room extends Thread {
 		
 		start = System.currentTimeMillis();
 		giPool.makeAllInterface(gl);            // >1s
-		makeLoading(gl,182,2);
+		makeLoading(182,2);
 		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"makeAllInterface");
 		
 		start = System.currentTimeMillis();
 		MethodsPool.LoadMapFromXML("scene.xml");  //4.7s
-		makeLoading(gl,242,2);
+		makeLoading(242,2);
 		Log.e("-->>Time use :"+(System.currentTimeMillis() -start),"LoadMapFromXML");
 		
 		start = System.currentTimeMillis();
@@ -346,7 +348,7 @@ public final class GLThread_Room extends Thread {
 		start = System.currentTimeMillis();
 		
 		getCommonTextureReady(gl);                    // >1s
-		makeLoading(gl,442,3);
+		makeLoading(442,3);
 		
 		mModelContainer.setType(DataToolKit.CAR);
 		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelContainer.getCurrentModel());
@@ -355,7 +357,7 @@ public final class GLThread_Room extends Thread {
 			Log.v("sendLoginPostToServer", "sendLoginPostToServer");
 			mPostManager.sendLoginPostToServer();
 		}		
-		makeLoading(gl,460,3);
+		makeLoading(460,3);
 		isModelGenerate = true;
 		Log.e("Done Loading-->Time used: "+(System.currentTimeMillis() - first),"It shall be show Srceen now");
 	}
@@ -364,7 +366,8 @@ public final class GLThread_Room extends Thread {
 	
 	
 	
-	private void getLoginTextureReady(GL10 gl){
+	private void getLoginTextureReady(){
+	    GL10 gl = ObjectPool.gl;
 		gl.glGenTextures(11,texturesB);
 		gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(10));		
 		gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
@@ -416,8 +419,9 @@ public final class GLThread_Room extends Thread {
 //		Log.e("in getCommonTextureReady", "Finish getCommonTextureReady");
 	}
 	
-	private void initForGame(GL10 gl)
+	private void initForGame()
 	{
+	    GL10 gl = ObjectPool.gl;
 		   // Define the view frustrum
 		   gl.glViewport(0, 0, callingView.getWidth(), callingView.getHeight());
 		   gl.glMatrixMode(GL10.GL_PROJECTION);

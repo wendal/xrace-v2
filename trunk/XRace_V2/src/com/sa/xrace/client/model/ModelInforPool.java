@@ -89,7 +89,7 @@ public class ModelInforPool
 				model.generate(gl);				
 			}
 			//½ø¶ÈÌõ
-			GLThread_Room.makeLoading(GLThread_Room.gl,GLThread_Room.progress+interval,3);
+			GLThread_Room.makeLoading(GLThread_Room.progress+interval,3);
 		}
 	}
 

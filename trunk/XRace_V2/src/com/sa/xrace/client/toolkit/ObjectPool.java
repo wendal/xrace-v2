@@ -2,6 +2,8 @@ package com.sa.xrace.client.toolkit;
 
 import java.net.Socket;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
@@ -37,4 +39,5 @@ public final class ObjectPool {
 	
 	public static GIPool giPool;
 
+	public static GL10 gl;
 }
