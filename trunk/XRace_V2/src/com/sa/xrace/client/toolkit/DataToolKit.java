@@ -47,6 +47,16 @@ public final class DataToolKit {
     public static final int MAP = 1001;
     public static final int COLLISION = 1002;
     public static final int ROOM = 1003;
+    
+    /**
+     * From com.sa.xrace.client.collision.Rectangle
+     */
+    public static final int UP = 0;
+    public static final int LEFT = 1;
+    public static final int BOTTOM = 2;
+    public static final int RIGHT = 3;
+    public static final int HORIZON = 4;
+    public static final int VERTICAL = 5;
 	
 	
 

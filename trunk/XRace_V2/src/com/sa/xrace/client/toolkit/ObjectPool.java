@@ -8,7 +8,7 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 
 import com.sa.xrace.client.GameActivity;
-import com.sa.xrace.client.manager.PostManagerClient;
+import com.sa.xrace.client.manager.PostManagerClientImp;
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
@@ -21,7 +21,7 @@ public final class ObjectPool {
 	
 	public static Resources resources;
 	
-	public static PostManagerClient mPostManager;
+	public static PostManagerClientImp mPostManager;
 	
 	public static Socket mSocket;
 	
