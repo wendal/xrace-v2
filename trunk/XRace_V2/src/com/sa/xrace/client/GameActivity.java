@@ -545,6 +545,7 @@ public class GameActivity extends Activity implements SensorListener {
 		super.onStop();
 	}
 	protected void onDestroy(){
+	    
 		finish();
 		super.onDestroy();
 	}
