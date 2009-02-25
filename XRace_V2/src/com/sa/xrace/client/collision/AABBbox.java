@@ -17,6 +17,7 @@ import com.sa.xrace.client.math.Matrix4f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.model.t3DObject;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 public class AABBbox 
 {	
@@ -152,7 +153,7 @@ public class AABBbox
 	{
 		report.refreshReport();		
 		//for every line in rectangle check whether it collide with walls
-		for(int i=Rectangle.UP;i<=Rectangle.RIGHT;i++)
+		for(int i=DataToolKit.UP;i<=DataToolKit.RIGHT;i++)
 		{			
 			for(int n=0;n<box.rectangle.lines.length;n++)
 			{
@@ -198,7 +199,7 @@ public class AABBbox
 		}
 		report.refreshReport();		
 		//for every line in rectangle check whether it collide with walls
-		for(int i=Rectangle.UP;i<=Rectangle.RIGHT;i++)
+		for(int i=DataToolKit.UP;i<=DataToolKit.RIGHT;i++)
 		{			
 			
 			for(int n=0;n<map.wallLines.size();n++)
@@ -245,7 +246,7 @@ public class AABBbox
 		int reportCount=0;
 		report.refreshReport();		
 		//for every line in rectangle check whether it collide with walls
-		for(int i=Rectangle.UP;i<=Rectangle.RIGHT;i++)
+		for(int i=DataToolKit.UP;i<=DataToolKit.RIGHT;i++)
 		{			
 			//calculate out the formula of this wall line
 			tempWallPointF = map.finishLine[0];

@@ -17,18 +17,18 @@ package com.sa.xrace.client.math;
 /**
  *  This class is used to store a point in a 3D space
  */
-public class Point2f implements Cloneable 
+public class Point2f extends android.graphics.PointF implements Cloneable 
 {
-	public float x = 0.f;
-	public float y = 0.f;
+//	public float x = 0.f;
+//	public float y = 0.f;
 
-	public Point2f() {
-
-	}
-	public Point2f(float x, float y) {
-		this.x = x;
-		this.y = y;
-	}
+//	public Point2f() {
+//
+//	}
+//	public Point2f(float x, float y) {
+//		this.x = x;
+//		this.y = y;
+//	}
 	public Object clone()
 	{
 		Object o = null;

@@ -31,7 +31,7 @@ public class GLWorld
 	private Vector<Object> mObjectVector = new Vector<Object>();
 	private InforPoolClient mInforPoolClient;
 	private CollisionMap collisionMap;
-	private Frustum mFrustum = new Frustum();
+//	private Frustum mFrustum;
 	private Camera mCamera;
     private float mAngle;
     private Matrix4f mTranslateMatrix;
@@ -59,7 +59,7 @@ public class GLWorld
 	{
 		mInforPoolClient = ObjectPool.inPoolClient;
 		mCamera = camera;
-		mFrustum = new Frustum();
+//		mFrustum = new Frustum();
 		mTranslateMatrix = new Matrix4f();
 		mRotateMatrix = new Matrix4f();
 		mScaleMatrix = new Matrix4f();
@@ -133,7 +133,7 @@ public class GLWorld
 			object.rotate(gl);
 			object.scale(gl);				
 			//mFrustum.updateFrustum(gl);
-			if (mFrustum.checkSphere(object.getPosition(), object.getModel().getRadius()) == true)
+			if (Frustum.checkSphere(object.getPosition(), object.getModel().getRadius()) == true)
 			{	
 				object.draw(gl);
 
@@ -172,7 +172,7 @@ public class GLWorld
 						
 						
 						//mFrustum.updateFrustum(gl);
-						if (mFrustum.checkSphere(center, model.getRadius()) == true)
+						if (Frustum.checkSphere(center, model.getRadius()) == true)
 						{		      
 							model.draw(gl);
 						}	
@@ -202,7 +202,7 @@ public class GLWorld
 			
 	        //////////////////////////
 			//mFrustum.updateFrustum(gl);
-			if (mFrustum.checkSphere(myCenter, model.getRadius()) == true)
+			if (Frustum.checkSphere(myCenter, model.getRadius()) == true)
 			{		
  		        myCar.draw(gl);
 			}

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import android.util.Log;
 
 import com.sa.xrace.client.math.Point3f;
+import com.sa.xrace.client.toolkit.DataToolKit;
 
 public class Report
 {
@@ -73,7 +74,7 @@ public class Report
 						Log.e("RHORN","selfLineID"+selfLineID.size()+" targetLineID"+targetLineID.size()+" targetLines"+targetLines.size());
 						return RHORN;
 					}else if(selfLineID.get(1)-selfLineID.get(0)==1 || 
-							(selfLineID.get(0) ==Rectangle.UP && selfLineID.get(1) == Rectangle.RIGHT))
+							(selfLineID.get(0) ==DataToolKit.UP && selfLineID.get(1) == DataToolKit.RIGHT))
 					{
 						Log.e("RCORNER","selfLineID"+selfLineID.size()+" targetLineID"+targetLineID.size()+" targetLines"+targetLines.size());
 						
@@ -122,7 +123,7 @@ public class Report
 //						Log.e("RHORN","RHORN");
 						return RHORN;
 					}else if(selfLineID.get(1)-selfLineID.get(0)==1 || 
-							(selfLineID.get(0) ==Rectangle.UP && selfLineID.get(1) == Rectangle.RIGHT))
+							(selfLineID.get(0) ==DataToolKit.UP && selfLineID.get(1) == DataToolKit.RIGHT))
 					{
 //						Log.e("RCORNER","RCORNER");
 						return RCORNER;
