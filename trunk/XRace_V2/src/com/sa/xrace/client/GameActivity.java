@@ -20,6 +20,8 @@ import android.content.res.Configuration;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
@@ -94,6 +96,8 @@ public class GameActivity extends Activity implements SensorListener {
 	
 	public static boolean testPosition = false;
 	
+	private Handler mHandler;
+	
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		if(this.getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
@@ -101,82 +105,106 @@ public class GameActivity extends Activity implements SensorListener {
 		}
 		Log.e("-----------getRequestedOrientation",""+getRequestedOrientation());
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//将部分共用对象写入对象池
-		if(ObjectPool.activity == null){
-			ObjectPool.activity = this;
-		}
-		if(ObjectPool.resources == null){
-			ObjectPool.resources = getResources();
-		}
-		if(ObjectPool.assetManager == null){
-		    ObjectPool.assetManager = getAssets();
-		}
 		
-		try {
-		    //将Socket加入对象池
-			ObjectPool.mSocket = new Socket(InetAddress.getByName(NetworkToolKit.SERVERIP), NetworkToolKit.SERVERPORT);
-		} catch (UnknownHostException e) {
-			Log.v("-- UnknownHostException --","-- UnknownHostException --");
-			e.printStackTrace();
-			//是否应该退出呢?
-		} catch (IOException e) {
-			Log.v("-- IOException --","-- IOException --");
-			e.printStackTrace();
-			//是否应该退出呢?
-		}
-		//		Log.i("GameActivity", "After connect socket");
+		mHandler = new Handler();
+		mHandler.post(new initThread(this));
 		
-		// Connect to the OpentIntents for simulator of the sensor
-//		OpenIntents.requiresOpenIntents(this);
-//		Hardware.mContentResolver = getContentResolver();
-//		mSensorManager = (SensorManager) getSystemService("sensor");
-//		Log.e(getClass().getName(), ""+mSensorManager);
-//		SensorManagerSimulator.connectSimulator();
-
-//		DataUnti.init(this);
-
-//		incomeIntent = getIntent();
-//		String temp = Uri.decode(incomeIntent.getData().toString());
-//		StringTokenizer st = new StringTokenizer(temp, "@&");
-//		NAME = NetworkToolKit.NAME;
-//		IP = NetworkToolKit.SERVERIP;
-
-		mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
-		//将mModelInforPool加入对象池
-		ObjectPool.mModelInforPool = mModelInforPool;
-//		mModelImport = new ModelImport();
-		mCamera = new Camera();
-		
-		inPool = new InforPoolClient();
-		//将inPoolClient加入对象池
-		ObjectPool.inPoolClient = inPool;
-		//将WRbarPool加入对象池
-		ObjectPool.barPool = new WRbarPool();
-//		RoomPicPool rpPool = new RoomPicPool(this);
-		//将RoomPicPool加入对象池
-//		ObjectPool.rpPool = new RoomPicPool();
-		ObjectPool.giPool = new GIPool(mCamera);
-
-//		Socket mSocket = null;
-		
-
-		//把PostManagerClientImp加入对象池
-		ObjectPool.mPostManager  = new PostManagerClientImp();
-//		mServerListener = 
-		    new ServerListenerImp();
-		mWorld = new GLWorld( mCamera);
-		//把GLWorld加入对象池
-		ObjectPool.mWorld = mWorld;
-		inPool.getOneCarInformation(inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
-
-		mModelInforPool.setType(DataToolKit.CAR);
-		inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
-	
-		GameView drawView = new GameView(getApplication());
-		setContentView(drawView);
-		System.gc();
 //		System.out.println(Runtime.getRuntime().freeMemory());
 		Log.i("GameActivity", "Finish onCreate(), Free Mem: " + Runtime.getRuntime().freeMemory());
+	}
+	
+	private static boolean isInited = false;
+	
+	private static class initThread extends HandlerThread{
+
+//	    private static GameActivity activity;
+	    
+        public initThread(GameActivity activity) {
+            super("init GameActivity");
+            ObjectPool.activity = activity;
+        }
+	   
+        public void run(){
+            if(isInited){
+                ;
+            }else{
+              //将部分共用对象写入对象池
+//                if(ObjectPool.activity == null){
+//                    ObjectPool.activity = activity;
+//                }
+                if(ObjectPool.resources == null){
+                    ObjectPool.resources = ObjectPool.activity.getResources();
+                }
+                if(ObjectPool.assetManager == null){
+                    ObjectPool.assetManager = ObjectPool.activity.getAssets();
+                }
+                
+                try {
+                    //将Socket加入对象池
+                    ObjectPool.mSocket = new Socket(InetAddress.getByName(NetworkToolKit.SERVERIP), NetworkToolKit.SERVERPORT);
+                } catch (UnknownHostException e) {
+                    Log.v("-- UnknownHostException --","-- UnknownHostException --");
+                    e.printStackTrace();
+                    //是否应该退出呢?
+                } catch (IOException e) {
+                    Log.v("-- IOException --","-- IOException --");
+                    e.printStackTrace();
+                    //是否应该退出呢?
+                }
+                //      Log.i("GameActivity", "After connect socket");
+                
+                // Connect to the OpentIntents for simulator of the sensor
+//              OpenIntents.requiresOpenIntents(this);
+//              Hardware.mContentResolver = getContentResolver();
+//              mSensorManager = (SensorManager) getSystemService("sensor");
+//              Log.e(getClass().getName(), ""+mSensorManager);
+//              SensorManagerSimulator.connectSimulator();
+
+//              DataUnti.init(this);
+
+//              incomeIntent = getIntent();
+//              String temp = Uri.decode(incomeIntent.getData().toString());
+//              StringTokenizer st = new StringTokenizer(temp, "@&");
+//              NAME = NetworkToolKit.NAME;
+//              IP = NetworkToolKit.SERVERIP;
+
+                ObjectPool.activity.mModelInforPool = new ModelInforPool(new Point3f(0, 0, -3.0f));
+                //将mModelInforPool加入对象池
+                ObjectPool.mModelInforPool = ObjectPool.activity.mModelInforPool;
+//              mModelImport = new ModelImport();
+                ObjectPool.activity.mCamera = new Camera();
+                
+                ObjectPool.activity.inPool = new InforPoolClient();
+                //将inPoolClient加入对象池
+                ObjectPool.inPoolClient = ObjectPool.activity.inPool;
+                //将WRbarPool加入对象池
+                ObjectPool.barPool = new WRbarPool();
+//              RoomPicPool rpPool = new RoomPicPool(this);
+                //将RoomPicPool加入对象池
+//              ObjectPool.rpPool = new RoomPicPool();
+                ObjectPool.giPool = new GIPool(ObjectPool.activity.mCamera);
+
+//              Socket mSocket = null;
+                
+
+                //把PostManagerClientImp加入对象池
+                ObjectPool.mPostManager  = new PostManagerClientImp();
+//              mServerListener = 
+                    new ServerListenerImp();
+                    ObjectPool.activity.mWorld = new GLWorld( ObjectPool.activity.mCamera);
+                //把GLWorld加入对象池
+                ObjectPool.mWorld = ObjectPool.activity.mWorld;
+                ObjectPool.activity.inPool.getOneCarInformation(ObjectPool.activity.inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
+
+                ObjectPool.activity.mModelInforPool.setType(DataToolKit.CAR);
+                ObjectPool.activity.inPool.getOneCarInformation(ObjectPool.activity.inPool.getMyCarIndex()).setModel(ObjectPool.activity.mModelInforPool.getCurrentModel());
+            
+                GameView drawView = new GameView(ObjectPool.activity.getApplication());
+                ObjectPool.activity.setContentView(drawView);
+                System.gc();
+                isInited = true;
+            }
+        }
 	}
 
 //	public boolean onTouchEvent(MotionEvent event) {	
