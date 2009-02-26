@@ -15,4 +15,5 @@ public final class StateValuePool {
     public static boolean isStart = false;
     // private IntBuffer tempIB;
 
+    public static boolean needTimeCount = true;
 }

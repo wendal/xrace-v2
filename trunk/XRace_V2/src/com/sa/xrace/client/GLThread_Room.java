@@ -236,6 +236,7 @@ public final class GLThread_Room extends Thread {
             giPool.drawDiameter(gl);
             giPool.drawMiniMap(gl);
 
+            if(StateValuePool.needTimeCount)
             giPool.drawTimeCount(gl, mWorld);
 
             break;
@@ -527,11 +528,11 @@ public final class GLThread_Room extends Thread {
             mModelContainer.setScale(0.04f, 0.04f, 0.04f);
             // ºÄÊ±87ms
             // Begin
-            long start = System.currentTimeMillis();
+//            long start = System.currentTimeMillis();
             mModelContainer.drawByID(gl, 4);
             // End
-            Log.e("mModelContainer.drawByID,Time used:", ""
-                    + (System.currentTimeMillis() - start));
+//            Log.e("mModelContainer.drawByID,Time used:", ""
+//                    + (System.currentTimeMillis() - start));
 
             gl.glPopMatrix();
         }

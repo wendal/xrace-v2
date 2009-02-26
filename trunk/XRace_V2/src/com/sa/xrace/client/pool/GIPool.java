@@ -331,7 +331,7 @@ public final class GIPool {
                     makeDst("GO", gl);
                 } else {
                     mWorld.isBeginWait = true;
-
+                    StateValuePool.needTimeCount = false;
                 }
 
             }

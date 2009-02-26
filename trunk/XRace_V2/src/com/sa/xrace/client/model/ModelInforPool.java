@@ -166,9 +166,9 @@ public final class ModelInforPool {
         for (int index = 0; index < 5; index++) {
             Model model = spAy.get(index);
 
-            if (model == null) {
-                Log.e("In ModelInforPool", "" + System.currentTimeMillis());
-            }
+//            if (model == null) {
+//                Log.e("In ModelInforPool", "" + System.currentTimeMillis());
+//            }
 
             if (model.getType() == mCurrentType) {
                 mCurrentModel = model;

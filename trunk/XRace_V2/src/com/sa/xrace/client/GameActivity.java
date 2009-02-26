@@ -84,8 +84,8 @@ public class GameActivity extends Activity implements SensorListener {
         // Configuration.ORIENTATION_LANDSCAPE){
         // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // }
-        Log.e("-----------getRequestedOrientation", ""
-                + getRequestedOrientation());
+//        Log.e("-----------getRequestedOrientation", ""
+//                + getRequestedOrientation());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         mHandler = new Handler();

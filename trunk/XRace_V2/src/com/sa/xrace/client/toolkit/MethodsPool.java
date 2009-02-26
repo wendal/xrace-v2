@@ -3,9 +3,6 @@ package com.sa.xrace.client.toolkit;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,7 +20,6 @@ import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.model.ModelImport;
 import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.scene.Object;
-import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public final class MethodsPool {
 
@@ -33,46 +29,46 @@ public final class MethodsPool {
         // return tem;
     }
 
-    /**
-     * 这个方法耗时严重,需要改进
-     * 
-     * @param resname
-     * @return
-     */
-    public final static ByteBuffer getImageReadyfor(int resname) {
-        ByteBuffer tempBuffer;
-        Bitmap mBitmap = BitmapFactory.decodeResource(ObjectPool.resources,
-                resname);
-        int pic_width = mBitmap.getWidth();
-        int pic_height = mBitmap.getHeight();
-        // Log.e("pic_width",""+pic_width+" "+pic_height);
-        tempBuffer = ByteBuffer.allocateDirect(pic_width * pic_height * 4);
-        tempBuffer.order(ByteOrder.nativeOrder());
-        IntBuffer tempIB = tempBuffer.asIntBuffer();
-
-        for (int y = 0; y < pic_width; y++) {
-            for (int x = 0; x < pic_height; x++) {
-                tempIB.put(mBitmap.getPixel(x, y));
-            }
-        }
-
-        for (int i = 0; i < pic_width * pic_height * 4; i += 4) {
-            byte temp = tempBuffer.get(i);
-            tempBuffer.put(i, tempBuffer.get(i + 2));
-            tempBuffer.put(i + 2, temp);
-
-        }
-        tempBuffer.position(0);
-        DataUnti.sendOut(DataUnti.getNameByID(resname), tempBuffer);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        Log.e("Here", "Shall not show me !");
-        return tempBuffer;
-    }
+//    /**
+//     * 这个方法耗时严重,需要改进
+//     * 
+//     * @param resname
+//     * @return
+//     */
+//    public final static ByteBuffer getImageReadyfor(int resname) {
+//        ByteBuffer tempBuffer;
+//        Bitmap mBitmap = BitmapFactory.decodeResource(ObjectPool.resources,
+//                resname);
+//        int pic_width = mBitmap.getWidth();
+//        int pic_height = mBitmap.getHeight();
+//        // Log.e("pic_width",""+pic_width+" "+pic_height);
+//        tempBuffer = ByteBuffer.allocateDirect(pic_width * pic_height * 4);
+//        tempBuffer.order(ByteOrder.nativeOrder());
+//        IntBuffer tempIB = tempBuffer.asIntBuffer();
+//
+//        for (int y = 0; y < pic_width; y++) {
+//            for (int x = 0; x < pic_height; x++) {
+//                tempIB.put(mBitmap.getPixel(x, y));
+//            }
+//        }
+//
+//        for (int i = 0; i < pic_width * pic_height * 4; i += 4) {
+//            byte temp = tempBuffer.get(i);
+//            tempBuffer.put(i, tempBuffer.get(i + 2));
+//            tempBuffer.put(i + 2, temp);
+//
+//        }
+//        tempBuffer.position(0);
+//        DataUnti.sendOut(DataUnti.getNameByID(resname), tempBuffer);
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        Log.e("Here", "Shall not show me !");
+//        return tempBuffer;
+//    }
 
     public static void LoadMapFromXML(String filename) {
         long start = System.currentTimeMillis();

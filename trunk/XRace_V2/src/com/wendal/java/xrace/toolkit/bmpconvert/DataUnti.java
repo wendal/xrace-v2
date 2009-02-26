@@ -22,7 +22,6 @@ import java.util.HashMap;
 import android.util.Log;
 
 import com.sa.xrace.client.R;
-import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
 
@@ -121,9 +120,9 @@ public final class DataUnti {
         // Log.e("DataUnit", srcFilename);
         ByteBuffer buffer = getByteBuffer_ByFileName(getNameByID(id));
         // try {
-        if (buffer == null) {
-            buffer = MethodsPool.getImageReadyfor(id);
-        }
+//        if (buffer == null) {
+//            buffer = MethodsPool.getImageReadyfor(id);
+//        }
         return buffer;
         // } catch (IOException e) {
         // TODO Auto-generated catch block
