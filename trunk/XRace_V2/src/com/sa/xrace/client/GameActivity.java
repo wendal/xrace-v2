@@ -37,6 +37,7 @@ import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
@@ -178,6 +179,8 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.mWorld = ObjectPool.activity.mWorld;
                 ObjectPool.activity.inPool.getOneCarInformation(ObjectPool.activity.inPool.getMyCarIndex()).setNName(NetworkToolKit.NAME);
 
+                MethodsPool.LoadMapFromXML("scene.xml");
+                
                 ObjectPool.activity.mModelInforPool.setType(DataToolKit.CAR);
                 ObjectPool.activity.inPool.getOneCarInformation(ObjectPool.activity.inPool.getMyCarIndex()).setModel(ObjectPool.activity.mModelInforPool.getCurrentModel());
             

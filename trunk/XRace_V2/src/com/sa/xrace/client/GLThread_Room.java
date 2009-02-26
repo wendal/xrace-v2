@@ -20,7 +20,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLU;
 import android.util.Log;
-import android.util.TimingLogger;
 import android.view.SurfaceHolder;
 
 import com.sa.xrace.client.model.ModelInforPool;
@@ -28,7 +27,6 @@ import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
-import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
@@ -136,6 +134,7 @@ public final class GLThread_Room extends Thread {
 
         /* 这是耗时的一步 */
         // if (!isModelGenerate) {
+        Log.e("Begin Loading",""+System.currentTimeMillis());
         Loading();
         // }
 
@@ -365,7 +364,7 @@ public final class GLThread_Room extends Thread {
 
     private void Loading() {
         GL10 gl = ObjectPool.gl;
-        TimingLogger logger = new TimingLogger("GLThread_Room", "Loading");
+//        TimingLogger logger = new TimingLogger("GLThread_Room", "Loading");
         // long start = System.currentTimeMillis();
         // long first = start;
         // Log.e("-->Begin " + (System.currentTimeMillis() - start),
@@ -379,14 +378,16 @@ public final class GLThread_Room extends Thread {
 
         // start = System.currentTimeMillis();
         giPool.makeAllInterface(gl); // >1s
-        logger.addSplit("makeAllInterface");
+//        logger.addSplit("makeAllInterface");
         // makeLoading(182, 2);
         // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
         // "makeAllInterface");
 
         // start = System.currentTimeMillis();
-        MethodsPool.LoadMapFromXML("scene.xml"); // 4.7s
-        logger.addSplit("LoadMapFromXML");
+        
+//        MethodsPool.LoadMapFromXML("scene.xml"); // 4.7s
+        
+//        logger.addSplit("LoadMapFromXML");
         // makeLoading(242, 2);
         // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
         // "LoadMapFromXML");
@@ -394,14 +395,14 @@ public final class GLThread_Room extends Thread {
         // start = System.currentTimeMillis();
         // long start = System.currentTimeMillis();
         mModelContainer.generate(gl); // 49s
-        logger.addSplit("mModelContainer.generate");
+//        logger.addSplit("mModelContainer.generate");
         // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
         // "mModelContainer.generate(gl);");
         // start = System.currentTimeMillis();
 
         getCommonTextureReady(gl); // >1s
         // makeLoading(442, 3);
-        logger.addSplit("getCommonTextureReady(gl)");
+//        logger.addSplit("getCommonTextureReady(gl)");
         mModelContainer.setType(DataToolKit.CAR);
         inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
                 mModelContainer.getCurrentModel());
@@ -412,8 +413,8 @@ public final class GLThread_Room extends Thread {
         }
         // makeLoading(460, 3);
         // isModelGenerate = true;
-        logger.addSplit("sendLoginPostToServer");
-        logger.dumpToLog();
+//        logger.addSplit("sendLoginPostToServer");
+//        logger.dumpToLog();
         // Log.e("Done Loading-->Time used: "
         // + (System.currentTimeMillis() - first),
         // "It shall be show Srceen now");
