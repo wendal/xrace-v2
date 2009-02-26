@@ -9,15 +9,10 @@
  */
 package com.sa.xrace.client.model;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Vector;
 
 import javax.microedition.khronos.opengles.GL10;
-
-import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author sliao

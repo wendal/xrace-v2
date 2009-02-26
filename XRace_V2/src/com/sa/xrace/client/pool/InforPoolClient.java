@@ -453,59 +453,59 @@ public class InforPoolClient {
 		return (int) (input % 1000000000 % 10000);
 	}
 
-	public void LogAllCarInfor() {
-
-		 Log.v("car MyCarIndex", "" + getMyCarIndex());
-		 if (getNCarNumber() == 0) {
-		 Log.e("one car infor", "=====================================");
-		 Log.v("car NAcceleration", ""
-		 + nCar[0].getNAcceleration());
-		 Log.v("car NAccidenceDirection", ""
-		 + nCar[0].getNAccidenceDirection());
-		 Log.v("car NAccidenceSpeed", ""
-		 + nCar[0].getNAccidenceSpeed());
-		 Log.v("car NCarID", "" + nCar[0].getNCarID());
-		 Log.v("car NCarType", "" + nCar[0].getNCarType());
-		 Log.v("car NDirection", "" + nCar[0].getNDirection());
-		 Log.v("car NName", "" + nCar[0].getNName());
-		 Log.v("car NSpeed", "" + nCar[0].getNSpeed());
-		 Log.v("car NStatus", "" + nCar[0].getNStatus());
-		 Log.v("car NXPosition", "" + nCar[0].getNXPosition());
-		 Log.v("car NYPosition", "" + nCar[0].getNYPosition());
-		 Log.v("car TimeDelay", "" + nCar[0].getTimeDelay());
-		 Log.v("car ListName", "" + nCar[0].getCarListName());
-		 Log.e("one car infor", "=====================================");
-		 } else {
-		 for (int i = 0; i < getNCarNumber(); i++) {
-		 Log.e("multiple car infor",
-		 "=====================================");
-		 Log.v("car NAcceleration", ""
-		 + nCar[i].getNAcceleration());
-		 Log.v("car NAccidenceDirection", ""
-		 + nCar[i].getNAccidenceDirection());
-		 Log.v("car NAccidenceSpeed", ""
-		 + nCar[i].getNAccidenceSpeed());
-		 Log.v("car NCarID", "" + nCar[i].getNCarID());
-		 Log.v("car NCarType", "" + nCar[i].getNCarType());
-		 Log
-		 .v("car NDirection", ""
-		 + nCar[i].getNDirection());
-		 Log.v("car NName", "" + nCar[i].getNName());
-		 Log.v("car NSpeed", "" + nCar[i].getNSpeed());
-		 Log.v("car NStatus", "" + nCar[i].getNStatus());
-		 Log
-		 .v("car NXPosition", ""
-		 + nCar[i].getNXPosition());
-		 Log
-		 .v("car NYPosition", ""
-		 + nCar[i].getNYPosition());
-		 Log.v("car TimeDelay", "" + nCar[i].getTimeDelay());
-		 Log.v("car ListName", "" + nCar[i].getCarListName());
-		 Log.e("multiple car infor",
-		 "=====================================");
-		 }
-		 }
-	}
+//	public void LogAllCarInfor() {
+//
+//		 Log.v("car MyCarIndex", "" + getMyCarIndex());
+//		 if (getNCarNumber() == 0) {
+//		 Log.e("one car infor", "=====================================");
+//		 Log.v("car NAcceleration", ""
+//		 + nCar[0].getNAcceleration());
+//		 Log.v("car NAccidenceDirection", ""
+//		 + nCar[0].getNAccidenceDirection());
+//		 Log.v("car NAccidenceSpeed", ""
+//		 + nCar[0].getNAccidenceSpeed());
+//		 Log.v("car NCarID", "" + nCar[0].getNCarID());
+//		 Log.v("car NCarType", "" + nCar[0].getNCarType());
+//		 Log.v("car NDirection", "" + nCar[0].getNDirection());
+//		 Log.v("car NName", "" + nCar[0].getNName());
+//		 Log.v("car NSpeed", "" + nCar[0].getNSpeed());
+//		 Log.v("car NStatus", "" + nCar[0].getNStatus());
+//		 Log.v("car NXPosition", "" + nCar[0].getNXPosition());
+//		 Log.v("car NYPosition", "" + nCar[0].getNYPosition());
+//		 Log.v("car TimeDelay", "" + nCar[0].getTimeDelay());
+//		 Log.v("car ListName", "" + nCar[0].getCarListName());
+//		 Log.e("one car infor", "=====================================");
+//		 } else {
+//		 for (int i = 0; i < getNCarNumber(); i++) {
+//		 Log.e("multiple car infor",
+//		 "=====================================");
+//		 Log.v("car NAcceleration", ""
+//		 + nCar[i].getNAcceleration());
+//		 Log.v("car NAccidenceDirection", ""
+//		 + nCar[i].getNAccidenceDirection());
+//		 Log.v("car NAccidenceSpeed", ""
+//		 + nCar[i].getNAccidenceSpeed());
+//		 Log.v("car NCarID", "" + nCar[i].getNCarID());
+//		 Log.v("car NCarType", "" + nCar[i].getNCarType());
+//		 Log
+//		 .v("car NDirection", ""
+//		 + nCar[i].getNDirection());
+//		 Log.v("car NName", "" + nCar[i].getNName());
+//		 Log.v("car NSpeed", "" + nCar[i].getNSpeed());
+//		 Log.v("car NStatus", "" + nCar[i].getNStatus());
+//		 Log
+//		 .v("car NXPosition", ""
+//		 + nCar[i].getNXPosition());
+//		 Log
+//		 .v("car NYPosition", ""
+//		 + nCar[i].getNYPosition());
+//		 Log.v("car TimeDelay", "" + nCar[i].getTimeDelay());
+//		 Log.v("car ListName", "" + nCar[i].getCarListName());
+//		 Log.e("multiple car infor",
+//		 "=====================================");
+//		 }
+//		 }
+//	}
 
 
 	public void setLoginedFlag()

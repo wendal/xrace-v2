@@ -55,17 +55,18 @@ public final class ModelInforPool
 //		ObjectNumber.regNew(this);
 	}
 
-	public void addModel(Model model)
-	{
-//		mModelVector.add(model);
-		mModelMap.put(model.getID(), model);
-	}
+//	public void addModel(Model model)
+//	{
+////		mModelVector.add(model);
+//		mModelMap.put(model.getID(), model);
+//	}
 	
-	public void addModel(int modelID, int type, t3DModel model, Point3f scale, float radius) 
+	public Model addModel(int modelID, int type, t3DModel model, Point3f scale, float radius) 
 	{
 		Model mod = new Model(modelID, type, model, scale, radius);
 //		mModelVector.add(mod);
 		mModelMap.put(modelID, mod);
+		return mod;
 	}
 	/**
 	 *  This function would generate all the buffer for render according 
