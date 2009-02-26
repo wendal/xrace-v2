@@ -48,27 +48,28 @@ public final class t3DModel
 	 *  This function would generate all the buffer for render according 
 	 *  those data has been imported .
 	 */
-	public void generate(GL10 gl)
+	public void generate()
 	{	
+	    
 		Iterator<t3DObject> t3DObjectIterator = objects.iterator();
 		while (t3DObjectIterator.hasNext())
 		{
 			t3DObject object = t3DObjectIterator.next();
 			if (object.materialID >= 0)
 			{
-				try {
+//				try {
 					String strFilename = Materials.get(object.materialID).strFile;
 					if (strFilename != null && !"".equals(strFilename))	
 					{
 //						Log.e("Start Parse : ", strFilename);
-						InputStream is = ObjectPool.assetManager.open(strFilename);
-						DataInputStream dis = new DataInputStream(is);
-						object.loadBitmap(gl, dis , strFilename);
+//						InputStream is = ObjectPool.assetManager.open(strFilename);
+//						DataInputStream dis = new DataInputStream(is);
+						object.loadBitmap(strFilename);
 //						Log.e("End Parse : ", strFilename);
 					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
 			}
 			object.createBuffer();
 		}

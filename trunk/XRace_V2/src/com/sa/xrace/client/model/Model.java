@@ -30,9 +30,9 @@ public final class Model
 		this.mRadius    = radius;
 //		ObjectNumber.regNew(this);
 	}
-	public void generate(GL10 gl)
+	public void generate()
 	{
-		mModel.generate(gl);
+		mModel.generate();
 	}
 	
 	public void scale(GL10 gl)

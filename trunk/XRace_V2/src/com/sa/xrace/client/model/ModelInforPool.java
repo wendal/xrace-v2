@@ -34,6 +34,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.ObjectPool;
 /**
  * @author sliao
  * @version $Id$
@@ -86,7 +87,7 @@ public final class ModelInforPool
 			Model model = modelIterator.next();
 			if(model.getType() != DataToolKit.COLLISION)
 			{
-				model.generate(gl);				
+				model.generate();				
 			}
 			//½ø¶ÈÌõ
 //			GLThread_Room.makeLoading(GLThread_Room.progress+interval,3);
@@ -96,8 +97,9 @@ public final class ModelInforPool
 	/**
 	 *  This function would render the current model
 	 */
-    public void draw(GL10 gl)
+    public void draw()
     {      
+        GL10 gl = ObjectPool.gl;
     	if (mCurrentModel != null)
     	{
     		gl.glMatrixMode(GL10.GL_MODELVIEW);

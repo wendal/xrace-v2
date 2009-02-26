@@ -33,6 +33,7 @@ import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.sa.xrace.client.toolkit.StateValuePool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public final class GLThread_Room extends Thread {
@@ -190,7 +191,7 @@ public final class GLThread_Room extends Thread {
         if (!addBar) {
             Log.e("----------------addBar-----------------", "addBar");
             ObjectPool.barPool.addBar_Login(bindex);
-            GameActivity.isLogin = true;
+            StateValuePool.isLogin = true;
             addBar = true;
         }
         switch (mPhase) {
@@ -199,7 +200,7 @@ public final class GLThread_Room extends Thread {
             drawGarage(gl, timeElapsed);
             ObjectPool.barPool.drawOut();
 
-            if (GameActivity.carOn) {
+            if (StateValuePool.carOn) {
                 drawCarSelection(gl);
             }
             break;
@@ -215,7 +216,7 @@ public final class GLThread_Room extends Thread {
 
             break;
         }
-        if (GameActivity.isStart) {
+        if (StateValuePool.isStart) {
             timeadd += timeElapsed;
             if (timeadd >= 30) {
                 ObjectPool.mPostManager.sendNormalPostToServer();
@@ -373,7 +374,7 @@ public final class GLThread_Room extends Thread {
         mModelContainer.setType(DataToolKit.CAR);
         inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
                 mModelContainer.getCurrentModel());
-        if (!GameActivity.isLogin) {
+        if (!StateValuePool.isLogin) {
             Log.e("----------------isLogin-----------------", "isLogin");
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");
             ObjectPool.mPostManager.sendLoginPostToServer();
@@ -475,7 +476,7 @@ public final class GLThread_Room extends Thread {
         mModelContainer.setMAngle(38f);
         mModelContainer.setPosition(0, -1.7f, -8.4f);
         mModelContainer.setScale(0.02f, 0.02f, 0.02f);
-        mModelContainer.draw(gl);
+        mModelContainer.draw();
         gl.glPopMatrix();
     }
 

@@ -21,6 +21,7 @@ import javax.microedition.khronos.opengles.GL10;
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.MethodsPool;
+import com.sa.xrace.client.toolkit.ObjectPool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 /**
@@ -157,11 +158,10 @@ public final class t3DObject implements Cloneable
 	/**
 	 * 本身该方法极为耗时!
 	 * <p/>已改进,改变策略,直接读取已经处理好的数据,不必每次都重新计算
-	 * @param gl
-	 * @param is
 	 */
-	public void loadBitmap(GL10 gl, InputStream is , String filename)
+	public void loadBitmap( String filename)
 	{
+	    GL10 gl = ObjectPool.gl;
 //		long start = System.currentTimeMillis();
 //		Bitmap bitmap = BitmapFactory.decodeStream(is);
 //		Log.e("In LoadBitmap", "Time used : (decodeStream(is)) "+(System.currentTimeMillis() - start));

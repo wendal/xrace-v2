@@ -20,11 +20,11 @@ import android.os.HandlerThread;
 import android.util.Log;
 
 import com.sa.xrace.client.GLThread_Room;
-import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.sa.xrace.client.toolkit.StateValuePool;
 
 /**
  * @author yyang
@@ -166,7 +166,7 @@ public class ServerListenerImp extends HandlerThread {
 //					barPool.addBar_Login(tempID);
 //					pool.setLoginedFlag();
 					
-					GameActivity.isLogin = true;
+					StateValuePool.isLogin = true;
 					GLThread_Room.addBar =false;
 					GLThread_Room.bindex = tempID;
 					
@@ -183,11 +183,11 @@ public class ServerListenerImp extends HandlerThread {
 					tempID = input.readByte();
 					tempModelID = input.readByte();
 					pool.updateCarType(tempID, tempModelID);
-					GameActivity.isCarType = true;
+					StateValuePool.isCarType = true;
 				}else if (postReceived == DataToolKit.START) {
 //					Log.v(TAG, "START Post Received");
 						pool.updatePoolStart();
-						GameActivity.isStart = true;
+						StateValuePool.isStart = true;
 					// ////////////////////////////////////////
 					// jump to game start interface
 					// ////////////////////////////////////////
