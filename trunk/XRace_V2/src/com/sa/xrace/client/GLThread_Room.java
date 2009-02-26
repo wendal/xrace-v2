@@ -134,7 +134,7 @@ public final class GLThread_Room extends Thread {
 
         /* 这是耗时的一步 */
         // if (!isModelGenerate) {
-        Log.e("Begin Loading",""+System.currentTimeMillis());
+        Log.e("Begin Loading", "" + System.currentTimeMillis());
         Loading();
         // }
 
@@ -213,17 +213,17 @@ public final class GLThread_Room extends Thread {
 
         switch (mPhase) {
         case DataToolKit.GAME_ROOM:
-            //原本耗时约98ms
+            // 原本耗时约98ms
             // Begin
-//            long start = System.currentTimeMillis();
+            // long start = System.currentTimeMillis();
             drawGarage(gl, timeElapsed);
-            
+
             // End
-//            Log.e("drawGarage,Time used:", ""
-//                    + (System.currentTimeMillis() - start));
-            
+            // Log.e("drawGarage,Time used:", ""
+            // + (System.currentTimeMillis() - start));
+
             ObjectPool.barPool.drawOut();
-            
+
             if (StateValuePool.carOn) {
                 drawCarSelection(gl);
             }
@@ -364,7 +364,7 @@ public final class GLThread_Room extends Thread {
 
     private void Loading() {
         GL10 gl = ObjectPool.gl;
-//        TimingLogger logger = new TimingLogger("GLThread_Room", "Loading");
+        // TimingLogger logger = new TimingLogger("GLThread_Room", "Loading");
         // long start = System.currentTimeMillis();
         // long first = start;
         // Log.e("-->Begin " + (System.currentTimeMillis() - start),
@@ -378,16 +378,16 @@ public final class GLThread_Room extends Thread {
 
         // start = System.currentTimeMillis();
         giPool.makeAllInterface(gl); // >1s
-//        logger.addSplit("makeAllInterface");
+        // logger.addSplit("makeAllInterface");
         // makeLoading(182, 2);
         // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
         // "makeAllInterface");
 
         // start = System.currentTimeMillis();
-        
-//        MethodsPool.LoadMapFromXML("scene.xml"); // 4.7s
-        
-//        logger.addSplit("LoadMapFromXML");
+
+        // MethodsPool.LoadMapFromXML("scene.xml"); // 4.7s
+
+        // logger.addSplit("LoadMapFromXML");
         // makeLoading(242, 2);
         // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
         // "LoadMapFromXML");
@@ -395,14 +395,14 @@ public final class GLThread_Room extends Thread {
         // start = System.currentTimeMillis();
         // long start = System.currentTimeMillis();
         mModelContainer.generate(gl); // 49s
-//        logger.addSplit("mModelContainer.generate");
+        // logger.addSplit("mModelContainer.generate");
         // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
         // "mModelContainer.generate(gl);");
         // start = System.currentTimeMillis();
 
         getCommonTextureReady(gl); // >1s
         // makeLoading(442, 3);
-//        logger.addSplit("getCommonTextureReady(gl)");
+        // logger.addSplit("getCommonTextureReady(gl)");
         mModelContainer.setType(DataToolKit.CAR);
         inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
                 mModelContainer.getCurrentModel());
@@ -413,8 +413,8 @@ public final class GLThread_Room extends Thread {
         }
         // makeLoading(460, 3);
         // isModelGenerate = true;
-//        logger.addSplit("sendLoginPostToServer");
-//        logger.dumpToLog();
+        // logger.addSplit("sendLoginPostToServer");
+        // logger.dumpToLog();
         // Log.e("Done Loading-->Time used: "
         // + (System.currentTimeMillis() - first),
         // "It shall be show Srceen now");
@@ -525,14 +525,14 @@ public final class GLThread_Room extends Thread {
             mModelContainer.setMAngle(38f + cameraLimit);
             mModelContainer.setPosition(0, -2.5f, -7.4f);
             mModelContainer.setScale(0.04f, 0.04f, 0.04f);
-            //耗时87ms
-         // Begin
-          long start = System.currentTimeMillis();
+            // 耗时87ms
+            // Begin
+            long start = System.currentTimeMillis();
             mModelContainer.drawByID(gl, 4);
             // End
-          Log.e("mModelContainer.drawByID,Time used:", ""
-                  + (System.currentTimeMillis() - start));
-            
+            Log.e("mModelContainer.drawByID,Time used:", ""
+                    + (System.currentTimeMillis() - start));
+
             gl.glPopMatrix();
         }
     }

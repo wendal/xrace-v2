@@ -26,10 +26,6 @@
 
 package com.sa.xrace.client.model;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-
 import javax.microedition.khronos.opengles.GL10;
 
 import android.util.Log;
@@ -80,14 +76,14 @@ public final class ModelInforPool {
         // Iterator<Model> ModelIterator = mModelVector.iterator();
 
         // Collection<Model> collection = mModelVector.values();
-//        Iterator<Model> modelIterator = spAy.values().iterator();
-//
-//        // int size = mModelVector.size(); // for loading
-//        // int interval = 180/mModelMap.size();
-//
-//        while (modelIterator.hasNext()) {
-//            // int temp = GLThread_Room.progress;
-//            Model model = modelIterator.next();
+        // Iterator<Model> modelIterator = spAy.values().iterator();
+        //
+        // // int size = mModelVector.size(); // for loading
+        // // int interval = 180/mModelMap.size();
+        //
+        // while (modelIterator.hasNext()) {
+        // // int temp = GLThread_Room.progress;
+        // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
             Model model = spAy.get(index);
             if (model.getType() != DataToolKit.COLLISION) {
@@ -163,17 +159,17 @@ public final class ModelInforPool {
     public void setType(int type) {
         this.mCurrentType = type;
         // Iterator<Model> ModelIterator = mModelVector.iterator();
-//        Collection<Model> collection = mModelMap.values();
-//        Iterator<Model> modelIterator = collection.iterator();
-//        while (modelIterator.hasNext()) {
-//            Model model = modelIterator.next();
+        // Collection<Model> collection = mModelMap.values();
+        // Iterator<Model> modelIterator = collection.iterator();
+        // while (modelIterator.hasNext()) {
+        // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
             Model model = spAy.get(index);
-            
-            if(model == null){
-                Log.e("In ModelInforPool",""+System.currentTimeMillis());
+
+            if (model == null) {
+                Log.e("In ModelInforPool", "" + System.currentTimeMillis());
             }
-            
+
             if (model.getType() == mCurrentType) {
                 mCurrentModel = model;
                 mAngle = 0.0f;
@@ -183,10 +179,10 @@ public final class ModelInforPool {
 
     public void setTypeAndUpdate(int type, boolean previousOrNext) {
         this.mCurrentType = type;
-//        Collection<Model> collection = mModelMap.values();
-//        Iterator<Model> modelIterator = collection.iterator();
-//        while (modelIterator.hasNext()) {
-//            Model model = modelIterator.next();
+        // Collection<Model> collection = mModelMap.values();
+        // Iterator<Model> modelIterator = collection.iterator();
+        // while (modelIterator.hasNext()) {
+        // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
             Model model = spAy.get(index);
             if (model.getType() == mCurrentType) {
