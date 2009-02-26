@@ -24,10 +24,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.opengl.GLUtils;
 
-import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
+import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.sa.xrace.client.toolkit.StateValuePool;
 import com.wendal.java.xrace.toolkit.bmpconvert.ObjectNumber;
 
 public class WRbarPool {
@@ -123,10 +124,7 @@ public class WRbarPool {
 	
 	/**
 	 * 应该只有一个新对象,考虑用单例模式
-	 * @param gl
-	 * @param picPool
-	 * @param texturesB
-	 * @param inPool
+	 * 
 	 */
 	public WRbarPool(
 //	        GL10 gl, RoomPicPool picPool, IntBuffer texturesB
@@ -436,25 +434,25 @@ public class WRbarPool {
 
 			
 			
-			if (GameActivity.mapOn){
+			if (DataToolKit.mapOn){
 				gl.glPushMatrix();
 				gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);   
 				gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
 				gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 				gl.glEnable(GL10.GL_TEXTURE_2D);
-				if(GameActivity.mapNext && mapchange< 5+MAPCOUNT-1)
+				if(StateValuePool.mapNext && mapchange< 5+MAPCOUNT-1)
 				{
 					mapchange = mapchange+1;
 					
 				}
-				if(GameActivity.mapBack && mapchange>5)
+				if(StateValuePool.mapBack && mapchange>5)
 				{
 					mapchange = mapchange-1;
 					
 				}
 				gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(mapchange));	
-				GameActivity.mapBack = false;
-				GameActivity.mapNext = false;
+				StateValuePool.mapBack = false;
+				StateValuePool.mapNext = false;
 				map_FaceVB.position(0);
 				map_FaceCB.position(0);
 				map_FaceIB.position(0);
@@ -465,18 +463,18 @@ public class WRbarPool {
 				gl.glDrawElements(GL10.GL_TRIANGLES, map_index.length,GL10.GL_UNSIGNED_SHORT, map_FaceIB);		
 				gl.glPopMatrix();
 			}
-			else if(GameActivity.carOn){
+			else if(StateValuePool.carOn){
 //				gl.glPushMatrix();
 //				gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);   
 //				gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
 //				gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 //				gl.glEnable(GL10.GL_TEXTURE_2D);
-				if(GameActivity.carNext && carchange< 8+CARCOUNT-1)
+				if(StateValuePool.carNext && carchange< 8+CARCOUNT-1)
 				{
 					carchange = carchange+1;
 					
 				}
-				if(GameActivity.carBack && carchange>8)
+				if(StateValuePool.carBack && carchange>8)
 				{
 					carchange = carchange-1;
 					

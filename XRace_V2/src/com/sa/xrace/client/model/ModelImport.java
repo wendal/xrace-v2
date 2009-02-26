@@ -112,7 +112,7 @@ public final class ModelImport {
 		
 		while (PreviousChunk.bytesRead < PreviousChunk.length)
 		{
-			byte[] buffer = new byte[200000];
+//			byte[] buffer = new byte[200000];
 			readChunk(m_CurrentChunk);
 			switch (m_CurrentChunk.ID) {
 			case VERSION:
@@ -189,6 +189,8 @@ public final class ModelImport {
 		m_CurrentChunk = PreviousChunk;
 	}
 	
+	private byte[] buffer = new byte[200000];
+	
 	/**
 	 *  process the Object chunk under the OBJECTINFO chunk
 	 *  Model: t3DModel instance storing the data
@@ -197,7 +199,7 @@ public final class ModelImport {
 	 */
 	private void processNextObjectChunk(t3DModel Model, t3DObject Object, tChunk PreviousChunk)
 	{
-		byte[] buffer = new byte[200000];
+		
 		m_CurrentChunk = new tChunk();
 		
 		while (PreviousChunk.bytesRead < PreviousChunk.length)
@@ -318,7 +320,7 @@ public final class ModelImport {
 	{
 		String strMaterial = null;
 		
-		byte[] buffer = new byte[200000];
+//		byte[] buffer = new byte[200000];
 		int index = 0;
 		int length = 0;
 		try {
@@ -407,7 +409,7 @@ public final class ModelImport {
 	 */
 	private void processNextMaterialChunk(t3DModel Model, tChunk PreviousChunk)
 	{
-		byte[] buffer = new byte[200000];
+//		byte[] buffer = new byte[200000];
 		m_CurrentChunk = new tChunk();
 		while (PreviousChunk.bytesRead < PreviousChunk.length)
 		{
@@ -560,18 +562,20 @@ public final class ModelImport {
 			e.printStackTrace();
 		}
 	}
-
-}//class ModelImport
-
-/**
+	
+	/**
  *  This class is used to keep the ID, length and bytesRead of chunk.
  */
-class tChunk
+private static class tChunk
 {
 	int ID;					// ID		
 	int length;				// length
 	int bytesRead;			// bytes that have been read
 };
+
+}//class ModelImport
+
+
 
 
 

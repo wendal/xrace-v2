@@ -26,7 +26,6 @@ import android.graphics.Typeface;
 import android.opengl.GLUtils;
 import android.util.Log;
 
-import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
@@ -316,7 +315,7 @@ public final class GIPool {
 	
 	
 	public void drawTimeCount(GL10 gl,GLWorld mWorld){
-		if(GameActivity.isStart && !mWorld.isBeginWait){ //mWorld.isBeginWait
+		if(StateValuePool.isStart && !mWorld.isBeginWait){ //mWorld.isBeginWait
  			nowTime = System.currentTimeMillis();
  			
  			if(lasttime==0){

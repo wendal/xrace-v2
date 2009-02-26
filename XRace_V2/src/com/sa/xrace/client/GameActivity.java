@@ -75,25 +75,7 @@ public class GameActivity extends Activity implements SensorListener {
 //	private  static final float DISTANCE = 600.0f;	//distance between the car and camera when car's stop
 //	private  static final float CAMERA_EYE_Y = 110.0f;	//distance between the car and camera when car's stop
 	
-//	private  int modelID = 0;
-	public static boolean isLogin = false;
-	public static boolean isCarType = false;
 	private static boolean isPostStart = false;
-	public static boolean isStart = false;
-//	private IntBuffer tempIB;
-
-//	private long timeadd = 0;
-//	private static long timeElapsed = 0;
-//	private static long nowTime = 0;
-//	private static long lastTime = 0;
-
-	public final static boolean mapOn = false;
-	public static boolean mapNext = false;
-	public static boolean mapBack = false;
-	public static boolean carOn = false;
-	public static boolean carNext = false;
-	public static boolean carBack = false;
-//	private static boolean raceOn = false;
 	
 	private Handler mHandler;
 	
@@ -361,24 +343,24 @@ public class GameActivity extends Activity implements SensorListener {
 		switch (arg0)
 		{
 			case KeyEvent.KEYCODE_DPAD_LEFT: 
-				if(carOn == true)
+				if(StateValuePool.carOn == true)
 				{
 				/////////////////////////////////////////
 				mModelInforPool.updateCurrentModel(true);
 				/////////////////////////////////////////
 				
-				carBack = true;
-				carNext = false;
+				StateValuePool.carBack = true;
+				StateValuePool.carNext = false;
 				}
 				break;
 			case KeyEvent.KEYCODE_DPAD_RIGHT:
-				if(carOn == true)
+				if(StateValuePool.carOn == true)
 				{
 				/////////////////////////////////////////
 				mModelInforPool.updateCurrentModel(false);
 				/////////////////////////////////////////
-				carNext = true;
-				carBack = false;
+				StateValuePool.carNext = true;
+				StateValuePool.carBack = false;
 				}
 				break;
 			case KeyEvent.KEYCODE_DPAD_DOWN:
@@ -387,16 +369,16 @@ public class GameActivity extends Activity implements SensorListener {
 				
 				inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
 				ObjectPool.mPostManager.sendCarTypePostToServer();
-				carOn = false;
+				StateValuePool.carOn = false;
 				break;				
 			case KeyEvent.KEYCODE_DPAD_UP:
 				
 				mModelInforPool.setType(DataToolKit.CAR);
 				
-				carOn = true;
+				StateValuePool.carOn = true;
 				break;
 			case KeyEvent.KEYCODE_ENTER:	
-				mModelInforPool.setTypeAndUpdate(DataToolKit.CAR, GameActivity.carBack);
+				mModelInforPool.setTypeAndUpdate(DataToolKit.CAR, StateValuePool.carBack);
 				
 				if(inPool.getOneCarInformation(inPool.getMyCarIndex()).getModel() == null)
 				{
