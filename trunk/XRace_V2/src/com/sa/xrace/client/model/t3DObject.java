@@ -9,7 +9,6 @@
  */
 package com.sa.xrace.client.model;
 
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -344,7 +343,7 @@ public final class t3DObject implements Cloneable
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textureID[0]);
 		}
         gl.glVertexPointer(3, GL10.GL_FIXED, 0, mVertexBuffer);
-        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTexVertBuffer);
+        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTexVertBuffer);//This Line ?
         gl.glDrawElements(GL10.GL_TRIANGLES, numOfFaces*3, GL10.GL_UNSIGNED_SHORT, mIndexBuffer);
     }
     

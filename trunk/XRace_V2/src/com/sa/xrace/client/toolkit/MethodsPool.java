@@ -108,10 +108,13 @@ public final class MethodsPool {
     				dis = new DataInputStream(fis);
     				t3Dmodel = new t3DModel();
     				modelImport.import3DS(t3Dmodel, dis);
-    				model = new Model(Integer.parseInt(modelObj.getID()), Integer
-    						.parseInt(modelObj.getType()), t3Dmodel, modelObj
-    						.getScale(), modelObj.getRadius());
-    				ObjectPool.mModelInforPool.addModel(model);
+//    				model = new Model(Integer.parseInt(modelObj.getID()), Integer
+//    						.parseInt(modelObj.getType()), t3Dmodel, modelObj
+//    						.getScale(), modelObj.getRadius());
+//    				ObjectPool.mModelInforPool.addModel(model);
+    				model = ObjectPool.mModelInforPool.addModel(Integer.parseInt(modelObj.getID()), Integer
+                            .parseInt(modelObj.getType()), t3Dmodel, modelObj
+                            .getScale(), modelObj.getRadius());
     				locationObj = modelObj.getLocation();
     				for (int index = 0; index < locationObj.getSize(); index++) {
     					object = new Object(model, locationObj.getPoint(index),
