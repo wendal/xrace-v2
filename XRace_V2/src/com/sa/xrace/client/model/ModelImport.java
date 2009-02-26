@@ -100,11 +100,11 @@ public final class ModelImport {
      * process the next chunk Model: t3DModel instance storing the data
      * PreviousChunk: tChunk instance keeping the ID and length of chunk
      */
-    private void processNextChunk(t3DModel Model, tChunk PreviousChunk) {
+    private void processNextChunk(t3DModel model, tChunk previousChunk) {
         m_CurrentChunk = new tChunk();
         long version = 0;
 
-        while (PreviousChunk.bytesRead < PreviousChunk.length) {
+        while (previousChunk.bytesRead < previousChunk.length) {
             // byte[] buffer = new byte[200000];
             readChunk(m_CurrentChunk);
             switch (m_CurrentChunk.ID) {
@@ -132,18 +132,18 @@ public final class ModelImport {
                     e.printStackTrace();
                 }
                 m_CurrentChunk.bytesRead += m_TempChunk.bytesRead;
-                processNextChunk(Model, m_CurrentChunk);
+                processNextChunk(model, m_CurrentChunk);
                 break;
             case MATERIAL:
-                Model.numOfMaterials++;
+                model.numOfMaterials++;
                 tMaterialInfo newTexture = new tMaterialInfo();
-                Model.Materials.add(newTexture);
-                processNextMaterialChunk(Model, m_CurrentChunk);
+                model.Materials.add(newTexture);
+                processNextMaterialChunk(model, m_CurrentChunk);
                 break;
             case OBJECT:
-                Model.numOfObjects++;
+                model.numOfObjects++;
                 t3DObject newObject = new t3DObject();
-                Model.objects.add(newObject);
+                model.objects.add(newObject);
                 int index = 0;
                 try {
                     m_CurrentChunk.bytesRead += dis.read(buffer, 0, 1);
@@ -158,13 +158,13 @@ public final class ModelImport {
                     }
                 }
                 try {
-                    Model.objects.get(Model.numOfObjects - 1).strName = new String(
+                    model.objects.get(model.numOfObjects - 1).strName = new String(
                             buffer, 0, index - 1, "GBK");
                 } catch (UnsupportedEncodingException e2) {
                     e2.printStackTrace();
                 }
-                processNextObjectChunk(Model, Model.objects
-                        .get(Model.numOfObjects - 1), m_CurrentChunk);
+                processNextObjectChunk(model, model.objects
+                        .get(model.numOfObjects - 1), m_CurrentChunk);
                 break;
             case EDITKEYFRAME:
                 try {
@@ -183,12 +183,12 @@ public final class ModelImport {
                 }
                 break;
             }
-            PreviousChunk.bytesRead += m_CurrentChunk.bytesRead;
+            previousChunk.bytesRead += m_CurrentChunk.bytesRead;
         }
-        m_CurrentChunk = PreviousChunk;
+        m_CurrentChunk = previousChunk;
     }
 
-    private byte[] buffer = new byte[200000];
+    private static byte[] buffer = new byte[200000];
 
     /**
      * process the Object chunk under the OBJECTINFO chunk Model: t3DModel

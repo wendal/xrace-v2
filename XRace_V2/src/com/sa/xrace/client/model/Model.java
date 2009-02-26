@@ -17,8 +17,8 @@ public final class Model {
     private int mModelID; // model's ID
     private int mType; // model's type
     private t3DModel mModel; // keeping model's data
-    private Point3f mScale; // scale model on the x, y, z axis
-    private float mRadius; // for optimization
+    public Point3f mScale; // scale model on the x, y, z axis
+//    private float mRadius; // for optimization
 
     public Model(int modelID, int type, t3DModel model, Point3f scale,
             float radius) {
@@ -26,7 +26,7 @@ public final class Model {
         this.mModelID = modelID;
         this.mType = type;
         this.mScale = scale;
-        this.mRadius = radius;
+//        this.mRadius = radius;
         // ObjectNumber.regNew(this);
     }
 
@@ -59,30 +59,30 @@ public final class Model {
 
     }
 
-    public Point3f getScale() {
-        return mScale;
-    }
+//    public Point3f getScale() {
+//        return mScale;
+//    }
 
     public t3DModel getModel() {
         return mModel;
     }
 
-    public float getRadius() {
-        return this.mRadius;
-    }
+//    public float getRadius() {
+//        return this.mRadius;
+//    }
 
-    public void setID(int modelID) {
-        this.mModelID = modelID;
+//    public void setID(int modelID) {
+//        this.mModelID = modelID;
+//
+//    }
 
-    }
+//    public void setType(int type) {
+//        this.mType = type;
+//
+//    }
 
-    public void setType(int type) {
-        this.mType = type;
-
-    }
-
-    public void setRadius(float radius) {
-        this.mRadius = radius;
-    }
+//    public void setRadius(float radius) {
+//        this.mRadius = radius;
+//    }
     // }}-----------------------------------------------------------
 }

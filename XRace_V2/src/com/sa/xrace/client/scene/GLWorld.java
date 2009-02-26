@@ -204,7 +204,7 @@ public class GLWorld {
             mTranslateMatrix.getTranlateMatrix(myCenter);
             mRotateMatrix.getRotateMatrixY(myDirection);
             mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix);
-            mScaleMatrix.getScaleMatrix(model.getScale());
+            mScaleMatrix.getScaleMatrix(model.mScale.x , model.mScale.y , model.mScale.z );
 
             mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix
                     .multiply(mScaleMatrix));

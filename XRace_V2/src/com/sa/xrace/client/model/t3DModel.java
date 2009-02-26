@@ -41,9 +41,10 @@ public final class t3DModel {
      */
     public void generate() {
 
-        Iterator<t3DObject> t3DObjectIterator = objects.iterator();
-        while (t3DObjectIterator.hasNext()) {
-            t3DObject object = t3DObjectIterator.next();
+//        Iterator<t3DObject> t3DObjectIterator = objects.iterator();
+//        while (t3DObjectIterator.hasNext()) {
+//            t3DObject object = t3DObjectIterator.next();
+    	for (t3DObject object : objects) {
             if (object.materialID >= 0) {
                 // try {
                 String strFilename = Materials.get(object.materialID).strFile;

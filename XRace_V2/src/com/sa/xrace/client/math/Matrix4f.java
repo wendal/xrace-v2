@@ -86,19 +86,19 @@ public final class Matrix4f {
         matrix[3][3] = 1;
     }
 
-    public void getScaleMatrix(Point3f scale) {
+    public void getScaleMatrix(float x , float y , float z) {
         setIdentity();
-        matrix[0][0] = scale.x;
+        matrix[0][0] = x;
         matrix[1][0] = 0;
         matrix[2][0] = 0;
         matrix[3][0] = 0;
         matrix[0][1] = 0;
-        matrix[1][1] = scale.y;
+        matrix[1][1] = y;
         matrix[2][1] = 0;
         matrix[3][1] = 0;
         matrix[0][2] = 0;
         matrix[1][2] = 0;
-        matrix[2][2] = scale.z;
+        matrix[2][2] = z;
         matrix[3][2] = 0;
         matrix[0][3] = 0;
         matrix[1][3] = 0;

@@ -99,8 +99,8 @@ public final class GIPool {
         Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
         bm.eraseColor(0);
         Canvas c = new Canvas(bm);
-        Paint p = new Paint();
-        c.drawBitmap(MethodsPool.getBitmap(R.drawable.speedometer), 0, 0, p);
+//        Paint p = new Paint();
+        c.drawBitmap(MethodsPool.getBitmap(R.drawable.speedometer), 0, 0, p_Triangle_Diameter);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[0]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
@@ -116,12 +116,14 @@ public final class GIPool {
     // static{
     //			
     // }
+    
+    private static final Paint p_Triangle_Diameter = new Paint(); 
     public void drawTriangle(GL10 gl) {
         Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
         // Bitmap bm = _bm_128.copy(null, true);
         bm.eraseColor(0);
         Canvas c = new Canvas(bm);
-        Paint p = new Paint();
+//        Paint p = new Paint();
 
         c.save();
 
@@ -129,16 +131,16 @@ public final class GIPool {
                 .getNSpeed());
         angle = perSpeed * temp + MINANGLE;
         c.rotate(angle, 50, 36);
-        c.drawBitmap(MethodsPool.getBitmap(R.drawable.triangle), 13, 28, p);
+        c.drawBitmap(MethodsPool.getBitmap(R.drawable.triangle), 13, 28, p_Triangle_Diameter);
 
         c.restore();
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
-        bm.recycle();
-        bm = null;
-        c = null;
+//        bm.recycle();
+//        bm = null;
+//        c = null;
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
@@ -343,7 +345,7 @@ public final class GIPool {
 
     }
 
-    public void makeDst(String time, GL10 gl) {
+    private void makeDst(String time, GL10 gl) {
         Bitmap bm = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
         bm.eraseColor(0);
         Canvas c = new Canvas(bm);
