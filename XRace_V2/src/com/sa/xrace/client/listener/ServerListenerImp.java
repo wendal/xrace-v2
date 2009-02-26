@@ -99,8 +99,8 @@ public class ServerListenerImp extends HandlerThread {
     }
 
     public void run() {
-        long starttime = System.currentTimeMillis();
-        long intertime;
+//        long starttime = System.currentTimeMillis();
+//        long intertime;
         boolean listenerON = true;
         while (listenerON) {
             // System.out.println("here in "+getClass());
@@ -112,12 +112,12 @@ public class ServerListenerImp extends HandlerThread {
                             .readFloat(), input.readFloat(), input.readFloat(),
                             input.readFloat(), input.readFloat(), input
                                     .readFloat(), input.readShort());
-                    intertime = System.currentTimeMillis() - starttime;
-                    if (intertime >= 3000) {
-                        System.gc();
-                        starttime = System.currentTimeMillis();
-                        // Log.e("freeMemory",""+Runtime.getRuntime().freeMemory());
-                    }
+//                    intertime = System.currentTimeMillis() - starttime;
+//                    if (intertime >= 3000) {
+//                        System.gc();
+//                        starttime = System.currentTimeMillis();
+//                        // Log.e("freeMemory",""+Runtime.getRuntime().freeMemory());
+//                    }
                 } else if (postReceived == DataToolKit.ACCIDENT) {
                     // Log.v(TAG, "ACCIDENT Post Received");
                     pool.updateCarInformationsAccident(input.readByte(),// id
@@ -129,11 +129,11 @@ public class ServerListenerImp extends HandlerThread {
                             input.readFloat(),// Y position
                             input.readShort() // Time Delay
                             );
-                    intertime = System.currentTimeMillis() - starttime;
-                    if (intertime >= 3000) {
-                        System.gc();
-                        starttime = System.currentTimeMillis();
-                    }
+//                    intertime = System.currentTimeMillis() - starttime;
+//                    if (intertime >= 3000) {
+//                        System.gc();
+//                        starttime = System.currentTimeMillis();
+//                    }
                     // pool.updateCarInformationsAccident(postReceived);
                 } else if (postReceived == DataToolKit.IDLE) {
                     // Log.v(TAG, "IDLE Post Received");
