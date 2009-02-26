@@ -16,7 +16,6 @@ import android.util.Log;
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
 import com.sa.xrace.client.loader.SenceParser2;
-import com.sa.xrace.client.model.Model;
 import com.sa.xrace.client.model.ModelImport;
 import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.scene.Object;
@@ -75,7 +74,7 @@ public final class MethodsPool {
         InputStream fis;
         DataInputStream dis;
         t3DModel t3Dmodel;
-        Model model;
+//        Model model;
         Object object;
 
         // SenceParser2 senceParser;
@@ -107,19 +106,22 @@ public final class MethodsPool {
                 // t3Dmodel = new t3DModel();
                 // modelImport.import3DS(t3Dmodel, dis);
 
-                t3Dmodel = modelImport.import3DS(dis);
-
+                t3Dmodel = modelImport.import3DS(dis, Integer
+                        .parseInt(modelObj.getID()), Integer.parseInt(modelObj
+                                .getType()), modelObj.getScale(), modelObj
+                                .getRadius());
+                ObjectPool.mModelInforPool.addModel(t3Dmodel);
                 // model = new Model(Integer.parseInt(modelObj.getID()), Integer
                 // .parseInt(modelObj.getType()), t3Dmodel, modelObj
                 // .getScale(), modelObj.getRadius());
-                // ObjectPool.mModelInforPool.addModel(model);
-                model = ObjectPool.mModelInforPool.addModel(Integer
-                        .parseInt(modelObj.getID()), Integer.parseInt(modelObj
-                        .getType()), t3Dmodel, modelObj.getScale(), modelObj
-                        .getRadius());
+//                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
+//                model = ObjectPool.mModelInforPool.addModel(Integer
+//                        .parseInt(modelObj.getID()), Integer.parseInt(modelObj
+//                        .getType()), t3Dmodel, modelObj.getScale(), modelObj
+//                        .getRadius());
                 locationObj = modelObj.getLocation();
                 for (int index = 0; index < locationObj.size; index++) {
-                    object = new Object(model, locationObj.points[index]);
+                    object = new Object(t3Dmodel, locationObj.points[index]);
                     if (Integer.parseInt(modelObj.getType()) == DataToolKit.COLLISION) {
                         object.updateTransformMatrix();
                     }

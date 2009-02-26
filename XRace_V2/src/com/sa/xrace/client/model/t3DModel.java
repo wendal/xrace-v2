@@ -14,6 +14,8 @@ import java.util.Vector;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.sa.xrace.client.math.Point3f;
+
 /**
  * @author sliao
  * @version $Id$
@@ -22,13 +24,72 @@ import javax.microedition.khronos.opengles.GL10;
  * This class is used to store the model data which is created by 3DS MAX.
  */
 public final class t3DModel {
+	/**
+	 * 合成两个类 : Model t3DModel
+	 */
+	private int mModelID; // model's ID
+    private int mType; // model's type
+    private t3DModel mModel; // keeping model's data
+    public Point3f mScale; // scale model on the x, y, z axis
+//    private float mRadius; // for optimization
+	
+//    public void generate() {
+//        mModel.generate();
+//    }
+
+    public void scale(GL10 gl) {
+        gl.glScalef(mScale.x, mScale.y, mScale.z); // Scale the object on x, y
+                                                   // and z axis
+    }
+
+//    public void draw(GL10 gl) {
+//        mModel.draw(gl);
+//    }
+
+//    public t3DObject getObject(String objectName) {
+//        return mModel.getObject(objectName);
+//    }
+
+    // {{member variables
+    // management---------------------------------------------------
+    public int getID() {
+        return this.mModelID;
+
+    }
+
+    public int getType() {
+        return this.mType;
+
+    }
+
+//    public Point3f getScale() {
+//        return mScale;
+//    }
+
+    public t3DModel getModel() {
+        return mModel;
+    }
+	
+	
+	
+	
+	
+	//********************************************************
+    
     public int numOfObjects; // number of objects
     public int numOfMaterials; // number of material
     public Vector<tMaterialInfo> Materials; // vectors keeping the materials
     public Vector<t3DObject> objects; // vectors keeping the objects
     // private Activity mainAcivity;
 
-    public t3DModel() {
+    public t3DModel(int modelID, int type,  Point3f scale,
+            float radius) {
+    	
+    	this.mModel = this;
+        this.mModelID = modelID;
+        this.mType = type;
+        this.mScale = scale;
+    	
         this.Materials = new Vector<tMaterialInfo>();
         this.objects = new Vector<t3DObject>();
         // this.mainAcivity = mainAcivity;

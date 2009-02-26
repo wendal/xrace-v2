@@ -13,7 +13,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.sa.xrace.client.collision.AABBbox;
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.model.Model;
+import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.model.t3DObject;
 
 /**
@@ -47,7 +47,7 @@ public final class CarInforClient {
     private float nYPosition;// Current Y Position
 
     // car's model by sliao---------------------------------------------
-    private Model mModel; // for model render
+    private t3DModel mModel; // for model render
     private Point3f[] mWheelPos = new Point3f[4];
     private t3DObject mWheel;
     private AABBbox mOriginalBox; // for collision detection
@@ -165,12 +165,12 @@ public final class CarInforClient {
         return true;
     }
 
-    public void setModel(Model model) {
+    public void setModel(t3DModel model) {
         this.mModel = model;
         generateWheel();
     }
 
-    public Model getModel() {
+    public t3DModel getModel() {
         return this.mModel;
     }
 
