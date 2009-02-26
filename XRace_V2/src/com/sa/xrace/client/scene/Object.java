@@ -43,7 +43,7 @@ public final class Object {
     }
 
     public void scale(GL10 gl) {
-        mModel.scale(gl);
+        mModel.scale();
     }
 
     public void updateTransformMatrix() {
@@ -81,8 +81,8 @@ public final class Object {
 //        mModel.scale(gl);
 //    }
 
-    public void draw(GL10 gl) {
-        mModel.draw(gl);
+    public void draw() {
+        mModel.draw();
     }
 
     // {{member variables

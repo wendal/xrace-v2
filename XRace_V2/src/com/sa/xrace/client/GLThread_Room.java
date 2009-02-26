@@ -530,6 +530,8 @@ public final class GLThread_Room extends Thread {
             // Begin
 //            long start = System.currentTimeMillis();
             mModelContainer.drawByID(gl, 4);
+            
+            
             // End
 //            Log.e("mModelContainer.drawByID,Time used:", ""
 //                    + (System.currentTimeMillis() - start));

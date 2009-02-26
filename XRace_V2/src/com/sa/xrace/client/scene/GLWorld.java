@@ -139,7 +139,7 @@ public class GLWorld {
             // if (Frustum.checkSphere(object.getPosition(),
             // object.getModel().getRadius()) == true)
             // {
-            object.draw(gl);
+            object.draw();
 
             // }
         }
@@ -169,7 +169,7 @@ public class GLWorld {
                         gl
                                 .glRotatef((float) Math.toDegrees(direction),
                                         0, 1, 0);
-                        model.scale(gl);
+                        model.scale();
                         mTranslateMatrix.getTranlateMatrix(center);
                         mRotateMatrix.getRotateMatrixY(myDirection);
                         mCombineMatrix = mTranslateMatrix
@@ -185,7 +185,7 @@ public class GLWorld {
                         // if (Frustum.checkSphere(center, model.getRadius()) ==
                         // true)
                         // {
-                        model.draw(gl);
+                        model.draw();
                         // }
                     }
                 }
@@ -199,7 +199,7 @@ public class GLWorld {
             mCamera.setCamera(gl);
             gl.glTranslatef(myCenter.x, myCenter.y, myCenter.z);
             gl.glRotatef((float) Math.toDegrees(myDirection), 0, 1, 0);
-            model.scale(gl);
+            model.scale();
             mTranslateMatrix.getTranlateMatrix(myCenter);
             mRotateMatrix.getRotateMatrixY(myDirection);
             mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix);
