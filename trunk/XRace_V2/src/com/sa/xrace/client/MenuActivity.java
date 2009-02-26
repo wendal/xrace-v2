@@ -110,6 +110,21 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 		Log.e("-----------Menu","Here");
 //		DataUnti.init(this);
 		startMove(single,0,src_width,src_width-150,src_height/3,src_height/3);
+		
+		//释放全部对象
+//		releaseAllObject();
+	}
+	
+	private void releaseAllObject(){
+	    edit_IP =null;
+	    text_IP = null;
+	    edit_Name = null;
+	    text_Name = null;
+	    layout = null;
+	    animation = null;
+	    setting = null;
+	    single = null;
+	    multiple= null;
 	}
 	
 	
@@ -119,7 +134,7 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
  *  set the ImageView initial value and the Animation initial value
  */
 	private void startMove(ImageView b,int n,float startX, float toX, float startY,float toY){
-		animation = new TranslateAnimation(startX,toX,startY,startY);
+	    animation = new TranslateAnimation(startX,toX,startY,startY);
 		animation.setDuration(300);
 //		animation.setFillAfter(true);
 		animation.setAnimationListener(new DisplayNextButton(n));
@@ -209,6 +224,9 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 							    NetworkToolKit.NAME = cutNames(edit_Name.getText().toString());
 							    NetworkToolKit.SERVERIP = edit_IP.getText().toString();
 								
+							    //释放全部对象
+							    releaseAllObject();
+							    
 								Intent intent = new Intent();
 								intent.setClass(MenuActivity.this, GameActivity.class);
 //								Uri n = Uri.parse(Uri.encode(NAME+"@&"+SERVERIP));
