@@ -27,9 +27,9 @@ public final class t3DModel {
 	/**
 	 * 合成两个类 : Model t3DModel
 	 */
-	private int mModelID; // model's ID
-    private int mType; // model's type
-    private t3DModel mModel; // keeping model's data
+	public int mModelID; // model's ID
+    public int mType; // model's type
+//    private t3DModel mModel; // keeping model's data
     public Point3f mScale; // scale model on the x, y, z axis
 //    private float mRadius; // for optimization
 	
@@ -52,23 +52,23 @@ public final class t3DModel {
 
     // {{member variables
     // management---------------------------------------------------
-    public int getID() {
-        return this.mModelID;
+//    public int getID() {
+//        return this.mModelID;
+//
+//    }
 
-    }
-
-    public int getType() {
-        return this.mType;
-
-    }
+//    public int getType() {
+//        return this.mType;
+//
+//    }
 
 //    public Point3f getScale() {
 //        return mScale;
 //    }
 
-    public t3DModel getModel() {
-        return mModel;
-    }
+//    public t3DModel getModel() {
+//        return mModel;
+//    }
 	
 	
 	
@@ -85,7 +85,7 @@ public final class t3DModel {
     public t3DModel(int modelID, int type,  Point3f scale,
             float radius) {
     	
-    	this.mModel = this;
+//    	this.mModel = this;
         this.mModelID = modelID;
         this.mType = type;
         this.mScale = scale;

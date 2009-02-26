@@ -88,8 +88,7 @@ public class GLWorld {
         Log.e("Since Last run ", "" + (System.currentTimeMillis() - lastrun));
         lastrun = System.currentTimeMillis();
 
-        myCar = mInforPoolClient.getOneCarInformation(mInforPoolClient
-                .getMyCarIndex());
+        myCar = ObjectPool.myCar;
         if (isBeginWait) {
             myCar.updateSpeedByKeyboard((int) timeElapsed / 80);
             myCar.updateDirectionByKeyboard((int) timeElapsed / 80);

@@ -58,10 +58,10 @@ public final class Object {
         // mTransformMatrix =
         // scaleMatrix.multiply(rotateMatrix.multiply(translateMatrix));
 
-        mVerts = new Point3f[mModel.getModel().numOfObjects][];
+        mVerts = new Point3f[mModel.numOfObjects][];
 
         int num = 0;
-        Iterator<t3DObject> t3DObjectIterator = mModel.getModel().objects
+        Iterator<t3DObject> t3DObjectIterator = mModel.objects
                 .iterator();
         while (t3DObjectIterator.hasNext()) {
             t3DObject object = t3DObjectIterator.next();

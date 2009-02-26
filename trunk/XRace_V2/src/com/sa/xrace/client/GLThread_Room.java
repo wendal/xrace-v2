@@ -48,7 +48,7 @@ public final class GLThread_Room extends Thread {
     private GameView callingView;
     // private WRbarPool barPool;
     private ModelInforPool mModelContainer;
-    private InforPoolClient inPool;
+//    private InforPoolClient inPool;
     private GLWorld mWorld;
     // private GameActivity mActivity;
     // private IntBuffer tempIB;
@@ -88,7 +88,7 @@ public final class GLThread_Room extends Thread {
         this.giPool = ObjectPool.giPool;
         // this.barPool = ObjectPool.barPool;
         this.mModelContainer = ObjectPool.mModelInforPool;
-        this.inPool = ObjectPool.inPoolClient;
+//        this.inPool = ObjectPool.inPoolClient;
         this.mWorld = ObjectPool.mWorld;
         // this.mActivity = ObjectPool.activity;
         // this.mPostManager = ObjectPool.mPostManager;
@@ -405,7 +405,7 @@ public final class GLThread_Room extends Thread {
         // makeLoading(442, 3);
         // logger.addSplit("getCommonTextureReady(gl)");
         mModelContainer.setType(DataToolKit.CAR);
-        inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
+        ObjectPool.myCar.setModel(
                 mModelContainer.getCurrentModel());
         if (!StateValuePool.isLogin) {
             Log.e("----------------isLogin-----------------", "isLogin");

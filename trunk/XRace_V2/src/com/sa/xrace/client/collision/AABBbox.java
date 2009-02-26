@@ -70,7 +70,7 @@ public class AABBbox {
 
     public void getAABBbox(t3DModel model) {
         try {
-            Iterator<t3DObject> t3DObjectIterator = model.getModel().objects
+            Iterator<t3DObject> t3DObjectIterator = model.objects
                     .iterator();
             while (t3DObjectIterator.hasNext()) {
                 t3DObject object = t3DObjectIterator.next();

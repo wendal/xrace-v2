@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.manager.PostManagerClientImp;
 import com.sa.xrace.client.model.ModelInforPool;
+import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.WRbarPool;
@@ -46,4 +47,6 @@ public final class ObjectPool {
     public static GL10 gl;
 
     public static Camera camera;
+    
+    public static CarInforClient myCar;
 }

@@ -28,7 +28,6 @@ package com.sa.xrace.client.model;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.sa.xrace.client.math.Point3f;
@@ -63,7 +62,7 @@ public final class ModelInforPool {
     public t3DModel addModel(t3DModel mod) {
 //    	t3DModel mod = new t3DModel(modelID, type,  scale, radius);
         // mModelVector.add(mod);
-        spAy.put(mod.getID(), mod);
+        spAy.put(mod.mModelID, mod);
         return mod;
     }
 
@@ -85,7 +84,7 @@ public final class ModelInforPool {
         // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
-            if (model.getType() != DataToolKit.COLLISION) {
+            if (model.mType != DataToolKit.COLLISION) {
                 model.generate();
             }
             // ½ø¶ÈÌõ
@@ -107,7 +106,7 @@ public final class ModelInforPool {
             gl.glScalef(mScale.x, mScale.y, mScale.z);
             gl.glRotatef(mAngle, 0, 1, 0);
 
-            if (mCurrentModel.getType() == DataToolKit.CAR) {
+            if (mCurrentModel.mType == DataToolKit.CAR) {
                 mPresentationAngle += 1.2f;
                 if (mPresentationAngle >= 360f) {
                     mPresentationAngle = 0f;
@@ -165,18 +164,18 @@ public final class ModelInforPool {
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
 
-            if (model == null) {
-                Log.e("In ModelInforPool", "" + System.currentTimeMillis() + " Index: " + index);
-            }
+//            if (model == null) {
+//                Log.e("In ModelInforPool", "" + System.currentTimeMillis() + " Index: " + index);
+//            }
 
-            try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//            try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
             
-            if (model.getType() == mCurrentType) {
+            if (model.mType == mCurrentType) {
                 mCurrentModel = model;
                 mAngle = 0.0f;
             }
@@ -191,7 +190,7 @@ public final class ModelInforPool {
         // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
-            if (model.getType() == mCurrentType) {
+            if (model.mType == mCurrentType) {
                 mCurrentModel = model;
                 mAngle = 0.0f;
             }
@@ -237,7 +236,7 @@ public final class ModelInforPool {
         // while (modelIterator.hasNext())
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
-            if (model.getType() == mCurrentType) {
+            if (model.mType == mCurrentType) {
                 if (model == mCurrentModel) {
                     if (previousOrNext == true) {
                         if (previous == null) {
@@ -250,7 +249,7 @@ public final class ModelInforPool {
                     } else {
                         for (int index2 = 0; index2 < 5; index2++) {
                         	t3DModel model2 = spAy.get(index2);
-                            if (model.getType() == mCurrentType) {
+                            if (model.mType == mCurrentType) {
                                 mCurrentModel = model2;
                                 mAngle = 0.0f;
                                 return true;
