@@ -165,6 +165,9 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.activity.inPool = new InforPoolClient();
                 // 将inPoolClient加入对象池
                 ObjectPool.inPoolClient = ObjectPool.activity.inPool;
+                
+                ObjectPool.myCar = ObjectPool.inPoolClient.getOneCarInformation(ObjectPool.inPoolClient.getMyCarIndex());
+                
                 // 将WRbarPool加入对象池
                 ObjectPool.barPool = new WRbarPool();
                 // RoomPicPool rpPool = new RoomPicPool(this);
@@ -370,10 +373,10 @@ public class GameActivity extends Activity implements SensorListener {
             break;
         case KeyEvent.KEYCODE_DPAD_DOWN:
             // mModelInforPool.setType(TYPE_CAR);
-            inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
+        	ObjectPool.myCar.setModel(
                     mModelInforPool.getCurrentModel());
 
-            inPool.getOneCarInformation(inPool.getMyCarIndex())
+        	ObjectPool.myCar
                     .generateAABBbox();
             ObjectPool.mPostManager.sendCarTypePostToServer();
             StateValuePool.carOn = false;
@@ -388,13 +391,13 @@ public class GameActivity extends Activity implements SensorListener {
             mModelInforPool.setTypeAndUpdate(DataToolKit.CAR,
                     StateValuePool.carBack);
 
-            if (inPool.getOneCarInformation(inPool.getMyCarIndex()).getModel() == null) {
+            if (ObjectPool.myCar.getModel() == null) {
                 // mModelInforPool.setType(Model.CAR);
-                inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
+            	ObjectPool.myCar.setModel(
                         mModelInforPool.getCurrentModel());
                 // inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             } else {
-                inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(
+            	ObjectPool.myCar.setModel(
                         mModelInforPool.getCurrentModel());
                 // inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             }
@@ -418,8 +421,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     public void initGameRunning() {
         GLThread_Room.mPhase = DataToolKit.GAME_RUNNING;
-        CarInforClient myCar = inPool.getOneCarInformation(inPool
-                .getMyCarIndex());
+        CarInforClient myCar = ObjectPool.myCar;
         Point3f center = new Point3f(myCar.getNXPosition(),
                 DataToolKit.CAMERA_CENTER_Y, myCar.getNYPosition());
         mCamera.initCamera(center, new Point3f(0.0f, 1.0f, 0.0f), myCar
@@ -430,8 +432,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     private void onGameRunning(int arg0, KeyEvent arg1) {
 
-        CarInforClient car = inPool
-                .getOneCarInformation(inPool.getMyCarIndex());
+        CarInforClient car = ObjectPool.myCar;
         switch (arg0) {
         case KeyEvent.KEYCODE_SPACE:
             if (car.getNSpeed() > 1.0f) {
@@ -495,8 +496,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     public boolean onKeyUp(int arg0, KeyEvent arg1) {
         if (GLThread_Room.mPhase == DataToolKit.GAME_RUNNING) {
-            CarInforClient car = inPool.getOneCarInformation(inPool
-                    .getMyCarIndex());
+            CarInforClient car = ObjectPool.myCar;
             switch (arg0) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 car.setDirectionKeyState(CarInforClient.NO_KEY_EVENT);

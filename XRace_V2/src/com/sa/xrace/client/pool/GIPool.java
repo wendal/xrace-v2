@@ -127,7 +127,7 @@ public final class GIPool {
 
         c.save();
 
-        temp = Math.abs(inPool.getOneCarInformation(inPool.getMyCarIndex())
+        temp = Math.abs(ObjectPool.myCar
                 .getNSpeed());
         angle = perSpeed * temp + MINANGLE;
         c.rotate(angle, 50, 36);
@@ -172,8 +172,7 @@ public final class GIPool {
         // p.setTextSize(25.0f);
         // p.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
         //		
-        int ppeedText_int = (int) Math.abs(inPool.getOneCarInformation(
-                inPool.getMyCarIndex()).getNSpeed()) * 5;
+        int ppeedText_int = (int) Math.abs(ObjectPool.myCar.getNSpeed()) * 5;
 
         c.drawText("" + ppeedText_int, 32, 32, p_SpeedText);
 
