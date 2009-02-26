@@ -15,7 +15,7 @@ import android.util.Log;
 
 import com.sa.xrace.client.math.Matrix4f;
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.model.Model;
+import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.model.t3DObject;
 import com.sa.xrace.client.toolkit.DataToolKit;
 
@@ -61,14 +61,14 @@ public class AABBbox {
         rectangle = new Rectangle();
     }
 
-    public AABBbox(Model model) {
+    public AABBbox(t3DModel model) {
         mLeftLower = new Point3f(BIG_NUMBER, BIG_NUMBER, -BIG_NUMBER);
         mRightUpper = new Point3f(-BIG_NUMBER, -BIG_NUMBER, +BIG_NUMBER);
         mWidth = mHeight = mLength = 0.0f;
         getAABBbox(model);
     }
 
-    public void getAABBbox(Model model) {
+    public void getAABBbox(t3DModel model) {
         try {
             Iterator<t3DObject> t3DObjectIterator = model.getModel().objects
                     .iterator();

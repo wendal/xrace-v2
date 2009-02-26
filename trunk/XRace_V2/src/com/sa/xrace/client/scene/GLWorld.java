@@ -12,7 +12,7 @@ import com.sa.xrace.client.collision.CollisionHandler;
 import com.sa.xrace.client.collision.CollisionMap;
 import com.sa.xrace.client.math.Matrix4f;
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.model.Model;
+import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.toolkit.DataToolKit;
@@ -159,7 +159,7 @@ public class GLWorld {
                                 CarInforClient.CAR_CENTER_Y, car
                                         .getNYPosition());
                         float direction = car.getNDirection();
-                        Model model = car.getModel();
+                        t3DModel model = car.getModel();
                         gl.glMatrixMode(GL10.GL_MODELVIEW); // set the matrix
                                                             // which would be
                                                             // changed
@@ -192,7 +192,7 @@ public class GLWorld {
                 }
             }
             // then my car
-            Model model = myCar.getModel();
+            t3DModel model = myCar.getModel();
             gl.glMatrixMode(GL10.GL_MODELVIEW); // set the matrix which would be
                                                 // changed
             gl.glLoadIdentity(); // make all the transform matrix to be identity

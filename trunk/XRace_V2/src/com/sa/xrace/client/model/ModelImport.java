@@ -74,8 +74,9 @@ public final class ModelImport {
      * import the 3DS model file into the t3DModel object Model: t3DModel
      * instance storing the data inputS: file input stream of the 3DS file
      */
-    public t3DModel import3DS(InputStream inputS) {
-        t3DModel Model = new t3DModel();
+    public t3DModel import3DS(InputStream inputS, int modelID, int type,  Point3f scale,
+            float radius) {
+        t3DModel model = new t3DModel(modelID ,type , scale ,radius);
         dis = new DataInputStream(inputS);
         readChunk(m_CurrentChunk);
 
@@ -84,7 +85,7 @@ public final class ModelImport {
             // return ;
         }
 
-        processNextChunk(Model, m_CurrentChunk);
+        processNextChunk(model, m_CurrentChunk);
 
         // computeNormals(Model);
 
@@ -93,7 +94,7 @@ public final class ModelImport {
         // close input
         closeInput();
 
-        return Model;
+        return model;
     }
 
     /**

@@ -60,11 +60,10 @@ public final class ModelInforPool {
     // mModelMap.put(model.getID(), model);
     // }
 
-    public Model addModel(int modelID, int type, t3DModel model, Point3f scale,
-            float radius) {
-        Model mod = new Model(modelID, type, model, scale, radius);
+    public t3DModel addModel(t3DModel mod) {
+//    	t3DModel mod = new t3DModel(modelID, type,  scale, radius);
         // mModelVector.add(mod);
-        spAy.put(modelID, mod);
+        spAy.put(mod.getID(), mod);
         return mod;
     }
 
@@ -85,7 +84,7 @@ public final class ModelInforPool {
         // // int temp = GLThread_Room.progress;
         // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
-            Model model = spAy.get(index);
+        	t3DModel model = spAy.get(index);
             if (model.getType() != DataToolKit.COLLISION) {
                 model.generate();
             }
@@ -164,12 +163,19 @@ public final class ModelInforPool {
         // while (modelIterator.hasNext()) {
         // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
-            Model model = spAy.get(index);
+        	t3DModel model = spAy.get(index);
 
-//            if (model == null) {
-//                Log.e("In ModelInforPool", "" + System.currentTimeMillis());
-//            }
+            if (model == null) {
+                Log.e("In ModelInforPool", "" + System.currentTimeMillis() + " Index: " + index);
+            }
 
+            try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
             if (model.getType() == mCurrentType) {
                 mCurrentModel = model;
                 mAngle = 0.0f;
@@ -184,7 +190,7 @@ public final class ModelInforPool {
         // while (modelIterator.hasNext()) {
         // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
-            Model model = spAy.get(index);
+        	t3DModel model = spAy.get(index);
             if (model.getType() == mCurrentType) {
                 mCurrentModel = model;
                 mAngle = 0.0f;
@@ -197,7 +203,7 @@ public final class ModelInforPool {
         return mCurrentType;
     }
 
-    public Model getCurrentModel() {
+    public t3DModel getCurrentModel() {
         return mCurrentModel;
     }
 
@@ -205,11 +211,11 @@ public final class ModelInforPool {
      * @param currentModel
      *            the mCurrentModel to set
      */
-    public void setMCurrentModel(Model currentModel) {
+    public void setMCurrentModel(t3DModel currentModel) {
         mCurrentModel = currentModel;
     }
 
-    public Model getModel(int modelID) {
+    public t3DModel getModel(int modelID) {
         // Iterator<Model> modelIterator = mModelVector.iterator();
         // while (modelIterator.hasNext())
         // {
@@ -227,10 +233,10 @@ public final class ModelInforPool {
         // Collection<Model> collection = mModelMap.values();
         // Iterator<Model> modelIterator = collection.iterator();
         //		
-        Model previous = null;
+    	t3DModel previous = null;
         // while (modelIterator.hasNext())
         for (int index = 0; index < 5; index++) {
-            Model model = spAy.get(index);
+        	t3DModel model = spAy.get(index);
             if (model.getType() == mCurrentType) {
                 if (model == mCurrentModel) {
                     if (previousOrNext == true) {
@@ -243,7 +249,7 @@ public final class ModelInforPool {
                         }
                     } else {
                         for (int index2 = 0; index2 < 5; index2++) {
-                            Model model2 = spAy.get(index2);
+                        	t3DModel model2 = spAy.get(index2);
                             if (model.getType() == mCurrentType) {
                                 mCurrentModel = model2;
                                 mAngle = 0.0f;
@@ -267,7 +273,7 @@ public final class ModelInforPool {
     }
 
     private int mCurrentType = -1;
-    private Model mCurrentModel = null;
+    private t3DModel mCurrentModel = null;
     private float mAngle = 0.0f;
     private float mPresentationAngle = 0.0f;
     private Point3f mScale;
@@ -275,6 +281,6 @@ public final class ModelInforPool {
     // private Vector<Model> mModelVector = new Vector<Model>();
     // private HashMap<Integer, Model> mModelMap = new HashMap<Integer,
     // Model>();
-    private SparseArray<Model> spAy = new SparseArray<Model>(5);
+    private SparseArray<t3DModel> spAy = new SparseArray<t3DModel>(5);
 
 }

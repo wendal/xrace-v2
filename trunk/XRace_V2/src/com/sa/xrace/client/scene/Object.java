@@ -7,7 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 import com.sa.xrace.client.loader.Point;
 import com.sa.xrace.client.math.Matrix4f;
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.model.Model;
+import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.model.t3DObject;
 
 /**
@@ -18,7 +18,7 @@ import com.sa.xrace.client.model.t3DObject;
  * This class represents the Object appeared in the world
  */
 public final class Object {
-    private Model mModel; // which model should be used for render
+    private t3DModel mModel; // which model should be used for render
     private Point3f mPosition; // where the model should be render
     private float mAngle; // the angle model should rotate along Y axis
 
@@ -26,7 +26,7 @@ public final class Object {
     public Point3f[][] mVerts; // point array of each t3DObject after
                                // transformed
 
-    public Object(Model model, Point point) {
+    public Object(t3DModel model, Point point) {
         this.mModel = model;
         this.mPosition = new Point3f(point.x, point.y, point.z);
         this.mAngle = point.angle;
