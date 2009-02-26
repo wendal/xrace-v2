@@ -68,9 +68,9 @@ public class MenuActivity extends Activity implements OnClickListener,MediaPlaye
 	
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		if(this.getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		}
+//		if(this.getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE){
+//			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//		}
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		src_width = getWindowManager().getDefaultDisplay().getWidth();
