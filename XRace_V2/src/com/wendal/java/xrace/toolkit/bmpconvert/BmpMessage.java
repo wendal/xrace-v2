@@ -8,39 +8,38 @@
  * 
  */
 package com.wendal.java.xrace.toolkit.bmpconvert;
+
 import java.io.Serializable;
 
+public class BmpMessage implements Serializable {
 
-public class BmpMessage implements Serializable{
-	
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -7768821690141508951L;
+    private static final long serialVersionUID = -7768821690141508951L;
 
-	private String filename;
-	
-	private byte data [];
-	
-	public BmpMessage() {
-		
-	}
+    private String filename;
 
-	public String getFilename() {
-		return filename;
-	}
+    private byte data[];
 
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+    public BmpMessage() {
 
-	public byte[] getData() {
-		return data;
-	}
+    }
 
-	public void setData(byte[] data) {
-		this.data = data;
-	}
+    public String getFilename() {
+        return filename;
+    }
 
-	
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
 }

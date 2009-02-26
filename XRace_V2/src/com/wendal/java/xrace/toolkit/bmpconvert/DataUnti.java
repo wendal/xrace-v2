@@ -95,18 +95,19 @@ public final class DataUnti {
     }
 
     public static final int[] getBmpSize(String srcFilename) {
-        int [] size = new int[2];
+        int[] size = new int[2];
         try {
-            InputStream is =  ObjectPool.assetManager.open(srcFilename + ".size");
+            InputStream is = ObjectPool.assetManager
+                    .open(srcFilename + ".size");
             DataInputStream dis = new DataInputStream(is);
             size[0] = dis.readInt();
             size[1] = dis.readInt();
-//            byte [] data = new byte[2];
-//            if (is.read(data) != 2) {
-//                throw new IOException("Size error!");
-//            }
-//            size[0] = data[0] + 256;
-//            size[1] = data[1] + 256;
+            // byte [] data = new byte[2];
+            // if (is.read(data) != 2) {
+            // throw new IOException("Size error!");
+            // }
+            // size[0] = data[0] + 256;
+            // size[1] = data[1] + 256;
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
