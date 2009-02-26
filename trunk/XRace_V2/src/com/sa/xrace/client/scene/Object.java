@@ -52,7 +52,7 @@ public final class Object {
         Matrix4f scaleMatrix = new Matrix4f();
         translateMatrix.getTranlateMatrix(mPosition);
         rotateMatrix.getRotateMatrixY((float) Math.toRadians(mAngle));
-        scaleMatrix.getScaleMatrix(mModel.getScale());
+        scaleMatrix.getScaleMatrix(mModel.mScale.x , mModel.mScale.y , mModel.mScale.z);
         mTransformMatrix = translateMatrix.multiply(rotateMatrix
                 .multiply(scaleMatrix));
         // mTransformMatrix =
@@ -75,11 +75,11 @@ public final class Object {
         }
     }
 
-    public void transform(GL10 gl) {
-        gl.glTranslatef(mPosition.x, mPosition.y, mPosition.z);
-        gl.glRotatef(mAngle, 0, 1, 0);
-        mModel.scale(gl);
-    }
+//    public void transform(GL10 gl) {
+//        gl.glTranslatef(mPosition.x, mPosition.y, mPosition.z);
+//        gl.glRotatef(mAngle, 0, 1, 0);
+//        mModel.scale(gl);
+//    }
 
     public void draw(GL10 gl) {
         mModel.draw(gl);
@@ -87,28 +87,28 @@ public final class Object {
 
     // {{member variables
     // management---------------------------------------------------
-    public Point3f getPosition() {
-        return this.mPosition;
-    }
+//    public Point3f getPosition() {
+//        return this.mPosition;
+//    }
 
-    public Model getModel() {
-        return this.mModel;
-    }
+//    public Model getModel() {
+//        return this.mModel;
+//    }
 
-    public float getAngle() {
-        return this.mAngle;
-    }
+//    public float getAngle() {
+//        return this.mAngle;
+//    }
 
-    public Point3f getScale() {
-        return mModel.getScale();
-    }
+//    public Point3f getScale() {
+//        return mModel.getScale();
+//    }
 
-    public void setAngle(float angle) {
-        this.mAngle = angle;
-    }
+//    public void setAngle(float angle) {
+//        this.mAngle = angle;
+//    }
 
-    public void setPosition(Point3f pos) {
-        this.mPosition = pos;
-    }
+//    public void setPosition(Point3f pos) {
+//        this.mPosition = pos;
+//    }
     // }}-----------------------------------------------------------
 }

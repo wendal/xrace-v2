@@ -339,7 +339,9 @@ public final class t3DObject implements Cloneable {
     private ShortBuffer mIndexBuffer;
 
     private int[] textureID = new int[] { -1 };
-};
+    
+    
+}
 
 /**
  * This class is used to keep the vertex index and coordinate index.
