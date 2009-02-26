@@ -32,7 +32,6 @@ import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
-import com.wendal.java.xrace.toolkit.bmpconvert.ObjectNumber;
 
 public final class GIPool {
 
@@ -75,7 +74,7 @@ public final class GIPool {
         this.camera = ObjectPool.camera;
         r = new Random();
         perSpeed = (MAXANGLE - MINANGLE) / CarInforClient.TOP_SPEED;
-        ObjectNumber.regNew(this);
+//        ObjectNumber.regNew(this);
     }
 
     public void makeAllInterface(GL10 gl) {

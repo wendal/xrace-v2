@@ -29,7 +29,6 @@ import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
-import com.wendal.java.xrace.toolkit.bmpconvert.ObjectNumber;
 
 public class WRbarPool {
 
@@ -152,7 +151,7 @@ public class WRbarPool {
         // for(int i=0;i<4;i++){
         // setBarLogin(i);
         // }
-        ObjectNumber.regNew(this);
+//        ObjectNumber.regNew(this);
     }
 
     public void initWRbarPool(IntBuffer texturesB) {

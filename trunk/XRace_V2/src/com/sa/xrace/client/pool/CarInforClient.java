@@ -65,7 +65,7 @@ public final class CarInforClient {
     private int carListName;
 
     public CarInforClient() {
-        nName = new String("");
+        nName = "";
         nCarID = 0;
         nCarType = 0;// Car type,include type,color
         nStatus = 0;// Current Type
@@ -99,15 +99,15 @@ public final class CarInforClient {
         } else {
             rotateAngle = nChangeDirection;
         }
-        mModel.getObject("shadow").draw(gl);
+        mModel.getObject("shadow").draw();
         gl.glPushMatrix();
         if (nSpeed > 0.0f) {
             gl.glRotatef((float) Math.toDegrees(rotateAngle * 0.5), 0, 0, 1);
         } else if (nSpeed < 0.0f) {
             gl.glRotatef((float) Math.toDegrees(-rotateAngle * 0.5), 0, 0, 1);
         }
-        mModel.getObject("body").draw(gl);
-        mModel.getObject("basis").draw(gl);
+        mModel.getObject("body").draw();
+        mModel.getObject("basis").draw();
         gl.glPopMatrix();
 
         for (int i = 0; i < 2; i++) {
@@ -128,7 +128,7 @@ public final class CarInforClient {
             }
 
             // gl.glRotatef(nSpeed, 1, 0, 0);
-            mWheel.draw(gl);
+            mWheel.draw();
             gl.glPopMatrix();
         }
         for (int i = 2; i < 4; i++) {
@@ -143,7 +143,7 @@ public final class CarInforClient {
                         1);
             }
             // gl.glRotatef(nSpeed, 1, 0, 0);
-            mWheel.draw(gl);
+            mWheel.draw();
             gl.glPopMatrix();
         }
 

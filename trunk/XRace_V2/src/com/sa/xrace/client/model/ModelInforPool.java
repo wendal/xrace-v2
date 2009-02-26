@@ -59,11 +59,11 @@ public final class ModelInforPool {
     // mModelMap.put(model.getID(), model);
     // }
 
-    public t3DModel addModel(t3DModel mod) {
+    public void addModel(t3DModel mod) {
 //    	t3DModel mod = new t3DModel(modelID, type,  scale, radius);
         // mModelVector.add(mod);
         spAy.put(mod.mModelID, mod);
-        return mod;
+//        return mod;
     }
 
     /**
@@ -114,8 +114,8 @@ public final class ModelInforPool {
                 gl.glRotatef(mPresentationAngle, 0, 1, 0);
             }
 
-            mCurrentModel.scale(gl);
-            mCurrentModel.draw(gl);
+            mCurrentModel.scale();
+            mCurrentModel.draw();
         }
     }
 
@@ -127,18 +127,22 @@ public final class ModelInforPool {
         gl.glScalef(mScale.x, mScale.y, mScale.z);
         gl.glRotatef(mAngle, 0, 1, 0);
 
-        spAy.get(modelID).scale(gl);
+        t3DModel model = spAy.get(modelID);
+        
+        model.scale();
 
-        // ////////////////////////////////////////////
-        if (modelID == 0 || modelID == 1)// /////////buhao
-        {
-            mPresentationAngle += 1.2f;
-            if (mPresentationAngle >= 360f) {
-                mPresentationAngle = 0f;
-            }
-            gl.glRotatef(mPresentationAngle, 0, 1, 0);
-        }
-        spAy.get(modelID).draw(gl);
+//        // ////////////////////////////////////////////
+//        //当modelID = 0 或者 modelID = 1时,为Car
+//        if (modelID == 0 || modelID == 1)// /////////buhao
+//        {
+//            mPresentationAngle += 1.2f;
+//            if (mPresentationAngle >= 360f) {
+//                mPresentationAngle = 0f;
+//            }
+//            gl.glRotatef(mPresentationAngle, 0, 1, 0);
+//            Log.e("drawByID", "Here ?");
+//        }
+        model.draw();
 
     }
 

@@ -320,7 +320,8 @@ public final class t3DObject implements Cloneable {
         return object;
     }
 
-    public void draw(GL10 gl) {
+    public void draw() {
+    	GL10 gl = ObjectPool.gl;
         mTexVertBuffer.position(0);
         mVertexBuffer.position(0);
         mIndexBuffer.position(0);
