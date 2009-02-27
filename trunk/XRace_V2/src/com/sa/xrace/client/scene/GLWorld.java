@@ -5,8 +5,6 @@ import java.util.Iterator;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.util.Log;
-
 import com.sa.xrace.client.collision.AABBbox;
 import com.sa.xrace.client.collision.CollisionHandler;
 import com.sa.xrace.client.collision.CollisionMap;
@@ -28,7 +26,7 @@ import com.sa.xrace.client.toolkit.StateValuePool;
  * World
  */
 public class GLWorld {
-    private ArrayList<Object> mObjectVector = new ArrayList<Object>();
+    private ArrayList<AppearableObject> mObjectVector = new ArrayList<AppearableObject>();
     private InforPoolClient mInforPoolClient;
     private CollisionMap collisionMap;
     // private Frustum mFrustum;
@@ -66,22 +64,22 @@ public class GLWorld {
     }
 
     public void generateCollisionMap() {
-        Iterator<Object> objectIterator = mObjectVector.iterator();
+        Iterator<AppearableObject> objectIterator = mObjectVector.iterator();
         while (objectIterator.hasNext()) {
-            Object object = objectIterator.next();
-            if (object.mVerts != null) {
-                collisionMap.generateWallCollisionMap(object);
+            AppearableObject appearableObject = objectIterator.next();
+            if (appearableObject.mVerts != null) {
+                collisionMap.generateWallCollisionMap(appearableObject);
             }
         }
         collisionMap.generateWallLines();
         collisionMap.prepare();
     }
 
-    private static long lastrun = 0;
+//    private static long lastrun = 0;
 
     public void draw(GL10 gl, long timeElapsed) {
-        Log.e("Since Last run ", "" + (System.currentTimeMillis() - lastrun));
-        lastrun = System.currentTimeMillis();
+//        Log.e("Since Last run ", "" + (System.currentTimeMillis() - lastrun));
+//        lastrun = System.currentTimeMillis();
 
         myCar = ObjectPool.myCar;
         if (StateValuePool.isBeginWait) {
@@ -115,10 +113,10 @@ public class GLWorld {
 
         // collisionMap.drawWall(gl, mCamera);
 
-        Iterator<Object> objectIterator = mObjectVector.iterator();
+        Iterator<AppearableObject> objectIterator = mObjectVector.iterator();
         while (objectIterator.hasNext()) {
-            Object object = objectIterator.next();
-            if (object.mVerts != null) {
+            AppearableObject appearableObject = objectIterator.next();
+            if (appearableObject.mVerts != null) {
                 continue;
             }
 
@@ -127,14 +125,14 @@ public class GLWorld {
             gl.glLoadIdentity();
             // make all the transform matrix to be identity matrix
             mCamera.setCamera(gl);
-            object.translate(gl);
-            object.rotate(gl);
-            object.scale(gl);
+            appearableObject.translate(gl);
+            appearableObject.rotate(gl);
+            appearableObject.scale(gl);
             // mFrustum.updateFrustum(gl);
             // if (Frustum.checkSphere(object.getPosition(),
             // object.getModel().getRadius()) == true)
             // {
-            object.draw();
+            appearableObject.draw();
 
             // }
         }
@@ -198,7 +196,7 @@ public class GLWorld {
             mTranslateMatrix.getTranlateMatrix(myCenter);
             mRotateMatrix.getRotateMatrixY(myDirection);
             mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix);
-            mScaleMatrix.getScaleMatrix(model.mScale.x , model.mScale.y , model.mScale.z );
+            mScaleMatrix.getScaleMatrix(model.mScale_x , model.mScale_y , model.mScale_z );
 
             mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix
                     .multiply(mScaleMatrix));
@@ -228,8 +226,8 @@ public class GLWorld {
         mAngle += 1.2f;
     }
 
-    public void addObject(Object Object) {
-        mObjectVector.add(Object);
+    public void addObject(AppearableObject appearableObject) {
+        mObjectVector.add(appearableObject);
     }
 
     public void updateCarAABB(int carIndex, Matrix4f matrix) {

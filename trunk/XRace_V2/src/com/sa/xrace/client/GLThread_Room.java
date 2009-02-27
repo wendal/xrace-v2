@@ -134,18 +134,21 @@ public final class GLThread_Room extends Thread {
 
         /* 这是耗时的一步 */
         // if (!isModelGenerate) {
-        Log.e("Begin Loading", "" + System.currentTimeMillis());
+//        Log.e("Begin Loading", "" + System.currentTimeMillis());
         Loading();
         // }
 
         while (!mDone) {
+            //For test
+//            StateValuePool.counter = 0;
+            
             // Update the asynchronous state (window size, key events)
-            long start = System.currentTimeMillis();
-            int w, h;
-            synchronized (this) {
-                w = mWidth;
-                h = mHeight;
-            }
+//            long start = System.currentTimeMillis();
+//            int w, h;
+//            synchronized (this) {
+//                w = mWidth;
+//                h = mHeight;
+//            }
             // Log.e("while (!mDone) Part A runnig",""+(System.currentTimeMillis()
             // - start));
 
@@ -154,7 +157,7 @@ public final class GLThread_Room extends Thread {
             // Log.e("while (!mDone) Part B runnig",""+(System.currentTimeMillis()
             // - start));
 
-            drawFrame(w, h);// 这是主要耗时的地方,循环绘图
+            drawFrame();// 这是主要耗时的地方,循环绘图
 
             // Log.e("while (!mDone) Part C runnig",""+(System.currentTimeMillis()
             // - start));
@@ -167,8 +170,8 @@ public final class GLThread_Room extends Thread {
             // ((Activity) c).finish();
             // }
             // }
-            Log.e("while (!mDone) runnig", ""
-                    + (System.currentTimeMillis() - start));
+//            Log.e("while (!mDone) runnig", ""
+//                    + (System.currentTimeMillis() - start));
         }
 
         // Log.e("Come Here?","after while (!mDone)");
@@ -181,7 +184,7 @@ public final class GLThread_Room extends Thread {
         egl.eglTerminate(dpy);
     }
 
-    private void drawFrame(int w, int h) {
+    private void drawFrame() {
         GL10 gl = ObjectPool.gl;
         nowTime = System.currentTimeMillis();
         if (lastTime == 0) {

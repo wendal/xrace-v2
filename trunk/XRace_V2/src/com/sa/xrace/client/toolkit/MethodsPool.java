@@ -17,7 +17,7 @@ import com.sa.xrace.client.loader.ModelObj;
 import com.sa.xrace.client.loader.SenceParser2;
 import com.sa.xrace.client.model.ModelImport;
 import com.sa.xrace.client.model.t3DModel;
-import com.sa.xrace.client.scene.Object;
+import com.sa.xrace.client.scene.AppearableObject;
 
 public final class MethodsPool {
 
@@ -74,7 +74,7 @@ public final class MethodsPool {
         DataInputStream dis;
         t3DModel t3Dmodel;
 //        Model model;
-        Object object;
+        AppearableObject appearableObject;
 
         // SenceParser2 senceParser;
         // SenceObj sence;
@@ -82,14 +82,14 @@ public final class MethodsPool {
         try {
             // 处理XML,并统计时间
             // long xml_start = System.currentTimeMillis();
-            InputStream fis = ObjectPool.assetManager.open(filename);
+            InputStream is = ObjectPool.assetManager.open(filename);
             // Document document = new SAXReader()
             // .read(new InputStreamReader(fis));
             // senceParser = new SenceParser2(fis);
             // SenceObj sence = SenceParser2.parse(fis);
 
-            ArrayList<ModelObj> modelList = SenceParser2.parse(fis);
-            fis  = null;
+            ArrayList<ModelObj> modelList = SenceParser2.parse(is);
+            is  = null;
             // sence.getLModelList();
             // Log.i("Time in XML parse", ""+(System.currentTimeMillis() -
             // xml_start));
@@ -111,39 +111,34 @@ public final class MethodsPool {
                 // modelImport.import3DS(t3Dmodel, dis);
 
                 t3Dmodel = modelImport.import3DS(dis, Integer
-                        .parseInt(modelObj.ID), Integer.parseInt(modelObj
-                                .type), modelObj.scale);
+                        .parseInt(modelObj.ID), modelObj
+                                .type, modelObj.scale);
                 
                 //释放两个流
                 dis = null;
 //                fis = null;
                 
                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
-                // model = new Model(Integer.parseInt(modelObj.getID()), Integer
-                // .parseInt(modelObj.getType()), t3Dmodel, modelObj
-                // .getScale(), modelObj.getRadius());
-//                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
-//                model = ObjectPool.mModelInforPool.addModel(Integer
-//                        .parseInt(modelObj.getID()), Integer.parseInt(modelObj
-//                        .getType()), t3Dmodel, modelObj.getScale(), modelObj
-//                        .getRadius());
                 locationObj = modelObj.getLocation();
                 for (int index = 0; index < locationObj.size; index++) {
-                    object = new Object(t3Dmodel, locationObj.points[index]);
-                    if (Integer.parseInt(modelObj.type) == DataToolKit.COLLISION) {
-                        object.updateTransformMatrix();
-                    }
+                    appearableObject = new AppearableObject(t3Dmodel, locationObj.points[index]);
                     locationObj.points[index] = null;
-                    ObjectPool.mWorld.addObject(object);
+                    if (modelObj.type == DataToolKit.COLLISION) {
+                        appearableObject.updateTransformMatrix();
+                    }
+                    ObjectPool.mWorld.addObject(appearableObject);
                 }
-                //释放locationObj
-                locationObj = null;
+                
 //                Log.i("Time in Image parse", modelObj.filename + " "
 //                        + (System.currentTimeMillis() - image_start));
             }
-            //释放ModelImport持有的对象
-            modelImport.release();
+            //释放modelObj
+            locationObj = null;
+            modelObj = null;
+            //释放ModelImport
+//            modelImport.release();
             modelImport = null;
+            modelList = null;
             //
 //            long gcm_time = System.currentTimeMillis();
             ObjectPool.mWorld.generateCollisionMap();
@@ -157,11 +152,12 @@ public final class MethodsPool {
         } catch (SAXException e) {
             // 
             e.printStackTrace();
-        } finally {
-            // sence = null;
-            // senceParser = null;
-
-        }
+        } 
+//        finally {
+//            // sence = null;
+//            // senceParser = null;
+//
+//        }
 //        Log.i("Load Image Time", "" + (System.currentTimeMillis() - start));
     }
 
