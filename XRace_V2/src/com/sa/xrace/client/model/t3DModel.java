@@ -95,11 +95,11 @@ public final class t3DModel {
 //            StateValuePool.counter ++;
 //        }
 //        Log.e("Number of 3Dobjects Wating to draw",""+_3Dobjects.size() + " Model ID" + mModelID);
-        long start = System.currentTimeMillis();
+//        long start = System.currentTimeMillis();
         for(t3DObject _3Dobject : _3Dobjects){
             _3Dobject.draw();
         }
-        Log.e("Finish draw"," Time " + mModelID + " " +(System.currentTimeMillis() - start));
+//        Log.e("Finish draw"," Time " + mModelID + " " +(System.currentTimeMillis() - start));
     }
 
     public t3DObject getObject(String objectName) {

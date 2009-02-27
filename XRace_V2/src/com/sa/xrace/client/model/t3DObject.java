@@ -17,8 +17,6 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.util.Log;
-
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.MethodsPool;
