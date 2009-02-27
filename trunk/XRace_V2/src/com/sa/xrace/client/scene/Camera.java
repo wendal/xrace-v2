@@ -28,17 +28,17 @@ public class Camera {
         this.mChangeDirection = 0.0f;
     }
 
-    public void initCamera(Point3f eye, Point3f center, Point3f up) {
-        mEye = eye;
-        mCenter = center;
-        mUp = up;
-        mDistance = (float) Math.sqrt((mEye.x - mCenter.x)
-                * (mEye.x - mCenter.x) + (mEye.y - mCenter.y)
-                * (mEye.y - mCenter.y) + (mEye.z - mCenter.z)
-                * (mEye.z - mCenter.z));
-        mDirection = 0.0f;
-        mChangeDirection = 0.0f;
-    }
+//    public void initCamera(Point3f eye, Point3f center, Point3f up) {
+//        mEye = eye;
+//        mCenter = center;
+//        mUp = up;
+//        mDistance = (float) Math.sqrt((mEye.x - mCenter.x)
+//                * (mEye.x - mCenter.x) + (mEye.y - mCenter.y)
+//                * (mEye.y - mCenter.y) + (mEye.z - mCenter.z)
+//                * (mEye.z - mCenter.z));
+//        mDirection = 0.0f;
+//        mChangeDirection = 0.0f;
+//    }
 
     public void initCamera(Point3f center, Point3f up, float angle,
             float distance) {
@@ -62,7 +62,7 @@ public class Camera {
 
     // update the camera according to the center that camera will be looking at
     // and the direction
-    public void updateCamera(Point3f center, float angle) {
+    private void updateCamera(Point3f center, float angle) {
         mCenter = center;
         mDirection = (float) (angle % (2 * Math.PI));
         double x = (mDistance * Math.sin(mDirection));

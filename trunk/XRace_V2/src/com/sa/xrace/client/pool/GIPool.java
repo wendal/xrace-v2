@@ -137,8 +137,8 @@ public final class GIPool {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
-//        bm.recycle();
-//        bm = null;
+        bm.recycle();
+        bm = null;
 //        c = null;
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
@@ -179,9 +179,9 @@ public final class GIPool {
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
         // Reclaim storage used by bitmap and canvas.
-        // bm.recycle();
-        // bm = null;
-        // c = null;
+         bm.recycle();
+         bm = null;
+         c = null;
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
@@ -201,9 +201,9 @@ public final class GIPool {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[3]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 
-        // bitmap.recycle();
-        // bitmap = null;
-        // c = null;
+         bitmap.recycle();
+         bitmap = null;
+//         c = null;
     }
 
     public void drawMiniMap(GL10 gl) {
@@ -243,13 +243,14 @@ public final class GIPool {
         c
                 .drawBitmap(MethodsPool.getBitmap(R.drawable.carpointpic), 0,
                         0, paint);
-
+        paint = null;
+        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[4]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 
         bitmap.recycle();
         bitmap = null;
-        c = null;
+//        c = null;
     }
 
     public void drawCarPoints(GL10 gl, float x, float y) {
@@ -354,13 +355,15 @@ public final class GIPool {
         p.setStrokeWidth(30);
         p.setTextAlign(Paint.Align.CENTER);
         c.drawText(time, 128, 128, p);
+        p = null;
+        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[5]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
         // Reclaim storage used by bitmap and canvas.
         bm.recycle();
         bm = null;
-        c = null;
+//        c = null;
     }
 
     public void drawLoginFailure(GL10 gl) {
@@ -385,11 +388,14 @@ public final class GIPool {
         p.setStrokeWidth(30);
         p.setTextAlign(Paint.Align.CENTER);
         c.drawText(time, 128, 128, p);
+        
+        p= null;
+        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[6]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
         bm.recycle();
         bm = null;
-        c = null;
+//        c = null;
     }
 
 }

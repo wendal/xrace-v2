@@ -64,9 +64,8 @@ public class GLWorld {
     }
 
     public void generateCollisionMap() {
-        Iterator<AppearableObject> objectIterator = mObjectVector.iterator();
-        while (objectIterator.hasNext()) {
-            AppearableObject appearableObject = objectIterator.next();
+    	for (int index = 0; index < mObjectVector.size(); index++) {
+			AppearableObject appearableObject = mObjectVector.get(index);
             if (appearableObject.mVerts != null) {
                 collisionMap.generateWallCollisionMap(appearableObject);
             }
@@ -80,19 +79,19 @@ public class GLWorld {
     public void draw(GL10 gl, long timeElapsed) {
 //        Log.e("Since Last run ", "" + (System.currentTimeMillis() - lastrun));
 //        lastrun = System.currentTimeMillis();
-
+    	final int time = (int)timeElapsed;
         myCar = ObjectPool.myCar;
         if (StateValuePool.isBeginWait) {
-            myCar.updateSpeedByKeyboard((int) timeElapsed / 80);
-            myCar.updateDirectionByKeyboard((int) timeElapsed / 80);
+            myCar.updateSpeedByKeyboard(time / 80);
+            myCar.updateDirectionByKeyboard((int) time / 80);
             synchronized (mInforPoolClient) {
                 mInforPoolClient.prepareAllCarInformation(
-                        (int) timeElapsed / 10,
+                        time / 10,
                         InforPoolClient.mSensor[1] / 10,
                         InforPoolClient.mSensor[0] / 100);
             }
         }
-        myCar.weakOff((int) timeElapsed / 80);
+        myCar.weakOff(time / 80);
 
         float myDirection = myCar.getNDirection();
         float speed = myCar.getNSpeed();
@@ -113,9 +112,9 @@ public class GLWorld {
 
         // collisionMap.drawWall(gl, mCamera);
 
-        Iterator<AppearableObject> objectIterator = mObjectVector.iterator();
-        while (objectIterator.hasNext()) {
-            AppearableObject appearableObject = objectIterator.next();
+//        for (AppearableObject appearableObject : mObjectVector) {
+		for (int index = 0; index < mObjectVector.size(); index++) {
+			AppearableObject appearableObject = mObjectVector.get(index);
             if (appearableObject.mVerts != null) {
                 continue;
             }
