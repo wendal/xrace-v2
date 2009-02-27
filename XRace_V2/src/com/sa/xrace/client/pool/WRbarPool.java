@@ -23,6 +23,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.opengl.GLUtils;
+import android.util.Log;
 
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.toolkit.DataToolKit;
@@ -511,6 +512,13 @@ public class WRbarPool {
         status = NA;
     }
 }
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
+    }
+    
+    
 
 }
 

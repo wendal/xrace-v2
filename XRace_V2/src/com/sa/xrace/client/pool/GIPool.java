@@ -38,15 +38,15 @@ public final class GIPool {
     // private RoomPicPool picPool;
     private InforPoolClient inPool;
     private int[] mTextureIDS;
-    private int tem[] = { 0, 74, 74, -74 };
-    private int size[] = { 0, 72, 72, -72 };
-    private int point[] = { 0, 5, 5, -5 };
-    private int tem2[] = { 0, 74, 74, -74 };
-    private int tem3[] = { 0, 64, 64, -64 };
-    private int time[] = { 0, 256, 256, -256 };
+    private final int tem[] = { 0, 74, 74, -74 };
+    private final int size[] = { 0, 72, 72, -72 };
+    private final int point[] = { 0, 5, 5, -5 };
+    private final int tem2[] = { 0, 74, 74, -74 };
+    private final int tem3[] = { 0, 64, 64, -64 };
+    private final int time[] = { 0, 256, 256, -256 };
 
-    private float[] points_position = new float[12 * 3];
-    private float[] points_color = new float[12 * 4];
+    private final float[] points_position = new float[12 * 3];
+    private final float[] points_color = new float[12 * 4];
 
     private FloatBuffer fb, fb2, cb, cb2;
 
@@ -315,7 +315,7 @@ public final class GIPool {
     }
 
     public void drawTimeCount(GL10 gl, GLWorld mWorld) {
-        if (StateValuePool.isStart && !mWorld.isBeginWait) { // mWorld.isBeginWait
+        if (StateValuePool.isStart && !StateValuePool.isBeginWait) { // mWorld.isBeginWait
             nowTime = System.currentTimeMillis();
 
             if (lasttime == 0) {
@@ -330,7 +330,7 @@ public final class GIPool {
                 } else if (timeCount == 0) {
                     makeDst("GO", gl);
                 } else {
-                    mWorld.isBeginWait = true;
+                    StateValuePool.isBeginWait = true;
                     StateValuePool.needTimeCount = false;
                 }
 

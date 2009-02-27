@@ -9,6 +9,8 @@
  */
 package com.sa.xrace.client.loader;
 
+import android.util.Log;
+
 public class Point {
     public float x;
     public float y;
@@ -38,4 +40,10 @@ public class Point {
     // public void setAngle(float andle) {
     // this.angle = andle;
     // }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
+    }
 }

@@ -1,7 +1,7 @@
 package com.sa.xrace.client.scene;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -17,6 +17,7 @@ import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
+import com.sa.xrace.client.toolkit.StateValuePool;
 
 /**
  * @author sliao
@@ -27,7 +28,7 @@ import com.sa.xrace.client.toolkit.ObjectPool;
  * World
  */
 public class GLWorld {
-    private Vector<Object> mObjectVector = new Vector<Object>();
+    private ArrayList<Object> mObjectVector = new ArrayList<Object>();
     private InforPoolClient mInforPoolClient;
     private CollisionMap collisionMap;
     // private Frustum mFrustum;
@@ -40,12 +41,6 @@ public class GLWorld {
 
     private CarInforClient myCar;
     private CollisionHandler collisionHandler;
-
-    // public static long nowTime = 0;
-    // public static long lastTime = 0;
-    // public static long timeElapsed = 0;
-    // public static long timeadd = 0;
-    public boolean isBeginWait = false;
 
     private boolean collisionFlag;
 
@@ -89,7 +84,7 @@ public class GLWorld {
         lastrun = System.currentTimeMillis();
 
         myCar = ObjectPool.myCar;
-        if (isBeginWait) {
+        if (StateValuePool.isBeginWait) {
             myCar.updateSpeedByKeyboard((int) timeElapsed / 80);
             myCar.updateDirectionByKeyboard((int) timeElapsed / 80);
             synchronized (mInforPoolClient) {

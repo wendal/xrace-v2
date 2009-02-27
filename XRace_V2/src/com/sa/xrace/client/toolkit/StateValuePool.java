@@ -16,4 +16,9 @@ public final class StateValuePool {
     // private IntBuffer tempIB;
 
     public static boolean needTimeCount = true;
+    // public static long nowTime = 0;
+    // public static long lastTime = 0;
+    // public static long timeElapsed = 0;
+    // public static long timeadd = 0;
+    public static boolean isBeginWait = false;
 }

@@ -9,8 +9,6 @@
  */
 package com.sa.xrace.client.collision;
 
-import java.util.Iterator;
-
 import android.util.Log;
 
 import com.sa.xrace.client.math.Matrix4f;
@@ -70,46 +68,48 @@ public class AABBbox {
 
     public void getAABBbox(t3DModel model) {
         try {
-            Iterator<t3DObject> t3DObjectIterator = model.objects
-                    .iterator();
-            while (t3DObjectIterator.hasNext()) {
-                t3DObject object = t3DObjectIterator.next();
-                for (int index = 0; index < object.numOfVerts; index++) {
-                    if (object.Verts[index].x < mLeftLower.x) // get the
+//            Iterator<t3DObject> t3DObjectIterator = model._3Dobjects
+//                    .iterator();
+//            while (t3DObjectIterator.hasNext()) {
+//                t3DObject object = t3DObjectIterator.next();
+            for (t3DObject _3Dobject : model._3Dobjects) {
+                if (_3Dobject.materialID >= 0) 
+                for (int index = 0; index < _3Dobject.numOfVerts; index++) {
+                    if (_3Dobject.Verts[index].x < mLeftLower.x) // get the
                                                               // minimize on x
                                                               // axis
                     {
-                        mLeftLower.x = object.Verts[index].x;
-                    } else if (object.Verts[index].x > mRightUpper.x) // get the
+                        mLeftLower.x = _3Dobject.Verts[index].x;
+                    } else if (_3Dobject.Verts[index].x > mRightUpper.x) // get the
                                                                       // maximize
                                                                       // on x
                                                                       // axis
                     {
-                        mRightUpper.x = object.Verts[index].x;
+                        mRightUpper.x = _3Dobject.Verts[index].x;
                     }
-                    if (object.Verts[index].y < mLeftLower.y) // get the
+                    if (_3Dobject.Verts[index].y < mLeftLower.y) // get the
                                                               // minimize on y
                                                               // axis
                     {
-                        mLeftLower.y = object.Verts[index].y;
-                    } else if (object.Verts[index].y > mRightUpper.y) // get the
+                        mLeftLower.y = _3Dobject.Verts[index].y;
+                    } else if (_3Dobject.Verts[index].y > mRightUpper.y) // get the
                                                                       // maximize
                                                                       // on y
                                                                       // axis
                     {
-                        mRightUpper.y = object.Verts[index].y;
+                        mRightUpper.y = _3Dobject.Verts[index].y;
                     }
-                    if (object.Verts[index].z < mRightUpper.z) // get the
+                    if (_3Dobject.Verts[index].z < mRightUpper.z) // get the
                                                                // minimize on z
                                                                // axis
                     {
-                        mRightUpper.z = object.Verts[index].z;
-                    } else if (object.Verts[index].z > mLeftLower.z) // get the
+                        mRightUpper.z = _3Dobject.Verts[index].z;
+                    } else if (_3Dobject.Verts[index].z > mLeftLower.z) // get the
                                                                      // maximize
                                                                      // on z
                                                                      // axis
                     {
-                        mLeftLower.z = object.Verts[index].z;
+                        mLeftLower.z = _3Dobject.Verts[index].z;
                     }
                 }
             }

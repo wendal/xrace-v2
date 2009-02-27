@@ -1,7 +1,5 @@
 package com.sa.xrace.client.scene;
 
-import java.util.Iterator;
-
 import javax.microedition.khronos.opengles.GL10;
 
 import com.sa.xrace.client.loader.Point;
@@ -58,17 +56,18 @@ public final class Object {
         // mTransformMatrix =
         // scaleMatrix.multiply(rotateMatrix.multiply(translateMatrix));
 
-        mVerts = new Point3f[mModel.numOfObjects][];
+        mVerts = new Point3f[mModel._3Dobjects.size()][];
 
         int num = 0;
-        Iterator<t3DObject> t3DObjectIterator = mModel.objects
-                .iterator();
-        while (t3DObjectIterator.hasNext()) {
-            t3DObject object = t3DObjectIterator.next();
-            mVerts[num] = new Point3f[object.numOfVerts];
-            for (int index = 0; index < object.numOfVerts; index++) {
+//        Iterator<t3DObject> t3DObjectIterator = mModel._3Dobjects
+//                .iterator();
+//        while (t3DObjectIterator.hasNext()) {
+//            t3DObject object = t3DObjectIterator.next();
+        for (t3DObject _3Dobject : mModel._3Dobjects) {
+            mVerts[num] = new Point3f[_3Dobject.numOfVerts];
+            for (int index = 0; index < _3Dobject.numOfVerts; index++) {
                 mVerts[num][index] = new Point3f();
-                mTransformMatrix.transformPoint(object.Verts[index],
+                mTransformMatrix.transformPoint(_3Dobject.Verts[index],
                         mVerts[num][index]);
             }
             num++;
