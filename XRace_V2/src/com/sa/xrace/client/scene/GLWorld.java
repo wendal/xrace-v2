@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 import com.sa.xrace.client.collision.AABBbox;
 import com.sa.xrace.client.collision.CollisionHandler;
 import com.sa.xrace.client.collision.CollisionMap;
@@ -113,6 +115,7 @@ public class GLWorld {
         // collisionMap.drawWall(gl, mCamera);
 
 //        for (AppearableObject appearableObject : mObjectVector) {
+//        Log.e("GLWorld", "Start new time(before for)");
 		for (int index = 0; index < mObjectVector.size(); index++) {
 			AppearableObject appearableObject = mObjectVector.get(index);
             if (appearableObject.mVerts != null) {
@@ -132,7 +135,7 @@ public class GLWorld {
             // object.getModel().getRadius()) == true)
             // {
             appearableObject.draw();
-
+//            Log.e("GLThread_Room", "in for");
             // }
         }
 
@@ -144,6 +147,9 @@ public class GLWorld {
                 for (int index = 0; index < mInforPoolClient.getNCarNumber(); index++) {
                     // do some optimization according to the car's position
                     if (index != mInforPoolClient.getMyCarIndex()) {
+                    	
+                    	Log.e("GLWorld", "NCarNumber: " + mInforPoolClient.getNCarNumber());
+                    	
                         CarInforClient car = mInforPoolClient
                                 .getOneCarInformation(index);
                         Point3f center = new Point3f(car.getNXPosition(),
