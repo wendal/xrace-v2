@@ -11,7 +11,6 @@ import org.xml.sax.SAXException;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.sa.xrace.client.loader.LocationObj;
 import com.sa.xrace.client.loader.ModelObj;
@@ -70,8 +69,8 @@ public final class MethodsPool {
 //    }
 
     public static void LoadMapFromXML(String filename) {
-        long start = System.currentTimeMillis();
-        InputStream fis;
+//        long start = System.currentTimeMillis();
+//        InputStream fis;
         DataInputStream dis;
         t3DModel t3Dmodel;
 //        Model model;
@@ -83,13 +82,14 @@ public final class MethodsPool {
         try {
             // 处理XML,并统计时间
             // long xml_start = System.currentTimeMillis();
-            fis = ObjectPool.assetManager.open(filename);
+            InputStream fis = ObjectPool.assetManager.open(filename);
             // Document document = new SAXReader()
             // .read(new InputStreamReader(fis));
             // senceParser = new SenceParser2(fis);
             // SenceObj sence = SenceParser2.parse(fis);
 
             ArrayList<ModelObj> modelList = SenceParser2.parse(fis);
+            fis  = null;
             // sence.getLModelList();
             // Log.i("Time in XML parse", ""+(System.currentTimeMillis() -
             // xml_start));
@@ -99,21 +99,24 @@ public final class MethodsPool {
             ModelImport modelImport = new ModelImport();
             for (int i = 0; i < size; i++) {
                 // 处理图片,并统计时间,原本的时间为 17700ms
-                long image_start = System.currentTimeMillis();
+//                long image_start = System.currentTimeMillis();
                 modelObj = (ModelObj) modelList.get(i);
-                fis = ObjectPool.assetManager.open(modelObj.getFilename());
-                dis = new DataInputStream(fis);
+//                fis = ObjectPool.assetManager.open(modelObj.Filename);
+//                dis = new DataInputStream(fis);
+                
+                dis = new DataInputStream(
+                        ObjectPool.assetManager.open(modelObj.filename));
+                
                 // t3Dmodel = new t3DModel();
                 // modelImport.import3DS(t3Dmodel, dis);
 
                 t3Dmodel = modelImport.import3DS(dis, Integer
-                        .parseInt(modelObj.getID()), Integer.parseInt(modelObj
-                                .getType()), modelObj.getScale(), modelObj
-                                .getRadius());
+                        .parseInt(modelObj.ID), Integer.parseInt(modelObj
+                                .type), modelObj.scale);
                 
                 //释放两个流
                 dis = null;
-                fis = null;
+//                fis = null;
                 
                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
                 // model = new Model(Integer.parseInt(modelObj.getID()), Integer
@@ -127,7 +130,7 @@ public final class MethodsPool {
                 locationObj = modelObj.getLocation();
                 for (int index = 0; index < locationObj.size; index++) {
                     object = new Object(t3Dmodel, locationObj.points[index]);
-                    if (Integer.parseInt(modelObj.getType()) == DataToolKit.COLLISION) {
+                    if (Integer.parseInt(modelObj.type) == DataToolKit.COLLISION) {
                         object.updateTransformMatrix();
                     }
                     locationObj.points[index] = null;
@@ -135,17 +138,17 @@ public final class MethodsPool {
                 }
                 //释放locationObj
                 locationObj = null;
-                Log.i("Time in Image parse", modelObj.getFilename() + " "
-                        + (System.currentTimeMillis() - image_start));
+//                Log.i("Time in Image parse", modelObj.filename + " "
+//                        + (System.currentTimeMillis() - image_start));
             }
             //释放ModelImport持有的对象
             modelImport.release();
             modelImport = null;
             //
-            long gcm_time = System.currentTimeMillis();
+//            long gcm_time = System.currentTimeMillis();
             ObjectPool.mWorld.generateCollisionMap();
-            Log.i("Time in generateCollisionMap", ""
-                    + (System.currentTimeMillis() - gcm_time));
+//            Log.i("Time in generateCollisionMap", ""
+//                    + (System.currentTimeMillis() - gcm_time));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
@@ -159,7 +162,7 @@ public final class MethodsPool {
             // senceParser = null;
 
         }
-        Log.i("Load Image Time", "" + (System.currentTimeMillis() - start));
+//        Log.i("Load Image Time", "" + (System.currentTimeMillis() - start));
     }
 
     static public int toFixed(float x) {

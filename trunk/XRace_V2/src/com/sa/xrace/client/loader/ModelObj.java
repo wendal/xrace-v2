@@ -12,46 +12,46 @@ package com.sa.xrace.client.loader;
 import com.sa.xrace.client.math.Point3f;
 
 public class ModelObj {
-    private String Filename;
-    private String ID;
-    private String Type;
-    private float Radius;
-    private Point3f scale = new Point3f();
+    public String filename;
+    public String ID;
+    public String type;
+//    private float Radius;
+    public Point3f scale = new Point3f();
 
-    private LocationObj location;
+    public LocationObj location;
 
-    public String getFilename() {
-        // System.out.println("In ModelBeans " + Filename);
-        return Filename;
-    }
+//    public String getFilename() {
+//        // System.out.println("In ModelBeans " + Filename);
+//        return Filename;
+//    }
 
-    public void setFilename(String filename) {
-        Filename = filename;
-    }
+//    public void setFilename(String filename) {
+//        Filename = filename;
+//    }
+//
+//    public String getID() {
+//        return ID;
+//    }
+//
+//    public void setID(String id) {
+//        ID = id;
+//    }
+//
+//    public String getType() {
+//        return Type;
+//    }
+//
+//    public void setType(String type) {
+//        Type = type;
+//    }
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String id) {
-        ID = id;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public void setType(String type) {
-        Type = type;
-    }
-
-    public float getRadius() {
-        return Radius;
-    }
-
-    public void setRadius(float radius) {
-        Radius = radius;
-    }
+//    public float getRadius() {
+//        return Radius;
+//    }
+//
+//    public void setRadius(float radius) {
+//        Radius = radius;
+//    }
 
     public LocationObj getLocation() {
         if (this.location != null) {

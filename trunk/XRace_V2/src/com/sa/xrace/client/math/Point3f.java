@@ -16,7 +16,7 @@ package com.sa.xrace.client.math;
 /**
  * This class is used to store a point in a 3D space
  */
-public class Point3f {
+public final class Point3f {
 
     public float x = 0.f;
     public float y = 0.f;
