@@ -279,45 +279,45 @@ public final class t3DObject implements Cloneable {
         // }
     }
 
-    public Object clone() {
-        t3DObject object = null;
+    public t3DObject clone() {
+        t3DObject new_3Dobject = null;
         try {
-            object = (t3DObject) super.clone();
+            new_3Dobject = (t3DObject) super.clone();
         } catch (CloneNotSupportedException e) {
             System.out.println(e.toString());
         }
         if (strName != null) {
-            object.strName = strName.toString();
+            new_3Dobject.strName = strName.toString();
         }
         if (Verts != null) {
-            object.Verts = new Point3f[Verts.length];
+            new_3Dobject.Verts = new Point3f[Verts.length];
             for (int i = 0; i < Verts.length; i++) {
-                object.Verts[i] = Verts[i].clone();
+                new_3Dobject.Verts[i] = Verts[i].clone();
             }
         }
         if (Normals != null) {
-            object.Normals = new Point3f[Normals.length];
+            new_3Dobject.Normals = new Point3f[Normals.length];
             for (int i = 0; i < Normals.length; i++) {
-                object.Normals[i] = Normals[i].clone();
+                new_3Dobject.Normals[i] = Normals[i].clone();
             }
         }
         if (TexVerts != null) {
-            object.TexVerts = new Point2f[TexVerts.length];
+            new_3Dobject.TexVerts = new Point2f[TexVerts.length];
             for (int i = 0; i < TexVerts.length; i++) {
-                object.TexVerts[i] = (Point2f) TexVerts[i].clone();
+                new_3Dobject.TexVerts[i] = (Point2f) TexVerts[i].clone();
             }
         }
         if (Faces != null) {
-            object.Faces = new tFace[Faces.length];
+            new_3Dobject.Faces = new tFace[Faces.length];
             for (int i = 0; i < Faces.length; i++) {
-                object.Faces[i] = (tFace) Faces[i].clone();
+                new_3Dobject.Faces[i] = (tFace) Faces[i].clone();
             }
         }
         if (textureID != null) {
-            object.textureID = textureID.clone();
+            new_3Dobject.textureID = textureID.clone();
         }
-        object.createBuffer();
-        return object;
+        new_3Dobject.createBuffer();
+        return new_3Dobject;
     }
 
     public void draw() {

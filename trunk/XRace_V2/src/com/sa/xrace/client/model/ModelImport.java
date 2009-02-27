@@ -13,6 +13,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import android.util.Log;
+
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
 
@@ -142,7 +144,7 @@ public final class ModelImport {
             case OBJECT:
                 model.numOfObjects++;
                 t3DObject newObject = new t3DObject();
-                model.objects.add(newObject);
+                model._3Dobjects.add(newObject);
                 int index = 0;
                 try {
                     m_CurrentChunk.bytesRead += dis.read(buffer, 0, 1);
@@ -157,12 +159,12 @@ public final class ModelImport {
                     }
                 }
                 try {
-                    model.objects.get(model.numOfObjects - 1).strName = new String(
+                    model._3Dobjects.get(model.numOfObjects - 1).strName = new String(
                             buffer, 0, index - 1, "GBK");
                 } catch (UnsupportedEncodingException e2) {
                     e2.printStackTrace();
                 }
-                processNextObjectChunk(model, model.objects
+                processNextObjectChunk(model, model._3Dobjects
                         .get(model.numOfObjects - 1), m_CurrentChunk);
                 break;
             case EDITKEYFRAME:
@@ -315,7 +317,7 @@ public final class ModelImport {
      * data of Object chunk PreviousChunk: tChunk instance keeping the ID and
      * length of the previous chunk
      */
-    private void readObjectMaterial(t3DModel Model, t3DObject Object,
+    private void readObjectMaterial(t3DModel _3Dmodel, t3DObject _3Dobject,
             tChunk PreviousChunk) {
         String strMaterial = null;
 
@@ -341,22 +343,22 @@ public final class ModelImport {
         }
         m_CurrentChunk.bytesRead += length;
 
-        for (int i = 0; i < Model.numOfMaterials; i++) {
+        for (int i = 0; i < _3Dmodel.numOfMaterials; i++) {
             if (strMaterial != null
-                    && strMaterial.equals(Model.Materials.get(i).strName)) // which
+                    && strMaterial.equals(_3Dmodel.Materials.get(i).strName)) // which
                                                                            // Material
                                                                            // to
                                                                            // be
                                                                            // used£¿
             {
-                Object.materialID = i;
-                String strFile = Model.Materials.get(i).strFile;
+                _3Dobject.materialID = i;
+                String strFile = _3Dmodel.Materials.get(i).strFile;
                 if (strFile != null && !strFile.equals("")) {
-                    Object.bHasTexture = true;
+                    _3Dobject.bHasTexture = true;
                 }
                 break;
             } else {
-                Object.materialID = -1;
+                _3Dobject.materialID = -1;
             }
         }
         try {
@@ -581,7 +583,13 @@ public final class ModelImport {
         int ID; // ID
         int length; // length
         int bytesRead; // bytes that have been read
-    };
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
+    }
 
 }// class ModelImport
 

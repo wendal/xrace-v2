@@ -9,6 +9,8 @@
  */
 package com.sa.xrace.client.loader;
 
+import android.util.Log;
+
 import com.sa.xrace.client.math.Point3f;
 
 public class ModelObj {
@@ -82,4 +84,9 @@ public class ModelObj {
 
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
+    }
 }

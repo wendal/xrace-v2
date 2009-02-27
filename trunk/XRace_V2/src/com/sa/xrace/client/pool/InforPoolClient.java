@@ -9,7 +9,7 @@
  */
 package com.sa.xrace.client.pool;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import android.util.Log;
 
@@ -31,11 +31,11 @@ public class InforPoolClient {
     private static CarInforClient[] nCar;
     // private static ModelInforPool modelPool;
     // Time synchronize
-    private static Vector<Integer> delayHandleIn;
-    private static Vector<Integer> delayHandleOut;
+    private static ArrayList<Integer> delayHandleIn;
+    private static ArrayList<Integer> delayHandleOut;
 
     private static float nowSpeed = 0.0f;
-    private static float nowDirection = 0.0f;
+//    private static float nowDirection = 0.0f;
     private static float distanceMade = 0.0f;
 
     private static float speedCha = 0.0f;
@@ -77,8 +77,8 @@ public class InforPoolClient {
         for (int i = 0; i < 6; i++) {
             nCar[i] = new CarInforClient();
         }
-        delayHandleIn = new Vector<Integer>();
-        delayHandleOut = new Vector<Integer>();
+        delayHandleIn = new ArrayList<Integer>();
+        delayHandleOut = new ArrayList<Integer>();
         // modelPool = ObjectPool.mModelInforPool;
 //        ObjectNumber.regNew(this);
     }
@@ -375,7 +375,7 @@ public class InforPoolClient {
 
         // we do not store nowDirection , Use the direction calculated out
         nowSpeed = 0.0f;
-        nowDirection = 0.0f;
+//        nowDirection = 0.0f;
         distanceMade = 0.0f;
         time_ajusted = timeElapsed;
         speedCha = speed_change;

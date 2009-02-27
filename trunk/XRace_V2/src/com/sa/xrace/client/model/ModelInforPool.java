@@ -52,18 +52,8 @@ public final class ModelInforPool {
         mScale = new Point3f(1.0f, 1.0f, 1.0f);
         // ObjectNumber.regNew(this);
     }
-
-    // public void addModel(Model model)
-    // {
-    // // mModelVector.add(model);
-    // mModelMap.put(model.getID(), model);
-    // }
-
     public void addModel(t3DModel mod) {
-//    	t3DModel mod = new t3DModel(modelID, type,  scale, radius);
-        // mModelVector.add(mod);
         spAy.put(mod.mModelID, mod);
-//        return mod;
     }
 
     /**
@@ -71,24 +61,11 @@ public final class ModelInforPool {
      * data has been imported into the model objects.
      */
     public final void generate(GL10 gl) {
-        // Iterator<Model> ModelIterator = mModelVector.iterator();
-
-        // Collection<Model> collection = mModelVector.values();
-        // Iterator<Model> modelIterator = spAy.values().iterator();
-        //
-        // // int size = mModelVector.size(); // for loading
-        // // int interval = 180/mModelMap.size();
-        //
-        // while (modelIterator.hasNext()) {
-        // // int temp = GLThread_Room.progress;
-        // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
             if (model.mType != DataToolKit.COLLISION) {
                 model.generate();
             }
-            // 进度条
-            // GLThread_Room.makeLoading(GLThread_Room.progress+interval,3);
         }
     }
 
@@ -119,7 +96,12 @@ public final class ModelInforPool {
         }
     }
 
-    public void drawByID(GL10 gl, int modelID) {
+    public void drawGarageNow() {
+
+        setPosition(0, -2.5f, -7.4f);
+        setScale(0.04f, 0.04f, 0.04f);
+        
+        GL10 gl = ObjectPool.gl;
         gl.glMatrixMode(GL10.GL_MODELVIEW);
         gl.glLoadIdentity();
 
@@ -127,23 +109,12 @@ public final class ModelInforPool {
         gl.glScalef(mScale.x, mScale.y, mScale.z);
         gl.glRotatef(mAngle, 0, 1, 0);
 
-        t3DModel model = spAy.get(modelID);
+        t3DModel model = spAy.get(4);
         
         model.scale();
-
-//        // ////////////////////////////////////////////
-//        //当modelID = 0 或者 modelID = 1时,为Car
-//        if (modelID == 0 || modelID == 1)// /////////buhao
-//        {
-//            mPresentationAngle += 1.2f;
-//            if (mPresentationAngle >= 360f) {
-//                mPresentationAngle = 0f;
-//            }
-//            gl.glRotatef(mPresentationAngle, 0, 1, 0);
-//            Log.e("drawByID", "Here ?");
-//        }
         model.draw();
 
+        
     }
 
     public void setScale(float x, float y, float z) {
@@ -160,28 +131,11 @@ public final class ModelInforPool {
 
     public void setType(int type) {
         this.mCurrentType = type;
-        // Iterator<Model> ModelIterator = mModelVector.iterator();
-        // Collection<Model> collection = mModelMap.values();
-        // Iterator<Model> modelIterator = collection.iterator();
-        // while (modelIterator.hasNext()) {
-        // Model model = modelIterator.next();
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
-
-//            if (model == null) {
-//                Log.e("In ModelInforPool", "" + System.currentTimeMillis() + " Index: " + index);
-//            }
-
-//            try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-            
             if (model.mType == mCurrentType) {
                 mCurrentModel = model;
-                mAngle = 0.0f;
+                mAngle = 0;
             }
         }
     }
@@ -196,7 +150,7 @@ public final class ModelInforPool {
         	t3DModel model = spAy.get(index);
             if (model.mType == mCurrentType) {
                 mCurrentModel = model;
-                mAngle = 0.0f;
+                mAngle = 0;
             }
         }
         updateCurrentModel(previousOrNext);
@@ -210,34 +164,20 @@ public final class ModelInforPool {
         return mCurrentModel;
     }
 
-    /**
-     * @param currentModel
-     *            the mCurrentModel to set
-     */
-    public void setMCurrentModel(t3DModel currentModel) {
-        mCurrentModel = currentModel;
-    }
+//    /**
+//     * @param currentModel
+//     *            the mCurrentModel to set
+//     */
+//    public void setMCurrentModel(t3DModel currentModel) {
+//        mCurrentModel = currentModel;
+//    }
 
     public t3DModel getModel(int modelID) {
-        // Iterator<Model> modelIterator = mModelVector.iterator();
-        // while (modelIterator.hasNext())
-        // {
-        // Model model = modelIterator.next();
-        // if (model.getID() == modelID)
-        // {
-        // return model;
-        // }
-        // }
         return spAy.get(modelID);
     }
 
     public boolean updateCurrentModel(boolean previousOrNext) {
-        // Iterator<Model> modelIterator = mModelVector.iterator();
-        // Collection<Model> collection = mModelMap.values();
-        // Iterator<Model> modelIterator = collection.iterator();
-        //		
     	t3DModel previous = null;
-        // while (modelIterator.hasNext())
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
             if (model.mType == mCurrentType) {
@@ -247,15 +187,15 @@ public final class ModelInforPool {
                             break;
                         } else {
                             mCurrentModel = previous;
-                            mAngle = 0.0f;
+                            mAngle = 0;
                             return true;
                         }
                     } else {
                         for (int index2 = 0; index2 < 5; index2++) {
                         	t3DModel model2 = spAy.get(index2);
-                            if (model.mType == mCurrentType) {
+                            if (model2.mType == mCurrentType) {
                                 mCurrentModel = model2;
-                                mAngle = 0.0f;
+                                mAngle = 0;
                                 return true;
                             }
                         }
@@ -267,17 +207,17 @@ public final class ModelInforPool {
         return false;
     }
 
-    public float getMAngle() {
+    public int getMAngle() {
         return mAngle;
     }
 
-    public void setMAngle(float angle) {
+    public void setMAngle(int angle) {
         mAngle = angle;
     }
 
     private int mCurrentType = -1;
     private t3DModel mCurrentModel = null;
-    private float mAngle = 0.0f;
+    private int mAngle = 0;
     private float mPresentationAngle = 0.0f;
     private Point3f mScale;
     private Point3f mPosition;

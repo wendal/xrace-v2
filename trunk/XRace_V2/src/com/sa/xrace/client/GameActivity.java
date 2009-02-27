@@ -470,23 +470,23 @@ public class GameActivity extends Activity implements SensorListener {
 
         // {{for testing
         case KeyEvent.KEYCODE_DPAD_UP:
-            if (mWorld.isBeginWait) {
+            if (StateValuePool.isBeginWait) {
                 car.setSpeedKeyState(CarInforClient.SPEED_UP_KEYBOARD);
             }
             break;
         case KeyEvent.KEYCODE_DPAD_DOWN:
-            if (mWorld.isBeginWait) {
+            if (StateValuePool.isBeginWait) {
                 car.setSpeedKeyState(CarInforClient.SPEED_DOWN_KEYBOARD);
             }
             break;
         case KeyEvent.KEYCODE_DPAD_LEFT:
-            if (mWorld.isBeginWait) {
+            if (StateValuePool.isBeginWait) {
                 car
                         .setDirectionKeyState(CarInforClient.DIRECTION_LEFT_KEYBOARD);
             }
             break;
         case KeyEvent.KEYCODE_DPAD_RIGHT:
-            if (mWorld.isBeginWait) {
+            if (StateValuePool.isBeginWait) {
                 car
                         .setDirectionKeyState(CarInforClient.DIRECTION_RIGHT_KEYBOARD);
             }

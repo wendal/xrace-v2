@@ -35,8 +35,8 @@ public final class GLThread_Room extends Thread {
 
     public static int mPhase = DataToolKit.GAME_ROOM;
     // private boolean isInitGameFinished=false;
-    private float cameraStep = 1f;
-    private float cameraLimit = 0f;
+    private int cameraStep = 1;
+    private int cameraLimit = 0;
 
     private int mWidth;
     private int mHeight;
@@ -365,45 +365,9 @@ public final class GLThread_Room extends Thread {
 
     private void Loading() {
         GL10 gl = ObjectPool.gl;
-        // TimingLogger logger = new TimingLogger("GLThread_Room", "Loading");
-        // long start = System.currentTimeMillis();
-        // long first = start;
-        // Log.e("-->Begin " + (System.currentTimeMillis() - start),
-        // "GLThread_Room Loading");
-        // makeLoading(60, 0);
-
-        // start = System.currentTimeMillis();
-        // // picPool.generateEveryThing(); // 23s
-        // Log.e("-->>Time use :"+(System.currentTimeMillis()
-        // -start),"generateEveryThing");
-
-        // start = System.currentTimeMillis();
-        giPool.makeAllInterface(gl); // >1s
-        // logger.addSplit("makeAllInterface");
-        // makeLoading(182, 2);
-        // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
-        // "makeAllInterface");
-
-        // start = System.currentTimeMillis();
-
-        // MethodsPool.LoadMapFromXML("scene.xml"); // 4.7s
-
-        // logger.addSplit("LoadMapFromXML");
-        // makeLoading(242, 2);
-        // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
-        // "LoadMapFromXML");
-        //
-        // start = System.currentTimeMillis();
-        // long start = System.currentTimeMillis();
-        mModelContainer.generate(gl); // 49s
-        // logger.addSplit("mModelContainer.generate");
-        // Log.e("-->>Time use :" + (System.currentTimeMillis() - start),
-        // "mModelContainer.generate(gl);");
-        // start = System.currentTimeMillis();
-
-        getCommonTextureReady(gl); // >1s
-        // makeLoading(442, 3);
-        // logger.addSplit("getCommonTextureReady(gl)");
+        giPool.makeAllInterface(gl);
+        mModelContainer.generate(gl);
+        getCommonTextureReady(gl);
         mModelContainer.setType(DataToolKit.CAR);
         ObjectPool.myCar.setModel(
                 mModelContainer.getCurrentModel());
@@ -412,13 +376,6 @@ public final class GLThread_Room extends Thread {
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");
             ObjectPool.mPostManager.sendLoginPostToServer();
         }
-        // makeLoading(460, 3);
-        // isModelGenerate = true;
-        // logger.addSplit("sendLoginPostToServer");
-        // logger.dumpToLog();
-        // Log.e("Done Loading-->Time used: "
-        // + (System.currentTimeMillis() - first),
-        // "It shall be show Srceen now");
     }
 
     private void getLoginTextureReady() {
@@ -433,7 +390,6 @@ public final class GLThread_Room extends Thread {
 
     private void getCommonTextureReady(GL10 gl) {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(4));
-        // Log.e("in getCommonTextureReady", "Step A getCommonTextureReady");
         gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
                 GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
                         .getByteBuffer_ByID(R.drawable.down_pic));
@@ -459,8 +415,7 @@ public final class GLThread_Room extends Thread {
                 GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
                         .getByteBuffer_ByID(R.drawable.carchoice));
 
-        // Log.e("in getCommonTextureReady", "Step B getCommonTextureReady");
-
+       
         gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
                 GL10.GL_CLAMP_TO_EDGE);
         gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
@@ -471,7 +426,7 @@ public final class GLThread_Room extends Thread {
                 GL10.GL_LINEAR);
         gl.glTexEnvx(GL10.GL_TEXTURE_ENV, GL10.GL_TEXTURE_ENV_MODE,
                 GL10.GL_MODULATE);
-        // Log.e("in getCommonTextureReady", "Finish getCommonTextureReady");
+       
     }
 
     private void initForGame() {
@@ -506,7 +461,7 @@ public final class GLThread_Room extends Thread {
     private void drawCarSelection(GL10 gl) {
         gl.glPushMatrix();
         // mModelContainer.setTypeAndUpdate(Model.CAR, GameActivity.carBack);
-        mModelContainer.setMAngle(38f);
+        mModelContainer.setMAngle(38);
         mModelContainer.setPosition(0, -1.7f, -8.4f);
         mModelContainer.setScale(0.02f, 0.02f, 0.02f);
         mModelContainer.draw();
@@ -523,19 +478,12 @@ public final class GLThread_Room extends Thread {
                 cameraStep = -cameraStep;
                 cameraLimit += cameraStep;
             }
-            mModelContainer.setMAngle(38f + cameraLimit);
-            mModelContainer.setPosition(0, -2.5f, -7.4f);
-            mModelContainer.setScale(0.04f, 0.04f, 0.04f);
+            mModelContainer.setMAngle(38 + cameraLimit);
             // ºÄÊ±87ms
             // Begin
 //            long start = System.currentTimeMillis();
-            mModelContainer.drawByID(gl, 4);
+            mModelContainer.drawGarageNow();
             
-            
-            // End
-//            Log.e("mModelContainer.drawByID,Time used:", ""
-//                    + (System.currentTimeMillis() - start));
-
             gl.glPopMatrix();
         }
     }

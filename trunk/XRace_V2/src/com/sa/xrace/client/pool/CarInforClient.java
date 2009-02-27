@@ -154,7 +154,7 @@ public final class CarInforClient {
         if (mModel == null) {
             return false;
         }
-        mWheel = (t3DObject) mModel.getObject("rlwheel").clone();
+        mWheel =  mModel.getObject("rlwheel").clone();
         mWheel.resetVertice(new Point3f(0.0f, 0.0f, 0.0f));
         mWheel.createVertexBuffer();
         mWheelPos[0] = mModel.getObject("flwheel").getCenter();
