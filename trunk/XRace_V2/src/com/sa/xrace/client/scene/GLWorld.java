@@ -1,7 +1,6 @@
 package com.sa.xrace.client.scene;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.microedition.khronos.opengles.GL10;
 

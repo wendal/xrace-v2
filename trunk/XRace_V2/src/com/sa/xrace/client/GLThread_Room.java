@@ -17,7 +17,6 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11Ext;
 
 import android.opengl.GLU;
 import android.util.Log;
@@ -39,8 +38,8 @@ public final class GLThread_Room extends Thread {
     private int cameraStep = 1;
     private int cameraLimit = 0;
 
-    private int mWidth;
-    private int mHeight;
+//    private int mWidth;
+//    private int mHeight;
     private IntBuffer texturesB;
     private boolean mDone;
     // private RoomPicPool picPool;
@@ -81,8 +80,8 @@ public final class GLThread_Room extends Thread {
         progress = 22;
         texturesB = IntBuffer.allocate(11);
         mDone = false;
-        mWidth = 0;
-        mHeight = 0;
+//        mWidth = 0;
+//        mHeight = 0;
         this.mHolder = mHolder;
         callingView = inputView;
         // this.picPool = ObjectPool.rpPool;
@@ -127,6 +126,7 @@ public final class GLThread_Room extends Thread {
         ObjectPool.gl = (GL10) context.getGL();
         
 //        Log.e("Here", "GL Class ==" +ObjectPool.gl.getClass().getName());
+//        Class = com.google.android.jsr239.GLImpl
 //        Log.e("Here", "GL Class ==" +(ObjectPool.gl instanceof GL11Ext));
         
         ObjectPool.gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,
@@ -146,7 +146,8 @@ public final class GLThread_Room extends Thread {
         while (!mDone) {
             //For test
 //            StateValuePool.counter = 0;
-            Log.e("GLThread_Room", "Start new time");
+//            Log.e("GLThread_Room", "Start new time");
+            
             // Update the asynchronous state (window size, key events)
 //            long start = System.currentTimeMillis();
 //            int w, h;
@@ -351,10 +352,10 @@ public final class GLThread_Room extends Thread {
     // }
     // }
     public void onWindowResize(int w, int h) {
-        synchronized (this) {
-            mWidth = w;
-            mHeight = h;
-        }
+//        synchronized (this) {
+//            mWidth = w;
+//            mHeight = h;
+//        }
     }
 
     public void requestExitAndWait() {
