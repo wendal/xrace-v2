@@ -107,6 +107,7 @@ public final class DataUnti {
             // }
             // size[0] = data[0] + 256;
             // size[1] = data[1] + 256;
+            is.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -496,20 +496,21 @@ public class WRbarPool {
 
         }
     }
-}
-
-class Bar {
-    public static final int LOGIN = 101;
-    public static final int LOGOUT = 100;
-    public static final int IDLE = 110;
-    public static final int NA = 120;
-    public int status;
-    public int timeCount;
-    public byte carID;
-    public float stepX, stepY;
-    public float basicX, basicY;
+    private class Bar {
+    static final int LOGIN = 101;
+    static final int LOGOUT = 100;
+    static final int IDLE = 110;
+    static final int NA = 120;
+    int status;
+    int timeCount;
+    byte carID;
+    float stepX, stepY;
+    float basicX, basicY;
 
     public Bar() {
         status = NA;
     }
 }
+
+}
+
