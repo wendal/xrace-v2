@@ -17,6 +17,7 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.opengles.GL11Ext;
 
 import android.opengl.GLU;
 import android.util.Log;
@@ -124,6 +125,10 @@ public final class GLThread_Room extends Thread {
         surface = egl.eglCreateWindowSurface(dpy, config, mHolder, null);
         egl.eglMakeCurrent(dpy, surface, surface, context);
         ObjectPool.gl = (GL10) context.getGL();
+        
+//        Log.e("Here", "GL Class ==" +ObjectPool.gl.getClass().getName());
+//        Log.e("Here", "GL Class ==" +(ObjectPool.gl instanceof GL11Ext));
+        
         ObjectPool.gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,
                 GL10.GL_FASTEST);
 
@@ -141,7 +146,7 @@ public final class GLThread_Room extends Thread {
         while (!mDone) {
             //For test
 //            StateValuePool.counter = 0;
-            
+            Log.e("GLThread_Room", "Start new time");
             // Update the asynchronous state (window size, key events)
 //            long start = System.currentTimeMillis();
 //            int w, h;

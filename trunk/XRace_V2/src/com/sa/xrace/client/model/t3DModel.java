@@ -99,7 +99,7 @@ public final class t3DModel {
         for(t3DObject _3Dobject : _3Dobjects){
             _3Dobject.draw();
         }
-//        Log.e("Number of 3Dobjects Finish draw",""+_3Dobjects.size() + " Time" + (System.currentTimeMillis() - start));
+        Log.e("Finish draw"," Time " + mModelID + " " +(System.currentTimeMillis() - start));
     }
 
     public t3DObject getObject(String objectName) {
