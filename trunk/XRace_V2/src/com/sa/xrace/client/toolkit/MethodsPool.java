@@ -110,6 +110,11 @@ public final class MethodsPool {
                         .parseInt(modelObj.getID()), Integer.parseInt(modelObj
                                 .getType()), modelObj.getScale(), modelObj
                                 .getRadius());
+                
+                //释放两个流
+                dis = null;
+                fis = null;
+                
                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
                 // model = new Model(Integer.parseInt(modelObj.getID()), Integer
                 // .parseInt(modelObj.getType()), t3Dmodel, modelObj
@@ -125,11 +130,17 @@ public final class MethodsPool {
                     if (Integer.parseInt(modelObj.getType()) == DataToolKit.COLLISION) {
                         object.updateTransformMatrix();
                     }
+                    locationObj.points[index] = null;
                     ObjectPool.mWorld.addObject(object);
                 }
+                //释放locationObj
+                locationObj = null;
                 Log.i("Time in Image parse", modelObj.getFilename() + " "
                         + (System.currentTimeMillis() - image_start));
             }
+            //释放ModelImport持有的对象
+            modelImport.release();
+            modelImport = null;
             //
             long gcm_time = System.currentTimeMillis();
             ObjectPool.mWorld.generateCollisionMap();

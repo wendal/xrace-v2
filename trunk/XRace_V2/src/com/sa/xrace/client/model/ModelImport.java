@@ -74,10 +74,10 @@ public final class ModelImport {
      * import the 3DS model file into the t3DModel object Model: t3DModel
      * instance storing the data inputS: file input stream of the 3DS file
      */
-    public t3DModel import3DS(InputStream inputS, int modelID, int type,  Point3f scale,
+    public t3DModel import3DS(DataInputStream inputS, int modelID, int type,  Point3f scale,
             float radius) {
         t3DModel model = new t3DModel(modelID ,type , scale ,radius);
-        dis = new DataInputStream(inputS);
+        dis = inputS;
         readChunk(m_CurrentChunk);
 
         if (m_CurrentChunk.ID != PRIMARY) {
@@ -565,11 +565,17 @@ public final class ModelImport {
     private void closeInput() {
         try {
             dis.close();
+            dis = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void release(){
+        buffer = null;
+        dis = null;
+    }
+    
     /**
      * This class is used to keep the ID, length and bytesRead of chunk.
      */
