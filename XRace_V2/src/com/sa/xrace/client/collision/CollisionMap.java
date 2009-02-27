@@ -18,7 +18,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.scene.Camera;
-import com.sa.xrace.client.scene.Object;
+import com.sa.xrace.client.scene.AppearableObject;
 
 public final class CollisionMap {
 
@@ -37,11 +37,11 @@ public final class CollisionMap {
         finishLine[1] = new Point3f(6, 6, 6);
     }
 
-    public void generateWallCollisionMap(Object object) {
-        if (object.mVerts != null) {
-            for (int i = 0; i < object.mVerts.length; i++) {
-                for (int j = 0; j < object.mVerts[i].length; j++) {
-                    walls.add(object.mVerts[i][j]);
+    public void generateWallCollisionMap(AppearableObject appearableObject) {
+        if (appearableObject.mVerts != null) {
+            for (int i = 0; i < appearableObject.mVerts.length; i++) {
+                for (int j = 0; j < appearableObject.mVerts[i].length; j++) {
+                    walls.add(appearableObject.mVerts[i][j]);
                 }
             }
         }

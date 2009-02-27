@@ -16,7 +16,7 @@ import com.sa.xrace.client.math.Point3f;
 public class ModelObj {
     public String filename;
     public String ID;
-    public String type;
+    public int type;
 //    private float Radius;
     public Point3f scale = new Point3f();
 

@@ -17,6 +17,8 @@ import java.nio.ShortBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.MethodsPool;
@@ -328,11 +330,13 @@ public final class t3DObject implements Cloneable {
 
         if (textureID[0] != -1) {
             gl.glBindTexture(GL10.GL_TEXTURE_2D, textureID[0]);
+//            Log.e("Here","Mode ID= " );
         }
         gl.glVertexPointer(3, GL10.GL_FIXED, 0, mVertexBuffer);
         gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTexVertBuffer);// This Line ?
         gl.glDrawElements(GL10.GL_TRIANGLES, numOfFaces * 3,
                 GL10.GL_UNSIGNED_SHORT, mIndexBuffer);
+//        Log.e("Here","---------------------?" );
     }
 
     private IntBuffer mVertexBuffer;

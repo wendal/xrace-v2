@@ -21,4 +21,5 @@ public final class StateValuePool {
     // public static long timeElapsed = 0;
     // public static long timeadd = 0;
     public static boolean isBeginWait = false;
+    
 }
