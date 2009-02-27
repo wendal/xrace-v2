@@ -49,7 +49,7 @@ public class ServerListenerImp extends HandlerThread {
      */
     // private boolean listenerON;
     // private static final int TIME_OUT = 10000;
-    private WRbarPool barPool;
+//    private WRbarPool barPool;
 
     // private GameActivity mActivity;
 
@@ -85,7 +85,7 @@ public class ServerListenerImp extends HandlerThread {
         pool = ObjectPool.inPoolClient;
         // mActivity = activity;
         // listenerON = true;
-        this.barPool = ObjectPool.barPool;
+//        this.barPool = ObjectPool.barPool;
         try {
             input = new DataInputStream(ObjectPool.mSocket.getInputStream());
             this.start();
@@ -173,7 +173,8 @@ public class ServerListenerImp extends HandlerThread {
                     tempID = input.readByte();
                     tempNamesI = input.readInt();
                     pool.updateCarInformationLogout(tempID);
-                    barPool.deleteBar_Logout(tempNamesI);
+                    if(ObjectPool.barPool != null)
+                        ObjectPool.barPool.deleteBar_Logout(tempNamesI);
                 } else if (postReceived == DataToolKit.CARTYPE) {
                     tempID = input.readByte();
                     tempModelID = input.readByte();
@@ -189,7 +190,7 @@ public class ServerListenerImp extends HandlerThread {
 
                     /**/
                     // ObjectPool.barPool = null;
-                    this.barPool = null;
+                    ObjectPool.barPool = null;
 
                     ObjectPool.activity.initGameRunning();
                     // GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
@@ -198,7 +199,8 @@ public class ServerListenerImp extends HandlerThread {
                     tempID = input.readByte();
                     tempNamesI = input.readInt();
                     pool.updateCarInformationDropout(tempID);
-                    barPool.deleteBar_Dropout(tempNamesI);
+                    if(ObjectPool.barPool != null)
+                        ObjectPool.barPool.deleteBar_Dropout(tempNamesI);
                 } else {
                     Log.e(TAG, "Invalid message!");
                 }

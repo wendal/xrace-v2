@@ -221,16 +221,17 @@ public final class GLThread_Room extends Thread {
             // End
             // Log.e("drawGarage,Time used:", ""
             // + (System.currentTimeMillis() - start));
+            if(ObjectPool.barPool != null){
+                ObjectPool.barPool.drawOut();
 
-            ObjectPool.barPool.drawOut();
-
-            if (StateValuePool.carOn) {
-                drawCarSelection(gl);
+                if (StateValuePool.carOn) {
+                    drawCarSelection(gl);
+                }
             }
             break;
         case DataToolKit.GAME_RUNNING:
 
-            ObjectPool.barPool = null;
+//            ObjectPool.barPool = null;
             mWorld.draw(gl, timeElapsed);
             giPool.drawStarPoints(gl);
             giPool.drawDiameter(gl);
