@@ -189,7 +189,10 @@ public class GameActivity extends Activity implements SensorListener {
                         NetworkToolKit.NAME);
 
                 // 提前载入模型
+                long start = System.currentTimeMillis();
                 MethodsPool.LoadMapFromXML("scene.xml");
+              Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
+                 start));
 
                 ObjectPool.activity.mModelInforPool.setType(DataToolKit.CAR);
                 ObjectPool.activity.inPool.getOneCarInformation(
@@ -199,7 +202,7 @@ public class GameActivity extends Activity implements SensorListener {
                 GameView drawView = new GameView(ObjectPool.activity
                         .getApplication());
                 ObjectPool.activity.setContentView(drawView);
-                System.gc();
+//                System.gc();
                 isInited = true;
                 // ObjectNumber.getResult();
             }

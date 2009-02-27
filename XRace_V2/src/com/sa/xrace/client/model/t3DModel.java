@@ -81,8 +81,7 @@ public final class t3DModel {
     public Vector<t3DObject> objects; // vectors keeping the objects
     // private Activity mainAcivity;
 
-    public t3DModel(int modelID, int type,  Point3f scale,
-            float radius) {
+    public t3DModel(int modelID, int type,  Point3f scale) {
     	
 //    	this.mModel = this;
         this.mModelID = modelID;

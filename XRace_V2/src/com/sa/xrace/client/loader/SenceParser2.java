@@ -59,11 +59,11 @@ public final class SenceParser2 {
         // ArrayList<ModelObj> modelListTemp;
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setValidating(false);
+//        factory.setValidating(false);
         // docBuilder = ;
         Document doc = factory.newDocumentBuilder().parse(is);
         // ½âÎö³É¹¦
-        System.out.println("parse successfull");
+//        System.out.println("parse successfull");
         // String rootName = doc.getDocumentElement().getNodeName();
         // sence.setName(doc.getDocumentElement().getNodeName());
         // System.out.println(rootName);
@@ -82,12 +82,12 @@ public final class SenceParser2 {
                 // System.out.println(((Element)
                 // eNode).getAttribute("Filename"));
                 mObjTemp
-                        .setFilename(((Element) eNode).getAttribute("Filename"));
-                mObjTemp.setID(((Element) eNode).getAttribute("ID"));
-                mObjTemp.setType(((Element) eNode).getAttribute("Type"));
+                        .filename = ((Element) eNode).getAttribute("Filename");
+                mObjTemp.ID = ((Element) eNode).getAttribute("ID");
+                mObjTemp.type = ((Element) eNode).getAttribute("Type");
                 mObjTemp.setScale(((Element) eNode).getAttribute("Scale"));
-                mObjTemp.setRadius(Float.parseFloat(((Element) eNode)
-                        .getAttribute("Radius")));
+//                mObjTemp.setRadius(Float.parseFloat(((Element) eNode)
+//                        .getAttribute("Radius")));
                 // System.out.println(eNode.getChildNodes().getLength());
 
                 NodeList nLocations = eNode.getChildNodes();
@@ -130,6 +130,8 @@ public final class SenceParser2 {
             }
 
         }
+        is.close();
+        
         // sence.setLModelList(modelListTemp);
         return modelListTemp;
         // return modelListTemp;

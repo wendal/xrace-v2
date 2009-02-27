@@ -11,7 +11,6 @@ package com.sa.xrace.client.model;
 
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 
 import com.sa.xrace.client.math.Point2f;
@@ -74,9 +73,8 @@ public final class ModelImport {
      * import the 3DS model file into the t3DModel object Model: t3DModel
      * instance storing the data inputS: file input stream of the 3DS file
      */
-    public t3DModel import3DS(DataInputStream inputS, int modelID, int type,  Point3f scale,
-            float radius) {
-        t3DModel model = new t3DModel(modelID ,type , scale ,radius);
+    public t3DModel import3DS(DataInputStream inputS, int modelID, int type,  Point3f scale) {
+        t3DModel model = new t3DModel(modelID ,type , scale );
         dis = inputS;
         readChunk(m_CurrentChunk);
 
