@@ -22,7 +22,10 @@ import com.sa.xrace.client.scene.AppearableObject;
 public final class MethodsPool {
 
     public static Bitmap getBitmap(int resID) {
-        // Bitmap tem =
+//    	Log.e("Get one Bitmap", DataUnti.getNameByID(resID));
+//    	long time = System.currentTimeMillis();
+//         Bitmap tem =;
+//         Log.e("Finish one bitmap", "Time" +(System.currentTimeMillis() - time));
         return BitmapFactory.decodeResource(ObjectPool.resources, resID);
         // return tem;
     }
