@@ -378,9 +378,9 @@ public final class GLThread_Room extends Thread {
         giPool.makeAllInterface(gl);
         mModelContainer.generate(gl);
         getCommonTextureReady(gl);
-        mModelContainer.setType(DataToolKit.CAR);
+//        mModelContainer.setType(DataToolKit.CAR);
         ObjectPool.myCar.setModel(
-                mModelContainer.getCurrentModel());
+                mModelContainer.getCurrentCarModel());
         if (!StateValuePool.isLogin) {
             Log.e("----------------isLogin-----------------", "isLogin");
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");

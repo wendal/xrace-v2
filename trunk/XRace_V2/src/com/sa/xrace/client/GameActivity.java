@@ -92,8 +92,8 @@ public class GameActivity extends Activity implements SensorListener {
         mHandler.post(new initThread(this));
 
         // System.out.println(Runtime.getRuntime().freeMemory());
-        Log.i("GameActivity", "Finish onCreate(), Free Mem: "
-                + Runtime.getRuntime().freeMemory());
+//        Log.i("GameActivity", "Finish onCreate(), Free Mem: "
+//                + Runtime.getRuntime().freeMemory());
     }
 
     private static boolean isInited = false;
@@ -189,15 +189,15 @@ public class GameActivity extends Activity implements SensorListener {
                         NetworkToolKit.NAME);
 
                 // 提前载入模型
-                long start = System.currentTimeMillis();
+//                long start = System.currentTimeMillis();
                 MethodsPool.LoadMapFromXML("scene.xml");
-              Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
-                 start));
+//              Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
+//                 start));
 
-                ObjectPool.activity.mModelInforPool.setType(DataToolKit.CAR);
+//                ObjectPool.activity.mModelInforPool.nextCarModel();
                 ObjectPool.activity.inPool.getOneCarInformation(
                         ObjectPool.activity.inPool.getMyCarIndex()).setModel(
-                        ObjectPool.activity.mModelInforPool.getCurrentModel());
+                        ObjectPool.activity.mModelInforPool.getCurrentCarModel());
 
                 GameView drawView = new GameView(ObjectPool.activity
                         .getApplication());
@@ -356,28 +356,28 @@ public class GameActivity extends Activity implements SensorListener {
     private void onRoomWaiting(int arg0, KeyEvent arg1) {
         switch (arg0) {
         case KeyEvent.KEYCODE_DPAD_LEFT:
-            if (StateValuePool.carOn == true) {
+            StateValuePool.carOn = true;
                 // ///////////////////////////////////////
-                mModelInforPool.updateCurrentModel(true);
+                mModelInforPool.nextCarModel();
                 // ///////////////////////////////////////
 
                 StateValuePool.carBack = true;
                 StateValuePool.carNext = false;
-            }
+            
             break;
         case KeyEvent.KEYCODE_DPAD_RIGHT:
-            if (StateValuePool.carOn == true) {
+            StateValuePool.carOn = true;
                 // ///////////////////////////////////////
-                mModelInforPool.updateCurrentModel(false);
+                mModelInforPool.nextCarModel();
                 // ///////////////////////////////////////
                 StateValuePool.carNext = true;
                 StateValuePool.carBack = false;
-            }
+            
             break;
         case KeyEvent.KEYCODE_DPAD_DOWN:
             // mModelInforPool.setType(TYPE_CAR);
         	ObjectPool.myCar.setModel(
-                    mModelInforPool.getCurrentModel());
+                    mModelInforPool.getCurrentCarModel());
 
         	ObjectPool.myCar
                     .generateAABBbox();
@@ -386,22 +386,21 @@ public class GameActivity extends Activity implements SensorListener {
             break;
         case KeyEvent.KEYCODE_DPAD_UP:
 
-            mModelInforPool.setType(DataToolKit.CAR);
+//            mModelInforPool.setType(DataToolKit.CAR);
 
             StateValuePool.carOn = true;
             break;
         case KeyEvent.KEYCODE_ENTER:
-            mModelInforPool.setTypeAndUpdate(DataToolKit.CAR,
-                    StateValuePool.carBack);
+//            mModelInforPool.nextCarModel();
 
             if (ObjectPool.myCar.getModel() == null) {
                 // mModelInforPool.setType(Model.CAR);
             	ObjectPool.myCar.setModel(
-                        mModelInforPool.getCurrentModel());
+                        mModelInforPool.getCurrentCarModel());
                 // inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             } else {
             	ObjectPool.myCar.setModel(
-                        mModelInforPool.getCurrentModel());
+                        mModelInforPool.getCurrentCarModel());
                 // inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             }
             // mPostManager.sendCarTypePostToServer();

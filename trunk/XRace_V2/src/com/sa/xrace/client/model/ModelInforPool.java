@@ -54,7 +54,27 @@ public final class ModelInforPool {
     }
     public void addModel(t3DModel mod) {
         spAy.put(mod.mModelID, mod);
+        switch(mod.mType){
+        case DataToolKit.CAR :
+        	if(carModelPool[0] == null){
+        		carModelPool[0] = mod;
+        		mCurrentModel = mod;
+        	}else {
+				carModelPool[1] = mod;
+			}
+        	break;
+//        case DataToolKit.ROOM :
+//        	garageModel = mod;
+//        	break;
+//        case DataToolKit.MAP :
+//        	roadModel = mod;
+//        	break;
+//        case DataToolKit.COLLISION :
+//        	road_line_model = mod;
+        }
+//        Log.e("Model Add ID", ""+mCurrentModel);
     }
+       
 
     /**
      * This function would generate all the buffer for render according those
@@ -129,38 +149,28 @@ public final class ModelInforPool {
         mPosition.z = z;
     }
 
-    public void setType(int type) {
-        this.mCurrentType = type;
-        for (int index = 0; index < 5; index++) {
-        	t3DModel model = spAy.get(index);
-            if (model.mType == mCurrentType) {
-                mCurrentModel = model;
-                mAngle = 0;
-            }
+//    public void setType(int type) {
+//        this.mCurrentType = type;
+//        mCurrentModel = carModelPool[0];
+//        mAngle = 0;
+//    }
+
+    public void nextCarModel() {
+//        this.mCurrentType = DataToolKit.CAR;
+        if(carModelPool[0] == mCurrentModel){
+        	mCurrentModel = carModelPool[1];
+            }else{
+            	mCurrentModel = carModelPool[0];
         }
+        mAngle = 0;
+//        nextCarModel(previousOrNext);
     }
 
-    public void setTypeAndUpdate(int type, boolean previousOrNext) {
-        this.mCurrentType = type;
-        // Collection<Model> collection = mModelMap.values();
-        // Iterator<Model> modelIterator = collection.iterator();
-        // while (modelIterator.hasNext()) {
-        // Model model = modelIterator.next();
-        for (int index = 0; index < 5; index++) {
-        	t3DModel model = spAy.get(index);
-            if (model.mType == mCurrentType) {
-                mCurrentModel = model;
-                mAngle = 0;
-            }
-        }
-        updateCurrentModel(previousOrNext);
-    }
+//    public int getType() {
+//        return mCurrentType;
+//    }
 
-    public int getType() {
-        return mCurrentType;
-    }
-
-    public t3DModel getCurrentModel() {
+    public t3DModel getCurrentCarModel() {
         return mCurrentModel;
     }
 
@@ -176,36 +186,14 @@ public final class ModelInforPool {
         return spAy.get(modelID);
     }
 
-    public boolean updateCurrentModel(boolean previousOrNext) {
-    	t3DModel previous = null;
-        for (int index = 0; index < 5; index++) {
-        	t3DModel model = spAy.get(index);
-            if (model.mType == mCurrentType) {
-                if (model == mCurrentModel) {
-                    if (previousOrNext == true) {
-                        if (previous == null) {
-                            break;
-                        } else {
-                            mCurrentModel = previous;
-                            mAngle = 0;
-                            return true;
-                        }
-                    } else {
-                        for (int index2 = 0; index2 < 5; index2++) {
-                        	t3DModel model2 = spAy.get(index2);
-                            if (model2.mType == mCurrentType) {
-                                mCurrentModel = model2;
-                                mAngle = 0;
-                                return true;
-                            }
-                        }
-                    }
-                }
-                previous = model;
-            }
-        }
-        return false;
-    }
+//    public boolean nextCarModel() {
+////    	t3DModel previous = null;
+////        mCurrentModel = model2;
+//    	
+//        mAngle = 0;
+//                                
+//        return false;
+//    }
 
     public int getMAngle() {
         return mAngle;
@@ -215,7 +203,7 @@ public final class ModelInforPool {
         mAngle = angle;
     }
 
-    private int mCurrentType = -1;
+//    private int mCurrentType = -1;
     private t3DModel mCurrentModel = null;
     private int mAngle = 0;
     private float mPresentationAngle = 0.0f;
@@ -225,5 +213,15 @@ public final class ModelInforPool {
     // private HashMap<Integer, Model> mModelMap = new HashMap<Integer,
     // Model>();
     private SparseArray<t3DModel> spAy = new SparseArray<t3DModel>(5);
+    
+    public t3DModel [] carModelPool = new t3DModel[2];
+    
+//    public t3DModel roadModel ;
+//    
+//    public t3DModel road_line_model;
+//    
+//    public t3DModel garageModel;
+   
 
+//    public t3DModel currentCarMode;
 }
