@@ -59,7 +59,7 @@ public final class t3DModel {
         this.mScale_x = scale.x;
         this.mScale_y = scale.y;
         this.mScale_z = scale.z;
-        Log.e("Mew t3DModel created","ID = "+modelID);
+//        Log.e("Mew t3DModel created","ID = "+modelID);
     	
 //        this.Materials = new ArrayList<tMaterialInfo>();
 //        this._3Dobjects = new ArrayList<t3DObject>();
