@@ -105,9 +105,9 @@ public final class GIPool {
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
         // Reclaim storage used by bitmap and canvas.
-        bm.recycle();
-        bm = null;
-        c = null;
+//        bm.recycle();
+//        bm = null;
+//        c = null;
     }
 
     // private static Bitmap _bm_128 = Bitmap.createBitmap(128, 128,
@@ -117,6 +117,8 @@ public final class GIPool {
     // }
     
     private static final Paint p_Triangle_Diameter = new Paint(); 
+    
+    private static final Bitmap bm_triangle = MethodsPool.getBitmap(R.drawable.triangle);
     public void drawTriangle(GL10 gl) {
         Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
         // Bitmap bm = _bm_128.copy(null, true);
@@ -130,15 +132,15 @@ public final class GIPool {
                 .getNSpeed());
         angle = perSpeed * temp + MINANGLE;
         c.rotate(angle, 50, 36);
-        c.drawBitmap(MethodsPool.getBitmap(R.drawable.triangle), 13, 28, p_Triangle_Diameter);
+        c.drawBitmap(bm_triangle, 13, 28, p_Triangle_Diameter);
 
         c.restore();
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
-        bm.recycle();
-        bm = null;
+//        bm.recycle();
+//        bm = null;
 //        c = null;
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
@@ -179,9 +181,9 @@ public final class GIPool {
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
         // Reclaim storage used by bitmap and canvas.
-         bm.recycle();
-         bm = null;
-         c = null;
+//         bm.recycle();
+//         bm = null;
+//         c = null;
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
@@ -201,8 +203,8 @@ public final class GIPool {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[3]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 
-         bitmap.recycle();
-         bitmap = null;
+//         bitmap.recycle();
+//         bitmap = null;
 //         c = null;
     }
 
@@ -243,13 +245,13 @@ public final class GIPool {
         c
                 .drawBitmap(MethodsPool.getBitmap(R.drawable.carpointpic), 0,
                         0, paint);
-        paint = null;
-        c = null;
+//        paint = null;
+//        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[4]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
 
-        bitmap.recycle();
-        bitmap = null;
+//        bitmap.recycle();
+//        bitmap = null;
 //        c = null;
     }
 
@@ -361,8 +363,8 @@ public final class GIPool {
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
         // Reclaim storage used by bitmap and canvas.
-        bm.recycle();
-        bm = null;
+//        bm.recycle();
+//        bm = null;
 //        c = null;
     }
 
@@ -389,12 +391,12 @@ public final class GIPool {
         p.setTextAlign(Paint.Align.CENTER);
         c.drawText(time, 128, 128, p);
         
-        p= null;
-        c = null;
+//        p= null;
+//        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[6]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-        bm.recycle();
-        bm = null;
+//        bm.recycle();
+//        bm = null;
 //        c = null;
     }
 
