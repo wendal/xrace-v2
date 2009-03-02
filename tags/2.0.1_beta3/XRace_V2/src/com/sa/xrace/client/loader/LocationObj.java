@@ -1,0 +1,48 @@
+///:~
+/**
+ * XRace V2
+ * <p/>Use for ... ...
+ * <p/>ID: $Id$
+ * Last Commit:  $Author$
+ * @version $Revision: $
+ * 
+ */
+package com.sa.xrace.client.loader;
+
+public class LocationObj {
+    public int size;
+    public Point[] points;
+    // public int getSize() {
+    // return size;
+    // }
+    // public void setSize(int size) {
+    // this.size = size;
+    // }
+    // public Point[] getPointArray() {
+    // if(this.point != null){
+    // return point;
+    // }else{
+    // return null;
+    // }
+    // }
+    // // public Point3f getPoint(int index)
+    // // {
+    // // return new Point3f(point[index].getX(), point[index].getY(),
+    // point[index].getZ());
+    // //
+    // // }
+    //
+    // public Point getPoint(int index){
+    // return point[index];
+    // }
+    //	
+    // // public float getAngle(int index)
+    // // {
+    // // return point[index].getAngle();
+    // // }
+    //	
+    // public void setPoint(Point[] point) {
+    // this.point = point;
+    // }
+
+}
