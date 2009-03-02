@@ -195,9 +195,9 @@ public final class ModelInforPool {
 //        return false;
 //    }
 
-    public int getMAngle() {
-        return mAngle;
-    }
+//    public int getMAngle() {
+//        return mAngle;
+//    }
 
     public void setMAngle(int angle) {
         mAngle = angle;
