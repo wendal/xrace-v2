@@ -36,28 +36,16 @@ import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 public final class GLThread_Room extends Thread {
 
     public static int mPhase = DataToolKit.GAME_ROOM;
-    // private boolean isInitGameFinished=false;
     private int cameraStep = 1;
     private int cameraLimit = 0;
 
-    // private int mWidth;
-    // private int mHeight;
     private IntBuffer texturesB;
     private boolean mDone;
-    // private RoomPicPool picPool;
     private GIPool giPool;
     private SurfaceHolder mHolder;
     private GameView callingView;
-    // private WRbarPool barPool;
     private ModelInforPool mModelContainer;
-    // private InforPoolClient inPool;
     private GLWorld mWorld;
-    // private GameActivity mActivity;
-    // private IntBuffer tempIB;
-    // private Bitmap carMyB_img;
-    // private boolean isModelGenerate = false;
-    // private boolean done = false;
-    // public PostManagerClient mPostManager;
     public static boolean addBar = true;
     public static boolean loginFailure = false;
     public static byte bindex = 0;
@@ -82,32 +70,12 @@ public final class GLThread_Room extends Thread {
         progress = 22;
         texturesB = IntBuffer.allocate(11);
         mDone = false;
-        // mWidth = 0;
-        // mHeight = 0;
         this.mHolder = mHolder;
         callingView = inputView;
-        // this.picPool = ObjectPool.rpPool;
         this.giPool = ObjectPool.giPool;
-        // this.barPool = ObjectPool.barPool;
         this.mModelContainer = ObjectPool.mModelInforPool;
-        // this.inPool = ObjectPool.inPoolClient;
         this.mWorld = ObjectPool.mWorld;
-        // this.mActivity = ObjectPool.activity;
-        // this.mPostManager = ObjectPool.mPostManager;
-        // RoomPicPool.loading =
-        // DataUnti.getByteBuffer_ByFileName(DataUnti.getNameByID(R.drawable.laod));
-        // carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
     }
-
-    // public static int getPhase()
-    // {
-    // return mPhase;
-    // }
-
-    // public static void setPhase(int input)
-    // {
-    // mPhase =input;
-    // }
 
     private boolean needGenerateCollisionMap = true;
     
@@ -142,10 +110,6 @@ public final class GLThread_Room extends Thread {
         
         {
             MethodsPool.LoadMapFromXML("scene.xml");
-//          Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
-//             start));
-
-//            ObjectPool.activity.mModelInforPool.nextCarModel();
             ObjectPool.inPoolClient.getOneCarInformation(
                     ObjectPool.inPoolClient.getMyCarIndex()).setModel(
                     ObjectPool.mModelInforPool.getCurrentCarModel());
@@ -164,40 +128,11 @@ public final class GLThread_Room extends Thread {
         // }
 
         while (!mDone) {
-            // For test
-            // StateValuePool.counter = 0;
-            // Log.e("GLThread_Room", "Start new time");
-
-            // Update the asynchronous state (window size, key events)
-            // long start = System.currentTimeMillis();
-            // int w, h;
-            // synchronized (this) {
-            // w = mWidth;
-            // h = mHeight;
-            // }
-            // Log.e("while (!mDone) Part A runnig",""+(System.currentTimeMillis()
-            // - start));
 
             ObjectPool.gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
-
-            // Log.e("while (!mDone) Part B runnig",""+(System.currentTimeMillis()
-            // - start));
-
             drawFrame();// 这是主要耗时的地方,循环绘图
 
-            // Log.e("while (!mDone) Part C runnig",""+(System.currentTimeMillis()
-            // - start));
             egl.eglSwapBuffers(dpy, surface);
-
-            // if (egl.eglGetError() == EGL11.EGL_CONTEXT_LOST) {
-            // // we lost the gpu, quit immediately
-            // Context c = callingView.getContext();
-            // if (c instanceof Activity) {
-            // ((Activity) c).finish();
-            // }
-            // }
-            // Log.e("while (!mDone) runnig", ""
-            // + (System.currentTimeMillis() - start));
         }
 
         // Log.e("Come Here?","after while (!mDone)");
@@ -210,6 +145,7 @@ public final class GLThread_Room extends Thread {
         egl.eglTerminate(dpy);
     }
 
+    private boolean needCreateRoad = true;
     private void drawFrame() {
         GL10 gl = ObjectPool.gl;
         nowTime = System.currentTimeMillis();
@@ -259,6 +195,11 @@ public final class GLThread_Room extends Thread {
             }
             break;
         case DataToolKit.GAME_RUNNING:
+            
+            if(needCreateRoad){
+                ObjectPool.mModelInforPool.roadModel.generate();
+                needCreateRoad = false;
+            }
 
             // ObjectPool.barPool = null;
             mWorld.draw(gl, timeElapsed);
@@ -292,113 +233,6 @@ public final class GLThread_Room extends Thread {
         // Log.e("Send NormalPostToServer ,Time used:",""+(System.currentTimeMillis()
         // - start));
     }
-
-    /**
-     * 应该是控制进度条的
-     * 
-     * @param gl
-     * @param numTime
-     * @param imgIndex
-     */
-    // public final static void makeLoading(int numTime, int imgIndex) {
-    // // GL10 gl = ObjectPool.gl;
-    // //
-    // // android.widget.ProgressBar pBar = new
-    // android.widget.ProgressBar(ObjectPool.activity,null);
-    // // pBar.setProgress((int) ((progress - startPro) / 4.38));
-    //        
-    //        
-    //        
-    // // boolean isDone = false;
-    //
-    // // Bitmap bm = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
-    // // bm.eraseColor(0);
-    // // CloneableCanvas c = new CloneableCanvas(bm);
-    // // Paint p = new Paint();
-    // //
-    // // p.setAntiAlias(true);
-    // // p.setTextSize(13);
-    // // p.setTextAlign(Paint.Align.CENTER);
-    // // p.setStrokeWidth(9.0f);
-    // // c.drawColor(Color.BLACK);
-    // // // if(isDone == false){
-    // // switch (imgIndex) {
-    // // case 0: {
-    // // c.drawBitmap(MethodsPool.getBitmap(R.drawable.load0), 0, 192, p);
-    // // break;
-    // // }
-    // // case 1: {
-    // // c.drawBitmap(MethodsPool.getBitmap(R.drawable.load1), 0, 192, p);
-    // // break;
-    // // }
-    // // case 2: {
-    // // c.drawBitmap(MethodsPool.getBitmap(R.drawable.load2), 0, 192, p);
-    // // break;
-    // // }
-    // // case 3: {
-    // // c.drawBitmap(MethodsPool.getBitmap(R.drawable.load3), 0, 192, p);
-    // // break;
-    // // }
-    // //
-    // // }
-    // // // isDone = true;
-    // // // }
-    // // p.setColor(Color.BLUE);
-    // // c.drawLine(startPro, 488, progress, 488, p);
-    //
-    // // bm.clone();
-    //        
-    // for (int i = progress; i < numTime; i += 5, progress += 5) {
-    // // try {
-    // // Canvas c2 = c.clone();
-    // //
-    // // p.setColor(Color.WHITE);
-    //            
-    // //(int) ((progress - startPro) / 4.38)
-    //            
-    // // c2.drawText("" + (int) ((progress - startPro) / 4.38) + " %",
-    // // 240, 492, p);
-    //
-    // // gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureLoad);
-    // // GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-    // //
-    // // // Reclaim storage used by bitmap and canvas.
-    // // // bm.recycle();
-    // // // bm = null;
-    // // // c2 = null;
-    // //
-    // // gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureLoad);
-    // // ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
-    // // GL11Ext.GL_TEXTURE_CROP_RECT_OES, tem2, 0);
-    // // ((GL11Ext) gl).glDrawTexiOES(0, 0, 0, 512, 512);
-    // // egl.eglSwapBuffers(dpy, surface);
-    // // } catch (CloneNotSupportedException e) {
-    // // // TODO Auto-generated catch block
-    // // e.printStackTrace();
-    // // }
-    // }
-    // }
-    public void onWindowResize(int w, int h) {
-        // synchronized (this) {
-        // mWidth = w;
-        // mHeight = h;
-        // }
-    }
-
-    public void requestExitAndWait() {
-        // don't call this from GLThread thread or it a guaranteed
-        // deadlock!
-        mDone = true;
-        try {
-            join();
-        } catch (InterruptedException ex) {
-        }
-    }
-
-    // public void destroy() {
-    // //
-    // super.destroy();
-    // }
 
     private void Loading() {
         GL10 gl = ObjectPool.gl;

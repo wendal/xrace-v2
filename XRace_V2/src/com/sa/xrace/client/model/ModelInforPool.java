@@ -67,9 +67,9 @@ public final class ModelInforPool {
         	garageModel = mod;
         	break;
         
-//        case DataToolKit.MAP :
-//        	roadModel = mod;
-//        	break;
+        case DataToolKit.MAP :
+        	roadModel = mod;
+        	break;
 //        case DataToolKit.COLLISION :
 //        	road_line_model = mod;
         }
@@ -84,9 +84,8 @@ public final class ModelInforPool {
     public final void generate(GL10 gl) {
         for (int index = 0; index < 5; index++) {
         	t3DModel model = spAy.get(index);
-            if (model.mType != DataToolKit.COLLISION) {
+            if (model.mType != DataToolKit.COLLISION && model.mType != DataToolKit.MAP) {
                 model.generate();
-                
             }
         }
     }
@@ -218,7 +217,7 @@ public final class ModelInforPool {
     
     private t3DModel [] carModelPool = new t3DModel[2];
     
-//    public t3DModel roadModel ;
+    public t3DModel roadModel ;
 //    
 //    public t3DModel road_line_model;
 //    
