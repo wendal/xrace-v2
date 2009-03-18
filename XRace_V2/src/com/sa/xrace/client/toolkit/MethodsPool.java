@@ -122,6 +122,7 @@ public final class MethodsPool {
 //                fis = null;
                 
                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
+                
                 locationObj = modelObj.getLocation();
                 //只有road和road_line具有Location
                 for (int index = 0; index < locationObj.size; index++) {
@@ -130,8 +131,10 @@ public final class MethodsPool {
                     if (modelObj.type == DataToolKit.COLLISION) {
                         ObjectPool.cList.add(appearableObject);
 //                        appearableObject.updateTransformMatrix();
-                    }else
+                    }else{
                     ObjectPool.mWorld.addObject(appearableObject);
+//                    modelObj.generate();
+                    }
                 }
                 
 //                Log.i("Time in Image parse", modelObj.filename + " "

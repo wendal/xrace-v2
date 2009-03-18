@@ -117,9 +117,9 @@ public class GLWorld {
 //        Log.e("GLWorld", "Start new time(before for)");
 		for (int index = 0; index < mObjectVector.size(); index++) {
 			AppearableObject appearableObject = mObjectVector.get(index);
-            if (appearableObject.mVerts != null) {
-                continue;
-            }
+//            if (appearableObject.mVerts != null) {
+//                continue;
+//            }
 
             gl.glMatrixMode(GL10.GL_MODELVIEW); // set the matrix which would be
                                                 // changed

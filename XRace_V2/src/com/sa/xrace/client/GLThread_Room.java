@@ -28,6 +28,7 @@ import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.scene.AppearableObject;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
 import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
@@ -109,6 +110,10 @@ public final class GLThread_Room extends Thread {
     // }
 
     private boolean needGenerateCollisionMap = true;
+    
+    static{
+        
+    }
 
     public void run() {
         Log.i(getClass().getSimpleName(), "in run()");
@@ -134,6 +139,18 @@ public final class GLThread_Room extends Thread {
 
         ObjectPool.gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,
                 GL10.GL_FASTEST);
+        
+        {
+            MethodsPool.LoadMapFromXML("scene.xml");
+//          Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
+//             start));
+
+//            ObjectPool.activity.mModelInforPool.nextCarModel();
+            ObjectPool.inPoolClient.getOneCarInformation(
+                    ObjectPool.inPoolClient.getMyCarIndex()).setModel(
+                    ObjectPool.mModelInforPool.getCurrentCarModel());
+        }
+        
 
         initForGame();
         getLoginTextureReady();
