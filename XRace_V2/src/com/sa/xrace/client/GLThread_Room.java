@@ -197,6 +197,7 @@ public final class GLThread_Room extends Thread {
         case DataToolKit.GAME_RUNNING:
             
             if(needCreateRoad){
+                ObjectPool.mModelInforPool.removeGarageModel();
                 ObjectPool.mModelInforPool.roadModel.generate();
                 needCreateRoad = false;
             }
