@@ -154,8 +154,7 @@ public class GameActivity extends Activity implements SensorListener {
                 // NAME = NetworkToolKit.NAME;
                 // IP = NetworkToolKit.SERVERIP;
 
-                ObjectPool.activity.mModelInforPool = new ModelInforPool(
-                        new Point3f(0, 0, -3.0f));
+                ObjectPool.activity.mModelInforPool = new ModelInforPool();
                 // 将mModelInforPool加入对象池
                 ObjectPool.mModelInforPool = ObjectPool.activity.mModelInforPool;
                 // mModelImport = new ModelImport();
@@ -190,14 +189,14 @@ public class GameActivity extends Activity implements SensorListener {
 
                 // 提前载入模型
 //                long start = System.currentTimeMillis();
-                MethodsPool.LoadMapFromXML("scene.xml");
-//              Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
-//                 start));
-
-//                ObjectPool.activity.mModelInforPool.nextCarModel();
-                ObjectPool.activity.inPool.getOneCarInformation(
-                        ObjectPool.activity.inPool.getMyCarIndex()).setModel(
-                        ObjectPool.activity.mModelInforPool.getCurrentCarModel());
+//                MethodsPool.LoadMapFromXML("scene.xml");
+////              Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
+////                 start));
+//
+////                ObjectPool.activity.mModelInforPool.nextCarModel();
+//                ObjectPool.activity.inPool.getOneCarInformation(
+//                        ObjectPool.activity.inPool.getMyCarIndex()).setModel(
+//                        ObjectPool.activity.mModelInforPool.getCurrentCarModel());
 
                 GameView drawView = new GameView(ObjectPool.activity
                         .getApplication());

@@ -47,8 +47,8 @@ public final class ModelInforPool {
      * 
      * @param position
      */
-    public ModelInforPool(Point3f position) {
-        mPosition = position;
+    public ModelInforPool() {
+        mPosition = new Point3f(0, 0, -3.0f);
         mScale = new Point3f(1.0f, 1.0f, 1.0f);
         // ObjectNumber.regNew(this);
     }
@@ -63,14 +63,15 @@ public final class ModelInforPool {
 				carModelPool[1] = mod;
 			}
         	break;
-//        case DataToolKit.ROOM :
-//        	garageModel = mod;
-//        	break;
+        case DataToolKit.ROOM :
+        	garageModel = mod;
+        	break;
+        
 //        case DataToolKit.MAP :
 //        	roadModel = mod;
 //        	break;
-        case DataToolKit.COLLISION :
-        	road_line_model = mod;
+//        case DataToolKit.COLLISION :
+//        	road_line_model = mod;
         }
 //        Log.e("Model Add ID", ""+mCurrentModel);
     }
@@ -85,6 +86,7 @@ public final class ModelInforPool {
         	t3DModel model = spAy.get(index);
             if (model.mType != DataToolKit.COLLISION) {
                 model.generate();
+                
             }
         }
     }
@@ -129,7 +131,7 @@ public final class ModelInforPool {
         gl.glScalef(mScale.x, mScale.y, mScale.z);
         gl.glRotatef(mAngle, 0, 1, 0);
 
-        t3DModel model = spAy.get(4);
+        t3DModel model = garageModel;
         
         model.scale();
         model.draw();
@@ -214,13 +216,13 @@ public final class ModelInforPool {
     // Model>();
     private SparseArray<t3DModel> spAy = new SparseArray<t3DModel>(5);
     
-    public t3DModel [] carModelPool = new t3DModel[2];
+    private t3DModel [] carModelPool = new t3DModel[2];
     
 //    public t3DModel roadModel ;
 //    
-    public t3DModel road_line_model;
+//    public t3DModel road_line_model;
 //    
-//    public t3DModel garageModel;
+    private t3DModel garageModel;
    
 
 //    public t3DModel currentCarMode;
