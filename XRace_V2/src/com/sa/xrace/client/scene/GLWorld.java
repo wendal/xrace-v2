@@ -65,11 +65,11 @@ public class GLWorld {
     }
 
     public void generateCollisionMap() {
-    	for (int index = 0; index < mObjectVector.size(); index++) {
-			AppearableObject appearableObject = mObjectVector.get(index);
-            if (appearableObject.mVerts != null) {
+    	for (int index = 0; index < ObjectPool.cList.size(); index++) {
+			AppearableObject appearableObject = ObjectPool.cList.get(index);
+//            if (appearableObject.mVerts != null) {
                 collisionMap.generateWallCollisionMap(appearableObject);
-            }
+//            }
         }
         collisionMap.generateWallLines();
         collisionMap.prepare();

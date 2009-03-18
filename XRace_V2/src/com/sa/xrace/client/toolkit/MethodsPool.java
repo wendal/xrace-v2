@@ -128,8 +128,9 @@ public final class MethodsPool {
                     appearableObject = new AppearableObject(t3Dmodel, locationObj.points[index]);
                     locationObj.points[index] = null;
                     if (modelObj.type == DataToolKit.COLLISION) {
-                        appearableObject.updateTransformMatrix();
-                    }
+                        ObjectPool.cList.add(appearableObject);
+//                        appearableObject.updateTransformMatrix();
+                    }else
                     ObjectPool.mWorld.addObject(appearableObject);
                 }
                 

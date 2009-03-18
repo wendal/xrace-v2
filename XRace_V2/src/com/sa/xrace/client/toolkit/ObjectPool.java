@@ -1,6 +1,7 @@
 package com.sa.xrace.client.toolkit;
 
 import java.net.Socket;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -14,6 +15,7 @@ import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.pool.WRbarPool;
+import com.sa.xrace.client.scene.AppearableObject;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 
@@ -49,4 +51,6 @@ public final class ObjectPool {
     public static Camera camera;
     
     public static CarInforClient myCar;
+    
+    public static ArrayList<AppearableObject> cList = new ArrayList<AppearableObject>(5);
 }
