@@ -18,7 +18,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private SurfaceHolder mHolder;
     // private GameActivity Activity;
-    private GLThread_Room drawThread;
+//    private GLThread_Room drawThread;
 
     // private RoomPicPool picPool;
     // private InforPoolClient inPool;
@@ -46,20 +46,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void surfaceChanged(SurfaceHolder arg0, int arg1, int arg2, int arg3) {
         // 
-        drawThread.onWindowResize(arg2, arg3);
+//        drawThread.onWindowResize(arg2, arg3);
     }
 
     public void surfaceCreated(SurfaceHolder arg0) {
         // 
-        drawThread = new GLThread_Room(mHolder, this);
-        drawThread.start();
+        new GLThread_Room(mHolder, this).start();
 
     }
 
     public void surfaceDestroyed(SurfaceHolder arg0) {
         // 
-        drawThread.requestExitAndWait();
-        drawThread = null;
+//        drawThread.requestExitAndWait();
+//        drawThread = null;
     }
 
 }
