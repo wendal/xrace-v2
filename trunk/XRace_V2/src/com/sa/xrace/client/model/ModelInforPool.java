@@ -223,6 +223,10 @@ public final class ModelInforPool {
 //    
     private t3DModel garageModel;
    
+    public void removeGarageModel(){
+        spAy.remove(garageModel.mModelID);
+        garageModel = null;
+    }
 
 //    public t3DModel currentCarMode;
 }
