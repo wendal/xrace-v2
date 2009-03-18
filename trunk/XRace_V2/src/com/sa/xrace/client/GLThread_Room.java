@@ -25,6 +25,7 @@ import android.view.SurfaceHolder;
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
+import com.sa.xrace.client.scene.AppearableObject;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
@@ -251,6 +252,9 @@ public final class GLThread_Room extends Thread {
             if (StateValuePool.needTimeCount) {
                 giPool.drawTimeCount(gl, mWorld);
             } else if (needGenerateCollisionMap) {
+                for(AppearableObject appearableObject :  ObjectPool.cList){
+                    appearableObject.updateTransformMatrix();
+                }
                 ObjectPool.mWorld.generateCollisionMap();
                 needGenerateCollisionMap = false;
             }

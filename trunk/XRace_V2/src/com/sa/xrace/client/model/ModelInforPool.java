@@ -69,8 +69,8 @@ public final class ModelInforPool {
 //        case DataToolKit.MAP :
 //        	roadModel = mod;
 //        	break;
-//        case DataToolKit.COLLISION :
-//        	road_line_model = mod;
+        case DataToolKit.COLLISION :
+        	road_line_model = mod;
         }
 //        Log.e("Model Add ID", ""+mCurrentModel);
     }
@@ -218,7 +218,7 @@ public final class ModelInforPool {
     
 //    public t3DModel roadModel ;
 //    
-//    public t3DModel road_line_model;
+    public t3DModel road_line_model;
 //    
 //    public t3DModel garageModel;
    
