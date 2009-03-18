@@ -123,6 +123,7 @@ public final class MethodsPool {
                 
                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
                 locationObj = modelObj.getLocation();
+                //只有road和road_line具有Location
                 for (int index = 0; index < locationObj.size; index++) {
                     appearableObject = new AppearableObject(t3Dmodel, locationObj.points[index]);
                     locationObj.points[index] = null;
@@ -136,15 +137,18 @@ public final class MethodsPool {
 //                        + (System.currentTimeMillis() - image_start));
             }
             //释放modelObj
-            locationObj = null;
-            modelObj = null;
+//            locationObj = null;
+//            modelObj = null;
             //释放ModelImport
 //            modelImport.release();
-            modelImport = null;
-            modelList = null;
+//            modelImport = null;
+//            modelList = null;
             //
 //            long gcm_time = System.currentTimeMillis();
-            ObjectPool.mWorld.generateCollisionMap();
+            //移到到开始倒计时之后
+//            ObjectPool.mWorld.generateCollisionMap();
+            
+            
 //            Log.i("Time in generateCollisionMap", ""
 //                    + (System.currentTimeMillis() - gcm_time));
         } catch (IOException e) {

@@ -38,8 +38,8 @@ public final class GLThread_Room extends Thread {
     private int cameraStep = 1;
     private int cameraLimit = 0;
 
-//    private int mWidth;
-//    private int mHeight;
+    // private int mWidth;
+    // private int mHeight;
     private IntBuffer texturesB;
     private boolean mDone;
     // private RoomPicPool picPool;
@@ -48,7 +48,7 @@ public final class GLThread_Room extends Thread {
     private GameView callingView;
     // private WRbarPool barPool;
     private ModelInforPool mModelContainer;
-//    private InforPoolClient inPool;
+    // private InforPoolClient inPool;
     private GLWorld mWorld;
     // private GameActivity mActivity;
     // private IntBuffer tempIB;
@@ -80,15 +80,15 @@ public final class GLThread_Room extends Thread {
         progress = 22;
         texturesB = IntBuffer.allocate(11);
         mDone = false;
-//        mWidth = 0;
-//        mHeight = 0;
+        // mWidth = 0;
+        // mHeight = 0;
         this.mHolder = mHolder;
         callingView = inputView;
         // this.picPool = ObjectPool.rpPool;
         this.giPool = ObjectPool.giPool;
         // this.barPool = ObjectPool.barPool;
         this.mModelContainer = ObjectPool.mModelInforPool;
-//        this.inPool = ObjectPool.inPoolClient;
+        // this.inPool = ObjectPool.inPoolClient;
         this.mWorld = ObjectPool.mWorld;
         // this.mActivity = ObjectPool.activity;
         // this.mPostManager = ObjectPool.mPostManager;
@@ -107,6 +107,8 @@ public final class GLThread_Room extends Thread {
     // mPhase =input;
     // }
 
+    private boolean needGenerateCollisionMap = true;
+
     public void run() {
         Log.i(getClass().getSimpleName(), "in run()");
 
@@ -124,11 +126,11 @@ public final class GLThread_Room extends Thread {
         surface = egl.eglCreateWindowSurface(dpy, config, mHolder, null);
         egl.eglMakeCurrent(dpy, surface, surface, context);
         ObjectPool.gl = (GL10) context.getGL();
-        
-//        Log.e("Here", "GL Class ==" +ObjectPool.gl.getClass().getName());
-//        Class = com.google.android.jsr239.GLImpl
-//        Log.e("Here", "GL Class ==" +(ObjectPool.gl instanceof GL11Ext));
-        
+
+        // Log.e("Here", "GL Class ==" +ObjectPool.gl.getClass().getName());
+        // Class = com.google.android.jsr239.GLImpl
+        // Log.e("Here", "GL Class ==" +(ObjectPool.gl instanceof GL11Ext));
+
         ObjectPool.gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,
                 GL10.GL_FASTEST);
 
@@ -139,22 +141,22 @@ public final class GLThread_Room extends Thread {
 
         /* 这是耗时的一步 */
         // if (!isModelGenerate) {
-//        Log.e("Begin Loading", "" + System.currentTimeMillis());
+        // Log.e("Begin Loading", "" + System.currentTimeMillis());
         Loading();
         // }
 
         while (!mDone) {
-            //For test
-//            StateValuePool.counter = 0;
-//            Log.e("GLThread_Room", "Start new time");
-            
+            // For test
+            // StateValuePool.counter = 0;
+            // Log.e("GLThread_Room", "Start new time");
+
             // Update the asynchronous state (window size, key events)
-//            long start = System.currentTimeMillis();
-//            int w, h;
-//            synchronized (this) {
-//                w = mWidth;
-//                h = mHeight;
-//            }
+            // long start = System.currentTimeMillis();
+            // int w, h;
+            // synchronized (this) {
+            // w = mWidth;
+            // h = mHeight;
+            // }
             // Log.e("while (!mDone) Part A runnig",""+(System.currentTimeMillis()
             // - start));
 
@@ -176,8 +178,8 @@ public final class GLThread_Room extends Thread {
             // ((Activity) c).finish();
             // }
             // }
-//            Log.e("while (!mDone) runnig", ""
-//                    + (System.currentTimeMillis() - start));
+            // Log.e("while (!mDone) runnig", ""
+            // + (System.currentTimeMillis() - start));
         }
 
         // Log.e("Come Here?","after while (!mDone)");
@@ -230,7 +232,7 @@ public final class GLThread_Room extends Thread {
             // End
             // Log.e("drawGarage,Time used:", ""
             // + (System.currentTimeMillis() - start));
-            if(ObjectPool.barPool != null){
+            if (ObjectPool.barPool != null) {
                 ObjectPool.barPool.drawOut();
 
                 if (StateValuePool.carOn) {
@@ -240,14 +242,18 @@ public final class GLThread_Room extends Thread {
             break;
         case DataToolKit.GAME_RUNNING:
 
-//            ObjectPool.barPool = null;
+            // ObjectPool.barPool = null;
             mWorld.draw(gl, timeElapsed);
             giPool.drawStarPoints(gl);
             giPool.drawDiameter(gl);
             giPool.drawMiniMap(gl);
 
-            if(StateValuePool.needTimeCount)
-            giPool.drawTimeCount(gl, mWorld);
+            if (StateValuePool.needTimeCount) {
+                giPool.drawTimeCount(gl, mWorld);
+            } else if (needGenerateCollisionMap) {
+                ObjectPool.mWorld.generateCollisionMap();
+                needGenerateCollisionMap = false;
+            }
 
             break;
         }
@@ -352,10 +358,10 @@ public final class GLThread_Room extends Thread {
     // }
     // }
     public void onWindowResize(int w, int h) {
-//        synchronized (this) {
-//            mWidth = w;
-//            mHeight = h;
-//        }
+        // synchronized (this) {
+        // mWidth = w;
+        // mHeight = h;
+        // }
     }
 
     public void requestExitAndWait() {
@@ -378,9 +384,8 @@ public final class GLThread_Room extends Thread {
         giPool.makeAllInterface(gl);
         mModelContainer.generate(gl);
         getCommonTextureReady(gl);
-//        mModelContainer.setType(DataToolKit.CAR);
-        ObjectPool.myCar.setModel(
-                mModelContainer.getCurrentCarModel());
+        // mModelContainer.setType(DataToolKit.CAR);
+        ObjectPool.myCar.setModel(mModelContainer.getCurrentCarModel());
         if (!StateValuePool.isLogin) {
             Log.e("----------------isLogin-----------------", "isLogin");
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");
@@ -425,7 +430,6 @@ public final class GLThread_Room extends Thread {
                 GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
                         .getByteBuffer_ByID(R.drawable.carchoice));
 
-       
         gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
                 GL10.GL_CLAMP_TO_EDGE);
         gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
@@ -436,7 +440,7 @@ public final class GLThread_Room extends Thread {
                 GL10.GL_LINEAR);
         gl.glTexEnvx(GL10.GL_TEXTURE_ENV, GL10.GL_TEXTURE_ENV_MODE,
                 GL10.GL_MODULATE);
-       
+
     }
 
     private void initForGame() {
@@ -491,9 +495,9 @@ public final class GLThread_Room extends Thread {
             mModelContainer.setMAngle(38 + cameraLimit);
             // 耗时87ms
             // Begin
-//            long start = System.currentTimeMillis();
+            // long start = System.currentTimeMillis();
             mModelContainer.drawGarageNow();
-            
+
             gl.glPopMatrix();
         }
     }
