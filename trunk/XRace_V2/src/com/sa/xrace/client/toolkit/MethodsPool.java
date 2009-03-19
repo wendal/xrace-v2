@@ -98,7 +98,7 @@ public final class MethodsPool {
             ModelObj modelObj = null;
             LocationObj locationObj = null;
             int size = modelList.size();
-            ModelImport modelImport = new ModelImport();
+//            ModelImport modelImport = new ModelImport();
             for (int i = 0; i < size; i++) {
                 // 处理图片,并统计时间,原本的时间为 17700ms
 //                long image_start = System.currentTimeMillis();
@@ -112,7 +112,7 @@ public final class MethodsPool {
                 // t3Dmodel = new t3DModel();
                 // modelImport.import3DS(t3Dmodel, dis);
 
-                t3Dmodel = modelImport.import3DS(modelObj.filename, modelObj.ID,
+                t3Dmodel = ModelImport.import3DS(modelObj.filename, modelObj.ID,
                         modelObj.type, modelObj.scale);
                 
                 //释放两个流
@@ -138,11 +138,12 @@ public final class MethodsPool {
 //                Log.i("Time in Image parse", modelObj.filename + " "
 //                        + (System.currentTimeMillis() - image_start));
             }
+            
             //释放modelObj
 //            locationObj = null;
 //            modelObj = null;
             //释放ModelImport
-//            modelImport.release();
+            ModelImport.release();
 //            modelImport = null;
 //            modelList = null;
             //
@@ -172,10 +173,12 @@ public final class MethodsPool {
 
     static public int toFixed(float x) {
         return (int) (x * 65536);
+//        return (int) (x << 8 );
     }
 
     static public int toFixed(int x) {
-        return x * 65536;
+//        return x * 65536;
+        return x << 16 ;
     }
     // public static int toFixed(float x) {
     // return (int) (x * 65536.0f);
