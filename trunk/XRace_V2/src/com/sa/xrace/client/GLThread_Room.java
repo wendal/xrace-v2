@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.sa.xrace.client.model.ModelInforPool;
+import com.sa.xrace.client.network.NetWorkManager;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.scene.AppearableObject;
@@ -226,7 +227,7 @@ public final class GLThread_Room extends Thread {
         if (StateValuePool.isStart) {
             timeadd += timeElapsed;
             if (timeadd >= 30) {
-                ObjectPool.mPostManager.sendNormalPostToServer();
+                NetWorkManager.mPostManager.sendNormalPostToServer();
                 timeadd = 0;
             }
         }
@@ -245,7 +246,7 @@ public final class GLThread_Room extends Thread {
         if (!StateValuePool.isLogin) {
             Log.e("----------------isLogin-----------------", "isLogin");
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");
-            ObjectPool.mPostManager.sendLoginPostToServer();
+            NetWorkManager.mPostManager.sendLoginPostToServer();
         }
     }
 

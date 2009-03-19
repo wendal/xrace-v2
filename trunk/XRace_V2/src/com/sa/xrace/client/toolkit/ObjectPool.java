@@ -7,10 +7,10 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.os.Handler;
 
 import com.sa.xrace.client.GameActivity;
 import com.sa.xrace.client.model.ModelInforPool;
-import com.sa.xrace.client.network.PostManagerClientImp;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
@@ -24,8 +24,6 @@ public final class ObjectPool {
     public static GameActivity activity;
 
     public static Resources resources;
-
-    public static PostManagerClientImp mPostManager;
 
     public static Socket mSocket;
 
@@ -53,4 +51,6 @@ public final class ObjectPool {
     public static CarInforClient myCar;
     
     public static ArrayList<AppearableObject> cList = new ArrayList<AppearableObject>(5);
+    
+    public static Handler mHandler = new Handler();
 }

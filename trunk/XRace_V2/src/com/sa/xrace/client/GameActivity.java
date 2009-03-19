@@ -68,7 +68,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     private static boolean isPostStart = false;
 
-    private Handler mHandler;
+//    private Handler mHandler;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -80,8 +80,8 @@ public class GameActivity extends Activity implements SensorListener {
 //                + getRequestedOrientation());
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        mHandler = new Handler();
-        mHandler.post(new initThread(this));
+//        mHandler = new Handler();
+        ObjectPool.mHandler.post(new initThread(this));
 
         // System.out.println(Runtime.getRuntime().freeMemory());
 //        Log.i("GameActivity", "Finish onCreate(), Free Mem: "
@@ -114,7 +114,7 @@ public class GameActivity extends Activity implements SensorListener {
                     ObjectPool.assetManager = ObjectPool.activity.getAssets();
                 }
 
-                mHandler.post(new NetWorkManager());
+                ObjectPool.mHandler.post(new NetWorkManager());
                 // Log.i("GameActivity", "After connect socket");
 
                 // Connect to the OpentIntents for simulator of the sensor
@@ -382,12 +382,12 @@ public class GameActivity extends Activity implements SensorListener {
 //                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             }
             ObjectPool.myCar.generateAABBbox();
-            ObjectPool.mPostManager.sendCarTypePostToServer();
+            NetWorkManager.mPostManager.sendCarTypePostToServer();
             // mPostManager.sendCarTypePostToServer();
-            if (!isPostStart) {
-                ObjectPool.mPostManager.sendStartPostToServer();
-                isPostStart = true;
-            }
+//            if (!isPostStart) {
+                NetWorkManager.mPostManager.sendStartPostToServer();
+//                isPostStart = true;
+//            }
             // GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
             // CarInforClient myCar =
             // inPool.getOneCarInformation(inPool.getMyCarIndex());
