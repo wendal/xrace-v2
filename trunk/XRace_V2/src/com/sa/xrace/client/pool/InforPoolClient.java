@@ -337,10 +337,10 @@ public class InforPoolClient {
             // Log.e("delaybefore",""+(delayHandleIn.get(0) -
             // delayHandleOut.get(0)) / 2);
 
-            short temp = (short) ((delayHandleIn.get(0) - delayHandleOut.get(0)));
+            int temp = delayHandleIn.get(0) - delayHandleOut.get(0);
             // if(temp <0) temp =0;
 
-            nCar[myCarIndex].setTimeDelay(temp);
+            ObjectPool.myCar.setTimeDelay(temp);
             // Log.e("delayafter",""+nCar[myCarIndex].getTimeDelay());
             delayHandleIn.remove(0);
             delayHandleOut.remove(0);

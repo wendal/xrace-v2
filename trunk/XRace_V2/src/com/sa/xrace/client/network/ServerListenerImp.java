@@ -213,12 +213,12 @@ public class ServerListenerImp extends HandlerThread {
                     // Just print it
                     e1.printStackTrace();
                 }
-                Log.e(TAG, "EOFEXception ServerListener");
+                Log.e(TAG, "EOFEXception ServerListener",e);
             } catch (SocketException e) {
                 Log.e(TAG, "SocketException ServerListener");
             } catch (Exception e) {
-                Log.e(TAG, "Exception ServerListener");
-
+                Log.e(TAG, "Exception ServerListener",e);
+                
             }
         }
     }
