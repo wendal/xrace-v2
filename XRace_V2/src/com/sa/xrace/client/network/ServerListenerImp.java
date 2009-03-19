@@ -190,7 +190,7 @@ public class ServerListenerImp extends HandlerThread {
 
                     /**/
                     // ObjectPool.barPool = null;
-                    ObjectPool.barPool = null;
+                    
 
                     ObjectPool.activity.initGameRunning();
                     // GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);

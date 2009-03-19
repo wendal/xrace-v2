@@ -9,25 +9,18 @@
  */
 package com.sa.xrace.client;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
-
 import android.app.Activity;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.ModelInforPool;
-import com.sa.xrace.client.network.PostManagerClientImp;
-import com.sa.xrace.client.network.ServerListenerImp;
+import com.sa.xrace.client.network.NetWorkManager;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
@@ -54,7 +47,7 @@ public class GameActivity extends Activity implements SensorListener {
     // private WRbarPool barPool;
     // private GIPool giPool;
 
-    private GLWorld mWorld;
+//    private GLWorld mWorld;
 
     // public SensorManager mSensorManager ;
     // private ServerListenerImp mServerListener;
@@ -97,7 +90,7 @@ public class GameActivity extends Activity implements SensorListener {
 
     private static boolean isInited = false;
 
-    private static class initThread extends HandlerThread {
+    private class initThread extends HandlerThread {
 
         // private static GameActivity activity;
 
@@ -121,21 +114,7 @@ public class GameActivity extends Activity implements SensorListener {
                     ObjectPool.assetManager = ObjectPool.activity.getAssets();
                 }
 
-                try {
-                    // 将Socket加入对象池
-                    ObjectPool.mSocket = new Socket(InetAddress
-                            .getByName(NetworkToolKit.SERVERIP),
-                            NetworkToolKit.SERVERPORT);
-                } catch (UnknownHostException e) {
-                    Log.v("-- UnknownHostException --",
-                            "-- UnknownHostException --");
-                    e.printStackTrace();
-                    // 是否应该退出呢?
-                } catch (IOException e) {
-                    Log.v("-- IOException --", "-- IOException --");
-                    e.printStackTrace();
-                    // 是否应该退出呢?
-                }
+                mHandler.post(new NetWorkManager());
                 // Log.i("GameActivity", "After connect socket");
 
                 // Connect to the OpentIntents for simulator of the sensor
@@ -175,13 +154,11 @@ public class GameActivity extends Activity implements SensorListener {
 
                 // Socket mSocket = null;
 
-                // 把PostManagerClientImp加入对象池
-                ObjectPool.mPostManager = new PostManagerClientImp();
-                // mServerListener =
-                new ServerListenerImp().start();
-                ObjectPool.activity.mWorld = new GLWorld();
+                
+//                ObjectPool.activity.mWorld = new GLWorld();
                 // 把GLWorld加入对象池
-                ObjectPool.mWorld = ObjectPool.activity.mWorld;
+//                ObjectPool.mWorld = ObjectPool.activity.mWorld;
+                ObjectPool.mWorld = new GLWorld();
                 ObjectPool.activity.inPool.getOneCarInformation(
                         ObjectPool.activity.inPool.getMyCarIndex()).setNName(
                         NetworkToolKit.NAME);
@@ -378,7 +355,7 @@ public class GameActivity extends Activity implements SensorListener {
                     mModelInforPool.getCurrentCarModel());
 
         	ObjectPool.myCar
-                    .generateAABBbox();
+                    .generateAABBbox(); //Bug 如果从不执行该方法,则无法进行碰撞检查
             ObjectPool.mPostManager.sendCarTypePostToServer();
             StateValuePool.carOn = false;
             break;
@@ -420,6 +397,7 @@ public class GameActivity extends Activity implements SensorListener {
     }
 
     public void initGameRunning() {
+        ObjectPool.barPool = null;//释放
         GLThread_Room.mPhase = DataToolKit.GAME_RUNNING;
         CarInforClient myCar = ObjectPool.myCar;
         Point3f center = new Point3f(myCar.getNXPosition(),
