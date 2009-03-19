@@ -204,11 +204,10 @@ public class MenuActivity extends Activity implements OnClickListener{
         }
     }
 
-    private String cutNames(String name) {
-        String tem = "";
-        tem = name.replaceAll("-", "");
+    private static String cutNames(String name) {
+        String tem = name.replaceAll("-", "");
         if (tem.length() == 0) {
-            tem = "a";
+            tem = "Your name";
         } else if (tem.length() > 10) {
             tem = tem.substring(0, 10);
         }
