@@ -83,7 +83,7 @@ public final class SenceParser2 {
                 // eNode).getAttribute("Filename"));
                 mObjTemp
                         .filename = ((Element) eNode).getAttribute("Filename");
-                mObjTemp.ID = ((Element) eNode).getAttribute("ID");
+                mObjTemp.ID = Integer.parseInt(((Element) eNode).getAttribute("ID"));
                 mObjTemp.type = Integer.parseInt(((Element) eNode).getAttribute("Type"));
                 mObjTemp.setScale(((Element) eNode).getAttribute("Scale"));
 //                mObjTemp.setRadius(Float.parseFloat(((Element) eNode)
