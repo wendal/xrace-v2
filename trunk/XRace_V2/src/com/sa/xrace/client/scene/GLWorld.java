@@ -95,7 +95,8 @@ public class GLWorld {
                 speedKeyState, directionKeyState, speedSensorState,
                 directionSensorState, lookDiection);
 
-		for (int index = 0; index < mObjectVector.size(); index++) {
+        int size = mObjectVector.size();
+		for (int index = 0; index < size; index++) {
 			AppearableObject appearableObject = mObjectVector.get(index);
 
             gl.glMatrixMode(GL10.GL_MODELVIEW); // set the matrix which would be
@@ -103,9 +104,9 @@ public class GLWorld {
             gl.glLoadIdentity();
             // make all the transform matrix to be identity matrix
             mCamera.setCamera(gl);
-            appearableObject.translate(gl);
-            appearableObject.rotate(gl);
-            appearableObject.scale(gl);
+//            appearableObject.translate(gl);
+//            appearableObject.rotate(gl);
+//            appearableObject.scale(gl);
             appearableObject.draw();
         }
 
@@ -186,9 +187,9 @@ public class GLWorld {
             // ////////////////////////
             // mFrustum.updateFrustum(gl);
             // if (Frustum.checkSphere(myCenter, model.getRadius()) == true)
-            {
+//            {
                 myCar.draw(gl);
-            }
+//            }
         }
     }
 
