@@ -35,7 +35,6 @@ import com.sa.xrace.client.toolkit.StateValuePool;
 
 public final class GIPool {
 
-    // private RoomPicPool picPool;
     private InforPoolClient inPool;
     private int[] mTextureIDS;
     private final int tem[] = { 0, 74, 74, -74 };
@@ -56,25 +55,17 @@ public final class GIPool {
     private static final float MAXANGLE = 60.0f;
 
     private float angle, perSpeed, temp;
-    // private int carNumber;
-    // private static final float RADIUS = 38.0f;
-
-    // CENTERX = 370+50 CENTERY = 15+36-8
-    // private static final float CENTERX = 420.0f , CENTERY = 43.0f ;
-    // private float triangleX,triangleY;
     private Camera camera;
     private Random r;
     private long nowTime, lasttime;
     private int timeCount = 3;
 
     public GIPool() {
-        // this.picPool = ObjectPool.rpPool;
         this.inPool = ObjectPool.inPoolClient;
         mTextureIDS = new int[7];
         this.camera = ObjectPool.camera;
         r = new Random();
         perSpeed = (MAXANGLE - MINANGLE) / CarInforClient.TOP_SPEED;
-//        ObjectNumber.regNew(this);
     }
 
     public void makeAllInterface(GL10 gl) {
@@ -98,33 +89,19 @@ public final class GIPool {
         Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
         bm.eraseColor(0);
         Canvas c = new Canvas(bm);
-//        Paint p = new Paint();
         c.drawBitmap(MethodsPool.getBitmap(R.drawable.speedometer), 0, 0, p_Triangle_Diameter);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[0]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-
-        // Reclaim storage used by bitmap and canvas.
-//        bm.recycle();
-//        bm = null;
-//        c = null;
     }
-
-    // private static Bitmap _bm_128 = Bitmap.createBitmap(128, 128,
-    // Bitmap.Config.ARGB_8888);
-    // static{
-    //			
-    // }
     
     private static final Paint p_Triangle_Diameter = new Paint(); 
     
     private static final Bitmap bm_triangle = MethodsPool.getBitmap(R.drawable.triangle);
     public void drawTriangle(GL10 gl) {
         Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
-        // Bitmap bm = _bm_128.copy(null, true);
         bm.eraseColor(0);
         Canvas c = new Canvas(bm);
-//        Paint p = new Paint();
 
         c.save();
 
@@ -139,21 +116,12 @@ public final class GIPool {
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
 
-//        bm.recycle();
-//        bm = null;
-//        c = null;
-
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
                 GL11Ext.GL_TEXTURE_CROP_RECT_OES, tem2, 0);
         ((GL11Ext) gl).glDrawTexiOES(370, 15, 0, 74, 74);
     }
 
-    // private static final Bitmap _bm_64 = Bitmap.createBitmap(64, 64,
-    // Bitmap.Config.ARGB_8888);
-    // static{
-    // _bm_64.eraseColor(0);
-    // }
     private static Paint p_SpeedText = new Paint();
     static {
         p_SpeedText.setColor(Color.WHITE);
@@ -167,23 +135,13 @@ public final class GIPool {
         Bitmap bm = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
         bm.eraseColor(0);
         Canvas c = new Canvas(bm);
-        // Paint p = new Paint();
-        // p.setColor(Color.WHITE);
-        // p.setTextAlign(Paint.Align.CENTER);
-        // p.setTextSize(25.0f);
-        // p.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
-        //		
+
         int ppeedText_int = (int) Math.abs(ObjectPool.myCar.getNSpeed()) * 5;
 
         c.drawText("" + ppeedText_int, 32, 32, p_SpeedText);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-
-        // Reclaim storage used by bitmap and canvas.
-//         bm.recycle();
-//         bm = null;
-//         c = null;
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
@@ -192,20 +150,9 @@ public final class GIPool {
     }
 
     public void makeMiniMap(GL10 gl) {
-
-        // Bitmap bitmap = Bitmap.createBitmap(128, 128
-        // ,Bitmap.Config.ARGB_8888);
-        // bitmap.eraseColor(0);
-        // Canvas c = new Canvas(bitmap);
-        // Paint paint = new Paint();
-        // c.drawBitmap(MethodsPool.getBitmap(R.drawable.minimap), 0, 0, paint);
         Bitmap bitmap = MethodsPool.getBitmap(R.drawable.minimap);
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[3]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
-
-//         bitmap.recycle();
-//         bitmap = null;
-//         c = null;
     }
 
     public void drawMiniMap(GL10 gl) {
@@ -245,14 +192,8 @@ public final class GIPool {
         c
                 .drawBitmap(MethodsPool.getBitmap(R.drawable.carpointpic), 0,
                         0, paint);
-//        paint = null;
-//        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[4]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
-
-//        bitmap.recycle();
-//        bitmap = null;
-//        c = null;
     }
 
     public void drawCarPoints(GL10 gl, float x, float y) {
@@ -361,11 +302,6 @@ public final class GIPool {
         c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[5]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-
-        // Reclaim storage used by bitmap and canvas.
-//        bm.recycle();
-//        bm = null;
-//        c = null;
     }
 
     public void drawLoginFailure(GL10 gl) {
@@ -391,13 +327,7 @@ public final class GIPool {
         p.setTextAlign(Paint.Align.CENTER);
         c.drawText(time, 128, 128, p);
         
-//        p= null;
-//        c = null;
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[6]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
-//        bm.recycle();
-//        bm = null;
-//        c = null;
     }
-
 }

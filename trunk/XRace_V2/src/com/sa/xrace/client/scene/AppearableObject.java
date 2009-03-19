@@ -55,8 +55,6 @@ public final class AppearableObject {
         scaleMatrix.getScaleMatrix(mModel.mScale_x , mModel.mScale_y , mModel.mScale_z);
         mTransformMatrix = translateMatrix.multiply(rotateMatrix
                 .multiply(scaleMatrix));
-        // mTransformMatrix =
-        // scaleMatrix.multiply(rotateMatrix.multiply(translateMatrix));
 
         mVerts = new Point3f[mModel._3Dobjects.size()][];
 
@@ -75,40 +73,7 @@ public final class AppearableObject {
         }
     }
 
-//    public void transform(GL10 gl) {
-//        gl.glTranslatef(mPosition.x, mPosition.y, mPosition.z);
-//        gl.glRotatef(mAngle, 0, 1, 0);
-//        mModel.scale(gl);
-//    }
-
     public void draw() {
         mModel.draw();
     }
-
-    // {{member variables
-    // management---------------------------------------------------
-//    public Point3f getPosition() {
-//        return this.mPosition;
-//    }
-
-//    public Model getModel() {
-//        return this.mModel;
-//    }
-
-//    public float getAngle() {
-//        return this.mAngle;
-//    }
-
-//    public Point3f getScale() {
-//        return mModel.getScale();
-//    }
-
-//    public void setAngle(float angle) {
-//        this.mAngle = angle;
-//    }
-
-//    public void setPosition(Point3f pos) {
-//        this.mPosition = pos;
-//    }
-    // }}-----------------------------------------------------------
 }

@@ -31,10 +31,6 @@ public final class CarInforClient {
      * direction nAccidenceDirection Collision Acceleration timeDelay time delay
      * of this car in network transmit
      */
-    // private final static float VOLVO_MAX = 100.0f;
-    // private final static float BENZ_MAX = 2.0f;
-    // private final static float MAX_ANTI_SPEED = -10.0f;
-    // private final static float[] MAX_SPEED = {VOLVO_MAX,BENZ_MAX};
     private byte nCarID;
     private String nName;// Car name
     private int nCarType;// Car type,include type,color
@@ -54,7 +50,6 @@ public final class CarInforClient {
     private AABBbox mTransformedBox; // for collision detection
     // car's model by sliao---------------------------------------------
 
-    // public static int nAccidenceLastTime;
     private float nAccidenceSpeed;
     private float nAccidenceAcceleration;
     private float nAccidenceDirection;
@@ -76,7 +71,6 @@ public final class CarInforClient {
         nXPosition = 200;// Current X Position
         nYPosition = 200;// Current Y Position
 
-        // public static int nAccidenceLastTime;
         nAccidenceSpeed = 0.0f;
         nAccidenceAcceleration = 0;
         nAccidenceDirection = 0;
@@ -285,25 +279,6 @@ public final class CarInforClient {
     public void setTimeDelay(int timeDelay) {
         this.timeDelay = timeDelay;
     }
-
-    // public static float getVOLVO_MAX() {
-    // return VOLVO_MAX;
-    // }
-    //
-    //
-    // public static float getBENZ_MAX() {
-    // return BENZ_MAX;
-    // }
-    //
-    //
-    // public static float getMAX_ANTI_SPEED() {
-    // return MAX_ANTI_SPEED;
-    // }
-    //
-    //
-    // public static float[] getMAX_SPEED() {
-    // return MAX_SPEED;
-    // }
 
     public float getNAccidenceChangeDirection() {
         return nAccidenceChangeDirection;

@@ -32,66 +32,22 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
 
 public class GameActivity extends Activity implements SensorListener {
-    // private final static String TAG = "----- GameActivity -----";
-
-    // private GameView drawView;
     private Camera mCamera;
-
-    // private ModelImport mModelImport;
     private ModelInforPool mModelInforPool;
 
     private InforPoolClient inPool;
-    // private InforPoolClient mPool;
-    // private RoomPicPool rpPool;
-    // private WRbarPool barPool;
-    // private GIPool giPool;
-
-//    private GLWorld mWorld;
-
-    // public SensorManager mSensorManager ;
-    // private ServerListenerImp mServerListener;
-    // private PostManagerClient mPostManager;
-
-    // private RelativeLayout layout;
-    // private Intent incomeIntent;
-
-    // private Socket mSocket;
-    // private String IP = "";
-    // private String NAME = "";
-    // private final static int PORT = 4444;
-
-    // private static final float DISTANCE = 600.0f; //distance between the car
-    // and camera when car's stop
-    // private static final float CAMERA_EYE_Y = 110.0f; //distance between the
-    // car and camera when car's stop
-
-//    private static boolean isPostStart = false;
-
-//    private Handler mHandler;
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        // if(this.getResources().getConfiguration().orientation !=
-        // Configuration.ORIENTATION_LANDSCAPE){
-        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        // }
-//        Log.e("-----------getRequestedOrientation", ""
-//                + getRequestedOrientation());
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-//        mHandler = new Handler();
         ObjectPool.mHandler.post(new initThread(this));
-
-        // System.out.println(Runtime.getRuntime().freeMemory());
-//        Log.i("GameActivity", "Finish onCreate(), Free Mem: "
-//                + Runtime.getRuntime().freeMemory());
     }
 
     private static boolean isInited = false;
 
     private class initThread extends HandlerThread {
-
-        // private static GameActivity activity;
 
         public initThread(GameActivity activity) {
             super("init GameActivity");
@@ -103,9 +59,6 @@ public class GameActivity extends Activity implements SensorListener {
                 ;
             } else {
                 // 将部分共用对象写入对象池
-                // if(ObjectPool.activity == null){
-                // ObjectPool.activity = activity;
-                // }
                 if (ObjectPool.resources == null) {
                     ObjectPool.resources = ObjectPool.activity.getResources();
                 }
@@ -114,22 +67,6 @@ public class GameActivity extends Activity implements SensorListener {
                 }
 
                 ObjectPool.mHandler.post(new NetWorkManager());
-                // Log.i("GameActivity", "After connect socket");
-
-                // Connect to the OpentIntents for simulator of the sensor
-                // OpenIntents.requiresOpenIntents(this);
-                // Hardware.mContentResolver = getContentResolver();
-                // mSensorManager = (SensorManager) getSystemService("sensor");
-                // Log.e(getClass().getName(), ""+mSensorManager);
-                // SensorManagerSimulator.connectSimulator();
-
-                // DataUnti.init(this);
-
-                // incomeIntent = getIntent();
-                // String temp = Uri.decode(incomeIntent.getData().toString());
-                // StringTokenizer st = new StringTokenizer(temp, "@&");
-                // NAME = NetworkToolKit.NAME;
-                // IP = NetworkToolKit.SERVERIP;
 
                 ObjectPool.activity.mModelInforPool = new ModelInforPool();
                 // 将mModelInforPool加入对象池
@@ -146,176 +83,19 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.myCar.setNName(NetworkToolKit.NAME);
                 // 将WRbarPool加入对象池
                 ObjectPool.barPool = new WRbarPool();
-                // RoomPicPool rpPool = new RoomPicPool(this);
-                // 将RoomPicPool加入对象池
-                // ObjectPool.rpPool = new RoomPicPool();
+                // 将GIPool加入对象池
                 ObjectPool.giPool = new GIPool();
-
-                // Socket mSocket = null;
-
-                
-//                ObjectPool.activity.mWorld = new GLWorld();
                 // 把GLWorld加入对象池
-//                ObjectPool.mWorld = ObjectPool.activity.mWorld;
                 ObjectPool.mWorld = new GLWorld();
-//                ObjectPool.activity.inPool.getOneCarInformation(
-//                        ObjectPool.activity.inPool.getMyCarIndex()).setNName(
-//                        NetworkToolKit.NAME);
-
-                // 提前载入模型
-//                long start = System.currentTimeMillis();
-//                MethodsPool.LoadMapFromXML("scene.xml");
-////              Log.i("Map Loading, ", "Time used:"+(System.currentTimeMillis() -
-////                 start));
-//
-////                ObjectPool.activity.mModelInforPool.nextCarModel();
-//                ObjectPool.activity.inPool.getOneCarInformation(
-//                        ObjectPool.activity.inPool.getMyCarIndex()).setModel(
-//                        ObjectPool.activity.mModelInforPool.getCurrentCarModel());
 
                 GameView drawView = new GameView(ObjectPool.activity
                         .getApplication());
                 ObjectPool.activity.setContentView(drawView);
-//                System.gc();
+
                 isInited = true;
-                // ObjectNumber.getResult();
             }
         }
     }
-
-    // public boolean onTouchEvent(MotionEvent event) {
-    // switch(event.getAction()){
-    // case MotionEvent.ACTION_DOWN:{
-    // //the map choice button
-    // if(mapOn == false &&
-    // event.getX()>30f &&
-    // event.getX()<110f &&
-    // event.getY()>270f &&
-    // event.getY()<290f)
-    // mapOn = true;
-    // //the race button
-    // if(raceOn == false &&
-    // event.getX()>365f &&
-    // event.getX()<445f &&
-    // event.getY()>270f &&
-    // event.getY()<290f)
-    // raceOn = true;
-    //
-    // //the right_down car choice button
-    // else if(mapOn == false &&
-    // carOn == false &&
-    // event.getX()>370f &&
-    // event.getX()<420f &&
-    // event.getY()>195f &&
-    // event.getY()<215f)
-    // {
-    // mModelInforPool.setType(Model.CAR);
-    // carOn = true;
-    // }
-    // //the right_up car choice button
-    // else if(mapOn == false &&
-    // carOn == false &&
-    // event.getX()>370f &&
-    // event.getX()<420f &&
-    // event.getY()>95f &&
-    // event.getY()<115f)
-    // {
-    // mModelInforPool.setType(Model.CAR);
-    // carOn = true;
-    // }
-    // //the left_down car choice button
-    // else if(mapOn == false &&
-    // carOn == false &&
-    // event.getX()>170f &&
-    // event.getX()<220f &&
-    // event.getY()>195f &&
-    // event.getY()<215f)
-    // {
-    // mModelInforPool.setType(Model.CAR);
-    // carOn = true;
-    // }
-    // //the left_up car choice button
-    // else if(mapOn == false &&
-    // carOn == false &&
-    // event.getX()>170f &&
-    // event.getX()<220f &&
-    // event.getY()>95f &&
-    // event.getY()<115f)
-    // {
-    // mModelInforPool.setType(Model.CAR);
-    // carOn = true;
-    // }
-    // //hen car quit button
-    // else if( carOn == true &&
-    // event.getX()>330f &&
-    // event.getX()<380f &&
-    // event.getY()>195f &&
-    // event.getY()<225f)
-    // {
-    // //
-    // inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
-    // mPostManager.sendCarTypePostToServer();
-    // carOn = false;
-    // }
-    //						
-    // //the map quit button
-    // else if(
-    // mapOn == true &&
-    // event.getX()>330f &&
-    // event.getX()<380f &&
-    // event.getY()>195f &&
-    // event.getY()<225f)
-    // mapOn = false;
-    //						
-    // //the next map button
-    // else if( mapOn == true &&
-    // event.getX()>240f &&
-    // event.getX()<265f &&
-    // event.getY()>210f &&
-    // event.getY()<225f)
-    // mapNext = true;
-    //						
-    // //the previous map button
-    // else if( mapOn == true &&
-    // event.getX()>170f &&
-    // event.getX()<195f &&
-    // event.getY()>210f &&
-    // event.getY()<225f)
-    // mapBack = true;
-    //						
-    // //the next car button
-    // else if( carOn == true &&
-    // event.getX()>240f &&
-    // event.getX()<265f &&
-    // event.getY()>210f &&
-    // event.getY()<225f)
-    // {
-    // mModelInforPool.updateCurrentModel(false);
-    // inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
-    // carNext = true;
-    // carBack = false;
-    // }
-    // //the previous car button
-    // else if( carOn == true &&
-    // event.getX()>170f &&
-    // event.getX()<195f &&
-    // event.getY()>210f &&
-    // event.getY()<225f)
-    // {
-    // mModelInforPool.updateCurrentModel(true);
-    // inPool.getOneCarInformation(inPool.getMyCarIndex()).setModel(mModelInforPool.getCurrentModel());
-    // carBack = true;
-    // carNext = false;
-    // }
-    // }
-    // }
-    // return super.onTouchEvent(event);
-    // }
-
-    // public Bitmap getBitmap(int resID){
-    // Bitmap tem = BitmapFactory.decodeResource(getResources(),resID);
-    // return tem;
-    // }
 
     public boolean onKeyDown(int arg0, KeyEvent arg1) {
 
@@ -349,53 +129,16 @@ public class GameActivity extends Activity implements SensorListener {
             
             break;
         case KeyEvent.KEYCODE_DPAD_DOWN:
-            // mModelInforPool.setType(TYPE_CAR);
-        	
             StateValuePool.carOn = false;
             break;
         case KeyEvent.KEYCODE_DPAD_UP:
-
-//            mModelInforPool.setType(DataToolKit.CAR);
-
             StateValuePool.carOn = true;
             break;
         case KeyEvent.KEYCODE_ENTER:
-            
-//            ObjectPool.myCar.setModel(
-//                    mModelInforPool.getCurrentCarModel());
-//
-//            ObjectPool.myCar
-//                    .generateAABBbox(); 
-//            ObjectPool.mPostManager.sendCarTypePostToServer();
-            
-//            mModelInforPool.nextCarModel();
-
-//            if (ObjectPool.myCar.getModel() == null) {
-                // mModelInforPool.setType(Model.CAR);
-            	ObjectPool.myCar.setModel(
-                        mModelInforPool.getCurrentCarModel());
-//                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
-//            } else {
-//            	ObjectPool.myCar.setModel(
-//                        mModelInforPool.getCurrentCarModel());
-//                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
-//            }
+            ObjectPool.myCar.setModel(mModelInforPool.getCurrentCarModel());
             ObjectPool.myCar.generateAABBbox();
             NetWorkManager.mPostManager.sendCarTypePostToServer();
-            // mPostManager.sendCarTypePostToServer();
-//            if (!isPostStart) {
-                NetWorkManager.mPostManager.sendStartPostToServer();
-//                isPostStart = true;
-//            }
-            // GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
-            // CarInforClient myCar =
-            // inPool.getOneCarInformation(inPool.getMyCarIndex());
-            // Point3f center = new Point3f(myCar.getNXPosition(),
-            // Camera.CAMERA_CENTER_Y, myCar.getNYPosition());
-            // mCamera.initCamera(center, new Point3f(0.0f, 1.0f, 0.0f),
-            // myCar.getNDirection(), Camera.FAR_DISTANCE);
-            // mCamera.setEye(mCamera.getEye().x, Camera.CAMERA_EYE_Y,
-            // mCamera.getEye().z);
+            NetWorkManager.mPostManager.sendStartPostToServer();
             break;
         }
     }
@@ -470,10 +213,7 @@ public class GameActivity extends Activity implements SensorListener {
                         .setDirectionKeyState(CarInforClient.DIRECTION_RIGHT_KEYBOARD);
             }
             break;
-
-        // }}for testing
         }
-        // ObjectNumber.getResult();
     }
 
     public boolean onKeyUp(int arg0, KeyEvent arg1) {
@@ -504,33 +244,6 @@ public class GameActivity extends Activity implements SensorListener {
         return super.onKeyUp(arg0, arg1);
     }
 
-    // }}for testing
-
-    /**
-     * Called when the activity will start interacting with the user. </p>
-     * Register the Sensor Manager and enable the MainActivity.
-     */
-    protected void onResume() {
-        super.onResume();
-        // mSensorManager.registerListener(this,
-        // SensorManager.SENSOR_ORIENTATION,
-        // SensorManager.SENSOR_DELAY_GAME);
-    }
-
-    /**
-     * Called when the activity is no longer visible to the user. Remove the
-     * Listener of the SensorManager
-     */
-    protected void onStop() {
-        // mSensorManager.unregisterListener(this);
-        super.onStop();
-    }
-
-    protected void onDestroy() {
-
-        finish();
-        super.onDestroy();
-    }
 
     /**
      * The method of the interface SensorListener
@@ -599,20 +312,7 @@ public class GameActivity extends Activity implements SensorListener {
      * 
      * @see android.hardware.SensorListener#onSensorChanged(int, float[])
      */
-
     public void onAccuracyChanged(int arg0, int arg1) {
 
     }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.app.Activity#getRequestedOrientation()
-     */
-    @Override
-    public int getRequestedOrientation() {
-        // 
-        return super.getRequestedOrientation();
-    }
-
 }

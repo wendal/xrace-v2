@@ -26,16 +26,12 @@ public class InforPoolClient {
     public static boolean Logined = false;
 
     private static int nCarNumber;
-    // The position index in car information of my car
     private static int myCarIndex;
     private static CarInforClient[] nCar;
-    // private static ModelInforPool modelPool;
-    // Time synchronize
     private static ArrayList<Integer> delayHandleIn;
     private static ArrayList<Integer> delayHandleOut;
 
     private static float nowSpeed = 0.0f;
-//    private static float nowDirection = 0.0f;
     private static float distanceMade = 0.0f;
 
     private static float speedCha = 0.0f;
@@ -50,23 +46,6 @@ public class InforPoolClient {
     // If there is accident set it true;
     private static boolean isAccident = false;
 
-    // /**
-    // * Initiates the car capacity in information pool to 6 Initiates the
-    // * delayHandle ArrayLists
-    // */
-    // public InforPoolClient() {
-    // nCarNumber = 1;
-    // myCarIndex = 0;
-    // nCar = new CarInforClient[6];
-    // for (int i = 0; i < 6; i++) {
-    // nCar[i] = new CarInforClient();
-    // }
-    // delayHandleIn = new Vector<Integer>();
-    // delayHandleOut = new Vector<Integer>();
-    // // setNCarNumber(4);
-    //
-    // }
-
     /**
      * 只发现创建了一次该类的对象
      */
@@ -79,8 +58,6 @@ public class InforPoolClient {
         }
         delayHandleIn = new ArrayList<Integer>();
         delayHandleOut = new ArrayList<Integer>();
-        // modelPool = ObjectPool.mModelInforPool;
-//        ObjectNumber.regNew(this);
     }
 
     /**
@@ -150,17 +127,9 @@ public class InforPoolClient {
      * Updates the information which describes each car in car type situation
      */
     public void updateCarType(byte id, byte modelID) {
-        // getOneCarInformation(id).setModel(modelPool.getModel(model));
         int index = (int) id;
-        // if (index != getMyCarIndex()) {
-        // System.out.println("updateCarType = ");
-        // modelPool.setType(Model.CAR);
         nCar[index].setModel(ObjectPool.mModelInforPool.getModel(modelID));
-        // nCar[index].setMOriginalBox(new
-        // AABBbox(modelPool.getModel(modelID)));
         nCar[index].getMOriginalBox().getAABBbox(nCar[index].getModel());
-
-        // }
     }
 
     /**
@@ -327,15 +296,7 @@ public class InforPoolClient {
      * beginning points in both array when calculation successful
      */
     public static void calDelayTime() {
-        // Log.i("delayHandleIn.size",""+delayHandleIn.size());
-        // Log.i("delayHandleOut.size",""+delayHandleOut.size());
         if (delayHandleIn.size() > 0 && delayHandleOut.size() > 0) {
-            // Log.i("calbefore",""+(delayHandleIn.get(0) -
-            // delayHandleOut.get(0)) / 2);
-            // Log.e("delayHandleIn.",""+delayHandleIn.get(0));
-            // Log.e("delayHandleOut.",""+delayHandleOut.get(0));
-            // Log.e("delaybefore",""+(delayHandleIn.get(0) -
-            // delayHandleOut.get(0)) / 2);
 
             int temp = delayHandleIn.get(0) - delayHandleOut.get(0);
             // if(temp <0) temp =0;
@@ -476,63 +437,4 @@ public class InforPoolClient {
         return (int) (input % 1000000000 % 10000);
     }
 
-    // public void LogAllCarInfor() {
-    //
-    // Log.v("car MyCarIndex", "" + getMyCarIndex());
-    // if (getNCarNumber() == 0) {
-    // Log.e("one car infor", "=====================================");
-    // Log.v("car NAcceleration", ""
-    // + nCar[0].getNAcceleration());
-    // Log.v("car NAccidenceDirection", ""
-    // + nCar[0].getNAccidenceDirection());
-    // Log.v("car NAccidenceSpeed", ""
-    // + nCar[0].getNAccidenceSpeed());
-    // Log.v("car NCarID", "" + nCar[0].getNCarID());
-    // Log.v("car NCarType", "" + nCar[0].getNCarType());
-    // Log.v("car NDirection", "" + nCar[0].getNDirection());
-    // Log.v("car NName", "" + nCar[0].getNName());
-    // Log.v("car NSpeed", "" + nCar[0].getNSpeed());
-    // Log.v("car NStatus", "" + nCar[0].getNStatus());
-    // Log.v("car NXPosition", "" + nCar[0].getNXPosition());
-    // Log.v("car NYPosition", "" + nCar[0].getNYPosition());
-    // Log.v("car TimeDelay", "" + nCar[0].getTimeDelay());
-    // Log.v("car ListName", "" + nCar[0].getCarListName());
-    // Log.e("one car infor", "=====================================");
-    // } else {
-    // for (int i = 0; i < getNCarNumber(); i++) {
-    // Log.e("multiple car infor",
-    // "=====================================");
-    // Log.v("car NAcceleration", ""
-    // + nCar[i].getNAcceleration());
-    // Log.v("car NAccidenceDirection", ""
-    // + nCar[i].getNAccidenceDirection());
-    // Log.v("car NAccidenceSpeed", ""
-    // + nCar[i].getNAccidenceSpeed());
-    // Log.v("car NCarID", "" + nCar[i].getNCarID());
-    // Log.v("car NCarType", "" + nCar[i].getNCarType());
-    // Log
-    // .v("car NDirection", ""
-    // + nCar[i].getNDirection());
-    // Log.v("car NName", "" + nCar[i].getNName());
-    // Log.v("car NSpeed", "" + nCar[i].getNSpeed());
-    // Log.v("car NStatus", "" + nCar[i].getNStatus());
-    // Log
-    // .v("car NXPosition", ""
-    // + nCar[i].getNXPosition());
-    // Log
-    // .v("car NYPosition", ""
-    // + nCar[i].getNYPosition());
-    // Log.v("car TimeDelay", "" + nCar[i].getTimeDelay());
-    // Log.v("car ListName", "" + nCar[i].getCarListName());
-    // Log.e("multiple car infor",
-    // "=====================================");
-    // }
-    // }
-    // }
-
-//    public void setLoginedFlag() {
-//        if (Logined == false) {
-//            Logined = true;
-//        }
-//    }
 }

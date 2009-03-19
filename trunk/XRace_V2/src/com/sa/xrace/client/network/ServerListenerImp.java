@@ -33,10 +33,8 @@ import com.sa.xrace.client.toolkit.StateValuePool;
 public class ServerListenerImp extends HandlerThread {
     private static final String TAG = "-- ServerListenerImp -- ";
     private DataInputStream input;
-    // private Socket socket;
     private InforPoolClient pool;
     private byte postReceived;
-    // private byte[] tempNamesBA;
     private int tempNamesI;
     private int tempLName;
     private byte tempID;
@@ -44,51 +42,11 @@ public class ServerListenerImp extends HandlerThread {
     private short tempTimeDelay;
     private String tempNameStr;
 
-    /**
-     * 暂时发现这个变量的值只设置了一次
-     */
-    // private boolean listenerON;
-    // private static final int TIME_OUT = 10000;
-//    private WRbarPool barPool;
-
-    // private GameActivity mActivity;
-
-    // public ServerListenerImp(Socket input) {
-    // super("ServerListenerImp");
-    // socket = input;
-    // listenerON = true;
-    //		
-    // }
-
-    // public ServerListenerImp(Socket inputSocket, InforPoolClient
-    // inPool,GameActivity activity) {
-    // super("ServerListenerImp");
-    // socket = inputSocket;
-    // pool = inPool;
-    // mActivity = activity;
-    // listenerON = true;
-    // try {
-    // input = new DataInputStream(socket.getInputStream());
-    // this.start();
-    // } catch (StreamCorruptedException e) {
-    // e.printStackTrace();
-    // Log.e(TAG,"StreamCorruptedException");
-    // } catch (IOException e) {
-    // e.printStackTrace();
-    // Log.e(TAG,"IOException");
-    // }
-    // }
-
     public ServerListenerImp() {
         super("ServerListenerImp");
-        // socket = inputSocket;
         pool = ObjectPool.inPoolClient;
-        // mActivity = activity;
-        // listenerON = true;
-//        this.barPool = ObjectPool.barPool;
         try {
             input = new DataInputStream(ObjectPool.mSocket.getInputStream());
-//            this.start();
         } catch (StreamCorruptedException e) {
             e.printStackTrace();
             Log.e(TAG, "StreamCorruptedException");
@@ -99,11 +57,8 @@ public class ServerListenerImp extends HandlerThread {
     }
 
     public void run() {
-//        long starttime = System.currentTimeMillis();
-//        long intertime;
         boolean listenerON = true;
         while (listenerON) {
-            // System.out.println("here in "+getClass());
             try {
                 postReceived = input.readByte(); // Strut of the car
                 if (postReceived == DataToolKit.NORMAL) {
@@ -112,12 +67,6 @@ public class ServerListenerImp extends HandlerThread {
                             .readFloat(), input.readFloat(), input.readFloat(),
                             input.readFloat(), input.readFloat(), input
                                     .readFloat(), input.readShort());
-//                    intertime = System.currentTimeMillis() - starttime;
-//                    if (intertime >= 3000) {
-//                        System.gc();
-//                        starttime = System.currentTimeMillis();
-//                        // Log.e("freeMemory",""+Runtime.getRuntime().freeMemory());
-//                    }
                 } else if (postReceived == DataToolKit.ACCIDENT) {
                     // Log.v(TAG, "ACCIDENT Post Received");
                     pool.updateCarInformationsAccident(input.readByte(),// id
@@ -129,12 +78,6 @@ public class ServerListenerImp extends HandlerThread {
                             input.readFloat(),// Y position
                             input.readShort() // Time Delay
                             );
-//                    intertime = System.currentTimeMillis() - starttime;
-//                    if (intertime >= 3000) {
-//                        System.gc();
-//                        starttime = System.currentTimeMillis();
-//                    }
-                    // pool.updateCarInformationsAccident(postReceived);
                 } else if (postReceived == DataToolKit.IDLE) {
                     // Log.v(TAG, "IDLE Post Received");
                     tempID = input.readByte();
@@ -188,12 +131,7 @@ public class ServerListenerImp extends HandlerThread {
                     // jump to game start interface
                     // ////////////////////////////////////////
 
-                    /**/
-                    // ObjectPool.barPool = null;
-                    
-
                     ObjectPool.activity.initGameRunning();
-                    // GLThread_Room.setPhase(GLThread_Room.GAME_RUNNING);
                 } else if (postReceived == DataToolKit.DROPOUT) {
                     // Log.v(TAG, "DROPOUT Post Received");
                     tempID = input.readByte();

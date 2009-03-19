@@ -14,9 +14,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -49,28 +47,13 @@ public class MenuActivity extends Activity implements OnClickListener{
     private TranslateAnimation animation;
     private int src_width, src_height, b_width = 140, b_height = 40;
 
-    // private ProgressBar progressbar;
-    // private int mProgressStatus=0;
-    // private Handler mHandler;
-    // private boolean isChange;
-    // public MainPlayer player;
-    // public MediaPlayer mp, mp2;
-
-    // private InforPoolClient inPool;
-    // public ServerListenerImp listener;
-    // private PostManagerClient poster;
-
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        // if(this.getResources().getConfiguration().orientation !=
-        // Configuration.ORIENTATION_LANDSCAPE){
-        // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        // }
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
         src_width = getWindowManager().getDefaultDisplay().getWidth();
         src_height = getWindowManager().getDefaultDisplay().getHeight();
-        // mHandler = new Handler();
 
         single = (ImageView) findViewById(R.id.single);
         single.setEnabled(false);
@@ -99,13 +82,10 @@ public class MenuActivity extends Activity implements OnClickListener{
         layout.addView(edit_Name);
         layout.addView(text_IP);
         layout.addView(edit_IP);
-        Log.e("-----------Menu", "Here");
-        // DataUnti.init(this);
+//        Log.e("-----------Menu", "Here");
+        
         startMove(single, 0, src_width, src_width - 150, src_height / 3,
                 src_height / 3);
-
-        // 释放全部对象
-        // releaseAllObject();
     }
 
     private void releaseAllObject() {
@@ -132,7 +112,7 @@ public class MenuActivity extends Activity implements OnClickListener{
         // animation.setFillAfter(true);
         animation.setAnimationListener(new DisplayNextButton(n));
         b.setAnimation(animation);
-
+        
         animation.startNow();
     }
 
@@ -177,7 +157,6 @@ public class MenuActivity extends Activity implements OnClickListener{
                 setting.setEnabled(true);
                 break;
             }
-
             }
         }
 
@@ -192,15 +171,11 @@ public class MenuActivity extends Activity implements OnClickListener{
     public void onClick(View arg0) {
 
         if (arg0 == single) {
-            // Intent intent = new Intent();
-            // intent.setClass(MenuActivity.this, SingleGame.class);
-            // startActivity(intent);
-            // finish();
-
+        	;
         } else if (arg0 == multiple) {
             showDialog(0);
         } else if (arg0 == setting) {
-
+        	;
         }
     }
 
@@ -232,9 +207,6 @@ public class MenuActivity extends Activity implements OnClickListener{
                                 Intent intent = new Intent();
                                 intent.setClass(MenuActivity.this,
                                         GameActivity.class);
-                                // Uri n =
-                                // Uri.parse(Uri.encode(NAME+"@&"+SERVERIP));
-                                // intent.setData(n);
                                 startActivity(intent);
                                 finish();
 
@@ -243,53 +215,8 @@ public class MenuActivity extends Activity implements OnClickListener{
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                     int whichButton) {
-
+                            	;
                             }
                         }).create();
     }
-
-    protected void onPause() {
-        // if (!isChange) {
-        // MainPlayer.mp.pause();
-        // MainPlayer.isBegin = true;
-        // finish();
-        // }
-        super.onPause();
-    }
-
-    /**
-     * Called when the activity is no longer visible to the user. Stop the
-     * MainPlayer
-     */
-
-    public void onPrepared(MediaPlayer arg0) {
-        // Log.v("onPrepared= ","------");
-        // if (MainPlayer.isBegin || MainPlayer.music) {
-        // MainPlayer.mp.start();
-        // MainPlayer.isBegin = false;
-        // }
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.app.Activity#getRequestedOrientation()
-     */
-    @Override
-    public int getRequestedOrientation() {
-        // TODO Auto-generated method stub
-        return super.getRequestedOrientation();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see android.app.Activity#setRequestedOrientation(int)
-     */
-    @Override
-    public void setRequestedOrientation(int requestedOrientation) {
-        // TODO Auto-generated method stub
-        super.setRequestedOrientation(requestedOrientation);
-    }
-
 }
