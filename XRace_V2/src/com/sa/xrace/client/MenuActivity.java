@@ -38,8 +38,7 @@ import com.sa.xrace.client.toolkit.NetworkToolKit;
  * This class is to show the Menu interface, and add the Animation in the
  * ImageView And in the interface we can choose different option.
  */
-public class MenuActivity extends Activity implements OnClickListener,
-        MediaPlayer.OnPreparedListener {
+public class MenuActivity extends Activity implements OnClickListener{
 
     // private Socket connection;
     private ImageView single, multiple, setting;
