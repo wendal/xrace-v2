@@ -351,12 +351,7 @@ public class GameActivity extends Activity implements SensorListener {
             break;
         case KeyEvent.KEYCODE_DPAD_DOWN:
             // mModelInforPool.setType(TYPE_CAR);
-        	ObjectPool.myCar.setModel(
-                    mModelInforPool.getCurrentCarModel());
-
-        	ObjectPool.myCar
-                    .generateAABBbox(); //Bug 如果从不执行该方法,则无法进行碰撞检查
-            ObjectPool.mPostManager.sendCarTypePostToServer();
+        	
             StateValuePool.carOn = false;
             break;
         case KeyEvent.KEYCODE_DPAD_UP:
@@ -366,18 +361,28 @@ public class GameActivity extends Activity implements SensorListener {
             StateValuePool.carOn = true;
             break;
         case KeyEvent.KEYCODE_ENTER:
+            
+//            ObjectPool.myCar.setModel(
+//                    mModelInforPool.getCurrentCarModel());
+//
+//            ObjectPool.myCar
+//                    .generateAABBbox(); 
+//            ObjectPool.mPostManager.sendCarTypePostToServer();
+            
 //            mModelInforPool.nextCarModel();
 
             if (ObjectPool.myCar.getModel() == null) {
                 // mModelInforPool.setType(Model.CAR);
             	ObjectPool.myCar.setModel(
                         mModelInforPool.getCurrentCarModel());
-                // inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
+//                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             } else {
             	ObjectPool.myCar.setModel(
                         mModelInforPool.getCurrentCarModel());
-                // inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
+//                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
             }
+            ObjectPool.myCar.generateAABBbox();
+            ObjectPool.mPostManager.sendCarTypePostToServer();
             // mPostManager.sendCarTypePostToServer();
             if (!isPostStart) {
                 ObjectPool.mPostManager.sendStartPostToServer();
