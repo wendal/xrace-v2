@@ -7,7 +7,7 @@
  * @version $Revision: $
  * 
  */
-package com.sa.xrace.client.manager;
+package com.sa.xrace.client.network;
 
 /**
  * @author Changpeng Pan

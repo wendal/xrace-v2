@@ -7,7 +7,7 @@
  * @version $Revision: $
  * 
  */
-package com.sa.xrace.client.listener;
+package com.sa.xrace.client.network;
 
 import java.io.DataInputStream;
 import java.io.EOFException;
@@ -88,7 +88,7 @@ public class ServerListenerImp extends HandlerThread {
 //        this.barPool = ObjectPool.barPool;
         try {
             input = new DataInputStream(ObjectPool.mSocket.getInputStream());
-            this.start();
+//            this.start();
         } catch (StreamCorruptedException e) {
             e.printStackTrace();
             Log.e(TAG, "StreamCorruptedException");
