@@ -1,6 +1,5 @@
 package com.sa.xrace.client.toolkit;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -74,7 +73,7 @@ public final class MethodsPool {
     public static void LoadMapFromXML(String filename) {
 //        long start = System.currentTimeMillis();
 //        InputStream fis;
-        DataInputStream dis;
+//        DataInputStream dis;
         t3DModel t3Dmodel;
 //        Model model;
         AppearableObject appearableObject;
@@ -107,18 +106,17 @@ public final class MethodsPool {
 //                fis = ObjectPool.assetManager.open(modelObj.Filename);
 //                dis = new DataInputStream(fis);
                 
-                dis = new DataInputStream(
-                        ObjectPool.assetManager.open(modelObj.filename));
+//                dis = new DataInputStream(
+//                        ObjectPool.assetManager.open(modelObj.filename));
                 
                 // t3Dmodel = new t3DModel();
                 // modelImport.import3DS(t3Dmodel, dis);
 
-                t3Dmodel = modelImport.import3DS(dis, Integer
-                        .parseInt(modelObj.ID), modelObj
-                                .type, modelObj.scale);
+                t3Dmodel = modelImport.import3DS(modelObj.filename, modelObj.ID,
+                        modelObj.type, modelObj.scale);
                 
                 //释放两个流
-                dis = null;
+//                dis = null;
 //                fis = null;
                 
                 ObjectPool.mModelInforPool.addModel(t3Dmodel);
