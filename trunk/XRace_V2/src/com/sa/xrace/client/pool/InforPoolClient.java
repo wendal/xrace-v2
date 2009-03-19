@@ -530,9 +530,9 @@ public class InforPoolClient {
     // }
     // }
 
-    public void setLoginedFlag() {
-        if (Logined == false) {
-            Logined = true;
-        }
-    }
+//    public void setLoginedFlag() {
+//        if (Logined == false) {
+//            Logined = true;
+//        }
+//    }
 }
