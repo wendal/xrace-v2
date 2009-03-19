@@ -53,11 +53,11 @@ public final class GLThread_Room extends Thread {
 
     // private final static int mTextureLoad = 1;
     // private static int tem2[] = { 0, 512, 512, -512 };
-    private static EGL10 egl;
-    private static EGLDisplay dpy;
-    private static EGLSurface surface;
+//    private static EGL10 egl;
+//    private static EGLDisplay dpy;
+//    private static EGLSurface surface;
     // public static GL10 gl;
-    public static int progress, startPro = 22;
+//    public static int progress, startPro = 22;
 
     private static long nowTime = 0;
     private static long lastTime = 0;
@@ -68,7 +68,7 @@ public final class GLThread_Room extends Thread {
         super();
         addBar = true;
         loginFailure = false;
-        progress = 22;
+//        progress = 22;
         texturesB = IntBuffer.allocate(11);
         mDone = false;
         this.mHolder = mHolder;
@@ -87,6 +87,10 @@ public final class GLThread_Room extends Thread {
     public void run() {
         Log.i(getClass().getSimpleName(), "in run()");
 
+        EGL10 egl;
+        EGLDisplay dpy;
+        EGLSurface surface;
+        
         egl = (EGL10) EGLContext.getEGL();
         dpy = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
         int[] version = new int[2];
