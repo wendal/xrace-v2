@@ -115,9 +115,9 @@ public final class GLThread_Room extends Thread {
         
         {
             MethodsPool.LoadMapFromXML("scene.xml");
-            ObjectPool.inPoolClient.getOneCarInformation(
-                    ObjectPool.inPoolClient.getMyCarIndex()).setModel(
-                    ObjectPool.mModelInforPool.getCurrentCarModel());
+//            ObjectPool.inPoolClient.getOneCarInformation(
+//                    ObjectPool.inPoolClient.getMyCarIndex()).setModel(
+//                    ObjectPool.mModelInforPool.getCurrentCarModel());
         }
         
 

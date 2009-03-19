@@ -27,6 +27,7 @@ import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
+import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
 
@@ -142,7 +143,7 @@ public class GameActivity extends Activity implements SensorListener {
                 ObjectPool.inPoolClient = ObjectPool.activity.inPool;
                 
                 ObjectPool.myCar = ObjectPool.inPoolClient.getOneCarInformation(ObjectPool.inPoolClient.getMyCarIndex());
-                
+                ObjectPool.myCar.setNName(NetworkToolKit.NAME);
                 // 将WRbarPool加入对象池
                 ObjectPool.barPool = new WRbarPool();
                 // RoomPicPool rpPool = new RoomPicPool(this);

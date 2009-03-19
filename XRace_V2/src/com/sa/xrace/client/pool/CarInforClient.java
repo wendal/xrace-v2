@@ -60,7 +60,7 @@ public final class CarInforClient {
     private float nAccidenceDirection;
     private float nAccidenceChangeDirection;
 
-    private short timeDelay;// time delay of this car in network transmit
+    private int timeDelay;// time delay of this car in network transmit
 
     private int carListName;
 
@@ -278,11 +278,11 @@ public final class CarInforClient {
         nAccidenceDirection = accidenceDirection;
     }
 
-    public short getTimeDelay() {
+    public int getTimeDelay() {
         return timeDelay;
     }
 
-    public void setTimeDelay(short timeDelay) {
+    public void setTimeDelay(int timeDelay) {
         this.timeDelay = timeDelay;
     }
 
