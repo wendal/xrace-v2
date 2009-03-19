@@ -24,10 +24,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
 
-import com.sa.xrace.client.listener.ServerListenerImp;
-import com.sa.xrace.client.manager.PostManagerClientImp;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.ModelInforPool;
+import com.sa.xrace.client.network.PostManagerClientImp;
+import com.sa.xrace.client.network.ServerListenerImp;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
@@ -178,7 +178,7 @@ public class GameActivity extends Activity implements SensorListener {
                 // 把PostManagerClientImp加入对象池
                 ObjectPool.mPostManager = new PostManagerClientImp();
                 // mServerListener =
-                new ServerListenerImp();
+                new ServerListenerImp().start();
                 ObjectPool.activity.mWorld = new GLWorld();
                 // 把GLWorld加入对象池
                 ObjectPool.mWorld = ObjectPool.activity.mWorld;

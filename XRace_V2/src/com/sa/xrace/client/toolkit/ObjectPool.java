@@ -9,8 +9,8 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 
 import com.sa.xrace.client.GameActivity;
-import com.sa.xrace.client.manager.PostManagerClientImp;
 import com.sa.xrace.client.model.ModelInforPool;
+import com.sa.xrace.client.network.PostManagerClientImp;
 import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
