@@ -57,27 +57,27 @@ public final class ModelImport {
     private static final int OBJECT_MATERIAL = 0x4130; // material
     private static final int OBJECT_UV = 0x4140; // UV coordinate
 
-    private tChunk m_CurrentChunk;
-    private tChunk m_TempChunk;
+    private static tChunk m_CurrentChunk = new tChunk();
+    private static tChunk m_TempChunk = new tChunk();
 
-    private DataInputStream dis;
+    private static DataInputStream dis;
 
     /**
      * This class is used to import the model which is created by 3DS MAX. And
      * the data imported is stored in the class t3DModel.java
      */
-    public ModelImport() {
-        m_CurrentChunk = new tChunk();
-        m_TempChunk = new tChunk();
-        // ObjectNumber.regNew(this);
-    }
+//    public ModelImport() {
+//        m_CurrentChunk = new tChunk();
+//        m_TempChunk = new tChunk();
+//        // ObjectNumber.regNew(this);
+//    }
 
     /**
      * import the 3DS model file into the t3DModel object Model: t3DModel
      * instance storing the data inputS: file input stream of the 3DS file
      * @throws IOException 
      */
-    public t3DModel import3DS(String filename, int modelID, int type,  Point3f scale) throws IOException {
+    public static t3DModel import3DS(String filename, int modelID, int type,  Point3f scale) throws IOException {
         t3DModel model = new t3DModel(modelID ,type , scale );
         dis = new DataInputStream(ObjectPool.assetManager.open(filename));
         readChunk(m_CurrentChunk);
@@ -103,7 +103,7 @@ public final class ModelImport {
      * process the next chunk Model: t3DModel instance storing the data
      * PreviousChunk: tChunk instance keeping the ID and length of chunk
      */
-    private void processNextChunk(t3DModel model, tChunk previousChunk) {
+    private static void processNextChunk(t3DModel model, tChunk previousChunk) {
         m_CurrentChunk = new tChunk();
         long version = 0;
 
@@ -199,7 +199,7 @@ public final class ModelImport {
      * Object chunk PreviousChunk: tChunk instance keeping the ID and length of
      * the previous chunk
      */
-    private void processNextObjectChunk(t3DModel Model, t3DObject Object,
+    private static void processNextObjectChunk(t3DModel Model, t3DObject Object,
             tChunk PreviousChunk) {
 
         m_CurrentChunk = new tChunk();
@@ -241,7 +241,7 @@ public final class ModelImport {
      * storing the data of Object chunk PreviousChunk: tChunk instance keeping
      * the ID and length of the previous chunk
      */
-    private void readVertices(t3DObject Object, tChunk PreviousChunk) {
+    private static void readVertices(t3DObject Object, tChunk PreviousChunk) {
         byte[] temp = new byte[4];
         int intTemp;
         try {
@@ -283,7 +283,7 @@ public final class ModelImport {
      * instance storing the data of Object chunk PreviousChunk: tChunk instance
      * keeping the ID and length of the previous chunk
      */
-    private void readVertexIndices(t3DObject Object, tChunk PreviousChunk) {
+    private static void readVertexIndices(t3DObject Object, tChunk PreviousChunk) {
         byte[] temp = new byte[4];
         try {
             PreviousChunk.bytesRead += dis.read(temp, 0, 2);
@@ -319,7 +319,7 @@ public final class ModelImport {
      * data of Object chunk PreviousChunk: tChunk instance keeping the ID and
      * length of the previous chunk
      */
-    private void readObjectMaterial(t3DModel _3Dmodel, t3DObject _3Dobject,
+    private static void readObjectMaterial(t3DModel _3Dmodel, t3DObject _3Dobject,
             tChunk PreviousChunk) {
         String strMaterial = null;
 
@@ -376,7 +376,7 @@ public final class ModelImport {
      * t3DObject instance storing the data of Object chunk PreviousChunk: tChunk
      * instance keeping the ID and length of the previous chunk
      */
-    private void readUVCoordinates(t3DObject Object, tChunk PreviousChunk) {
+    private static void readUVCoordinates(t3DObject Object, tChunk PreviousChunk) {
         int intTemp;
         byte[] temp = new byte[4];
         try {
@@ -412,7 +412,7 @@ public final class ModelImport {
      * storing the data PreviousChunk: tChunk instance keeping the ID and length
      * of the previous chunk
      */
-    private void processNextMaterialChunk(t3DModel Model, tChunk PreviousChunk) {
+    private static void processNextMaterialChunk(t3DModel Model, tChunk PreviousChunk) {
         // byte[] buffer = new byte[200000];
         m_CurrentChunk = new tChunk();
         while (PreviousChunk.bytesRead < PreviousChunk.length) {
@@ -468,7 +468,7 @@ public final class ModelImport {
      * storing the data chunk: tChunk instance keeping the ID and length of the
      * previous chunk
      */
-    private void readColorChunk(tMaterialInfo Material, tChunk chunk) {
+    private static void readColorChunk(tMaterialInfo Material, tChunk chunk) {
         readChunk(m_TempChunk);
         try {
             m_TempChunk.bytesRead += dis.read(Material.color, 0,
@@ -483,7 +483,7 @@ public final class ModelImport {
      * read the ID and length of chunk chunk: tChunk instance keeping the ID and
      * length of chunk
      */
-    private void readChunk(tChunk chunk) {
+    private static void readChunk(tChunk chunk) {
         byte[] temp = new byte[4];
 
         try {
@@ -564,7 +564,7 @@ public final class ModelImport {
     //		
     // }
     // close the dataInput
-    private void closeInput() {
+    private static void closeInput() {
         try {
             dis.close();
             dis = null;
@@ -573,7 +573,7 @@ public final class ModelImport {
         }
     }
 
-    public void release(){
+    public static void release(){
         buffer = null;
         dis = null;
     }
