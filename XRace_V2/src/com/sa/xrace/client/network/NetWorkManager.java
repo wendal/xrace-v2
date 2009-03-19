@@ -12,6 +12,8 @@ import com.sa.xrace.client.toolkit.ObjectPool;
 
 public final class NetWorkManager implements Runnable{
 
+    public static PostManagerClientImp mPostManager;
+
     @Override
     public void run() {
         try {
@@ -31,8 +33,9 @@ public final class NetWorkManager implements Runnable{
         }
         
         // 把PostManagerClientImp加入对象池
-        ObjectPool.mPostManager = new PostManagerClientImp();
+        NetWorkManager.mPostManager = new PostManagerClientImp();
         // mServerListener =
+//        ObjectPool.mHandler.post(new ServerListenerImp());
         new ServerListenerImp().start();
     }
     
