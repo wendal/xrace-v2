@@ -267,7 +267,7 @@ public class WRbarPool {
                 }
             }
         }
-        inPool.setLoginedFlag();
+        InforPoolClient.Logined = true;
         loginReplyProcess();
     }
 
