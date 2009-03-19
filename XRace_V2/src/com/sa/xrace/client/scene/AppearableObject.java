@@ -9,6 +9,7 @@ import com.sa.xrace.client.math.Matrix4f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.t3DModel;
 import com.sa.xrace.client.model.t3DObject;
+import com.sa.xrace.client.toolkit.ObjectPool;
 
 /**
  * @author sliao
@@ -30,21 +31,21 @@ public final class AppearableObject {
         this.mModel = model;
         this.mPosition = new Point3f(point.x, point.y, point.z);
         this.mAngle = point.angle;
-        this.mTransformMatrix = null;
-        this.mVerts = null;
+//        this.mTransformMatrix = null;
+//        this.mVerts = null;
     }
 
-    public void translate(GL10 gl) {
-        gl.glTranslatef(mPosition.x, mPosition.y, mPosition.z);
-    }
-
-    public void rotate(GL10 gl) {
-        gl.glRotatef(mAngle, 0, 1, 0);
-    }
-
-    public void scale(GL10 gl) {
-        mModel.scale();
-    }
+//    public void translate() {
+//        ObjectPool.gl.glTranslatef(mPosition.x, mPosition.y, mPosition.z);
+//    }
+//
+//    public void rotate() {
+//    	ObjectPool.gl.glRotatef(mAngle, 0, 1, 0);
+//    }
+//
+//    public void scale() {
+//        mModel.scale();
+//    }
 
     public void updateTransformMatrix() {
         Matrix4f translateMatrix = new Matrix4f();
@@ -74,6 +75,10 @@ public final class AppearableObject {
     }
 
     public void draw() {
+    	GL10 gl = ObjectPool.gl;
+    	gl.glTranslatef(mPosition.x, mPosition.y, mPosition.z);
+    	gl.glRotatef(mAngle, 0, 1, 0);
+    	mModel.scale();
         mModel.draw();
     }
 }
