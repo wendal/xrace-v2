@@ -50,7 +50,6 @@ public final class ModelInforPool {
     public ModelInforPool() {
         mPosition = new Point3f(0, 0, -3.0f);
         mScale = new Point3f(1.0f, 1.0f, 1.0f);
-        // ObjectNumber.regNew(this);
     }
     public void addModel(t3DModel mod) {
         spAy.put(mod.mModelID, mod);
@@ -150,83 +149,42 @@ public final class ModelInforPool {
         mPosition.z = z;
     }
 
-//    public void setType(int type) {
-//        this.mCurrentType = type;
-//        mCurrentModel = carModelPool[0];
-//        mAngle = 0;
-//    }
-
     public void nextCarModel() {
-//        this.mCurrentType = DataToolKit.CAR;
         if(carModelPool[0] == mCurrentModel){
         	mCurrentModel = carModelPool[1];
             }else{
             	mCurrentModel = carModelPool[0];
         }
         mAngle = 0;
-//        nextCarModel(previousOrNext);
     }
-
-//    public int getType() {
-//        return mCurrentType;
-//    }
 
     public t3DModel getCurrentCarModel() {
         return mCurrentModel;
     }
 
-//    /**
-//     * @param currentModel
-//     *            the mCurrentModel to set
-//     */
-//    public void setMCurrentModel(t3DModel currentModel) {
-//        mCurrentModel = currentModel;
-//    }
-
     public t3DModel getModel(int modelID) {
         return spAy.get(modelID);
     }
-
-//    public boolean nextCarModel() {
-////    	t3DModel previous = null;
-////        mCurrentModel = model2;
-//    	
-//        mAngle = 0;
-//                                
-//        return false;
-//    }
-
-//    public int getMAngle() {
-//        return mAngle;
-//    }
 
     public void setMAngle(int angle) {
         mAngle = angle;
     }
 
-//    private int mCurrentType = -1;
     private t3DModel mCurrentModel = null;
     private int mAngle = 0;
     private float mPresentationAngle = 0.0f;
     private Point3f mScale;
     private Point3f mPosition;
-    // private Vector<Model> mModelVector = new Vector<Model>();
-    // private HashMap<Integer, Model> mModelMap = new HashMap<Integer,
-    // Model>();
     private SparseArray<t3DModel> spAy = new SparseArray<t3DModel>(5);
     
     private t3DModel [] carModelPool = new t3DModel[2];
     
     public t3DModel roadModel ;
-//    
-//    public t3DModel road_line_model;
-//    
+
     private t3DModel garageModel;
    
     public void removeGarageModel(){
         spAy.remove(garageModel.mModelID);
         garageModel = null;
     }
-
-//    public t3DModel currentCarMode;
 }

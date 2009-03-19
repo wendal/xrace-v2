@@ -9,8 +9,6 @@
  */
 package com.sa.xrace.client.loader;
 
-//import java.io.FileInputStream;
-//import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -29,44 +27,14 @@ public final class SenceParser2 {
     private SenceParser2() {
     }
 
-    // // private SenceObj sence = new SenceObj();
-    // private Document doc;
-    //
-    // private DocumentBuilderFactory factory;
-    // private DocumentBuilder docBuilder;
-    // ArrayList<ModelObj> modelListTemp;
-
-    // public SenceParser2(InputStream is) throws ParserConfigurationException,
-    // SAXException, IOException {
-    // factory = DocumentBuilderFactory.newInstance();
-    // factory.setValidating(false);
-    // docBuilder = factory.newDocumentBuilder();
-    // doc = docBuilder.parse(is);
-    // // 解析成功
-    // System.out.println("parse successfull");
-    // String rootName = doc.getDocumentElement().getNodeName();
-    // sence.setName(rootName);
-    // System.out.println(rootName);
-    // parse();
-    // }
-
     public static final ArrayList<ModelObj> parse(InputStream is)
             throws ParserConfigurationException, SAXException, IOException {
-        // SenceObj sence = new SenceObj();
-        // Document doc;
-        // DocumentBuilderFactory factory;
-        // DocumentBuilder docBuilder;
-        // ArrayList<ModelObj> modelListTemp;
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//        factory.setValidating(false);
-        // docBuilder = ;
+
         Document doc = factory.newDocumentBuilder().parse(is);
         // 解析成功
-//        System.out.println("parse successfull");
-        // String rootName = doc.getDocumentElement().getNodeName();
-        // sence.setName(doc.getDocumentElement().getNodeName());
-        // System.out.println(rootName);
+        
         ArrayList<ModelObj> modelListTemp = new ArrayList<ModelObj>();
         Element root = doc.getDocumentElement();
         ModelObj mObjTemp = null;
@@ -78,17 +46,11 @@ public final class SenceParser2 {
             if (eNode.getNodeType() == 1) {
                 mObjTemp = new ModelObj();
                 modelListTemp.add(mObjTemp);
-                // System.out.println(((Element) eNode).getNodeName());
-                // System.out.println(((Element)
-                // eNode).getAttribute("Filename"));
                 mObjTemp
                         .filename = ((Element) eNode).getAttribute("Filename");
                 mObjTemp.ID = Integer.parseInt(((Element) eNode).getAttribute("ID"));
                 mObjTemp.type = Integer.parseInt(((Element) eNode).getAttribute("Type"));
                 mObjTemp.setScale(((Element) eNode).getAttribute("Scale"));
-//                mObjTemp.setRadius(Float.parseFloat(((Element) eNode)
-//                        .getAttribute("Radius")));
-                // System.out.println(eNode.getChildNodes().getLength());
 
                 NodeList nLocations = eNode.getChildNodes();
                 for (int z = 0; z < nLocations.getLength(); z++) {
@@ -119,30 +81,14 @@ public final class SenceParser2 {
                                 point.angle = Float
                                         .parseFloat(((Element) nPoint)
                                                 .getAttribute("angle"));
-
                             }
-
                         }
-
                     }
                 }
-
             }
-
         }
         is.close();
         
-        // sence.setLModelList(modelListTemp);
         return modelListTemp;
-        // return modelListTemp;
     }
-
-    // public SenceObj getScene() {
-    // return this.sence;
-    // }
-
-    // public static void main(String[] args) throws FileNotFoundException,
-    // ParserConfigurationException, SAXException, IOException {
-    // new SenceParser2(new FileInputStream("assets/scene.xml"));
-    // }
 }

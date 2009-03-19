@@ -30,7 +30,6 @@ public class GLWorld {
     private ArrayList<AppearableObject> mObjectVector = new ArrayList<AppearableObject>();
     private InforPoolClient mInforPoolClient;
     private CollisionMap collisionMap;
-    // private Frustum mFrustum;
     private Camera mCamera;
     private float mAngle;
     private Matrix4f mTranslateMatrix;
@@ -43,43 +42,28 @@ public class GLWorld {
 
     private boolean collisionFlag;
 
-    // private Report report;
-    // private int collisionStyle;
-    // private Line2f tempLine;
-    // private Point3f tempCollisionPoint;
-    // private PostManagerClient mPostManager;
-
     public GLWorld() {
         mInforPoolClient = ObjectPool.inPoolClient;
         mCamera = ObjectPool.camera;
-        // mFrustum = new Frustum();
         mTranslateMatrix = new Matrix4f();
         mRotateMatrix = new Matrix4f();
         mScaleMatrix = new Matrix4f();
         mCombineMatrix = new Matrix4f();
         collisionMap = new CollisionMap();
-        // mPostManager = postmanager;
 
         collisionHandler = new CollisionHandler();
-
     }
 
     public void generateCollisionMap() {
     	for (int index = 0; index < ObjectPool.cList.size(); index++) {
 			AppearableObject appearableObject = ObjectPool.cList.get(index);
-//            if (appearableObject.mVerts != null) {
-                collisionMap.generateWallCollisionMap(appearableObject);
-//            }
+            collisionMap.generateWallCollisionMap(appearableObject);
         }
         collisionMap.generateWallLines();
         collisionMap.prepare();
     }
 
-//    private static long lastrun = 0;
-
     public void draw(GL10 gl, long timeElapsed) {
-//        Log.e("Since Last run ", "" + (System.currentTimeMillis() - lastrun));
-//        lastrun = System.currentTimeMillis();
     	final int time = (int)timeElapsed;
         myCar = ObjectPool.myCar;
         if (StateValuePool.isBeginWait) {
@@ -111,15 +95,8 @@ public class GLWorld {
                 speedKeyState, directionKeyState, speedSensorState,
                 directionSensorState, lookDiection);
 
-        // collisionMap.drawWall(gl, mCamera);
-
-//        for (AppearableObject appearableObject : mObjectVector) {
-//        Log.e("GLWorld", "Start new time(before for)");
 		for (int index = 0; index < mObjectVector.size(); index++) {
 			AppearableObject appearableObject = mObjectVector.get(index);
-//            if (appearableObject.mVerts != null) {
-//                continue;
-//            }
 
             gl.glMatrixMode(GL10.GL_MODELVIEW); // set the matrix which would be
                                                 // changed
@@ -129,13 +106,7 @@ public class GLWorld {
             appearableObject.translate(gl);
             appearableObject.rotate(gl);
             appearableObject.scale(gl);
-            // mFrustum.updateFrustum(gl);
-            // if (Frustum.checkSphere(object.getPosition(),
-            // object.getModel().getRadius()) == true)
-            // {
             appearableObject.draw();
-//            Log.e("GLThread_Room", "in for");
-            // }
         }
 
         if (mInforPoolClient != null) {
@@ -218,11 +189,7 @@ public class GLWorld {
             {
                 myCar.draw(gl);
             }
-
         }
-
-        // mInforPoolClient.getOneCarInformation(mInforPoolClient.getMyCarIndex()).getMTranformedBox().rectangle.prepare();
-        // mInforPoolClient.getOneCarInformation(mInforPoolClient.getMyCarIndex()).getMTranformedBox().rectangle.drawCarLine(gl,mCamera);
     }
 
     public void rotate(GL10 gl) {
@@ -305,6 +272,5 @@ public class GLWorld {
         // oneCarInfor.getMTranformedBox().carCollisionHandle(oneCarInfor);
         collisionHandler.carCollisionHandle(myCarInfor, targetCarInfor
                 .getNXPosition(), targetCarInfor.getNYPosition(), mCamera);
-
     }
 }

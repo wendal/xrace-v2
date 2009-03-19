@@ -32,10 +32,7 @@ public final class NetWorkManager implements Runnable{
             // 是否应该退出呢?
         }
         
-        // 把PostManagerClientImp加入对象池
-        NetWorkManager.mPostManager = new PostManagerClientImp();
-        // mServerListener =
-//        ObjectPool.mHandler.post(new ServerListenerImp());
+        mPostManager = new PostManagerClientImp();
         new ServerListenerImp().start();
     }
     

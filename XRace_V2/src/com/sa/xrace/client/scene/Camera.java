@@ -28,18 +28,6 @@ public class Camera {
         this.mChangeDirection = 0.0f;
     }
 
-//    public void initCamera(Point3f eye, Point3f center, Point3f up) {
-//        mEye = eye;
-//        mCenter = center;
-//        mUp = up;
-//        mDistance = (float) Math.sqrt((mEye.x - mCenter.x)
-//                * (mEye.x - mCenter.x) + (mEye.y - mCenter.y)
-//                * (mEye.y - mCenter.y) + (mEye.z - mCenter.z)
-//                * (mEye.z - mCenter.z));
-//        mDirection = 0.0f;
-//        mChangeDirection = 0.0f;
-//    }
-
     public void initCamera(Point3f center, Point3f up, float angle,
             float distance) {
         double x = (distance * Math.sin(angle));
@@ -182,14 +170,6 @@ public class Camera {
         } else if (lookDirection == CarInforClient.LOOK_FRONT) {
             mLookDirection = (float) (mDirection + Math.PI - mChangeDirection);
             updateCamera(myCenter, mDirection + mChangeDirection);
-
-            // if(directionKeyState == CarInforClient.NO_KEY_EVENT &&
-            // directionSensorState == CarInforClient.NO_SENSOR_EVENT){
-            // updateCamera(myCenter, mDirection + mChangeDirection);//write by
-            // sliao
-            // }else{
-            // updateCamera(myCenter, mLookDirection);//write by sliao
-            // }
         }
     }
 

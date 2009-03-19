@@ -42,10 +42,6 @@ public final class t3DObject implements Cloneable {
     public Point2f[] TexVerts; // UV coordinate
     public tFace[] Faces; // faces's vertex index
 
-    public t3DObject() {
-        // ObjectNumber.regNew(this);
-    }
-
     /**
      * create the buffer for render according the data imported
      */
@@ -151,88 +147,11 @@ public final class t3DObject implements Cloneable {
      */
     public void loadBitmap(String filename) {
         GL10 gl = ObjectPool.gl;
-        // long start = System.currentTimeMillis();
-        // Bitmap bitmap = BitmapFactory.decodeStream(is);
-        // Log.e("In LoadBitmap",
-        // "Time used : (decodeStream(is)) "+(System.currentTimeMillis() -
-        // start));
-
         /* 第一位为 Width,第二位为Height */
         int[] size = DataUnti.getBmpSize(filename);
-        // int pic_width = bitmap.getWidth();
-        // int pic_height = bitmap.getHeight();
-
-        // Log.e("",""+(pic_width)+" " + size[0]);
-        // Log.e("",""+(pic_height)+" " + size[1]);
-        // ByteBuffer byteBuffer = ByteBuffer.allocateDirect(pic_width *
-        // pic_height * 4);
         ByteBuffer byteBuffer = DataUnti.getByteBuffer_ByFileName(filename);
 
-        // try {
-        // Log.e("loadBitmap DataUnti", filename + " " + (byteBuffer));
-        // Thread.sleep(1000);
-        // } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        // byteBuffer.order(ByteOrder.nativeOrder());
-
-        // *********************************************
-        // ******************Test***********************
-        // *********************************************
-        // int color;
-        // byte[] argb;
-        // for (int y = 0; y < pic_height; y++)
-        // {
-        // for (int x = 0; x < pic_width; x++)
-        // {
-        // color = bitmap.getPixel(x, y);
-        // }
-        // }
-        // *********************************************
-
-        // IntBuffer intBuffer = byteBuffer.asIntBuffer();
-
-        // Log.e("In LoadBitmap",
-        // "Time used : (Part A)"+(System.currentTimeMillis() - start));
-
-        // int color;
-        // byte[] argb;
-        // for (int y = 0; y < pic_height; y++)
-        // {
-        // for (int x = 0; x < pic_width; x++)
-        // {
-        // /*
-        // * 每一个图像像素通过一个4字节整数来展现。
-        // * 最高位字节用作alpha通道；换言之用来实现透明/不透明控制。
-        // * 255代表完全不透明；0则代表完全透明。
-        // * 接下来一个字节是red红色通道；255代表完全是红色。
-        // * 依次类推接下来两个字节相应的实现绿色和蓝色通道。
-        // */
-        // color=bitmap.getPixel(x, y);
-        // argb=MathUtil.int2byte(color,MathUtil.BIG_ENDIAN);
-        // if(argb[1]==-64&&argb[2]==0&&argb[3]==-64)
-        // //即11000000,00000000,11000000,粉红色
-        // {
-        // argb[0]=0;
-        // }
-        // intBuffer.put(MathUtil.byte2int(argb,MathUtil.BIG_ENDIAN));
-        // }
-        // }
-
-        // Log.e("In LoadBitmap",
-        // "Time used : (Part B)"+(System.currentTimeMillis() - start));
-
-        // for (int i = 0; i < pic_width * pic_height * 4; i += 4) {
-        // byte temp = byteBuffer.get(i);
-        // byteBuffer.put(i, byteBuffer.get(i + 2));
-        // byteBuffer.put(i + 2, temp);
-        //
-        // }
         byteBuffer.position(0);
-        // intBuffer.position(0);
-        // Log.e("In LoadBitmap",
-        // "Time used : (Part C)"+(System.currentTimeMillis() - start));
 
         gl.glGenTextures(1, textureID, 0);
         gl.glBindTexture(GL10.GL_TEXTURE_2D, textureID[0]);
@@ -246,37 +165,6 @@ public final class t3DObject implements Cloneable {
                 GL10.GL_LINEAR);
         gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER,
                 GL10.GL_LINEAR);
-
-        // Log.e("In LoadBitmap",
-        // "Time used (ALL): "+(System.currentTimeMillis() - start));
-
-        // //把数据传出去
-
-        // DataUnti.sendOut(filename, pic_width, pic_height);
-
-        // BmpMessage message = new BmpMessage();
-        // message.setFilename(filename);
-        //		
-        // byte [] data = new byte[byteBuffer.limit()];
-        // for (int i = 0; i < data.length; i++) {
-        // data[i] = byteBuffer.get(i);
-        // }
-        // byteBuffer.position(0);
-        // intBuffer.position(0);
-        // message.setData(data);
-        // try {
-        // Socket socket = new Socket("58.62.117.99",6666);
-        // ObjectOutputStream oos = new
-        // ObjectOutputStream(socket.getOutputStream());
-        // oos.writeObject(message);
-        // oos.flush();
-        // } catch (UnknownHostException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
     }
 
     public t3DObject clone() {

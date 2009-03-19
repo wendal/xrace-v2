@@ -63,16 +63,6 @@ public final class ModelImport {
     private static DataInputStream dis;
 
     /**
-     * This class is used to import the model which is created by 3DS MAX. And
-     * the data imported is stored in the class t3DModel.java
-     */
-//    public ModelImport() {
-//        m_CurrentChunk = new tChunk();
-//        m_TempChunk = new tChunk();
-//        // ObjectNumber.regNew(this);
-//    }
-
-    /**
      * import the 3DS model file into the t3DModel object Model: t3DModel
      * instance storing the data inputS: file input stream of the 3DS file
      * @throws IOException 
@@ -88,11 +78,7 @@ public final class ModelImport {
         }
 
         processNextChunk(model, m_CurrentChunk);
-
-        // computeNormals(Model);
-
-        // Model.generate();
-
+        
         // close input
         closeInput();
 
@@ -497,72 +483,6 @@ public final class ModelImport {
         }
     }
 
-    /**
-     * compute the normals of all vertex Model: t3DModel instance storing the
-     * data
-     */
-    // private void computeNormals(t3DModel Model)
-    // {
-    // Point3f vector1, vector2, vNormal;
-    // Point3f[] vPoly = new Point3f[3];
-    // Point3f vSumOfVectors = new Point3f();
-    // int sharedFaces = 0;
-    //		
-    //		
-    // if (Model.numOfObjects <=0 )
-    // {
-    // return;
-    // }
-    // for (int index=0; index<Model.numOfObjects; index++)
-    // {
-    //			
-    // t3DObject Object = Model.Objects.get(index);
-    //			
-    // Point3f[] Normals = new Point3f[Object.numOfFaces];
-    // Point3f[] tempNormals = new Point3f[Object.numOfFaces];
-    // Object.Normals = new Point3f[Object.numOfVerts];
-    //			
-    //			
-    // for (int i=0; i <Object.numOfFaces; i++)
-    // {
-    // //get the three vertex of each face
-    // vPoly[0] = Object.Verts[Object.Faces[i].verIndex[0]];
-    // vPoly[1] = Object.Verts[Object.Faces[i].verIndex[1]];
-    // vPoly[2] = Object.Verts[Object.Faces[i].verIndex[2]];
-    //				
-    // //compute the normal
-    // vector1= Point3f.getVector(vPoly[0], vPoly[2]);
-    // vector2= Point3f.getVector(vPoly[2], vPoly[1]);
-    // vNormal = Point3f.cross(vector1, vector2);
-    // tempNormals[i] = vNormal.clone();
-    // Point3f.normalize(vNormal);
-    // Normals[i] = vNormal; //keep the normals
-    // }
-    //			
-    // //get the normals of all vertex
-    //			
-    // for (int i = 0; i<Object.numOfVerts; i++) //for each vertex, get its
-    // normal
-    // {
-    // for (int j=0; j<Object.numOfFaces; j++)
-    // {
-    // if (Object.Faces[j].verIndex[0] == i ||
-    // Object.Faces[j].verIndex[1] == i ||
-    // Object.Faces[j].verIndex[2] == i )
-    // {
-    // vSumOfVectors = Point3f.addVector(vSumOfVectors, tempNormals[j]);
-    // sharedFaces++;
-    // }
-    // }
-    // Object.Normals[i] = Point3f.scaleVector(vSumOfVectors,
-    // (float)-sharedFaces);
-    // Point3f.normalize(Object.Normals[i]);
-    // vSumOfVectors.setValues(0.0f, 0.0f, 0.0f);
-    // sharedFaces = 0;
-    // }
-    // }
-    //		
-    // }
     // close the dataInput
     private static void closeInput() {
         try {
@@ -593,5 +513,4 @@ public final class ModelImport {
         super.finalize();
     }
 
-}// class ModelImport
-
+}

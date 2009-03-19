@@ -36,7 +36,6 @@ public class WRbarPool {
     private Bar[] barList;
 
     private GL10 gl;
-    // private RoomPicPool picPool;
 
     private IntBuffer texturesB, carList_FaceVB, map_FaceVB, down_FaceVB;
     private FloatBuffer carList_FaceCB, map_FaceCB, down_FaceCB;
@@ -50,12 +49,9 @@ public class WRbarPool {
     private final static int NUMCOUNT = 30;
 
     private static final int NEWCAR_FLAG = 10;
-    // private static final int LOGIN_FLAG = 2;
-    // private static final int LOGOUT_FLAG = 3;
     private static final int IDLE_FLAG = 1;
     private static int[] listCar;
     private String temPlayerName;
-    // private IntBuffer tempIB;;
 
     private int temindex;
     private int tempLName;
@@ -68,7 +64,6 @@ public class WRbarPool {
 
     private int mTextureIDS[];
     private final int tem[] = { 0, 256, 256, -256 };
-    // private boolean oneTime = false;
     private int panelX, panelY;
 
     // /////////////////////////////////////Car_List/////////////////////////////////////
@@ -118,17 +113,12 @@ public class WRbarPool {
     private final short map_index[] = { 5, 4, 3, 2, 1, 0 };
     private final float map_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0 };
 
-    // private final static short down_index[] = {5,4,3,2,1,0};
-    // private final static float down_UT[] = { 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1,
-    // 0 };
 
     /**
      * 应该只有一个新对象,考虑用单例模式
      * 
      */
-    public WRbarPool(
-    // GL10 gl, RoomPicPool picPool, IntBuffer texturesB
-    ) {
+    public WRbarPool() {
         this.inPool = ObjectPool.inPoolClient;
         barList = new Bar[4];
         for (int i = 0; i < barList.length; i++) {
@@ -140,26 +130,17 @@ public class WRbarPool {
             listCar[i] = i * 100;
         }
 
-        // this.gl = gl;
-        // this.picPool = picPool;
-        // this.texturesB = texturesB;
-
         carB_img = MethodsPool.getBitmap(R.drawable.upleft_pic);
         carMyB_img = MethodsPool.getBitmap(R.drawable.mysite);
 
         preparecarList_Face();
         prepareMap_Face();
-        // for(int i=0;i<4;i++){
-        // setBarLogin(i);
-        // }
-//        ObjectNumber.regNew(this);
     }
 
     public void initWRbarPool(IntBuffer texturesB) {
         this.gl = ObjectPool.gl;
         ;
         this.texturesB = texturesB;
-        // this.picPool = picPool;
 
         mTextureIDS = new int[4];
         gl.glGenTextures(4, mTextureIDS, 0);
@@ -459,21 +440,6 @@ public class WRbarPool {
                     carchange = carchange - 1;
 
                 }
-                // gl.glBindTexture(GL10.GL_TEXTURE_2D,
-                // texturesB.get(carchange));
-                // GameActivity.carNext = false;
-                // GameActivity.carBack = false;
-                // map_FaceVB.position(0);
-                // map_FaceCB.position(0);
-                // map_FaceIB.position(0);
-                // map_FaceUTB.position(0);
-                // gl.glVertexPointer(3, GL10.GL_FIXED, 0, map_FaceVB);
-                // gl.glColorPointer(4, GL10.GL_FLOAT, 0, map_FaceCB);
-                // gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, map_FaceUTB);
-                // gl.glDrawElements(GL10.GL_TRIANGLES,
-                // map_index.length,GL10.GL_UNSIGNED_SHORT, map_FaceIB);
-                // gl.glPopMatrix();
-
             } else {
                 for (index = 0; index < MAXCARN; index++) {
                     switch (barList[index].status) {
@@ -498,27 +464,24 @@ public class WRbarPool {
         }
     }
     private class Bar {
-    static final int LOGIN = 101;
-    static final int LOGOUT = 100;
-    static final int IDLE = 110;
-    static final int NA = 120;
-    int status;
-    int timeCount;
-    byte carID;
-    float stepX, stepY;
-    float basicX, basicY;
+    	static final int LOGIN = 101;
+    	static final int LOGOUT = 100;
+    	static final int IDLE = 110;
+    	static final int NA = 120;
+    	int status;
+    	int timeCount;
+    	byte carID;
+    	float stepX, stepY;
+    	float basicX, basicY;
 
-    public Bar() {
-        status = NA;
-    }
+    	public Bar() {
+    		status = NA;
+    	}
 }
     @Override
     protected void finalize() throws Throwable {
         Log.e("Object finalize",this.getClass().getName());
         super.finalize();
     }
-    
-    
-
 }
 
