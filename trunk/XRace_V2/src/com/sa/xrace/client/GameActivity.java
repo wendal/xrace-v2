@@ -13,7 +13,6 @@ import android.app.Activity;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.KeyEvent;
 import android.view.Window;
@@ -28,7 +27,6 @@ import com.sa.xrace.client.pool.WRbarPool;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
-import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
 
@@ -66,7 +64,7 @@ public class GameActivity extends Activity implements SensorListener {
     // private static final float CAMERA_EYE_Y = 110.0f; //distance between the
     // car and camera when car's stop
 
-    private static boolean isPostStart = false;
+//    private static boolean isPostStart = false;
 
 //    private Handler mHandler;
 
@@ -159,9 +157,9 @@ public class GameActivity extends Activity implements SensorListener {
                 // 把GLWorld加入对象池
 //                ObjectPool.mWorld = ObjectPool.activity.mWorld;
                 ObjectPool.mWorld = new GLWorld();
-                ObjectPool.activity.inPool.getOneCarInformation(
-                        ObjectPool.activity.inPool.getMyCarIndex()).setNName(
-                        NetworkToolKit.NAME);
+//                ObjectPool.activity.inPool.getOneCarInformation(
+//                        ObjectPool.activity.inPool.getMyCarIndex()).setNName(
+//                        NetworkToolKit.NAME);
 
                 // 提前载入模型
 //                long start = System.currentTimeMillis();
@@ -371,16 +369,16 @@ public class GameActivity extends Activity implements SensorListener {
             
 //            mModelInforPool.nextCarModel();
 
-            if (ObjectPool.myCar.getModel() == null) {
+//            if (ObjectPool.myCar.getModel() == null) {
                 // mModelInforPool.setType(Model.CAR);
             	ObjectPool.myCar.setModel(
                         mModelInforPool.getCurrentCarModel());
 //                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
-            } else {
-            	ObjectPool.myCar.setModel(
-                        mModelInforPool.getCurrentCarModel());
+//            } else {
+//            	ObjectPool.myCar.setModel(
+//                        mModelInforPool.getCurrentCarModel());
 //                 inPool.getOneCarInformation(inPool.getMyCarIndex()).generateAABBbox();
-            }
+//            }
             ObjectPool.myCar.generateAABBbox();
             NetWorkManager.mPostManager.sendCarTypePostToServer();
             // mPostManager.sendCarTypePostToServer();
