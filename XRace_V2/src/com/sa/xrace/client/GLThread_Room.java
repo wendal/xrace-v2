@@ -202,7 +202,7 @@ public final class GLThread_Room extends Thread {
         mModelContainer.generate(gl);
         getCommonTextureReady(gl);
 
-        ObjectPool.myCar.setModel(mModelContainer.getCurrentCarModel());
+//        ObjectPool.myCar.setModel(mModelContainer.getCurrentCarModel());
         if (!StateValuePool.isLogin) {
             Log.e("----------------isLogin-----------------", "isLogin");
             Log.v("sendLoginPostToServer", "sendLoginPostToServer");
