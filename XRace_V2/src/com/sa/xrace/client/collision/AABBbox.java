@@ -53,6 +53,7 @@ public class AABBbox {
     public static final float BIG_NUMBER = 1e37f;
 
     public AABBbox() {
+//        Log.e("New AABBbox", "Create.....................");
         mLeftLower = new Point3f(BIG_NUMBER, BIG_NUMBER, -BIG_NUMBER);
         mRightUpper = new Point3f(-BIG_NUMBER, -BIG_NUMBER, +BIG_NUMBER);
         mWidth = mHeight = mLength = 0.0f;
@@ -60,6 +61,7 @@ public class AABBbox {
     }
 
     public AABBbox(t3DModel model) {
+//        Log.e("New AABBbox", "Create..222...................");
         mLeftLower = new Point3f(BIG_NUMBER, BIG_NUMBER, -BIG_NUMBER);
         mRightUpper = new Point3f(-BIG_NUMBER, -BIG_NUMBER, +BIG_NUMBER);
         mWidth = mHeight = mLength = 0.0f;
@@ -293,5 +295,11 @@ public class AABBbox {
         // Log.e(""," mLeftUpper.x"+rectangle.mLeftUpper.x+" mLeftUpper.y"+rectangle.mLeftUpper.y+" mLeftUpper.z"+rectangle.mLeftUpper.z);
         // Log.e(""," mRightLower.x"+rectangle.mRightLower.x+" mRightLower.y"+rectangle.mRightLower.y+" mRightLower.z"+rectangle.mRightLower.z);
         // Log.e(""," mRightUpper.x"+rectangle.mRightUpper.x+" mRightUpper.y"+rectangle.mRightUpper.y+" mRightUpper.z"+rectangle.mRightUpper.z);
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
     }
 }

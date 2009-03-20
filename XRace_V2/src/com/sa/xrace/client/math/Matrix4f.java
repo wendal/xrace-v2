@@ -9,6 +9,8 @@
  */
 package com.sa.xrace.client.math;
 
+import android.util.Log;
+
 public final class Matrix4f {
 
     private float matrix[][];
@@ -137,5 +139,11 @@ public final class Matrix4f {
         }
         builder.append(" ]");
         return builder.toString();
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
     }
 }

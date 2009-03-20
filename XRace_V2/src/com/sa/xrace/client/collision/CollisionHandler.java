@@ -196,30 +196,12 @@ public class CollisionHandler {
 
     }
 
-    // private void nearWallChecker(Line2f wallLine,CarInforClient oneCarInfor)
-    // {
-    // //if for isCross
-    // int style;
-    // Report report;
-    //		
-    // // collsionResulter(style,report,oneCarInfor);
-    // }
-    //
-    // private void collsionResulter(int collsionStyle,Report
-    // report,CarInforClient oneCarInfor)
-    // {
-    // switch(collsionStyle)
-    // {
-    // case Report.RHORN:
-    // //parallel
-    // break;
-    // case Report.RFACE:
-    // //eject
-    // break;
-    // case Report.RCORNER:
-    // //parallel
-    // break;
-    // }
-    // }
+
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
+    }
 
 }
