@@ -65,6 +65,6 @@ public final class DataToolKit {
     public static final int RIGHT = 3;
     public static final int HORIZON = 4;
     public static final int VERTICAL = 5;
-    public final static boolean mapOn = false;
+//    public final static boolean mapOn = false;
 
 }
