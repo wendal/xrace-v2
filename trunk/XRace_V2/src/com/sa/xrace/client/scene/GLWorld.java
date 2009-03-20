@@ -66,8 +66,8 @@ public class GLWorld {
         collisionMap.prepare();
     }
 
-    public void draw(GL10 gl, long timeElapsed) {
-    	final int time = (int)timeElapsed;
+    public void draw(GL10 gl, int timeElapsed) {
+    	final int time = timeElapsed;
         myCar = ObjectPool.myCar;
         if (StateValuePool.isBeginWait) {
             myCar.updateSpeedByKeyboard(time / 80);

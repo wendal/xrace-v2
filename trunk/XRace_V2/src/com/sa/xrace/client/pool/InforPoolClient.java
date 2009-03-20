@@ -311,7 +311,7 @@ public class InforPoolClient {
     /**
      * Add time point into delayhandleIn
      */
-    public static void delayHandleInADD(Long input) {
+    public static void delayHandleInADD(long input) {
         delayHandleIn.add(timeFixing(input));
         // Log.e("delayHandleIn","in");
     }
@@ -319,7 +319,7 @@ public class InforPoolClient {
     /**
      * Add time point into delayhandleOut
      */
-    public static void delayHandleOutADD(Long input) {
+    public static void delayHandleOutADD(long input) {
         delayHandleOut.add(timeFixing(input));
         // Log.e("delayHandleIn","out");
     }
@@ -433,7 +433,7 @@ public class InforPoolClient {
     /**
      * Fix Long time to int
      */
-    public static int timeFixing(Long input) {
+    public static int timeFixing(long input) {
         return (int) (input % 1000000000 % 10000);
     }
 
