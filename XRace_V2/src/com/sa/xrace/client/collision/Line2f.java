@@ -9,6 +9,8 @@
  */
 package com.sa.xrace.client.collision;
 
+import java.util.ArrayList;
+
 import android.util.Log;
 
 import com.sa.xrace.client.math.Point3f;
@@ -26,28 +28,55 @@ public class Line2f {
     public Point3f collisionPoint;
 
     public Line2f() {
-        if(pointS == null){
-            pointS = new Point3f();}
-        else{
-            pointS.clear();
-        }
-        if(pointE == null){
+//        if(pointS == null){
+            pointS = new Point3f();
+//            }
+//        else{
+//            pointS.clear();
+//        }
+//        if(pointE == null){
             pointE = new Point3f();
-        }else{
-            pointE.clear();
-        }
-        if(collisionPoint == null){
+//        }else{
+//            pointE.clear();
+//        }
+//        if(collisionPoint == null){
             collisionPoint = new Point3f();
-        }else {
-            collisionPoint.clear();
-        }
+//        }else {
+//            collisionPoint.clear();
+//        }
+//            Log.e("Line2f", "Create!!<----------");
     }
 
-    public Line2f(Point3f firstP, Point3f secondP) {
+    private Line2f(Point3f firstP, Point3f secondP) {
         generateLine(firstP, secondP);
         collisionPoint = new Point3f();
+        Log.e("Line2f", "Create!!<-----Again!!-----");
     }
 
+    private static ArrayList<Line2f> objPool = new ArrayList<Line2f>(50);
+    
+    public static Line2f getInstance(Point3f firstP, Point3f secondP){
+    	if(objPool.size() < 1){
+    		return new Line2f(firstP,secondP);
+    	}else {
+    		Line2f line2f = objPool.remove(0);
+    		line2f.clear();
+    		line2f.generateLine(firstP, secondP);
+//    		line2f.clear();
+    		return line2f;
+		}
+    }
+    
+    public static void addObj(ArrayList<Line2f> list){
+    	if(list != null)
+    	objPool.addAll(list);
+    }
+    
+    public static void addObj(Line2f line2f){
+    	if(line2f != null)
+    	objPool.add(line2f);
+    }
+    
     public void clear(){
         pointS = new Point3f();
         pointE = new Point3f();

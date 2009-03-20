@@ -244,13 +244,15 @@ public class AABBbox {
             // calculate out the formula of this wall line
             tempWallPointF = map.finishLine[0];
             tempWallPointS = map.finishLine[1];
-            tempWallLine = new Line2f(tempWallPointF, tempWallPointS);
+            tempWallLine = Line2f.getInstance(tempWallPointF, tempWallPointS);
             if (rectangle.lines[i].isCross(tempWallLine)) {
                 report.validReport(Report.FINISH_REPORT);
                 report.selfLineID.add(i);
                 report.targetLineID.add(0);
                 report.targetLines.add(tempWallLine);
                 reportCount++;
+            }else{
+            	Line2f.addObj(tempWallLine);
             }
         }
         collisionStyle = report.checkReport();
