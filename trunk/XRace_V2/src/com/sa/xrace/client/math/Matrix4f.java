@@ -29,12 +29,31 @@ public final class Matrix4f {
     // }
     // }
     // }
-    public void setIdentity() {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                matrix[i][j] = (i == j ? 1f : 0f);
-            }
-        }
+    private void setIdentity() {
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 4; j++) {
+//                matrix[i][j] = (i == j ? 1f : 0f);
+//            }
+//        }
+        matrix[0][0] = 1.f;
+        matrix[0][1] = 0.f;
+        matrix[0][2] = 0.f;
+        matrix[0][3] = 0.f;
+
+        matrix[1][0] = 0.f;
+        matrix[1][1] = 1.f;
+        matrix[1][2] = 0.f;
+        matrix[1][3] = 0.f;
+
+        matrix[2][0] = 0.f;
+        matrix[2][1] = 0.f;
+        matrix[2][2] = 1.f;
+        matrix[2][3] = 0.f;
+
+        matrix[3][0] = 0.f;
+        matrix[3][1] = 0.f;
+        matrix[3][2] = 0.f;
+        matrix[3][3] = 1.f;
     }
 
     public Matrix4f multiply(Matrix4f other) {
@@ -48,6 +67,28 @@ public final class Matrix4f {
                         + m1[i][2] * m2[2][j] + m1[i][3] * m2[3][j];
             }
         }
+        //*************************************
+//        result.matrix[0][0] = 1.f;
+//        result.matrix[0][1] = 0.f;
+//        result.matrix[0][2] = 0.f;
+//        result.matrix[0][3] = 0.f;
+//
+//        result.matrix[1][0] = 0.f;
+//        result.matrix[1][1] = 1.f;
+//        result.matrix[1][2] = 0.f;
+//        result.matrix[1][3] = 0.f;
+//
+//        result.matrix[2][0] = 0.f;
+//        result.matrix[2][1] = 0.f;
+//        result.matrix[2][2] = 1.f;
+//        result.matrix[2][3] = 0.f;
+//
+//        result.matrix[3][0] = 0.f;
+//        result.matrix[3][1] = 0.f;
+//        result.matrix[3][2] = 0.f;
+//        result.matrix[3][3] = 1.f;
+        //*************************************
+        
         return result;
     }
 
@@ -109,9 +150,12 @@ public final class Matrix4f {
 
     }
 
+    private Point3f temp = new Point3f();
     public void transformPoint(Point3f src, Point3f dest) {
-        Point3f temp = new Point3f();
+//        Point3f temp = new Point3f();
 
+        temp.clear();
+        
         temp.x = src.x * matrix[0][0] + src.y * matrix[0][1] + src.z
                 * matrix[0][2] + matrix[0][3];
         temp.y = src.x * matrix[1][0] + src.y * matrix[1][1] + src.z

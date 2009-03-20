@@ -191,8 +191,8 @@ public final class GLThread_Room extends Thread {
         
         if (StateValuePool.isStart) {
             timeadd += (int)timeElapsed;
-            Log.v("Time Add", ""+timeadd);
-            Log.v("Time Elapsed", ""+timeElapsed);
+//            Log.v("Time Add", ""+timeadd);
+//            Log.v("Time Elapsed", ""+timeElapsed);
             if (timeadd >= 30) {
                 NetWorkManager.mPostManager.sendNormalPostToServer();
                 
