@@ -211,41 +211,41 @@ public final class GLThread_Room extends Thread {
     }
 
     private void getLoginTextureReady() {
-        GL10 gl = ObjectPool.gl;
-        gl.glGenTextures(11, texturesB);
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(10));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByFileName(DataUnti
-                                .getNameByID(R.drawable.laod)));
+//        GL10 gl = ObjectPool.gl;
+//        gl.glGenTextures(11, texturesB);
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(10));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByFileName(DataUnti
+//                                .getNameByID(R.drawable.laod)));
     }
 
     private void getCommonTextureReady(GL10 gl) {
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(4));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByID(R.drawable.down_pic));
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(5));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByFileName(DataUnti
-                                .getNameByID(R.drawable.mapchoice_pic)));
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(6));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByID(R.drawable.mapview1));
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(7));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByID(R.drawable.mapview2));
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(8));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByID(R.drawable.carchoice));
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(9));
-        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
-                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
-                        .getByteBuffer_ByID(R.drawable.carchoice));
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(4));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByID(R.drawable.down_pic));
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(5));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByFileName(DataUnti
+//                                .getNameByID(R.drawable.mapchoice_pic)));
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(6));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByID(R.drawable.mapview1));
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(7));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByID(R.drawable.mapview2));
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(8));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByID(R.drawable.carchoice));
+//        gl.glBindTexture(GL10.GL_TEXTURE_2D, texturesB.get(9));
+//        gl.glTexImage2D(GL10.GL_TEXTURE_2D, 0, GL10.GL_RGBA, 256, 256, 0,
+//                GL10.GL_RGBA, GL10.GL_UNSIGNED_BYTE, DataUnti
+//                        .getByteBuffer_ByID(R.drawable.carchoice));
 
         gl.glTexParameterx(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
                 GL10.GL_CLAMP_TO_EDGE);
