@@ -16,7 +16,6 @@ import java.io.StreamCorruptedException;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
-import android.os.HandlerThread;
 import android.util.Log;
 
 import com.sa.xrace.client.GLThread_Room;
@@ -30,7 +29,7 @@ import com.sa.xrace.client.toolkit.StateValuePool;
  * @author yyang
  * @version $Id$
  */
-public class ServerListenerImp extends HandlerThread {
+public class ServerListenerImp extends Thread {
     private static final String TAG = "-- ServerListenerImp -- ";
     private DataInputStream input;
     private InforPoolClient pool;

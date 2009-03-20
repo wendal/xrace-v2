@@ -17,7 +17,7 @@ import android.util.Log;
 
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.toolkit.ObjectPool;
+import com.sa.xrace.client.toolkit.MethodsPool;
 
 /**
  * @author sliao
@@ -69,7 +69,7 @@ public final class ModelImport {
      */
     public static t3DModel import3DS(String filename, int modelID, int type,  Point3f scale) throws IOException {
         t3DModel model = new t3DModel(modelID ,type , scale );
-        dis = new DataInputStream(ObjectPool.assetManager.open(filename));
+        dis = new DataInputStream(MethodsPool.getFileInputStream(filename));
         readChunk(m_CurrentChunk);
 
         if (m_CurrentChunk.ID != PRIMARY) {

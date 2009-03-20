@@ -32,7 +32,6 @@ import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.ObjectPool;
 import com.sa.xrace.client.toolkit.StateValuePool;
-import com.wendal.java.xrace.toolkit.bmpconvert.DataUnti;
 
 public final class GLThread_Room extends Thread {
 

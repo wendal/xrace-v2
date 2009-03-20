@@ -29,7 +29,7 @@ public final class MethodsPool {
         AppearableObject appearableObject;
 
         try {
-            InputStream is = ObjectPool.assetManager.open(filename);
+            InputStream is = MethodsPool.getFileInputStream(filename);
             ArrayList<ModelObj> modelList = SenceParser2.parse(is);
             is  = null;
             ModelObj modelObj = null;
@@ -76,6 +76,9 @@ public final class MethodsPool {
         return x * 65536;
     }
     
+    public static InputStream getFileInputStream(String filename) throws IOException{
+        return ObjectPool.assetManager.open(filename);
+    }
 
 //  /**
 //   * 这个方法耗时严重,需要改进

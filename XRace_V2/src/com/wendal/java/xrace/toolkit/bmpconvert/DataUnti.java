@@ -22,6 +22,7 @@ import java.util.HashMap;
 import android.util.Log;
 
 import com.sa.xrace.client.R;
+import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
 
@@ -83,7 +84,7 @@ public final class DataUnti {
         ByteBuffer buffer = null;
         {
             try {
-                buffer = readData(ObjectPool.assetManager.open(srcFilename
+                buffer = readData(MethodsPool.getFileInputStream(srcFilename
                         + ".rbg"));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -96,8 +97,7 @@ public final class DataUnti {
     public static final int[] getBmpSize(String srcFilename) {
         int[] size = new int[2];
         try {
-            InputStream is = ObjectPool.assetManager
-                    .open(srcFilename + ".size");
+            InputStream is = MethodsPool.getFileInputStream(srcFilename + ".size");
             DataInputStream dis = new DataInputStream(is);
             size[0] = dis.readInt();
             size[1] = dis.readInt();
