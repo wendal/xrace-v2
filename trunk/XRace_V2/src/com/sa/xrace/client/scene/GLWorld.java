@@ -55,10 +55,13 @@ public class GLWorld {
     }
 
     public void generateCollisionMap() {
-    	for (int index = 0; index < ObjectPool.cList.size(); index++) {
+        int size = ObjectPool.cList.size();
+    	for (int index = 0; index < size; index++) {
 			AppearableObject appearableObject = ObjectPool.cList.get(index);
+			appearableObject.updateTransformMatrix();
             collisionMap.generateWallCollisionMap(appearableObject);
         }
+    	ObjectPool.cList = null;//释放该对象
         collisionMap.generateWallLines();
         collisionMap.prepare();
     }
