@@ -18,7 +18,7 @@ public final class Matrix4f {
     public Matrix4f() {
         matrix = new float[4][4];
         setIdentity();
-
+//        Log.e("Matrix4f", "new one");
     }
 
     // public Matrix4f(Matrix4f other)
@@ -56,42 +56,40 @@ public final class Matrix4f {
         matrix[3][3] = 1.f;
     }
 
-    public Matrix4f multiply(Matrix4f other) {
-        Matrix4f result = new Matrix4f();
+//    public Matrix4f multiply(Matrix4f other) {
+//        Matrix4f result = new Matrix4f();
+//        float[][] m1 = matrix;
+//        float[][] m2 = other.matrix;
+//
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 4; j++) {
+//                result.matrix[i][j] = m1[i][0] * m2[0][j] + m1[i][1] * m2[1][j]
+//                        + m1[i][2] * m2[2][j] + m1[i][3] * m2[3][j];
+//            }
+//        }
+//        
+//        return result;
+//    }
+
+    /**
+     * 警告!!本方法将改变dest的值!!!
+     * @param dest 保存计算结果的对象
+     */
+    public Matrix4f multiply(Matrix4f other ,Matrix4f dest) {
+//        Matrix4f result = dest;
         float[][] m1 = matrix;
         float[][] m2 = other.matrix;
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                result.matrix[i][j] = m1[i][0] * m2[0][j] + m1[i][1] * m2[1][j]
+            	dest.matrix[i][j] = m1[i][0] * m2[0][j] + m1[i][1] * m2[1][j]
                         + m1[i][2] * m2[2][j] + m1[i][3] * m2[3][j];
             }
         }
-        //*************************************
-//        result.matrix[0][0] = 1.f;
-//        result.matrix[0][1] = 0.f;
-//        result.matrix[0][2] = 0.f;
-//        result.matrix[0][3] = 0.f;
-//
-//        result.matrix[1][0] = 0.f;
-//        result.matrix[1][1] = 1.f;
-//        result.matrix[1][2] = 0.f;
-//        result.matrix[1][3] = 0.f;
-//
-//        result.matrix[2][0] = 0.f;
-//        result.matrix[2][1] = 0.f;
-//        result.matrix[2][2] = 1.f;
-//        result.matrix[2][3] = 0.f;
-//
-//        result.matrix[3][0] = 0.f;
-//        result.matrix[3][1] = 0.f;
-//        result.matrix[3][2] = 0.f;
-//        result.matrix[3][3] = 1.f;
-        //*************************************
         
-        return result;
+        return dest;
     }
-
+    
     // public void getTranlateMatrix(float x,float y,float z)
     // {
     // setIdentity();

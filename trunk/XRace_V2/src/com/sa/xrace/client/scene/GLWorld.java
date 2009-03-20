@@ -144,8 +144,7 @@ public class GLWorld {
                         model.scale();
                         mTranslateMatrix.getTranlateMatrix(center);
                         mRotateMatrix.getRotateMatrixY(myDirection);
-                        mCombineMatrix = mTranslateMatrix
-                                .multiply(mRotateMatrix);
+                        mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix , mCombineMatrix);
 
                         // mCombineMatrix =
                         // mScaleMatrix.multiply(mRotateMatrix.multiply(mTranslateMatrix));
@@ -174,11 +173,10 @@ public class GLWorld {
             model.scale();
             mTranslateMatrix.getTranlateMatrix(myCenter);
             mRotateMatrix.getRotateMatrixY(myDirection);
-            mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix);
+//            mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix);
             mScaleMatrix.getScaleMatrix(model.mScale_x , model.mScale_y , model.mScale_z );
 
-            mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix
-                    .multiply(mScaleMatrix));
+            mCombineMatrix = mTranslateMatrix.multiply(mRotateMatrix.multiply(mScaleMatrix ,mCombineMatrix), mCombineMatrix);
 
             // mCombineMatrix =
             // mScaleMatrix.multiply(mRotateMatrix.multiply(mTranslateMatrix));
