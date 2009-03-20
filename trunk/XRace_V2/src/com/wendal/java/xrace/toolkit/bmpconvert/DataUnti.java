@@ -233,13 +233,13 @@ public final class DataUnti {
 //        drawable_resourse_map.put(R.drawable.load2, "load2");
         drawable_resourse_map.put(R.drawable.upleft_pic, "upleft_pic");
 //        drawable_resourse_map.put(R.drawable.carchoice, "carchoice");
-        drawable_resourse_map.put(R.drawable.mysite_pic, "mysite_pic");
+//        drawable_resourse_map.put(R.drawable.mysite_pic, "mysite_pic");
         drawable_resourse_map.put(R.drawable.speedometer, "speedometer");
         drawable_resourse_map.put(R.drawable.carpointpic, "carpointpic");
         drawable_resourse_map.put(R.drawable.minimap, "minimap");
         drawable_resourse_map.put(R.drawable.alert_dialog_icon,
                 "alert_dialog_icon");
-        drawable_resourse_map.put(R.drawable.car, "car");
+//        drawable_resourse_map.put(R.drawable.car, "car");
 //        drawable_resourse_map.put(R.drawable.carview1_pic, "carview1_pic");
 //        drawable_resourse_map.put(R.drawable.down_pic, "down_pic");
         drawable_resourse_map.put(R.drawable.icon, "icon");
