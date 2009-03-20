@@ -48,14 +48,20 @@ public final class AppearableObject {
 //    }
 
     public void updateTransformMatrix() {
+//    	Log.e("updateTransformMatrix", "--------->>>");
         Matrix4f translateMatrix = new Matrix4f();
         Matrix4f rotateMatrix = new Matrix4f();
         Matrix4f scaleMatrix = new Matrix4f();
         translateMatrix.getTranlateMatrix(mPosition);
         rotateMatrix.getRotateMatrixY((float) Math.toRadians(mAngle));
         scaleMatrix.getScaleMatrix(mModel.mScale_x , mModel.mScale_y , mModel.mScale_z);
+        
+        if(mTransformMatrix == null){
+        	mTransformMatrix= new Matrix4f();
+        }
+        
         mTransformMatrix = translateMatrix.multiply(rotateMatrix
-                .multiply(scaleMatrix));
+                .multiply(scaleMatrix,mTransformMatrix) , mTransformMatrix);
 
         mVerts = new Point3f[mModel._3Dobjects.size()][];
 
