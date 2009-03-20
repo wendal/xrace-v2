@@ -26,7 +26,6 @@ import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.network.NetWorkManager;
 import com.sa.xrace.client.pool.GIPool;
 import com.sa.xrace.client.pool.InforPoolClient;
-import com.sa.xrace.client.scene.AppearableObject;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;

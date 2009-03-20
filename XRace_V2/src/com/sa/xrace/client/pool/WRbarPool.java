@@ -36,10 +36,10 @@ public class WRbarPool {
 
     private GL10 gl;
 
-    private IntBuffer texturesB, carList_FaceVB, map_FaceVB, down_FaceVB;
-    private FloatBuffer carList_FaceCB, map_FaceCB, down_FaceCB;
-    private ShortBuffer carList_FaceIB, map_FaceIB, down_FaceIB;
-    private FloatBuffer carList_FaceUTB, map_FaceUTB, down_FaceUTB;
+    private IntBuffer texturesB, carList_FaceVB, map_FaceVB;
+    private FloatBuffer carList_FaceCB, map_FaceCB;
+    private ShortBuffer carList_FaceIB, map_FaceIB;
+    private FloatBuffer carList_FaceUTB, map_FaceUTB;
     private ByteBuffer tempBuffer;
 
     private byte index;

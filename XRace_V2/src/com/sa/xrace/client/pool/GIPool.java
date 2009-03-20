@@ -47,7 +47,7 @@ public final class GIPool {
     private final float[] points_position = new float[12 * 3];
     private final float[] points_color = new float[12 * 4];
 
-    private FloatBuffer fb, fb2, cb, cb2;
+    private FloatBuffer  fb2,  cb2;
 
     private ByteBuffer bb;
 
