@@ -25,7 +25,6 @@ import android.view.SurfaceHolder;
 import com.sa.xrace.client.model.ModelInforPool;
 import com.sa.xrace.client.network.NetWorkManager;
 import com.sa.xrace.client.pool.GIPool;
-import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.scene.GLWorld;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.MethodsPool;
@@ -51,7 +50,7 @@ public final class GLThread_Room extends Thread {
 
     private static long nowTime = 0;
     private static long lastTime = 0;
-    private static long timeElapsed = 0;
+    private static int timeElapsed = 0;
     private static int timeadd = 0;
 
     GLThread_Room(SurfaceHolder mHolder, GameView inputView) {
@@ -132,7 +131,8 @@ public final class GLThread_Room extends Thread {
         if (lastTime == 0) {
             lastTime = nowTime;
         }
-        timeElapsed = InforPoolClient.timeFixing(nowTime - lastTime);
+//        timeElapsed = InforPoolClient.timeFixing(nowTime - lastTime);
+        timeElapsed = (int)(nowTime - lastTime);//一般情况下,不会造成截断
         lastTime = nowTime;
 //        timeElapsed = InforPoolClient.timeFixing(timeElapsed);
 
@@ -190,7 +190,7 @@ public final class GLThread_Room extends Thread {
         }
         
         if (StateValuePool.isStart) {
-            timeadd += (int)timeElapsed;
+            timeadd += timeElapsed;
 //            Log.v("Time Add", ""+timeadd);
 //            Log.v("Time Elapsed", ""+timeElapsed);
             if (timeadd >= 30) {
