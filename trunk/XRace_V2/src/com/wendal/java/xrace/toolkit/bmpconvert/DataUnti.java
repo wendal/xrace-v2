@@ -223,16 +223,16 @@ public final class DataUnti {
 
     private static final HashMap<Integer, String> drawable_resourse_map = new HashMap<Integer, String>();
     static {
-        drawable_resourse_map.put(R.drawable.car_down, "car_down");
-        drawable_resourse_map.put(R.drawable.mapchoice_pic, "mapchoice_pic");
-        drawable_resourse_map.put(R.drawable.mapview1, "mapview1");
+//        drawable_resourse_map.put(R.drawable.car_down, "car_down");
+//        drawable_resourse_map.put(R.drawable.mapchoice_pic, "mapchoice_pic");
+//        drawable_resourse_map.put(R.drawable.mapview1, "mapview1");
 //        drawable_resourse_map.put(R.drawable.load1, "load1");
-        drawable_resourse_map.put(R.drawable.mapview2, "mapview2");
-        drawable_resourse_map.put(R.drawable.carchoice, "carchoice");
+//        drawable_resourse_map.put(R.drawable.mapview2, "mapview2");
+//        drawable_resourse_map.put(R.drawable.carchoice, "carchoice");
         drawable_resourse_map.put(R.drawable.triangle, "triangle");
 //        drawable_resourse_map.put(R.drawable.load2, "load2");
         drawable_resourse_map.put(R.drawable.upleft_pic, "upleft_pic");
-        drawable_resourse_map.put(R.drawable.carchoice, "carchoice");
+//        drawable_resourse_map.put(R.drawable.carchoice, "carchoice");
         drawable_resourse_map.put(R.drawable.mysite_pic, "mysite_pic");
         drawable_resourse_map.put(R.drawable.speedometer, "speedometer");
         drawable_resourse_map.put(R.drawable.carpointpic, "carpointpic");
@@ -240,10 +240,10 @@ public final class DataUnti {
         drawable_resourse_map.put(R.drawable.alert_dialog_icon,
                 "alert_dialog_icon");
         drawable_resourse_map.put(R.drawable.car, "car");
-        drawable_resourse_map.put(R.drawable.carview1_pic, "carview1_pic");
-        drawable_resourse_map.put(R.drawable.down_pic, "down_pic");
+//        drawable_resourse_map.put(R.drawable.carview1_pic, "carview1_pic");
+//        drawable_resourse_map.put(R.drawable.down_pic, "down_pic");
         drawable_resourse_map.put(R.drawable.icon, "icon");
-        drawable_resourse_map.put(R.drawable.laod, "laod");
+//        drawable_resourse_map.put(R.drawable.laod, "laod");
 //        drawable_resourse_map.put(R.drawable.load3, "load3");
 //        drawable_resourse_map.put(R.drawable.logo, "logo");
         drawable_resourse_map.put(R.drawable.logo1, "logo1");
