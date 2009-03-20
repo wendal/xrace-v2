@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background ="@drawable/xrace"
+>
+  <ImageView android:id = "@+id/single"
+ 	android:layout_width="140dip"
+    android:layout_height="40dip" 
+    android:src="@drawable/single"
+    android:visibility="invisible"
+    
+    />
+    <ImageView android:id = "@+id/multiple"
+ 	android:layout_width="140dip"
+    android:layout_height="40dip"  
+    android:src="@drawable/multiple"
+    android:visibility="invisible"
+    />
+     <ImageView android:id = "@+id/setting"
+ 	android:layout_width="140dip"
+    android:layout_height="40dip" 
+    android:src="@drawable/setting"
+    android:visibility="invisible"
+    />
+    
+</AbsoluteLayout>
