@@ -45,10 +45,8 @@ public class GameActivity extends Activity implements SensorListener {
         ObjectPool.mHandler.post(new initThread(this));
     }
 
-    private static boolean isInited = false;
-
-    private class initThread extends HandlerThread {
-
+    private static class initThread extends HandlerThread {
+        private static boolean isInited = false;
         public initThread(GameActivity activity) {
             super("init GameActivity");
             ObjectPool.activity = activity;

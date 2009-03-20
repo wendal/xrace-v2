@@ -24,7 +24,6 @@ import android.util.Log;
 import com.sa.xrace.client.R;
 import com.sa.xrace.client.toolkit.MethodsPool;
 import com.sa.xrace.client.toolkit.NetworkToolKit;
-import com.sa.xrace.client.toolkit.ObjectPool;
 
 public final class DataUnti {
 

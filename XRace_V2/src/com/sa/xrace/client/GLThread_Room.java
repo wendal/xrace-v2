@@ -53,7 +53,7 @@ public final class GLThread_Room extends Thread {
     private static long nowTime = 0;
     private static long lastTime = 0;
     private static long timeElapsed = 0;
-    private static long timeadd = 0;
+    private static int timeadd = 0;
 
     GLThread_Room(SurfaceHolder mHolder, GameView inputView) {
         super();
@@ -90,12 +90,14 @@ public final class GLThread_Room extends Thread {
                 EGL10.EGL_NO_CONTEXT, null);
         surface = egl.eglCreateWindowSurface(dpy, config, mHolder, null);
         egl.eglMakeCurrent(dpy, surface, surface, context);
-        ObjectPool.gl = (GL10) context.getGL();
-
-        ObjectPool.gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT,
-                GL10.GL_FASTEST);
         
-            MethodsPool.LoadMapFromXML("scene.xml");
+        GL10 gl = (GL10) context.getGL();//获取GL
+        
+        ObjectPool.gl = gl;//加入对象池,关键一步!!
+
+        gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_FASTEST);
+        
+        MethodsPool.LoadMapFromXML("scene.xml");
         
 
         initForGame();
@@ -105,10 +107,10 @@ public final class GLThread_Room extends Thread {
 
         /* 这是耗时的一步 */
         Loading();
-
+        
         while (!mDone) {
 
-            ObjectPool.gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
+            gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
             drawFrame();// 这是主要耗时的地方,循环绘图
 
             egl.eglSwapBuffers(dpy, surface);
@@ -131,34 +133,37 @@ public final class GLThread_Room extends Thread {
         if (lastTime == 0) {
             lastTime = nowTime;
         }
-        timeElapsed = nowTime - lastTime;
+        timeElapsed = InforPoolClient.timeFixing(nowTime - lastTime);
         lastTime = nowTime;
-        timeElapsed = InforPoolClient.timeFixing(timeElapsed);
+//        timeElapsed = InforPoolClient.timeFixing(timeElapsed);
 
         // 耗时 2 ~ 3ms
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
-        if (loginFailure) {
-            giPool.drawLoginFailure(gl);
-            ObjectPool.activity.finish();
-
-        }
-        if (!addBar) {
-            Log.e("----------------addBar-----------------", "addBar");
-            ObjectPool.barPool.addBar_Login(bindex);
-            StateValuePool.isLogin = true;
-            addBar = true;
-        }
+        
 
         switch (mPhase) {
         case DataToolKit.GAME_ROOM:
-            drawGarage(gl, timeElapsed);
+            if (loginFailure) {
+                giPool.drawLoginFailure(gl);
+                ObjectPool.activity.finish();
+
+            }
+            if (!addBar) {
+                Log.e("----------------addBar-----------------", "addBar");
+                ObjectPool.barPool.addBar_Login(bindex);
+                StateValuePool.isLogin = true;
+                addBar = true;
+            }
+            if (timeElapsed >= 30) {
+                drawGarage(gl);
+            }
             if (ObjectPool.barPool != null) {
                 ObjectPool.barPool.drawOut();
-
-                if (StateValuePool.carOn) {
-                    drawCarSelection(gl);
-                }
             }
+            if (StateValuePool.carOn) {
+                drawCarSelection(gl);
+            }
+            
             break;
         case DataToolKit.GAME_RUNNING:
             
@@ -176,9 +181,6 @@ public final class GLThread_Room extends Thread {
             if (StateValuePool.needTimeCount) {
                 giPool.drawTimeCount(gl, mWorld);
             } else if (needGenerateCollisionMap) {
-                for(AppearableObject appearableObject :  ObjectPool.cList){
-                    appearableObject.updateTransformMatrix();
-                }
                 ObjectPool.mWorld.generateCollisionMap();
                 needGenerateCollisionMap = false;
             }
@@ -187,9 +189,12 @@ public final class GLThread_Room extends Thread {
         }
         
         if (StateValuePool.isStart) {
-            timeadd += timeElapsed;
+            timeadd += (int)timeElapsed;
+            Log.v("Time Add", ""+timeadd);
+            Log.v("Time Elapsed", ""+timeElapsed);
             if (timeadd >= 30) {
                 NetWorkManager.mPostManager.sendNormalPostToServer();
+                
                 timeadd = 0;
             }
         }
@@ -296,8 +301,8 @@ public final class GLThread_Room extends Thread {
         gl.glPopMatrix();
     }
 
-    private void drawGarage(GL10 gl, long timeElapsed) {
-        if (timeElapsed >= 30) {
+    private void drawGarage(GL10 gl) {
+//        if (timeElapsed >= 30) {
             gl.glPushMatrix();
             if (Math.abs(cameraLimit) < 22) {
                 cameraLimit += cameraStep;
@@ -311,5 +316,5 @@ public final class GLThread_Room extends Thread {
 
             gl.glPopMatrix();
         }
-    }
+//    }
 }
