@@ -109,7 +109,7 @@ public final class GLThread_Room extends Thread {
         
         while (!mDone) {
 
-            gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
+//            gl.glClearColor(0.0f, 0.0f, 0.0f, 1);
             drawFrame();// 这是主要耗时的地方,循环绘图
 
             egl.eglSwapBuffers(dpy, surface);
@@ -155,14 +155,16 @@ public final class GLThread_Room extends Thread {
             }
             if (timeElapsed >= 30) {
                 drawGarage(gl);
+                if (ObjectPool.barPool != null) {
+                    ObjectPool.barPool.drawOut();
+                }
+                if (StateValuePool.carOn) {
+                    drawCarSelection(gl);
+                }
+            }else{
+                //期待能执行到这里
+                Log.e("GLThread_Room", "---------------------->Time less than 30ms!!!");
             }
-            if (ObjectPool.barPool != null) {
-                ObjectPool.barPool.drawOut();
-            }
-            if (StateValuePool.carOn) {
-                drawCarSelection(gl);
-            }
-            
             break;
         case DataToolKit.GAME_RUNNING:
             
