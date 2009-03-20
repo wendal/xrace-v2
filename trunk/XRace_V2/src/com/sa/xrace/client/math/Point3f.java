@@ -9,6 +9,7 @@
  */
 package com.sa.xrace.client.math;
 
+
 /**
  * @author sliao
  * @version $Id$
@@ -32,6 +33,12 @@ public final class Point3f {
         this.z = inz;
     }
 
+    public void clear(){
+        x = 0.f;
+        y = 0.f;
+        z = 0.f;
+    }
+    
     public Point3f clone() {
         Point3f point = new Point3f();
         point.x = this.x;
@@ -119,4 +126,10 @@ public final class Point3f {
         buffer.append(z);
         return buffer.toString();
     }
+    
+//    @Override
+//    protected void finalize() throws Throwable {
+//        Log.e("Object finalize",this.getClass().getName());
+//        super.finalize();
+//    }
 }

@@ -188,4 +188,10 @@ public class Report {
             return INVALID_REPORT;
         }
     }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
+    }
 }

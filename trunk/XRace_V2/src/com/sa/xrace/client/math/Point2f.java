@@ -9,6 +9,7 @@
  */
 package com.sa.xrace.client.math;
 
+
 /**
  * @author sliao
  * @version $Id$
@@ -25,7 +26,15 @@ public class Point2f implements Cloneable{
         Point2f p2f = new Point2f();
         p2f.x = this.x;
         p2f.y = this.y;
+//        Log.e("Point2f clone",""+hashCode());
+        
         return p2f;
     }
 
+    
+//    @Override
+//    protected void finalize() throws Throwable {
+//        Log.e("Object finalize",getClass().getSimpleName() + " "+ hashCode());
+//        super.finalize();
+//    }
 }

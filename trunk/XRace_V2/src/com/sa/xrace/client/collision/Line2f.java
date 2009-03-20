@@ -26,9 +26,21 @@ public class Line2f {
     public Point3f collisionPoint;
 
     public Line2f() {
-        pointS = new Point3f();
-        pointE = new Point3f();
-        collisionPoint = new Point3f();
+        if(pointS == null){
+            pointS = new Point3f();}
+        else{
+            pointS.clear();
+        }
+        if(pointE == null){
+            pointE = new Point3f();
+        }else{
+            pointE.clear();
+        }
+        if(collisionPoint == null){
+            collisionPoint = new Point3f();
+        }else {
+            collisionPoint.clear();
+        }
     }
 
     public Line2f(Point3f firstP, Point3f secondP) {
@@ -36,6 +48,15 @@ public class Line2f {
         collisionPoint = new Point3f();
     }
 
+    public void clear(){
+        pointS = new Point3f();
+        pointE = new Point3f();
+        collisionPoint = new Point3f();
+        k = 0;
+        b = 0;
+        lineType = 0;
+    }
+    
     public void generateLine(Point3f firstP, Point3f secondP) {
         pointS = firstP;
         pointE = secondP;
@@ -256,5 +277,11 @@ public class Line2f {
         } else {
             return false;
         }
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
     }
 }

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.AppearableObject;
@@ -125,5 +127,11 @@ public final class CollisionMap {
         gl.glDrawArrays(GL10.GL_LINES, 0, 40);
         gl.glEnable(GL10.GL_TEXTURE_2D);
         gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
     }
 }

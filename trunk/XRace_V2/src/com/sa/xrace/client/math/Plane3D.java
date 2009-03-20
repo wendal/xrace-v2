@@ -9,6 +9,8 @@
  */
 package com.sa.xrace.client.math;
 
+import android.util.Log;
+
 public class Plane3D {
 
     public float a, b, c, d;
@@ -52,5 +54,11 @@ public class Plane3D {
         plane.b /= (float) length;
         plane.c /= (float) length;
         plane.d /= (float) length;
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
     }
 }
