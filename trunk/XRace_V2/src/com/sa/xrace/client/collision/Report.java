@@ -54,6 +54,7 @@ public class Report {
         valid = false;
         selfLineID = new ArrayList<Integer>();
         targetLineID = new ArrayList<Integer>();
+        Line2f.addObj(targetLines);
         targetLines = new ArrayList<Line2f>();
     }
 

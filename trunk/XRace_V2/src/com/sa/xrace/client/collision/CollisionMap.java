@@ -60,7 +60,7 @@ public final class CollisionMap {
     public void generateWallLines() {
         for (int n = 0; n < walls.size(); n += 2) {
             // calculate out the formula of this wall line
-            wallLines.add(new Line2f(walls.get(n), walls.get(n + 1)));
+            wallLines.add(Line2f.getInstance(walls.get(n), walls.get(n + 1)));
         }
     }
 
