@@ -17,50 +17,16 @@ public class ModelObj {
     public String filename;
     public int ID;
     public int type;
-//    private float Radius;
     public Point3f scale = new Point3f();
 
     public LocationObj location;
 
-//    public String getFilename() {
-//        // System.out.println("In ModelBeans " + Filename);
-//        return Filename;
-//    }
-
-//    public void setFilename(String filename) {
-//        Filename = filename;
-//    }
-//
-//    public String getID() {
-//        return ID;
-//    }
-//
-//    public void setID(String id) {
-//        ID = id;
-//    }
-//
-//    public String getType() {
-//        return Type;
-//    }
-//
-//    public void setType(String type) {
-//        Type = type;
-//    }
-
-//    public float getRadius() {
-//        return Radius;
-//    }
-//
-//    public void setRadius(float radius) {
-//        Radius = radius;
-//    }
-
     public LocationObj getLocation() {
-        if (this.location != null) {
+//        if (this.location != null) {
             return location;
-        } else {
-            return null;
-        }
+//        } else {
+//            return null;
+//        }
     }
 
     public void setLocation(LocationObj location) {
