@@ -11,6 +11,8 @@ package com.sa.xrace.client.pool;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import android.util.Log;
+
 import com.sa.xrace.client.collision.AABBbox;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.model.t3DModel;
@@ -572,5 +574,11 @@ public final class CarInforClient {
                     .glRotatef((float) Math.toDegrees(-nChangeDirection * 2),
                             0, 1, 0);
         }
+    }
+    
+    @Override
+    protected void finalize() throws Throwable {
+        Log.e("Object finalize",this.getClass().getName());
+        super.finalize();
     }
 }
