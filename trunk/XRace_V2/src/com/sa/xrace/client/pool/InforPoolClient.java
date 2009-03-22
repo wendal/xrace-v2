@@ -9,7 +9,7 @@
  */
 package com.sa.xrace.client.pool;
 
-import java.util.ArrayList;
+import org.apache.poi.util.IntList;
 
 import android.util.Log;
 
@@ -28,8 +28,8 @@ public class InforPoolClient {
     private static int nCarNumber;
     private static int myCarIndex;
     private static CarInforClient[] nCar;
-    private static ArrayList<Integer> delayHandleIn;
-    private static ArrayList<Integer> delayHandleOut;
+    private static IntList delayHandleIn;
+    private static IntList delayHandleOut;
 
     private static float nowSpeed = 0.0f;
     private static float distanceMade = 0.0f;
@@ -56,8 +56,8 @@ public class InforPoolClient {
         for (int i = 0; i < 6; i++) {
             nCar[i] = new CarInforClient();
         }
-        delayHandleIn = new ArrayList<Integer>();
-        delayHandleOut = new ArrayList<Integer>();
+        delayHandleIn = new IntList(20);
+        delayHandleOut = new IntList(20);
     }
 
     /**

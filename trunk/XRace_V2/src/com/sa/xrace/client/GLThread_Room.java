@@ -165,7 +165,7 @@ public final class GLThread_Room extends Thread {
                 //期待能执行到这里
                 Log.e("GLThread_Room", "---------------------->Time less than 30ms!!!");
             }
-            System.gc();
+//            System.gc();
             break;
         case DataToolKit.GAME_RUNNING:
             
