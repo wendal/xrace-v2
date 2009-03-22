@@ -109,61 +109,84 @@ public final class Matrix4f {
         setIdentity();
         float sin = (float) Math.sin(-angle);
         float cos = (float) Math.cos(-angle);
+//        matrix[0][0] = cos;
+//        matrix[1][0] = 0;
+//        matrix[2][0] = sin;
+//        matrix[3][0] = 0;
+//        matrix[0][1] = 0;
+//        matrix[1][1] = 1;
+//        matrix[2][1] = 0;
+//        matrix[3][1] = 0;
+//        matrix[0][2] = -sin;
+//        matrix[1][2] = 0;
+//        matrix[2][2] = cos;
+//        matrix[3][2] = 0;
+//        matrix[0][3] = 0;
+//        matrix[1][3] = 0;
+//        matrix[2][3] = 0;
+//        matrix[3][3] = 1;
+        
         matrix[0][0] = cos;
-        matrix[1][0] = 0;
-        matrix[2][0] = sin;
-        matrix[3][0] = 0;
-        matrix[0][1] = 0;
-        matrix[1][1] = 1;
-        matrix[2][1] = 0;
-        matrix[3][1] = 0;
+        matrix[0][1] = 0.f;
         matrix[0][2] = -sin;
-        matrix[1][2] = 0;
+        matrix[0][3] = 0.f;
+
+        matrix[1][0] = 0.f;
+        matrix[1][1] = 1.f;
+        matrix[1][2] = 0.f;
+        matrix[1][3] = 0.f;
+
+        matrix[2][0] = sin;
+        matrix[2][1] = 0.f;
         matrix[2][2] = cos;
-        matrix[3][2] = 0;
-        matrix[0][3] = 0;
-        matrix[1][3] = 0;
-        matrix[2][3] = 0;
-        matrix[3][3] = 1;
+        matrix[2][3] = 0.f;
+
+        matrix[3][0] = 0.f;
+        matrix[3][1] = 0.f;
+        matrix[3][2] = 0.f;
+        matrix[3][3] = 1.f;
     }
 
     public void getScaleMatrix(float x , float y , float z) {
         setIdentity();
         matrix[0][0] = x;
-        matrix[1][0] = 0;
-        matrix[2][0] = 0;
-        matrix[3][0] = 0;
-        matrix[0][1] = 0;
+//        matrix[1][0] = 0;
+//        matrix[2][0] = 0;
+//        matrix[3][0] = 0;
+        
+//        matrix[0][1] = 0;
         matrix[1][1] = y;
-        matrix[2][1] = 0;
-        matrix[3][1] = 0;
-        matrix[0][2] = 0;
-        matrix[1][2] = 0;
+//        matrix[2][1] = 0;
+//        matrix[3][1] = 0;
+        
+//        matrix[0][2] = 0;
+//        matrix[1][2] = 0;
         matrix[2][2] = z;
-        matrix[3][2] = 0;
-        matrix[0][3] = 0;
-        matrix[1][3] = 0;
-        matrix[2][3] = 0;
-        matrix[3][3] = 1;
+//        matrix[3][2] = 0;
+        
+//        matrix[0][3] = 0;
+//        matrix[1][3] = 0;
+//        matrix[2][3] = 0;
+//        matrix[3][3] = 1;
 
     }
 
-    private Point3f temp = new Point3f();
+//    private Point3f temp = new Point3f();
     public void transformPoint(Point3f src, Point3f dest) {
 //        Point3f temp = new Point3f();
 
-        temp.clear();
+//        temp.clear();
         
-        temp.x = src.x * matrix[0][0] + src.y * matrix[0][1] + src.z
+        dest.x = src.x * matrix[0][0] + src.y * matrix[0][1] + src.z
                 * matrix[0][2] + matrix[0][3];
-        temp.y = src.x * matrix[1][0] + src.y * matrix[1][1] + src.z
+        dest.y = src.x * matrix[1][0] + src.y * matrix[1][1] + src.z
                 * matrix[1][2] + matrix[1][3];
-        temp.z = src.x * matrix[2][0] + src.y * matrix[2][1] + src.z
+        dest.z = src.x * matrix[2][0] + src.y * matrix[2][1] + src.z
                 * matrix[2][2] + matrix[2][3];
 
-        dest.x = temp.x;
-        dest.y = temp.y;
-        dest.z = temp.z;
+//        dest.x = temp.x;
+//        dest.y = temp.y;
+//        dest.z = temp.z;
     }
 
     /**
