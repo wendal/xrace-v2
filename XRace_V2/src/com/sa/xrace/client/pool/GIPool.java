@@ -99,20 +99,21 @@ public final class GIPool {
     
     private static final Bitmap bm_triangle = MethodsPool.getBitmap(R.drawable.triangle);
     private Bitmap bm_Triangle = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
+    private Canvas c_Triangle = new Canvas(bm_Triangle);
     public void drawTriangle(GL10 gl) {
 //        Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
     	bm_Triangle.eraseColor(0);
-        Canvas c = new Canvas(bm_Triangle);
+    	c_Triangle.setBitmap(bm_Triangle);
 
-        c.save();
+    	c_Triangle.save();
 
         temp = Math.abs(ObjectPool.myCar
                 .getNSpeed());
         angle = perSpeed * temp + MINANGLE;
-        c.rotate(angle, 50, 36);
-        c.drawBitmap(bm_triangle, 13, 28, p_Triangle_Diameter);
+        c_Triangle.rotate(angle, 50, 36);
+        c_Triangle.drawBitmap(bm_triangle, 13, 28, p_Triangle_Diameter);
 
-        c.restore();
+        c_Triangle.restore();
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm_Triangle, 0);
@@ -133,14 +134,15 @@ public final class GIPool {
     }
 
     private Bitmap bm_SpeedText = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
+    private Canvas c_SpeedText = new Canvas(bm_SpeedText);
     public void drawSpeedText(GL10 gl) {
 //        Bitmap bm = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
     	bm_SpeedText.eraseColor(0);
-        Canvas c = new Canvas(bm_SpeedText);
+        c_SpeedText.setBitmap(bm_SpeedText);
 
         int ppeedText_int = (int) Math.abs(ObjectPool.myCar.getNSpeed()) * 5;
 
-        c.drawText("" + ppeedText_int, 32, 32, p_SpeedText);
+        c_SpeedText.drawText("" + ppeedText_int, 32, 32, p_SpeedText);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
         GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm_SpeedText, 0);
@@ -165,17 +167,17 @@ public final class GIPool {
         ((GL11Ext) gl).glDrawTexiOES(15, 15, 0, 72, 72);
         int num = inPool.getNCarNumber();
         for (int i = 0; i < num; i++) {
-            float carX = 0.0f, carY = 0.0f;
-            float x = 0.0f, y = 0.0f;
+//            float carX = 0.0f, carY = 0.0f;
+//            float x = 0.0f, y = 0.0f;
             float carI_X = inPool.getOneCarInformation(i).getNXPosition();
-            x = (float) (87 - (carI_X * 72 / 23500 + 53.62));
+            float x = (float) (87 - (carI_X * 72 / 23500 + 53.62));
             float carI_Y = inPool.getOneCarInformation(i).getNYPosition();
-            y = (float) (carI_Y * 72 / 23500 + 68.62);
-            carX = (int) carI_X;
-            carY = (int) carI_Y;
+            float y = (float) (carI_Y * 72 / 23500 + 68.62);
+//            carX = (int) carI_X;
+//            carY = (int) carI_Y;
             if (StateValuePool.isDebug == true) {
-                Log.e("carX Position", "" + carX);
-                Log.e("carY Position", "" + carY);
+                Log.e("carX Position", "" + (int) carI_X);
+                Log.e("carY Position", "" + (int) carI_Y);
                 Log.e("-------------------------------------",
                         "---------------------------");
                 Log.e("X Position", "" + x);
