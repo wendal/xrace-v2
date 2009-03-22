@@ -20,7 +20,7 @@ public class CollisionHandler {
     private AABBbox box;
     private Report report;
 
-    private Line2f tempWallLine;
+//    private Line2f tempWallLine;
     private Line2f tempVerticalLine;
 
     // /////////////////collision handle section///////////////////////////
@@ -44,7 +44,7 @@ public class CollisionHandler {
         // nearWallChecker(collisionMap.wallLines.get(report.targetLineID.get(0)+1),oneCarInfor);
 
         // calculate out the line vertical to the first collision wall
-        tempWallLine = report.targetLines.get(0);
+        Line2f tempWallLine = report.targetLines.get(0);
         if (tempWallLine.lineType == Line2f.VERTICAL) {
             tempVerticalLine.lineType = Line2f.HORIZONTAL;
             tempVerticalLine.b = myCarInfor.getNYPosition();

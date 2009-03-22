@@ -165,6 +165,7 @@ public final class GLThread_Room extends Thread {
                 //期待能执行到这里
                 Log.e("GLThread_Room", "---------------------->Time less than 30ms!!!");
             }
+            System.gc();
             break;
         case DataToolKit.GAME_RUNNING:
             
@@ -181,24 +182,35 @@ public final class GLThread_Room extends Thread {
 
             if (StateValuePool.needTimeCount) {
                 giPool.drawTimeCount(gl, mWorld);
-            } else if (needGenerateCollisionMap) {
-                ObjectPool.mWorld.generateCollisionMap();
-                needGenerateCollisionMap = false;
+                if (needGenerateCollisionMap) {
+                	ObjectPool.mWorld.generateCollisionMap();
+                	needGenerateCollisionMap = false;
+                }
             }
-
+            if (StateValuePool.isStart) {
+                timeadd += timeElapsed;
+//                Log.v("Time Add", ""+timeadd);
+//                Log.v("Time Elapsed", ""+timeElapsed);
+                if (timeadd >= 30) {
+                    NetWorkManager.mPostManager.sendNormalPostToServer();
+                    
+                    timeadd = 0;
+                }
+            }
+            
             break;
         }
         
-        if (StateValuePool.isStart) {
-            timeadd += timeElapsed;
-//            Log.v("Time Add", ""+timeadd);
-//            Log.v("Time Elapsed", ""+timeElapsed);
-            if (timeadd >= 30) {
-                NetWorkManager.mPostManager.sendNormalPostToServer();
-                
-                timeadd = 0;
-            }
-        }
+//        if (StateValuePool.isStart) {
+//            timeadd += timeElapsed;
+////            Log.v("Time Add", ""+timeadd);
+////            Log.v("Time Elapsed", ""+timeElapsed);
+//            if (timeadd >= 30) {
+//                NetWorkManager.mPostManager.sendNormalPostToServer();
+//                
+//                timeadd = 0;
+//            }
+//        }
     }
 
     private void Loading() {

@@ -14,12 +14,9 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import android.util.Log;
 
 import com.sa.xrace.client.math.Point3f;
-import com.sa.xrace.client.scene.Camera;
 import com.sa.xrace.client.scene.AppearableObject;
 
 public final class CollisionMap {
@@ -109,25 +106,25 @@ public final class CollisionMap {
 
     }
 
-    public void drawWall(GL10 gl, Camera camera) {
-
-        gl.glDisable(GL10.GL_TEXTURE_2D);
-        gl.glMatrixMode(GL10.GL_MODELVIEW);
-        gl.glLoadIdentity();
-
-        camera.setCamera(gl);
-
-        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-        gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
-        gl.glLineWidth(3.0f);
-        fb.position(0);
-        cb.position(0);
-        gl.glVertexPointer(3, GL10.GL_FLOAT, 0, fb);
-        gl.glColorPointer(4, GL10.GL_FLOAT, 0, cb);
-        gl.glDrawArrays(GL10.GL_LINES, 0, 40);
-        gl.glEnable(GL10.GL_TEXTURE_2D);
-        gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
-    }
+//    public void drawWall(GL10 gl, Camera camera) {
+//
+//        gl.glDisable(GL10.GL_TEXTURE_2D);
+//        gl.glMatrixMode(GL10.GL_MODELVIEW);
+//        gl.glLoadIdentity();
+//
+//        camera.setCamera(gl);
+//
+//        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
+//        gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
+//        gl.glLineWidth(3.0f);
+//        fb.position(0);
+//        cb.position(0);
+//        gl.glVertexPointer(3, GL10.GL_FLOAT, 0, fb);
+//        gl.glColorPointer(4, GL10.GL_FLOAT, 0, cb);
+//        gl.glDrawArrays(GL10.GL_LINES, 0, 40);
+//        gl.glEnable(GL10.GL_TEXTURE_2D);
+//        gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
+//    }
     
     @Override
     protected void finalize() throws Throwable {

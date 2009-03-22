@@ -56,9 +56,14 @@ public class ServerListenerImp extends Thread {
     }
 
     public void run() {
-        boolean listenerON = true;
-        while (listenerON) {
+//        boolean listenerON = true;
+        while (true) {
+        	
             try {
+            	if(input.available() < 1){
+            		Thread.sleep(30);
+            		continue;
+            	}
                 postReceived = input.readByte(); // Strut of the car
                 if (postReceived == DataToolKit.NORMAL) {
                     // Log.v(TAG, "~~~~~~~~NORMAL Post Received");
