@@ -53,30 +53,30 @@ public final class Point3f {
         this.z = inz;
     }
 
-    /**
-     * get a vector from two point
-     */
-    public Point3f getVector(Point3f pointStart) {
-        Point3f vector = new Point3f();
-
-        vector.x = x - pointStart.x;
-        vector.y = y - pointStart.y;
-        vector.z = z - pointStart.z;
-
-        return vector;
-    }
+//    /**
+//     * get a vector from two point
+//     */
+//    public void getVector(Point3f pointStart , Point3f dest) {
+////        Point3f vector = new Point3f();
+//
+//    	dest.x = x - pointStart.x;
+//    	dest.y = y - pointStart.y;
+//    	dest.z = z - pointStart.z;
+//
+////        return vector;
+//    }
 
     /**
      * get a vector from adding two vectors
      */
-    public Point3f addVector(Point3f pointStart) {
-        Point3f vector = new Point3f();
+    public void addVector(Point3f pointStart , Point3f dest) {
+//        Point3f vector = new Point3f();
 
-        vector.x = x + pointStart.x;
-        vector.y = y + pointStart.y;
-        vector.z = z + pointStart.z;
+        dest.x = x + pointStart.x;
+        dest.y = y + pointStart.y;
+        dest.z = z + pointStart.z;
 
-        return vector;
+//        return dest;
     }
 
     /**

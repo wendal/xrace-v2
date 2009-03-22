@@ -174,6 +174,7 @@ public class CollisionHandler {
      * them distinguished handle methods.
      */
 
+    private Point3f dirVector = new Point3f();
     public void carCollisionHandle(CarInforClient myCarInfor, float targetX,
             float targetY, Camera camera) {
         float tempRaidus = myCarInfor.getMOriginalBox().radius;
@@ -182,19 +183,20 @@ public class CollisionHandler {
                 myCarInfor.getNYPosition());
         Point3f targetCenter = new Point3f(targetX, 0, targetY);
 
-        Point3f dirVector = myCenter.getVector(targetCenter);
+//        dirVector.clear();
+        myCenter.addVector(targetCenter , dirVector);
         dirVector.normalize();
         dirVector.scaleVector(2 * tempRaidus);
 
-        myCenter = dirVector.addVector(targetCenter);
+        dirVector.addVector(targetCenter , myCenter);
         myCarInfor.setNXPosition(myCenter.x);
         myCarInfor.setNYPosition(myCenter.z);
         myCarInfor.setNSpeed(myCarInfor.getNSpeed() / 2);
     }
 
-    public void finishLineCollisonHandle(CarInforClient myCarInfor) {
-
-    }
+//    public void finishLineCollisonHandle(CarInforClient myCarInfor) {
+//
+//    }
 
 
     
