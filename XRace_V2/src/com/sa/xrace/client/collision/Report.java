@@ -27,9 +27,9 @@ public class Report {
     public static final int CAR_REPORT = 21;
     public static final int FINISH_REPORT = 22;
 
-    public ArrayList<Integer> selfLineID;
-    public ArrayList<Integer> targetLineID;
-    public ArrayList<Line2f> targetLines;
+    public ArrayList<Integer> selfLineID = new ArrayList<Integer>();
+    public ArrayList<Integer> targetLineID = new ArrayList<Integer>();
+    public ArrayList<Line2f> targetLines = new ArrayList<Line2f>();
 
     public boolean valid = false;
 
@@ -38,7 +38,7 @@ public class Report {
     public int whatReport;
 
     public Report() {
-        refreshReport();
+//        refreshReport();
     }
 
     public int whatReport() {
@@ -55,7 +55,7 @@ public class Report {
         selfLineID = new ArrayList<Integer>();
         targetLineID = new ArrayList<Integer>();
         Line2f.addObj(targetLines);
-        targetLines = new ArrayList<Line2f>();
+        targetLines.clear();
     }
 
     public int checkReport() {

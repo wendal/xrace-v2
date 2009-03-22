@@ -91,18 +91,18 @@ public final class Point3f {
 
     }
 
-    /**
-     * get a vector by crossing two vectors
-     */
-    public static Point3f cross(Point3f vector1, Point3f vector2) {
-        Point3f vector = new Point3f();
-
-        vector.x = ((vector1.y * vector2.z) - (vector1.z * vector2.y));
-        vector.y = ((vector1.z * vector2.x) - (vector1.x * vector2.z));
-        vector.z = ((vector1.x * vector2.y) - (vector1.y * vector2.x));
-
-        return vector;
-    }
+//    /**
+//     * get a vector by crossing two vectors
+//     */
+//    public static Point3f cross(Point3f vector1, Point3f vector2) {
+//        Point3f vector = new Point3f();
+//
+//        vector.x = ((vector1.y * vector2.z) - (vector1.z * vector2.y));
+//        vector.y = ((vector1.z * vector2.x) - (vector1.x * vector2.z));
+//        vector.z = ((vector1.x * vector2.y) - (vector1.y * vector2.x));
+//
+//        return vector;
+//    }
 
     /**
      * normalize a vector
