@@ -259,9 +259,9 @@ public class GLWorld {
 
     }
 
-    public void finishLineHandle(CarInforClient oneCarInfor) {
-        collisionHandler.finishLineCollisonHandle(oneCarInfor);
-    }
+//    public void finishLineHandle(CarInforClient oneCarInfor) {
+////        collisionHandler.finishLineCollisonHandle(oneCarInfor);
+//    }
 
     private void wallCollisionHandle(CarInforClient oneCarInfor) {
         // oneCarInfor.getMTranformedBox().wallCollisionHandle(oneCarInfor);
