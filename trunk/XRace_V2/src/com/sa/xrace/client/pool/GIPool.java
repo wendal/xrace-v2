@@ -98,10 +98,11 @@ public final class GIPool {
     private static final Paint p_Triangle_Diameter = new Paint(); 
     
     private static final Bitmap bm_triangle = MethodsPool.getBitmap(R.drawable.triangle);
+    private Bitmap bm_Triangle = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
     public void drawTriangle(GL10 gl) {
-        Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
-        bm.eraseColor(0);
-        Canvas c = new Canvas(bm);
+//        Bitmap bm = Bitmap.createBitmap(128, 128, Bitmap.Config.ARGB_8888);
+    	bm_Triangle.eraseColor(0);
+        Canvas c = new Canvas(bm_Triangle);
 
         c.save();
 
@@ -114,7 +115,7 @@ public final class GIPool {
         c.restore();
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
-        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
+        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm_Triangle, 0);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[1]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
@@ -131,17 +132,18 @@ public final class GIPool {
                 .setTypeface(Typeface.defaultFromStyle(Typeface.BOLD_ITALIC));
     }
 
+    private Bitmap bm_SpeedText = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
     public void drawSpeedText(GL10 gl) {
-        Bitmap bm = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
-        bm.eraseColor(0);
-        Canvas c = new Canvas(bm);
+//        Bitmap bm = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
+    	bm_SpeedText.eraseColor(0);
+        Canvas c = new Canvas(bm_SpeedText);
 
         int ppeedText_int = (int) Math.abs(ObjectPool.myCar.getNSpeed()) * 5;
 
         c.drawText("" + ppeedText_int, 32, 32, p_SpeedText);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
-        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);
+        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm_SpeedText, 0);
 
         gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIDS[2]);
         ((GL11) gl).glTexParameteriv(GL10.GL_TEXTURE_2D,
