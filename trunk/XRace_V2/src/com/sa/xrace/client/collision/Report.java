@@ -52,8 +52,8 @@ public class Report {
 
     public void refreshReport() {
         valid = false;
-        selfLineID = new ArrayList<Integer>();
-        targetLineID = new ArrayList<Integer>();
+        selfLineID.clear();
+        targetLineID.clear();
         Line2f.addObj(targetLines);
         targetLines.clear();
     }
