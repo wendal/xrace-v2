@@ -98,9 +98,11 @@ public class GLWorld {
                 speedKeyState, directionKeyState, speedSensorState,
                 directionSensorState, lookDiection);
 
-        int size = mObjectVector.size();
+        //改为使用本地变量
+        ArrayList<AppearableObject> _aObjs = mObjectVector;
+        int size = _aObjs.size();
 		for (int index = 0; index < size; index++) {
-			AppearableObject appearableObject = mObjectVector.get(index);
+			AppearableObject appearableObject = _aObjs.get(index);
 
             gl.glMatrixMode(GL10.GL_MODELVIEW); // set the matrix which would be
                                                 // changed

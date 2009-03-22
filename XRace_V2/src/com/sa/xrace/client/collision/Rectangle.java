@@ -22,7 +22,7 @@ public class Rectangle {
     // Array be convenient to loop
     // 0 up 1 left 2 bottom 3 right
     public Line2f[] lines;
-    public Point3f center;
+    private Point3f center;
 
     public Rectangle() {
         mLeftUpper = new Point3f();

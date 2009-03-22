@@ -293,26 +293,26 @@ public class WRbarPool {
         barList[index].timeCount = NUMCOUNT;
         switch (index) {
         case 0:
-            barList[index].basicX = 33f;
-            barList[index].basicY = 28f;
+            barList[index].basicX = 33;
+            barList[index].basicY = 28;
             barList[index].stepX = 0;
             barList[index].stepY = 134f / 50;
             break;
         case 1:
-            barList[index].basicX = 263f;
-            barList[index].basicY = 28f;
+            barList[index].basicX = 263;
+            barList[index].basicY = 28;
             barList[index].stepX = 0;
             barList[index].stepY = 134f / 50;
             break;
         case 2:
-            barList[index].basicX = 33f;
-            barList[index].basicY = -75f;
+            barList[index].basicX = 33;
+            barList[index].basicY = -75;
             barList[index].stepX = -184f / 50;
             barList[index].stepY = 0;
             break;
         case 3:
-            barList[index].basicX = 263f;
-            barList[index].basicY = -75f;
+            barList[index].basicX = 263;
+            barList[index].basicY = -75;
             barList[index].stepX = 184f / 50;
             barList[index].stepY = 0;
             break;
@@ -472,7 +472,7 @@ public class WRbarPool {
     	int timeCount;
     	byte carID;
     	float stepX, stepY;
-    	float basicX, basicY;
+    	int basicX, basicY;
 
     	public Bar() {
     		status = NA;
