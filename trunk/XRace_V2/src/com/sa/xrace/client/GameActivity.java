@@ -113,8 +113,8 @@ public class GameActivity extends Activity implements SensorListener {
                 mModelInforPool.nextCarModel();
                 // ///////////////////////////////////////
 
-                StateValuePool.carBack = true;
-                StateValuePool.carNext = false;
+//                StateValuePool.carBack = true;
+//                StateValuePool.carNext = false;
             
             break;
         case KeyEvent.KEYCODE_DPAD_RIGHT:
@@ -122,8 +122,8 @@ public class GameActivity extends Activity implements SensorListener {
                 // ///////////////////////////////////////
                 mModelInforPool.nextCarModel();
                 // ///////////////////////////////////////
-                StateValuePool.carNext = true;
-                StateValuePool.carBack = false;
+//                StateValuePool.carNext = true;
+//                StateValuePool.carBack = false;
             
             break;
         case KeyEvent.KEYCODE_DPAD_DOWN:

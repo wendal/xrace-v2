@@ -57,8 +57,8 @@ public class WRbarPool {
 
 //    private int mapchange = 5;
 //    private int MAPCOUNT = 3;
-    private int carchange = 8;
-    private int CARCOUNT = 2;
+//    private int carchange = 8;
+//    private int CARCOUNT = 2;
     private Bitmap carB_img, carMyB_img;
 
     private int mTextureIDS[];
@@ -432,14 +432,14 @@ public class WRbarPool {
                 // gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
                 // gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
                 // gl.glEnable(GL10.GL_TEXTURE_2D);
-                if (StateValuePool.carNext && carchange < 8 + CARCOUNT - 1) {
-                    carchange = carchange + 1;
+//                if ( carchange < 8 + CARCOUNT - 1) {
+//                    carchange = carchange + 1;
 
-                }
-                if (StateValuePool.carBack && carchange > 8) {
-                    carchange = carchange - 1;
+//                }
+//                if ( carchange > 8) {
+//                    carchange = carchange - 1;
 
-                }
+//                }
             } else {
                 for (index = 0; index < MAXCARN; index++) {
                     switch (barList[index].status) {
