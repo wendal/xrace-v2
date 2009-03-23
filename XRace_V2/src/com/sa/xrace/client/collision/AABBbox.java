@@ -31,7 +31,7 @@ public class AABBbox {
     // private int wallLineCount=0;
     // private int collisionLine[] = new int[2];
 
-    private Point3f tempWallPointF, tempWallPointS;
+//    private Point3f tempWallPointF, tempWallPointS;
     private Line2f tempWallLine;
     private Line2f tempCarLine;
 
@@ -237,22 +237,23 @@ public class AABBbox {
     }
 
     public boolean checkCollisionWithFinishLine(CollisionMap map) {
-        int reportCount = 0;
+//        int reportCount = 0;
         report.refreshReport();
         // for every line in rectangle check whether it collide with walls
         for (int i = DataToolKit.UP; i <= DataToolKit.RIGHT; i++) {
             // calculate out the formula of this wall line
-            tempWallPointF = map.finishLine[0];
-            tempWallPointS = map.finishLine[1];
-            tempWallLine = Line2f.getInstance(tempWallPointF, tempWallPointS);
+//            Point3f tempWallPointF = map.finishLine[0];
+//            Point3f tempWallPointS = map.finishLine[1];
+            Line2f.addObj(tempWallLine);
+            tempWallLine = Line2f.getInstance(map.finishLine[0], map.finishLine[1]);
             if (rectangle.lines[i].isCross(tempWallLine)) {
                 report.validReport(Report.FINISH_REPORT);
                 report.selfLineID.add(i);
                 report.targetLineID.add(0);
                 report.targetLines.add(tempWallLine);
-                reportCount++;
-            }else{
-            	Line2f.addObj(tempWallLine);
+//                reportCount++;
+//            }else{
+//            	Line2f.addObj(tempWallLine);
             }
         }
         collisionStyle = report.checkReport();
