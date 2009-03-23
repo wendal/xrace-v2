@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import android.util.Log;
 
+import com.sa.xrace.client.pool.CarInforClient;
 import com.sa.xrace.client.pool.InforPoolClient;
 import com.sa.xrace.client.toolkit.DataToolKit;
 import com.sa.xrace.client.toolkit.ObjectPool;
@@ -49,8 +50,7 @@ public class PostManagerClientImp implements PostManagerClient {
     public void sendLoginPostToServer() {
         try {
             cOutput.writeByte(DataToolKit.LOGIN);
-            cOutput.writeUTF(ObjectPool.myCar
-                    .getNName());
+            cOutput.writeUTF(ObjectPool.myCar.getNName());
             cOutput.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,10 +61,8 @@ public class PostManagerClientImp implements PostManagerClient {
     public void sendCarTypePostToServer() {
         try {
             cOutput.writeByte(DataToolKit.CARTYPE);
-            cOutput.writeByte(ObjectPool.myCar
-                    .getNCarID());
-            cOutput.writeByte(ObjectPool.myCar
-                    .getModel().mModelID);
+            cOutput.writeByte(ObjectPool.myCar.getNCarID());
+            cOutput.writeByte(ObjectPool.myCar.getModel().mModelID);
             cOutput.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,10 +73,8 @@ public class PostManagerClientImp implements PostManagerClient {
     public void sendLogoutPostToServer() {
         try {
             cOutput.writeByte(DataToolKit.LOGOUT);
-            cOutput.writeByte(ObjectPool.myCar
-                    .getNCarID());
-            cOutput.writeUTF(ObjectPool.myCar
-                    .getNName());
+            cOutput.writeByte(ObjectPool.myCar.getNCarID());
+            cOutput.writeUTF(ObjectPool.myCar.getNName());
             cOutput.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,8 +86,7 @@ public class PostManagerClientImp implements PostManagerClient {
         try {
             cOutput.writeByte(DataToolKit.IDLE);
             cOutput.writeByte((byte) cPool.getMyCarIndex());
-            cOutput
-                    .writeShort(ObjectPool.myCar.getTimeDelay());
+            cOutput.writeShort(ObjectPool.myCar.getTimeDelay());
             cOutput.flush();
             InforPoolClient.delayHandleOutADD(System.currentTimeMillis());
         } catch (Exception e) {
@@ -112,23 +107,17 @@ public class PostManagerClientImp implements PostManagerClient {
 
     public void sendNormalPostToServer() {
 
+        CarInforClient myCar = ObjectPool.myCar;
         try {
             cOutput.writeByte(DataToolKit.NORMAL);
-            cOutput.writeByte(ObjectPool.myCar
-                    .getNCarID());
-            cOutput.writeFloat(ObjectPool.myCar.getNSpeed());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNDirection());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNAcceleration());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNChangeDirection());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNXPosition());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNYPosition());
-            cOutput
-                    .writeShort(ObjectPool.myCar.getTimeDelay());
+            cOutput.writeByte(myCar.getNCarID());
+            cOutput.writeFloat(myCar.getNSpeed());
+            cOutput.writeFloat(myCar.getNDirection());
+            cOutput.writeFloat(myCar.getNAcceleration());
+            cOutput.writeFloat(myCar.getNChangeDirection());
+            cOutput.writeFloat(myCar.getNXPosition());
+            cOutput.writeFloat(myCar.getNYPosition());
+            cOutput.writeShort(myCar.getTimeDelay());
             cOutput.flush();
             InforPoolClient.delayHandleOutADD(System.currentTimeMillis());
         } catch (Exception e) {
@@ -138,24 +127,17 @@ public class PostManagerClientImp implements PostManagerClient {
     }
 
     public void sendAccidentPostToServer() {
+        CarInforClient myCar = ObjectPool.myCar;
         try {
             cOutput.writeByte(DataToolKit.ACCIDENT);
-            cOutput.writeByte(ObjectPool.myCar
-                    .getNCarID());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNAccidenceSpeed());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNAccidenceDirection());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNAccidenceAcceleration());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNAccidenceChangeDirection());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNXPosition());
-            cOutput.writeFloat(ObjectPool.myCar
-                    .getNYPosition());
-            cOutput
-                    .writeShort(ObjectPool.myCar.getTimeDelay());
+            cOutput.writeByte(myCar.getNCarID());
+            cOutput.writeFloat(myCar.getNAccidenceSpeed());
+            cOutput.writeFloat(myCar.getNAccidenceDirection());
+            cOutput.writeFloat(myCar.getNAccidenceAcceleration());
+            cOutput.writeFloat(myCar.getNAccidenceChangeDirection());
+            cOutput.writeFloat(myCar.getNXPosition());
+            cOutput.writeFloat(myCar.getNYPosition());
+            cOutput.writeShort(myCar.getTimeDelay());
             cOutput.flush();
             InforPoolClient.delayHandleOutADD(System.currentTimeMillis());
         } catch (Exception e) {

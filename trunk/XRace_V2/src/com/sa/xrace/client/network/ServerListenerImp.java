@@ -31,21 +31,21 @@ import com.sa.xrace.client.toolkit.StateValuePool;
  */
 public class ServerListenerImp extends Thread {
     private static final String TAG = "-- ServerListenerImp -- ";
-    private DataInputStream input;
-    private InforPoolClient pool;
-    private byte postReceived;
-    private int tempNamesI;
-    private int tempLName;
-    private byte tempID;
-    private byte tempModelID;
-    private short tempTimeDelay;
-    private String tempNameStr;
+    private DataInputStream inputS;
+//    private InforPoolClient pool;
+//    private byte postReceived;
+//    private int tempNamesI;
+//    private int tempLName;
+//    private byte tempID;
+//    private byte tempModelID;
+//    private short tempTimeDelay;
+//    private String tempNameStr;
 
     public ServerListenerImp() {
         super("ServerListenerImp");
-        pool = ObjectPool.inPoolClient;
+//        pool = ObjectPool.inPoolClient;
         try {
-            input = new DataInputStream(ObjectPool.mSocket.getInputStream());
+            inputS = new DataInputStream(ObjectPool.mSocket.getInputStream());
         } catch (StreamCorruptedException e) {
             e.printStackTrace();
             Log.e(TAG, "StreamCorruptedException");
@@ -57,6 +57,19 @@ public class ServerListenerImp extends Thread {
 
     public void run() {
 //        boolean listenerON = true;
+        
+        //++++++++++++++++++++++++++++++++++++++++
+        DataInputStream input = this.inputS;
+        InforPoolClient pool = ObjectPool.inPoolClient;
+        byte postReceived;
+        int tempNamesI;
+        int tempLName;
+        byte tempID;
+        byte tempModelID;
+        short tempTimeDelay;
+        String tempNameStr;
+        //++++++++++++++++++++++++++++++++++++++++
+        
         while (true) {
         	
             try {
