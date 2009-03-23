@@ -6,8 +6,8 @@ public final class StateValuePool {
     public static boolean mapNext = false;
     public static boolean mapBack = false;
     public static boolean carOn = false;
-    public static boolean carNext = false;
-    public static boolean carBack = false;
+//    public static boolean carNext = false;
+//    public static boolean carBack = false;
     public static boolean isLogin = false;
     public static boolean isCarType = false;
     public static boolean isStart = false;

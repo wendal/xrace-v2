@@ -78,8 +78,8 @@ public class InforPoolClient {
     /**
      * Returns the information of the car indicated
      */
-    public CarInforClient getOneCarInformation(int car) {
-        return nCar[car];
+    public CarInforClient getOneCarInformation(int index) {
+        return nCar[index];
     }
 
     /**
