@@ -13,8 +13,6 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import android.util.Log;
-
 import com.sa.xrace.client.math.Point2f;
 import com.sa.xrace.client.math.Point3f;
 import com.sa.xrace.client.toolkit.MethodsPool;
@@ -493,9 +491,14 @@ public final class ModelImport {
         }
     }
 
+    /**
+     * 执行该方法后,本类的全部方法都将无须!!!
+     */
     public static void release(){
         buffer = null;
         dis = null;
+        m_CurrentChunk = null;
+        m_TempChunk = null;
     }
     
     /**
@@ -507,10 +510,10 @@ public final class ModelImport {
         int bytesRead; // bytes that have been read
     }
     
-    @Override
-    protected void finalize() throws Throwable {
-        Log.e("Object finalize",this.getClass().getName());
-        super.finalize();
-    }
+//    @Override
+//    protected void finalize() throws Throwable {
+//        Log.e("Object finalize",this.getClass().getName());
+//        super.finalize();
+//    }
 
 }
