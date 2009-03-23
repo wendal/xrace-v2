@@ -55,6 +55,12 @@ public class Line2f {
 
     private static ArrayList<Line2f> objPool = new ArrayList<Line2f>(50);
     
+//    static{
+//    	for (int i = 0; i < 10; i++) {
+//    		objPool.add(new Line2f());
+//		}
+//    }
+    
     public static Line2f getInstance(Point3f firstP, Point3f secondP){
     	if(objPool.size() < 1){
     		return new Line2f(firstP,secondP);
