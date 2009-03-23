@@ -118,12 +118,12 @@ public final class DataUnti {
 
         // if (null == image_bytebuffer.get(srcFilename.toUpperCase()+".RBG"))
         // Log.e("DataUnit", srcFilename);
-        ByteBuffer buffer = getByteBuffer_ByFileName(getNameByID(id));
+        return getByteBuffer_ByFileName(getNameByID(id));
         // try {
 //        if (buffer == null) {
 //            buffer = MethodsPool.getImageReadyfor(id);
 //        }
-        return buffer;
+//        return buffer;
         // } catch (IOException e) {
         // TODO Auto-generated catch block
         // e.printStackTrace();
@@ -143,9 +143,14 @@ public final class DataUnti {
                 throw new IOException("Size error!");
             }
             // Log.e("DataUnit", filename +"  " +(len));
-            buffer = ByteBuffer.allocateDirect(data.length);
+            
+//            buffer = ByteBuffer.allocateDirect(data.length);
+            //+++++++++++++++++++++++++++++++++++++++++++++++++
+            buffer = ByteBuffer.wrap(data);
+            //+++++++++++++++++++++++++++++++++++++++++++++++++
+            
             buffer.order(ByteOrder.nativeOrder());
-            buffer.put(data);
+//            buffer.put(data);
             buffer.position(0);
             // image_bytebuffer.put(filename.toUpperCase(), buffer);
             is.close();
